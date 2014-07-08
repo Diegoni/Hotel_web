@@ -1,4 +1,4 @@
 Sistema Hotel
 =============
-Front y Back para sitio de un hotel test
+Front y Back para sitio de un hotel
 
