@@ -103,7 +103,7 @@ class Usuario extends CI_Controller {
 				 ->display_as('telefono','Teléfono')
 				 ->display_as('id_tipo','Tipo');
 			
-			$crud->set_subject('teléfonos');
+			$crud->set_subject('teléfono');
 			
 			$crud->set_relation('id_usuario','usuarios','usuario');
 			$crud->set_relation('id_tipo','tipos','tipo');

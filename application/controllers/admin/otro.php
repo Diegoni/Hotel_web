@@ -173,4 +173,35 @@ class Otro extends CI_Controller {
 
 			$this->_example_output($output);
 	}
+	
+	
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de ubicación
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+ 
+ 
+	public function ubicacion_abm(){
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('datatables');
+			$crud->set_table('ubicacion');
+			
+			$crud->columns(	'id_ubicacion',
+							'ubicacion');
+			
+			$crud->display_as('id_ubicacion','ID')
+				 ->display_as('ubicacion','Ubicación');
+			
+			$crud->set_subject('ubicación');
+						
+			$crud->required_fields('ubicacion');
+			
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}
 }

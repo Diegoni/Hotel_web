@@ -100,7 +100,7 @@ class Huesped extends CI_Controller {
 				 ->display_as('telefono','Teléfono')
 				 ->display_as('id_tipo','Tipo');
 			
-			$crud->set_subject('teléfonos');
+			$crud->set_subject('teléfono');
 			
 			$crud->set_relation('id_huesped','huespedes','{apellido} {nombre}');
 			$crud->set_relation('id_tipo','tipos','tipo');
