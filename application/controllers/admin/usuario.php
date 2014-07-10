@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Inicio extends CI_Controller {
+class Usuario extends CI_Controller {
 
 	public function __construct()
 	{
@@ -32,79 +32,46 @@ class Inicio extends CI_Controller {
 	
 	}
 
+
 /**********************************************************************************
  **********************************************************************************
  * 
- * 				Alta, baja y modificación de artículos
+ * 				Alta, baja y modificación de usuario
  * 
  * ********************************************************************************
  **********************************************************************************/
-
-
-	public function articulos_abm(){
+ 
+ 
+	public function usuarios_abm(){
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('datatables');
-			$crud->set_table('articulos');
+			$crud->set_table('usuarios');
 			
-			$crud->columns(	'id_articulo',
-							'titulo',
-							'id_hotel',
-							'id_categoria',
-							'id_autor',
-							'id_estado_articulo');
+			$crud->columns(	'id_usuario',
+							'usuario',
+							'id_acceso');
 			
-			$crud->display_as('id_articulo','ID')
-				 ->display_as('titulo','Título')
+			$crud->display_as('id_usuario','ID')
 				 ->display_as('id_hotel','Hotel')
-				 ->display_as('id_categoria','Categoría')
-				 ->display_as('id_autor','Autor')
-				 ->display_as('id_estado_articulo','Estado')				 ;
+				 ->display_as('usuario','Usuario')
+				 ->display_as('id_acceso','Acceso')
+				 ->display_as('fecha_alta','Fecha Alta')
+				 ->display_as('pass','Password')
+				 ->display_as('id_estado_usuario','Estado');
 			
-			$crud->set_subject('artículo');
+			$crud->set_subject('usuario');
 			
+			$crud->set_relation('id_estado_usuario','estados_usuario','estado_usuario');
+			$crud->set_relation('id_acceso','accesos','acceso');
 			$crud->set_relation('id_hotel','hoteles','hotel');
-			$crud->set_relation('id_categoria','categorias','categoria');
-			$crud->set_relation('id_autor','usuarios','usuario');
-					
-			$crud->required_fields('articulo','id_hotel','fecha_publicacion');
 			
-			$output = $crud->render();
-
-			$this->_example_output($output);
-	}
-	
-/**********************************************************************************
- **********************************************************************************
- * 
- * 				Alta, baja y modificación de categorías
- * 
- * ********************************************************************************
- **********************************************************************************/
- 
- 
-	public function categorias_abm(){
-			$crud = new grocery_CRUD();
-
-			$crud->set_theme('datatables');
-			$crud->set_table('categorias');
+			$crud->add_fields('usuario','pass','id_acceso', 'id_hotel', 'id_estado_usuario');
 			
-			$crud->columns(	'id_categoria',
-							'categoria',
-							'id_ubicacion',
-							'id_estado_categoria');
-			
-			$crud->display_as('id_categoria','ID')
-				 ->display_as('categoria','Categoría')
-				 ->display_as('id_ubicacion','Ubicación')
-				 ->display_as('id_estado_categoria','Estado');
-			
-			$crud->set_subject('categoría');
-			
-			$crud->set_relation('id_ubicacion','ubicacion','ubicacion');
-			$crud->set_relation('id_estado_categoria','estados_categoria','estado_categoria');
-					
-			$crud->required_fields('categoria','id_ubicacion');
+			$crud->required_fields(	'usuario',
+									'pass', 
+									'id_acceso',
+									'id_hotel');
 			
 			$output = $crud->render();
 
@@ -112,127 +79,172 @@ class Inicio extends CI_Controller {
 	}
 	
 	
+
 /**********************************************************************************
  **********************************************************************************
  * 
- * 				Alta, baja y modificación de hoteles
+ * 				Alta, baja y modificación de teléfonos
  * 
  * ********************************************************************************
  **********************************************************************************/
  
  
-	public function hoteles_abm(){
+	public function telefonos_usuario(){
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('datatables');
-			$crud->set_table('hoteles');
+			$crud->set_table('telefonos_usuario');
 			
-			$crud->columns(	'id_hotel',
-							'hotel',
-							'descripcion',
-							'url');
+			$crud->columns(	'id_usuario',
+							'telefono',
+							'id_tipo');
 			
-			$crud->display_as('id_hotel','ID')
-				 ->display_as('hotel','Hotel')
-				 ->display_as('descripcion','Descripción')
-				 ->display_as('url','Sitio');
+			$crud->display_as('id_usuario','Usuario')
+				 ->display_as('telefono','Teléfono')
+				 ->display_as('id_tipo','Tipo');
 			
-			$crud->set_subject('hotel');
+			$crud->set_subject('teléfonos');
 			
-			$crud->required_fields('hotel','descripcion', 'url');
+			$crud->set_relation('id_usuario','usuarios','usuario');
+			$crud->set_relation('id_tipo','tipos','tipo');
+			
+			$crud->required_fields(	'id_usuario',
+									'telefono');
 			
 			$output = $crud->render();
 
 			$this->_example_output($output);
-			
-	}
-
+	}	
+	
 /**********************************************************************************
  **********************************************************************************
  * 
- * 				Alta, baja y modificación de habitaciones
+ * 				Alta, baja y modificación de Emails
  * 
  * ********************************************************************************
  **********************************************************************************/
  
  
-	public function habitaciones_abm(){
+	public function emails_usuario(){
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('datatables');
-			$crud->set_table('habitaciones');
+			$crud->set_table('emails_usuario');
 			
-			$crud->columns(	'id_habitacion',
-							'habitacion',
-							'id_hotel');
+			$crud->columns(	'id_usuario',
+							'email',
+							'id_tipo');
 			
-			$crud->display_as('id_habitacion','ID')
-				 ->display_as('habitacion','Habitación')
-				 ->display_as('id_hotel','Hotel')
-				 ->display_as('id_tipo_habitacion','Tipo')
-				 ->display_as('id_tarifa','Tarifa')
-				 ->display_as('id_estado_habitacion','Estado');
+			$crud->display_as('id_usuario','Usuario')
+				 ->display_as('email','Email')
+				 ->display_as('id_tipo','Tipo');
 			
-			$crud->set_subject('habitación');
+			$crud->set_subject('email');
 			
-			$crud->set_relation('id_tipo_habitacion','tipos_habitacion','tipo_habitacion');
-			$crud->set_relation('id_hotel','hoteles','hotel');
-			$crud->set_relation('id_tarifa','tarifas','tarifa');
-			$crud->set_relation('id_estado_habitacion','estados_habitacion','estado_habitacion');
-					
-			$crud->required_fields(	'habitacion',
-									'adultos', 
-									'menores',
-									'id_tipo_habitacion',
-									'id_hotel',
-									'id_tarifa');
-
+			$crud->set_relation('id_usuario','usuarios','usuario');
+			$crud->set_relation('id_tipo','tipos','tipo');
 			
-			$output = $crud->render();
-
-			$this->_example_output($output);
-	}
-
-/**********************************************************************************
- **********************************************************************************
- * 
- * 				Alta, baja y modificación de tipos de habitacion
- * 
- * ********************************************************************************
- **********************************************************************************/
- 
- 
-	public function tipos_habitacion_abm(){
-			$crud = new grocery_CRUD();
-
-			$crud->set_theme('datatables');
-			$crud->set_table('tipos_habitacion');
-			
-			$crud->columns(	'id_tipo_habitacion',
-							'tipo_habitacion');
-			
-			$crud->display_as('id_tipo_habitacion','ID')
-				 ->display_as('tipo_habitacion','Tipo habitación');
-			
-			$crud->set_subject('tipo habitación');
-							
-			$crud->required_fields(	'tipo_habitacion');
+			$crud->required_fields(	'id_usuario',
+									'email');
 			
 			$output = $crud->render();
 
 			$this->_example_output($output);
 	}
 	
+	
 /**********************************************************************************
  **********************************************************************************
  * 
- * 				Alta, baja y modificación de tipos de tarjeta
+ * 				Alta, baja y modificación de Direcciones
  * 
  * ********************************************************************************
  **********************************************************************************/
  
  
-	public function tipos_tarjeta_abm(){
+	public function direcciones_usuario(){
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('datatables');
+			$crud->set_table('direcciones_usuario');
+			
+			$crud->columns(	'id_usuario',
+							'calle',
+							'nro',
+							'id_departamento',
+							'id_provincia');
+			
+			$crud->display_as('id_usuario','Usuario')
+				 ->display_as('id_departamento','Dep.')
+				 ->display_as('id_provincia','Prov.')
+				 ->display_as('id_pais','País')
+				 ->display_as('id_tipo','Tipo');
+			
+			$crud->set_subject('dirección');
+			
+			$crud->set_relation('id_usuario','usuarios','usuario');
+			$crud->set_relation('id_departamento','departamentos','departamento');
+			$crud->set_relation('id_provincia','provincias','provincia');
+			$crud->set_relation('id_pais','paises','pais');
+			$crud->set_relation('id_tipo','tipos','tipo');
+			
+			$crud->required_fields(	'id_usuario',
+									'calle',
+									'nro',
+									'id_provincia');
+			
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}	
+		
+
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de tarjetas
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+ 
+ 
+	public function tarjetas_usuario(){
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('datatables');
+			$crud->set_table('tarjetas');
+			
+			$crud->columns(	'id_usuario',
+							'tarjeta',
+							'id_tipo_tarjeta');
+			
+			$crud->display_as('id_usuario','Usuario')
+				 ->display_as('id_tipo_tarjeta','Tipo');
+			
+			$crud->set_subject('tarjeta');
+			
+			$crud->set_relation('id_usuario','usuarios','usuario');
+			$crud->set_relation('id_tipo_tarjeta','tipos_tarjeta','tipo_tarjeta');
+						
+			$crud->required_fields(	'id_usuario',
+									'tarjeta',
+									'id_tipo_tarjeta');
+			
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}	
+
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de Tipos de tarjeta
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+ 
+ 
+	public function tipos_tarjeta(){
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('datatables');
@@ -241,42 +253,13 @@ class Inicio extends CI_Controller {
 			$crud->columns(	'id_tipo_tarjeta',
 							'tipo_tarjeta');
 			
-			$crud->display_as('id_tipo_tarjeta','ID')
-				 ->display_as('tipo_tarjeta','Tipo tarjeta');
-			
-			$crud->set_subject('tipo tarjeta');
-							
-			$crud->required_fields(	'tipo_tarjeta');
-			
-			$output = $crud->render();
-
-			$this->_example_output($output);
-	}
-
-/**********************************************************************************
- **********************************************************************************
- * 
- * 				Alta, baja y modificación de tipos
- * 
- * ********************************************************************************
- **********************************************************************************/
- 
- 
-	public function tipos_abm(){
-			$crud = new grocery_CRUD();
-
-			$crud->set_theme('datatables');
-			$crud->set_table('tipos');
-			
-			$crud->columns(	'id_tipo',
-							'tipo');
-			
-			$crud->display_as('id_tipo','ID')
-				 ->display_as('tipo','Tipo');
+			$crud->display_as('id_tipos_tarjeta','ID')
+				 ->display_as('tipos_tarjeta','Tipo');
 			
 			$crud->set_subject('tipo');
-							
-			$crud->required_fields(	'tipo');
+			
+						
+			$crud->required_fields('tipo_tarjeta');
 			
 			$output = $crud->render();
 
@@ -287,82 +270,112 @@ class Inicio extends CI_Controller {
 /**********************************************************************************
  **********************************************************************************
  * 
- * 				Alta, baja y modificación de tarifas
+ * 				Alta, baja y modificación de Estados usuario
  * 
  * ********************************************************************************
  **********************************************************************************/
  
  
-	public function tarifas_abm(){
+	public function estados_usuario(){
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('datatables');
-			$crud->set_table('tarifas');
+			$crud->set_table('estados_usuario');
 			
-			$crud->columns(	'id_tarifa',
-							'tarifa',
-							'precio',
-							'id_moneda');
+			$crud->columns(	'id_estado_usuario',
+							'estado_usuario');
 			
-			$crud->display_as('id_tarifa','ID')
-				 ->display_as('tarifa','Tarifa')
-				 ->display_as('precio','Precio')
-				 ->display_as('id_moneda','Moneda');
+			$crud->display_as('id_estados_usuario','ID')
+				 ->display_as('estado_usuario','Estado');
 			
-			$crud->set_subject('tarifa');
+			$crud->set_subject('estado');
+			$crud->unset_delete();
+			$crud->unset_export();
+			//$crud->unset_add();
 			
-			$crud->set_relation('id_moneda','monedas','moneda');
-								
-			$crud->required_fields(	'tarifa',
-									'adultos', 
-									'menores',
-									'precio',
-									'id_moneda');
-
-			$output = $crud->render();
-
-			$this->_example_output($output);
-	}
-
-
-
-/**********************************************************************************
- **********************************************************************************
- * 
- * 				Alta, baja y modificación de huesped
- * 
- * ********************************************************************************
- **********************************************************************************/
- 
- 
-	public function huespedes_abm(){
-			$crud = new grocery_CRUD();
-
-			$crud->set_theme('datatables');
-			$crud->set_table('huespedes');
-			
-			$crud->columns(	'id_huesped',
-							'nombre',
-							'apellido');
-			
-			$crud->display_as('id_huesped','ID')
-				 ->display_as('nombre','Nombre')
-				 ->display_as('apellido','Apellido')
-				 ->display_as('dni','D.N.I.')
-				 ->display_as('fecha_alta','Fecha Alta')
-				 ->display_as('pass','Password');
-			
-			$crud->set_subject('huesped');
-			
-			$crud->required_fields(	'nombre',
-									'apellido', 
-									'dni');
+						
+			$crud->required_fields('estado_usuario');
 			
 			$output = $crud->render();
 
 			$this->_example_output($output);
 	}
 		
+
+
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de accesos
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+ 
+ 
+	public function accesos_abm(){
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('datatables');
+			$crud->set_table('accesos');
+			
+			$crud->columns(	'id_acceso',
+							'acceso');
+			
+			$crud->display_as('id_accesos','ID')
+				 ->display_as('acceso','Acceso');
+			
+			$crud->set_subject('acceso');
+			
+			$crud->required_fields(	'acceso');
+			
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}
+	
+
+
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de detalle acceso
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+ 
+ 
+	public function detalle_accesos(){
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('datatables');
+			$crud->set_table('detalles_acceso');
+			
+			$crud->columns(	'id_acceso',
+							'id_categoria',
+							'crear',
+							'escribir',
+							'modificar',
+							'borrar');
+			
+			$crud->display_as('id_acceso','Accesos')
+				 ->display_as('id_categoria','Categoria')
+				 ->display_as('crear','Crear')
+				 ->display_as('escribir','Escribir')
+				 ->display_as('modificar','Modificar')
+				 ->display_as('borrar','Borrar');
+			
+			$crud->set_subject('detalle acceso');
+			
+			$crud->set_relation('id_acceso','accesos','acceso');
+			$crud->set_relation('id_categoria','categorias','categoria');
+			
+			$crud->required_fields(	'id_acceso', 'id_categoria');
+			
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}
+	
 
 
 }

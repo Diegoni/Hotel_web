@@ -21,33 +21,129 @@ foreach($css_files as $file): ?>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand"href='<?php echo site_url('admin/inicio')?>'>Administración</a>
+      <a title="Administración" class="navbar-brand"href='<?php echo site_url('admin/inicio')?>'>Admin.</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	<ul class="nav navbar-nav">
+		
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Reservas<b class="caret"></b></a>
+			<ul class="dropdown-menu">
+            	<li><a  href='<?php echo site_url('admin/inicio/reservas')?>'>Reservas</a></li>
+				<li><a  href='<?php echo site_url('admin/inicio/estados_reserva')?>'>Estados reserva</a></li>
+          	</ul>
+        </li>
+        
+        
+        <li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Huéspedes<b class="caret"></b></a>
+			<ul class="dropdown-menu">
+            	<li><a  href='<?php echo site_url('admin/huesped/huespedes_abm')?>'>Huéspedes</a></li>
+            	<li><a  href='<?php echo site_url('admin/huesped/telefonos_huesped')?>'>Teléfonos</a></li>
+            	<li><a  href='<?php echo site_url('admin/huesped/emails_huesped')?>'>Emails</a></li>
+            	<li><a  href='<?php echo site_url('admin/huesped/direcciones_huesped')?>'>Direcciones</a></li>
+            	<li><a  href='<?php echo site_url('admin/huesped/tarjetas_huesped')?>'>Tarjetas</a></li>
+            	<li><a  href='<?php echo site_url('admin/huesped/tipos_tarjeta')?>'>Tipos de tarjeta</a></li>
+            	<li><a  href='<?php echo site_url('admin/huesped/estados_huesped')?>'>Estados huésped</a></li>
+          	</ul>
+        </li>
+        
+        
+        <li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Habitaciones<b class="caret"></b></a>
+			<ul class="dropdown-menu">
+            	<li><a  href='<?php echo site_url('admin/habitacion/habitaciones_abm')?>'>Habitaciones</a></li>
+				<li><a  href='<?php echo site_url('admin/habitacion/tipos_habitacion')?>'>Tipos de habitación</a></li>
+				<li><a  href='<?php echo site_url('admin/habitacion/tarifas_abm')?>'>Tarifas</a></li>
+				<li><a  href='<?php echo site_url('admin/habitacion/estados_habitacion')?>'>Estados habitación</a></li>
+          	</ul>
+        </li>
+		
+		
+		
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Hoteles<b class="caret"></b></a>
+			<ul class="dropdown-menu">
+            	<li><a  href='<?php echo site_url('admin/hotel/hoteles_abm')?>'>Hoteles</a></li>
+				<li><a  href='<?php echo site_url('admin/hotel/telefonos_hotel')?>'>Teléfonos</a></li>
+            	<li><a  href='<?php echo site_url('admin/hotel/emails_hotel')?>'>Emails</a></li>
+            	<li><a  href='<?php echo site_url('admin/hotel/direcciones_hotel')?>'>Direcciones</a></li>
+				<li class="divider"></li>
+            	<li><a  href='<?php echo site_url('admin/hotel/config')?>'>Configuración</a></li>
+            	<li><a  href='<?php echo site_url('admin/hotel/detalle_config')?>'>Configuración avanzada</a></li>
+            </ul>
+        </li>
+        
+        
+        <li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Mensajes<b class="caret"></b></a>
+			<ul class="dropdown-menu">
+            	<li><a  href='<?php echo site_url('admin/inicio/mensajes_abm')?>'>Mensajes</a></li>
+				<li><a  href='<?php echo site_url('admin/inicio/tipos_mensaje')?>'>Tipos de mensaje</a></li>
+				<li><a  href='<?php echo site_url('admin/inicio/estados_mensaje')?>'>Estados mensaje</a></li>
+          	</ul>
+        </li>
+        
+		
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Artículos<b class="caret"></b></a>
 			<ul class="dropdown-menu">
-            	<li><a  href='<?php echo site_url('admin/inicio/articulos_abm')?>'>Artículos</a></li>
-				<li><a  href='<?php echo site_url('admin/inicio/categorias_abm')?>'>Categorías</a></li>
+            	<li><a  href='<?php echo site_url('admin/articulo/articulos_abm')?>'>Artículos</a></li>
+				<li><a  href='<?php echo site_url('admin/articulo/estados_articulo')?>'>Estados artículo</a></li>
+				<li class="divider"></li>
+				<li><a  href='<?php echo site_url('admin/articulo/categorias_abm')?>'>Categorías</a></li>
+				
           	</ul>
         </li>
+        
+        
+        
         <li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Hoteles<b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Galerías<b class="caret"></b></a>
 			<ul class="dropdown-menu">
-            	<li><a  href='<?php echo site_url('admin/inicio/hoteles_abm')?>'>Hoteles</a></li>
-				<li><a  href='<?php echo site_url('admin/inicio/habitaciones_abm')?>'>Habitaciones</a></li>
-				<li><a  href='<?php echo site_url('admin/inicio/tarifas_abm')?>'>Tarifas</a></li>
+            	<li><a  href='<?php echo site_url('admin/inicio/galeria_abm')?>'>Galerías</a></li>
+				<li><a  href='<?php echo site_url('admin/inicio/imagenes_galeria')?>'>Imágenes galería</a></li>
+				<li class="divider"></li>
+				<li><a  href='<?php echo site_url('admin/inicio/imagenes_carrusel')?>'>Imágenes carrusel</a></li>
           	</ul>
         </li>
+        
+        
+        
         <li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Huesped<b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Usuarios<b class="caret"></b></a>
 			<ul class="dropdown-menu">
-            	<li><a  href='<?php echo site_url('admin/inicio/huespedes_abm')?>'>Huespedes</a></li>
+            	<li><a  href='<?php echo site_url('admin/usuario/usuarios_abm')?>'>Usuarios</a></li>
+            	<li><a  href='<?php echo site_url('admin/usuario/telefonos_usuario')?>'>Teléfonos</a></li>
+            	<li><a  href='<?php echo site_url('admin/usuario/emails_usuario')?>'>Emails</a></li>
+            	<li><a  href='<?php echo site_url('admin/usuario/direcciones_usuario')?>'>Direcciones</a></li>
+            	<li><a  href='<?php echo site_url('admin/usuario/estados_usuario')?>'>Estados usuario</a></li>
+            	<li class="divider"></li>
+				<li><a  href='<?php echo site_url('admin/usuario/accesos_abm')?>'>Accesos</a></li>
+				<li><a  href='<?php echo site_url('admin/usuario/detalle_accesos')?>'>Detalle accesos</a></li>
           	</ul>
         </li>
+        
+        
+        
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Otros<b class="caret"></b></a>
+			<ul class="dropdown-menu">
+            	<li><a  href='<?php echo site_url('admin/otro/departamentos_abm')?>'>Departamentos</a></li>
+            	<li><a  href='<?php echo site_url('admin/otro/provincias_abm')?>'>Provincias</a></li>
+            	<li><a  href='<?php echo site_url('admin/otro/paises_abm')?>'>Países</a></li>
+            	<li class="divider"></li>
+            	<li><a  href='<?php echo site_url('admin/otro/monedas_abm')?>'>Monedas</a></li>
+				<li class="divider"></li>
+				<li><a  href='<?php echo site_url('admin/otro/tipos_abm')?>'>Tipos</a></li>
+				<li class="divider"></li>
+				<li><a  href='<?php echo site_url('admin/otro/ubicacion_abm')?>'>Ubicaciones de la página</a></li>
+          	</ul>
+        </li>
+        
+       
       </ul>
     
       <ul class="nav navbar-nav navbar-right">
