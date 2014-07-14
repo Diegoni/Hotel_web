@@ -12,6 +12,7 @@ html {
 }
 body {
   margin: 0;
+  background-image: url('../../../assets/uploads/fondo.jpg');
 }
 article,
 aside,
@@ -4999,6 +5000,7 @@ a.list-group-item-danger.active:focus {
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
           box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  box-shadow: 10px 10px 5px #888888;
 }
 .panel-body {
   padding: 15px;
@@ -6201,3 +6203,9 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+
+
+
+
+

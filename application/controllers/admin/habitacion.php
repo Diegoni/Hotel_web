@@ -15,8 +15,10 @@ class Habitacion extends CI_Controller {
 
 	public function _example_output($output = null)
 	{
-			$this->load->view('backend/head.php',$output);	
-			$this->load->view('backend/inicio.php',$output);
+		$this->load->view('backend/head.php',$output);
+		$this->load->view('backend/menu.php',$output);	
+		$this->load->view('backend/habitaciones.php',$output);
+		$this->load->view('backend/footer.php',$output);
 	}
 	
 	public function _example_output2($output = null)
@@ -167,7 +169,7 @@ class Habitacion extends CI_Controller {
 			$crud->columns(	'id_estado_habitacion',
 							'estado_habitacion');
 			
-			$crud->display_as('id_estados_habitacion','ID')
+			$crud->display_as('id_estado_habitacion','ID')
 				 ->display_as('estado_habitacion','Estado');
 			
 			$crud->set_subject('estado');

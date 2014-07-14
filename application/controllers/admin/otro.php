@@ -15,8 +15,10 @@ class Otro extends CI_Controller {
 
 	public function _example_output($output = null)
 	{
-			$this->load->view('backend/head.php',$output);	
-			$this->load->view('backend/inicio.php',$output);
+		$this->load->view('backend/head.php',$output);
+		$this->load->view('backend/menu.php',$output);	
+		$this->load->view('backend/otros.php',$output);
+		$this->load->view('backend/footer.php',$output);
 	}
 	
 	public function _example_output2($output = null)
@@ -168,6 +170,36 @@ class Otro extends CI_Controller {
 			
 			
 			$crud->required_fields(	'moneda');
+			
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}
+	
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de tipos 
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+ 
+ 
+	public function tipos_abm(){
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('datatables');
+			$crud->set_table('tipos');
+			
+			$crud->columns(	'id_tipo',
+							'tipo');
+			
+			$crud->display_as('id_tipo','ID')
+				 ->display_as('tipo','Tipo');
+			
+			$crud->set_subject('tipo');
+							
+			$crud->required_fields(	'tipo');
 			
 			$output = $crud->render();
 
