@@ -7,24 +7,6 @@
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 /*agregados*/
 
-.navbar-fixed-top .nav {
-    padding: 15px 0;
-}
-
-.navbar-fixed-top .navbar-brand {
-	padding: 0 15px;
-}
-
-@media(min-width:768px) {
-    .navbar-fixed-top .nav {
-        padding: 15px 0;
-    }
-
-    .navbar-fixed-top .navbar-brand {
-        padding: 15px 0;
-    }
-}
-
 label{
 	color:#000;
 }
@@ -39,7 +21,7 @@ html {
 }
 
 body {
-  margin-top: 125px; 
+  margin-top: 15px; 
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
@@ -4215,8 +4197,8 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
 .navbar-inverse {
-  /*background-color: #222;
-  border-color: #080808;*/
+  background-color: #9b1732;
+  border-color: #080808;
 }
 .navbar-inverse .navbar-brand {
   color: #777;
@@ -4234,8 +4216,8 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #fff;
-  background-color: transparent;
+  color: #000;
+  background-color: #FFF;
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
@@ -5742,6 +5724,7 @@ button.close {
 }
 .carousel {
   position: relative;
+  margin-bottom: 20px;
 }
 .carousel-inner {
   position: relative;
