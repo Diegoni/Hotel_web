@@ -25,7 +25,9 @@
     }
 }
 
-
+label{
+	color:#000;
+}
 
 
 
@@ -4213,8 +4215,8 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
 .navbar-inverse {
-  background-color: #222;
-  border-color: #080808;
+  /*background-color: #222;
+  border-color: #080808;*/
 }
 .navbar-inverse .navbar-brand {
   color: #777;
@@ -5024,7 +5026,7 @@ a.list-group-item-danger.active:focus {
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
           box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-  box-shadow: 10px 10px 5px #888888;
+  /*box-shadow: 10px 10px 5px #888888;*/
 }
 .panel-body {
   padding: 15px;
