@@ -11,7 +11,7 @@ foreach($css_files as $file): ?>
 <?php endforeach; ?>
 </head>
 <body>
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-inverse" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -29,7 +29,7 @@ foreach($css_files as $file): ?>
 	<ul class="nav navbar-nav">
 		
 		<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Reservas<b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-tagalt-pricealt"></span> Reservas<b class="caret"></b></a>
 			<ul class="dropdown-menu">
             	<li><a  href='<?php echo site_url('admin/inicio/reservas')?>'>Reservas</a></li>
 				<li><a  href='<?php echo site_url('admin/inicio/estados_reserva')?>'>Estados reserva</a></li>
@@ -38,7 +38,7 @@ foreach($css_files as $file): ?>
         
         
         <li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Huéspedes<b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>  Huéspedes<b class="caret"></b></a>
 			<ul class="dropdown-menu">
             	<li><a  href='<?php echo site_url('admin/huesped/huespedes_abm')?>'>Huéspedes</a></li>
             	<li><a  href='<?php echo site_url('admin/huesped/telefonos_huesped')?>'>Teléfonos</a></li>
@@ -52,7 +52,7 @@ foreach($css_files as $file): ?>
         
         
         <li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Habitaciones<b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-bed"></span> Habitaciones<b class="caret"></b></a>
 			<ul class="dropdown-menu">
             	<li><a  href='<?php echo site_url('admin/habitacion/habitaciones_abm')?>'>Habitaciones</a></li>
 				<li><a  href='<?php echo site_url('admin/habitacion/tipos_habitacion')?>'>Tipos de habitación</a></li>
@@ -64,7 +64,7 @@ foreach($css_files as $file): ?>
 		
 		
 		<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Hoteles<b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-university"></i> Hoteles<b class="caret"></b></a>
 			<ul class="dropdown-menu">
             	<li><a  href='<?php echo site_url('admin/hotel/hoteles_abm')?>'>Hoteles</a></li>
 				<li><a  href='<?php echo site_url('admin/hotel/telefonos_hotel')?>'>Teléfonos</a></li>
@@ -78,17 +78,17 @@ foreach($css_files as $file): ?>
         
         
         <li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Mensajes<b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-emailalt"></span> Mensajes<b class="caret"></b></a>
 			<ul class="dropdown-menu">
-            	<li><a  href='<?php echo site_url('admin/inicio/mensajes_abm')?>'>Mensajes</a></li>
-				<li><a  href='<?php echo site_url('admin/inicio/tipos_mensaje')?>'>Tipos de mensaje</a></li>
-				<li><a  href='<?php echo site_url('admin/inicio/estados_mensaje')?>'>Estados mensaje</a></li>
+            	<li><a  href='<?php echo site_url('admin/mensaje/mensajes_abm')?>'>Mensajes</a></li>
+				<li><a  href='<?php echo site_url('admin/mensaje/tipos_mensaje')?>'>Tipos de mensaje</a></li>
+				<li><a  href='<?php echo site_url('admin/mensaje/estados_mensaje')?>'>Estados mensaje</a></li>
           	</ul>
         </li>
         
 		
 		<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Artículos<b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file-text-o"></i> Artículos<b class="caret"></b></a>
 			<ul class="dropdown-menu">
             	<li><a  href='<?php echo site_url('admin/articulo/articulos_abm')?>'>Artículos</a></li>
 				<li><a  href='<?php echo site_url('admin/articulo/estados_articulo')?>'>Estados artículo</a></li>
@@ -101,35 +101,35 @@ foreach($css_files as $file): ?>
         
         
         <li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Galerías<b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-burstmode"></span> Galerías<b class="caret"></b></a>
 			<ul class="dropdown-menu">
-            	<li><a  href='<?php echo site_url('admin/inicio/galeria_abm')?>'>Galerías</a></li>
-				<li><a  href='<?php echo site_url('admin/inicio/imagenes_galeria')?>'>Imágenes galería</a></li>
+            	<li><a  href='<?php echo site_url('admin/galeria/galeria_abm')?>'>Galerías</a></li>
+				<li><a  href='<?php echo site_url('galeria/imagenes_galeria')?>'>Imágenes galería</a></li>
 				<li class="divider"></li>
-				<li><a  href='<?php echo site_url('admin/inicio/imagenes_carrusel')?>'>Imágenes carrusel</a></li>
+				<li><a  href='<?php echo site_url('galeria/imagenes_carrusel')?>'>Imágenes carrusel</a></li>
           	</ul>
         </li>
         
         
         
         <li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Usuarios<b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-workshirt"></span> Usuarios<b class="caret"></b></a>
 			<ul class="dropdown-menu">
-            	<li><a  href='<?php echo site_url('admin/usuario/usuarios_abm')?>'>Usuarios</a></li>
-            	<li><a  href='<?php echo site_url('admin/usuario/telefonos_usuario')?>'>Teléfonos</a></li>
-            	<li><a  href='<?php echo site_url('admin/usuario/emails_usuario')?>'>Emails</a></li>
-            	<li><a  href='<?php echo site_url('admin/usuario/direcciones_usuario')?>'>Direcciones</a></li>
-            	<li><a  href='<?php echo site_url('admin/usuario/estados_usuario')?>'>Estados usuario</a></li>
+            	<li><a href='<?php echo site_url('admin/usuario/usuarios_abm')?>'>Usuarios</a></li>
+            	<li><a href='<?php echo site_url('admin/usuario/telefonos_usuario')?>'>Teléfonos</a></li>
+            	<li><a href='<?php echo site_url('admin/usuario/emails_usuario')?>'>Emails</a></li>
+            	<li><a href='<?php echo site_url('admin/usuario/direcciones_usuario')?>'>Direcciones</a></li>
+            	<li><a href='<?php echo site_url('admin/usuario/estados_usuario')?>'>Estados usuario</a></li>
             	<li class="divider"></li>
-				<li><a  href='<?php echo site_url('admin/usuario/accesos_abm')?>'>Accesos</a></li>
-				<li><a  href='<?php echo site_url('admin/usuario/detalle_accesos')?>'>Detalle accesos</a></li>
+				<li><a href='<?php echo site_url('admin/usuario/accesos_abm')?>'>Accesos</a></li>
+				<li><a href='<?php echo site_url('admin/usuario/detalle_accesos')?>'>Detalle accesos</a></li>
           	</ul>
         </li>
         
         
         
 		<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Otros<b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-clipboard-paste"></span> Otros<b class="caret"></b></a>
 			<ul class="dropdown-menu">
             	<li><a  href='<?php echo site_url('admin/otro/departamentos_abm')?>'>Departamentos</a></li>
             	<li><a  href='<?php echo site_url('admin/otro/provincias_abm')?>'>Provincias</a></li>
@@ -152,10 +152,3 @@ foreach($css_files as $file): ?>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
-
-
-		<?php echo $output; ?>
-    </div>
-</body>
-</html>
