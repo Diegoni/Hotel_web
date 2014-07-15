@@ -1,39 +1,49 @@
-<div class="row">
-	<div class="col-md-4">
-		<div class="panel panel-default">
-	  		<div class="panel-heading">Banner 1</div>
-	  		<div class="panel-body">
-	    		<img class="img-circle img-banner" src="<?php echo base_url().'images/01.jpg'?>" 
-	    		style="">
-	    		<div class="text-banner">
-	    			Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
-	    		</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="col-md-4">
-		<div class="panel panel-default">
-	  		<div class="panel-heading">Banner 2</div>
-	  		<div class="panel-body">
-	    		<img class="img-circle img-banner" src="<?php echo base_url().'images/02.jpg';?>">
-				<div class="text-banner">
-	    			Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.	
-	    		</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="col-md-4">
-		<div class="panel panel-default">
-	  		<div class="panel-heading">Banner 3</div>
-	  		<div class="panel-body">
-	  			<div class="text-banner">
-	  				Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.	
-	  			</div>
-			</div>
-		</div>
-	</div>
-</div>
+<?php 
+if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1){ 
+	echo "<div class='row'>";
+	 	foreach ($articulos as $articulo) { ?>
+			<div class="col-md-<?php echo 12/$cantidad_categorias?>">
+				<div class="panel panel-default">
+			  		<div class="panel-heading"><?php echo $articulo->categoria;?></div>
+			  		<div class="panel-body">
+			  			<?php if($articulo->archivo_url!=""){?>
+			    			<img class="img-circle img-banner" src="<?php echo base_url().'assets/uploads/articulos/'.$articulo->archivo_url?>">
+			    		<?php } ?>
+			    		<div class="text-banner">
+			    			<?php echo $articulo->articulo; ?>
+			    		</div>
+					</div>
+				</div>
+			</div>			
+	<?php }//cierra el foreach 
+	echo "</div>";
+}else if($cantidad_categorias==4 || $cantidad_categorias==6){  
+	$i=0;
+	foreach ($articulos as $articulo) { 
+		if($i==0 || $cantidad_categorias*0.5==$i){
+			echo "<div class='row'>";
+		} ?>		
+			<div class="col-md-<?php echo 24/$cantidad_categorias?>">
+				<div class="panel panel-default">
+			  		<div class="panel-heading"><?php echo $articulo->categoria;?></div>
+			  		<div class="panel-body">
+			  			<?php if($articulo->archivo_url!=""){?>
+			    			<img class="img-circle img-banner" src="<?php echo base_url().'assets/uploads/articulos/'.$articulo->archivo_url?>">
+			    		<?php } ?>
+			    		<div class="text-banner">
+			    			<?php echo $articulo->articulo; ?>
+			    		</div>
+					</div>
+				</div>
+			</div>			
+	<?php
+		if(($cantidad_categorias*0.5)-1==$i || $cantidad_categorias==$i){
+			echo "</div>";
+		} 
+	$i=$i+1;
+	}//cierra el foreach 
+} 
+?>
+
 
 	

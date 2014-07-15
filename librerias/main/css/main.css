@@ -1,0 +1,18 @@
+label{
+	color:#000;
+}
+.img-banner{
+	width: 140px;
+	height: 140px;
+	float: left!important;
+	height: 140px;
+	float: left!important;
+	border: 1px solid #EFEFEF;
+	padding: 4px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+.text-banner{
+	color:#000; 
+	text-align: justify;
+}

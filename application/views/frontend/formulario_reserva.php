@@ -4,14 +4,14 @@
 		<div class="panel panel-default">
 	  		<div class="panel-heading">Reserva online</div>
 	  		<div class="panel-body">
-	    		<form role="form">
+	    		<form role="form" name="reserva" method="get" action="inicio">
 					<div class="form-group">
 						<label for="exampleInputEmail1">Entrada</label>
 						<div class="input-group">
 							<div class="input-group-addon">
 								<span class="icon-calendarthree"></span>
 							</div>
-      						<input class="form-control" type="entrada" placeholder="Fecha entrada">
+      						<input class="form-control" id="entrada" type="entrada" placeholder="Fecha entrada">
     					</div>
 				  	</div>
 				  	<div class="form-group">
@@ -20,7 +20,7 @@
 							<div class="input-group-addon">
 								<span class="icon-calendarthree"></span>
 							</div>
-      						<input class="form-control" type="salida" placeholder="Fecha salida">
+      						<input class="form-control" id="salida" type="salida" placeholder="Fecha salida">
     					</div>
 					</div>
 					<div class="form-group">
@@ -33,6 +33,7 @@
 				  			<option>5 adultos</option>
 						</select>
 			     		<select class="form-control">
+				  			<option>sin menores</option>
 				  			<option>1 menor</option>
 				  			<option>2 menores</option>
 				  			<option>3 menores</option>

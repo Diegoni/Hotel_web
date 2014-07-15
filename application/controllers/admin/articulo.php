@@ -73,6 +73,8 @@ class Articulo extends CI_Controller {
 					
 			$crud->required_fields('articulo','id_hotel','fecha_publicacion');
 			
+			$crud->set_field_upload('archivo_url','assets/uploads/articulos');
+			
 			$output = $crud->render();
 
 			$this->_example_output($output);
