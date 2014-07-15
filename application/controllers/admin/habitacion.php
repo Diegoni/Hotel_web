@@ -74,7 +74,7 @@ class Habitacion extends CI_Controller {
 									'id_tipo_habitacion',
 									'id_hotel',
 									'id_tarifa');
-
+			
 			
 			$output = $crud->render();
 

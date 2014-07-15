@@ -53,6 +53,7 @@ class Hotel extends CI_Controller {
 			$crud->columns(	'id_hotel',
 							'hotel',
 							'descripcion',
+							'logo_url',
 							'url');
 			
 			$crud->display_as('id_hotel','ID')
@@ -63,6 +64,8 @@ class Hotel extends CI_Controller {
 			$crud->set_subject('hotel');
 			
 			$crud->required_fields('hotel','descripcion', 'url');
+			
+			$crud->set_field_upload('logo_url','assets/uploads/logos');
 			
 			$output = $crud->render();
 
