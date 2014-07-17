@@ -357,7 +357,6 @@ class Usuario extends CI_Controller {
  **********************************************************************************/
 	
 	function insert_usuario($datos, $id){
-		
 		$insert = array(
         	"id_usuario" => $id,
         	"fecha_alta" => date('Y-m-d H:i:s'),
@@ -365,23 +364,24 @@ class Usuario extends CI_Controller {
     	);
 
 		$this->db->update('usuarios', $insert, array('id_usuario' => $id));
-		
 	}
 	
+	
+	
 	function update_usuario($datos, $id){
-		
 		$update = array(
         	"id_usuario" => $id,
         	"fecha_modificacion" => date('Y-m-d H:i:s')
     	);
 
 		$this->db->update('usuarios', $update, array('id_usuario' => $id));
-		
 	}
 
-	public function buscar_telefonos($id)
-	{
+	
+	
+	public function buscar_telefonos($id){
 		$query = $this->db->query("SELECT * FROM telefonos_usuario WHERE id_usuario='$id' ");
+		
 		if($query->num_rows() > 0){
 			return site_url('/admin/usuario/telefonos_usuario').'/'.$id;	
 		}else{
@@ -389,9 +389,11 @@ class Usuario extends CI_Controller {
 		}
 	}
 
-	public function buscar_emails($id)
-	{
+	
+	
+	public function buscar_emails($id){
 		$query = $this->db->query("SELECT * FROM emails_usuario WHERE id_usuario='$id' ");
+		
 		if($query->num_rows() > 0){
 			return site_url('/admin/usuario/emails_usuario').'/'.$id;	
 		}else{
@@ -399,9 +401,11 @@ class Usuario extends CI_Controller {
 		}
 	}
 
-	public function buscar_direcciones($id)
-	{
+	
+	
+	public function buscar_direcciones($id){
 		$query = $this->db->query("SELECT * FROM direcciones_usuario WHERE id_usuario='$id' ");
+		
 		if($query->num_rows() > 0){
 			return site_url('/admin/usuario/direcciones_usuario').'/'.$id;	
 		}else{

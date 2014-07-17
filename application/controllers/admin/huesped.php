@@ -387,8 +387,7 @@ class Huesped extends CI_Controller {
  **********************************************************************************/
 
 
-	function insert_huesped($datos)
-	{
+	function insert_huesped($datos){
 		$fecha= date('Y-m-d H:i:s');
 		
 	    $huesped = array(
@@ -404,45 +403,43 @@ class Huesped extends CI_Controller {
 		
 		$id_huesped=$this->db->insert_id();
 		
-		if(isset($datos['telefono'])){
-				
+		if(isset($datos['telefono'])){		
 			$telefono = array(
-	        "id_huesped" => $id_huesped,
-	        "telefono" => $datos['telefono']
+	        	"id_huesped" => $id_huesped,
+	        	"telefono" => $datos['telefono']
 	    	);
 		
 			$this->db->insert('telefonos_huesped',$telefono);
-			
 		}
 		
 		if(isset($datos['email'])){
-				
 			$email = array(
-	        "id_huesped" => $id_huesped,
-	        "email" => $datos['email']
+	        	"id_huesped" => $id_huesped,
+	        	"email" => $datos['email']
 	    	);
 		
-			$this->db->insert('emails_huesped',$email);
-			
+			$this->db->insert('emails_huesped',$email);			
 		}
 		
 	    return true;
 	}
 	
+
+
 	function update_huesped($datos, $id){
-		
 		$update = array(
         	"id_huesped" => $id,
         	"fecha_modificacion" => date('Y-m-d H:i:s')
     	);
 
 		$this->db->update('huespedes', $update, array('id_huesped' => $id));
-		
 	}
 	
-		function buscar_telefonos($id)
-	{
+	
+	
+	function buscar_telefonos($id){
 		$query = $this->db->query("SELECT * FROM telefonos_huesped WHERE id_huesped='$id' ");
+		
 		if($query->num_rows() > 0){
 			return site_url('/admin/huesped/telefonos_huesped').'/'.$id;	
 		}else{
@@ -450,9 +447,11 @@ class Huesped extends CI_Controller {
 		}
 	}
 
-	function buscar_emails($id)
-	{
+
+
+	function buscar_emails($id){
 		$query = $this->db->query("SELECT * FROM emails_huesped WHERE id_huesped='$id' ");
+		
 		if($query->num_rows() > 0){
 			return site_url('/admin/huesped/emails_huesped').'/'.$id;	
 		}else{
@@ -460,9 +459,11 @@ class Huesped extends CI_Controller {
 		}
 	}
 
-	function buscar_direcciones($id)
-	{
+
+
+	function buscar_direcciones($id){
 		$query = $this->db->query("SELECT * FROM direcciones_huesped WHERE id_huesped='$id' ");
+		
 		if($query->num_rows() > 0){
 			return site_url('/admin/huesped/direcciones_huesped').'/'.$id;	
 		}else{
@@ -470,9 +471,11 @@ class Huesped extends CI_Controller {
 		}
 	}
 	
-	function buscar_tarjetas($id)
-	{
+	
+	
+	function buscar_tarjetas($id){
 		$query = $this->db->query("SELECT * FROM tarjetas WHERE id_huesped='$id' ");
+		
 		if($query->num_rows() > 0){
 			return site_url('/admin/huesped/tarjetas_huesped').'/'.$id;	
 		}else{

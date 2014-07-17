@@ -300,9 +300,9 @@ class Hotel extends CI_Controller {
  * ********************************************************************************
  **********************************************************************************/
 
-public function buscar_telefonos($id)
-	{
+	public function buscar_telefonos($id){
 		$query = $this->db->query("SELECT * FROM telefonos_hotel WHERE id_hotel='$id' ");
+		
 		if($query->num_rows() > 0){
 			return site_url('/admin/hotel/telefonos_hotel').'/'.$id;	
 		}else{
@@ -310,9 +310,11 @@ public function buscar_telefonos($id)
 		}
 	}
 
-	public function buscar_emails($id)
-	{
+
+
+	public function buscar_emails($id){
 		$query = $this->db->query("SELECT * FROM emails_hotel WHERE id_hotel='$id' ");
+		
 		if($query->num_rows() > 0){
 			return site_url('/admin/hotel/emails_hotel').'/'.$id;	
 		}else{
@@ -320,9 +322,11 @@ public function buscar_telefonos($id)
 		}
 	}
 
-	public function buscar_direcciones($id)
-	{
+
+
+	public function buscar_direcciones($id){
 		$query = $this->db->query("SELECT * FROM direcciones_hotel WHERE id_hotel='$id' ");
+		
 		if($query->num_rows() > 0){
 			return site_url('/admin/hotel/direcciones_hotel').'/'.$id;	
 		}else{
@@ -330,9 +334,11 @@ public function buscar_telefonos($id)
 		}
 	}
 	
-	public function buscar_config($id)
-	{
+	
+	
+	public function buscar_config($id){
 		$query = $this->db->query("SELECT * FROM config WHERE id_hotel='$id' ");
+		
 		if($query->num_rows() > 0){
 			return site_url('/admin/hotel/config').'/'.$id;	
 		}else{
