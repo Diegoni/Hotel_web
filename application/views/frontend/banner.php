@@ -37,7 +37,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 				</div>
 			</div>			
 	<?php
-		if(($cantidad_categorias*0.5)-1==$i || $cantidad_categorias==$i){
+		if(($cantidad_categorias*0.5)-1==$i || $cantidad_categorias-1==$i){
 			echo "</div>";
 		} 
 	$i=$i+1;
