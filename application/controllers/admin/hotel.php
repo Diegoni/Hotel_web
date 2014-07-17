@@ -65,6 +65,11 @@ class Hotel extends CI_Controller {
 			
 			$crud->required_fields('hotel','descripcion', 'url');
 			
+			$crud->add_action('Teléfono', '', '','fa fa-phone', array($this,'buscar_telefonos'));
+			$crud->add_action('Email', '', '','icon-emailalt', array($this,'buscar_emails'));
+			$crud->add_action('Dirección', '', '','icon-homealt', array($this,'buscar_direcciones'));
+			$crud->add_action('Configuración', '', '','icon-mootools', array($this,'buscar_config'));
+			
 			$crud->set_field_upload('logo_url','assets/uploads/logos');
 			
 			$output = $crud->render();
@@ -72,7 +77,9 @@ class Hotel extends CI_Controller {
 			$this->_example_output($output);
 			
 	}
-
+	
+		
+	
 
 /**********************************************************************************
  **********************************************************************************
@@ -83,10 +90,15 @@ class Hotel extends CI_Controller {
  **********************************************************************************/
  
  
-	public function telefonos_hotel(){
+	public function telefonos_hotel($id=NULL){
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('datatables');
+			
+			if(isset($id)){
+				$crud->where('telefonos_hotel.id_hotel',$id);
+			}
+			
 			$crud->set_table('telefonos_hotel');
 			
 			$crud->columns(	'id_hotel',
@@ -119,10 +131,15 @@ class Hotel extends CI_Controller {
  **********************************************************************************/
  
  
-	public function emails_hotel(){
+	public function emails_hotel($id=NULL){
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('datatables');
+			
+			if(isset($id)){
+				$crud->where('emails_hotel.id_hotel',$id);
+			}
+			
 			$crud->set_table('emails_hotel');
 			
 			$crud->columns(	'id_hotel',
@@ -156,10 +173,15 @@ class Hotel extends CI_Controller {
  **********************************************************************************/
  
  
-	public function direcciones_hotel(){
+	public function direcciones_hotel($id=NULL){
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('datatables');
+			
+			if(isset($id)){
+				$crud->where('direcciones_hotel.id_hotel',$id);
+			}
+			
 			$crud->set_table('direcciones_hotel');
 			
 			$crud->columns(	'id_hotel',
@@ -200,10 +222,15 @@ class Hotel extends CI_Controller {
  **********************************************************************************/
  
  
-	public function config(){
+	public function config($id=NULL){
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('datatables');
+			
+			if(isset($id)){
+				$crud->where('config.id_hotel',$id);
+			}
+			
 			$crud->set_table('config');
 			
 			$crud->columns(	'id_hotel',
@@ -265,7 +292,53 @@ class Hotel extends CI_Controller {
 			$this->_example_output($output);
 	}	
 		
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Funciones
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
 
+public function buscar_telefonos($id)
+	{
+		$query = $this->db->query("SELECT * FROM telefonos_hotel WHERE id_hotel='$id' ");
+		if($query->num_rows() > 0){
+			return site_url('/admin/hotel/telefonos_hotel').'/'.$id;	
+		}else{
+			return site_url('admin/hotel/telefonos_hotel/add').'/'.$id;;
+		}
+	}
+
+	public function buscar_emails($id)
+	{
+		$query = $this->db->query("SELECT * FROM emails_hotel WHERE id_hotel='$id' ");
+		if($query->num_rows() > 0){
+			return site_url('/admin/hotel/emails_hotel').'/'.$id;	
+		}else{
+			return site_url('admin/hotel/emails_hotel/add').'/'.$id;;
+		}
+	}
+
+	public function buscar_direcciones($id)
+	{
+		$query = $this->db->query("SELECT * FROM direcciones_hotel WHERE id_hotel='$id' ");
+		if($query->num_rows() > 0){
+			return site_url('/admin/hotel/direcciones_hotel').'/'.$id;	
+		}else{
+			return site_url('admin/hotel/direcciones_hotel/add').'/'.$id;;
+		}
+	}
+	
+	public function buscar_config($id)
+	{
+		$query = $this->db->query("SELECT * FROM config WHERE id_hotel='$id' ");
+		if($query->num_rows() > 0){
+			return site_url('/admin/hotel/config').'/'.$id;	
+		}else{
+			return site_url('admin/hotel/config/add').'/'.$id;;
+		}
+	}
 
 
 }

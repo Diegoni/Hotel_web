@@ -45,6 +45,8 @@
 | the active record class
 */
 
+date_default_timezone_set('America/Mendoza');
+
 $active_group = 'default';
 $active_record = TRUE;
 

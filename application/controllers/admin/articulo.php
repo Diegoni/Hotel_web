@@ -139,10 +139,10 @@ class Articulo extends CI_Controller {
 				 ->display_as('estado_articulo','Estado');
 			
 			$crud->set_subject('estado');
-			//$crud->unset_delete();
-			//$crud->unset_export();
-			//$crud->unset_add();
-			
+			$crud->unset_delete();
+			$crud->unset_export();
+			$crud->unset_add();
+			$crud->unset_read();				
 						
 			$crud->required_fields('estado_articulo');
 			

@@ -8,8 +8,8 @@ class Huesped extends CI_Controller {
 
 		$this->load->database();
 		$this->load->helper('url');
-
 		$this->load->library('grocery_CRUD');
+		
 		//$this->load->library('image_CRUD');
 	}
 
@@ -52,31 +52,49 @@ class Huesped extends CI_Controller {
 			
 			$crud->columns(	'id_huesped',
 							'nombre',
-							'apellido');
+							'apellido',
+							'id_tipo_huesped');
 			
+			$crud->field_type('fecha_alta', 'readonly');
+			$crud->field_type('fecha_modificacion', 'readonly');
+					
 			$crud->display_as('id_huesped','ID')
 				 ->display_as('nombre','Nombre')
 				 ->display_as('apellido','Apellido')
 				 ->display_as('dni','D.N.I.')
-				 ->display_as('fecha_alta','Fecha Alta')
+				 ->display_as('fecha_alta','Fecha alta')
+				 ->display_as('fecha_modificacion','Fecha modificación')
 				 ->display_as('pass','Password')
+				 ->display_as('id_tipo_huesped','Tipo')
 				 ->display_as('id_estado_huesped','Estado');
 			
 			$crud->set_subject('huesped');
 			
 			$crud->set_relation('id_estado_huesped','estados_huesped','estado_huesped');
+			$crud->set_relation('id_tipo_huesped','tipos_huesped','tipo_huesped');
 			
-			$crud->add_fields('nombre','apellido','dni');
-			
+			$crud->add_fields('nombre','apellido','dni', 'id_tipo_huesped', 'telefono', 'email');
+			$crud->edit_fields('nombre','apellido','dni', 'id_tipo_huesped', 'fecha_alta', 'fecha_modificacion');
+						
 			$crud->required_fields(	'nombre',
 									'apellido', 
 									'dni');
+									
+			$crud->add_action('Teléfono', '', '','fa fa-phone', array($this,'buscar_telefonos'));
+			$crud->add_action('Email', '', '','icon-emailalt', array($this,'buscar_emails'));
+			$crud->add_action('Dirección', '', '','icon-homealt', array($this,'buscar_direcciones'));
+			$crud->add_action('Tarjetas', '', '','icon-creditcard', array($this,'buscar_tarjetas'));
 			
+			$crud->callback_insert(array($this,'insert_huesped'));
+			$crud->callback_before_update(array($this,'update_huesped'));
+			
+			$crud->unset_read();
+	
 			$output = $crud->render();
 
 			$this->_example_output($output);
 	}
-	
+
 	
 
 /**********************************************************************************
@@ -88,10 +106,15 @@ class Huesped extends CI_Controller {
  **********************************************************************************/
  
  
-	public function telefonos_huesped(){
+	public function telefonos_huesped($id=NULL){
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('datatables');
+			
+			if(isset($id)){
+				$crud->where('telefonos_huesped.id_huesped',$id);
+			}
+			
 			$crud->set_table('telefonos_huesped');
 			
 			$crud->columns(	'id_huesped',
@@ -110,6 +133,8 @@ class Huesped extends CI_Controller {
 			$crud->required_fields(	'id_huesped',
 									'telefono');
 			
+			$crud->unset_back_to_list();
+			
 			$output = $crud->render();
 
 			$this->_example_output($output);
@@ -124,10 +149,15 @@ class Huesped extends CI_Controller {
  **********************************************************************************/
  
  
-	public function emails_huesped(){
+	public function emails_huesped($id=NULL){
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('datatables');
+			
+			if(isset($id)){
+				$crud->where('emails_huesped.id_huesped',$id);
+			}
+			
 			$crud->set_table('emails_huesped');
 			
 			$crud->columns(	'id_huesped',
@@ -145,6 +175,8 @@ class Huesped extends CI_Controller {
 			
 			$crud->required_fields(	'id_huesped',
 									'email');
+									
+			$crud->unset_back_to_list();									
 			
 			$output = $crud->render();
 
@@ -161,10 +193,15 @@ class Huesped extends CI_Controller {
  **********************************************************************************/
  
  
-	public function direcciones_huesped(){
+	public function direcciones_huesped($id=NULL){
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('datatables');
+			
+			if(isset($id)){
+				$crud->where('direcciones_huesped.id_huesped',$id);
+			}
+			
 			$crud->set_table('direcciones_huesped');
 			
 			$crud->columns(	'id_huesped',
@@ -191,6 +228,8 @@ class Huesped extends CI_Controller {
 									'calle',
 									'nro',
 									'id_provincia');
+									
+			$crud->unset_back_to_list();									
 			
 			$output = $crud->render();
 
@@ -207,10 +246,15 @@ class Huesped extends CI_Controller {
  **********************************************************************************/
  
  
-	public function tarjetas_huesped(){
+	public function tarjetas_huesped($id=NULL){
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('datatables');
+			
+			if(isset($id)){
+				$crud->where('tarjetas.id_huesped',$id);
+			}
+			
 			$crud->set_table('tarjetas');
 			
 			$crud->columns(	'id_huesped',
@@ -228,6 +272,8 @@ class Huesped extends CI_Controller {
 			$crud->required_fields(	'id_huesped',
 									'tarjeta',
 									'id_tipo_tarjeta');
+									
+			$crud->unset_back_to_list();									
 			
 			$output = $crud->render();
 
@@ -265,6 +311,36 @@ class Huesped extends CI_Controller {
 			$this->_example_output($output);
 	}
 
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de Tipos Huesped
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+ 
+ 
+	public function tipos_huesped(){
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('datatables');
+			$crud->set_table('tipos_huesped');
+			
+			$crud->columns(	'id_tipo_huesped',
+							'tipo_huesped');
+			
+			$crud->display_as('id_tipo_huesped','ID')
+				 ->display_as('tipo_huesped','Tipo');
+			
+			$crud->set_subject('tipo');
+						
+			$crud->required_fields('tipo_huesped');
+			
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}
+
 
 /**********************************************************************************
  **********************************************************************************
@@ -290,7 +366,8 @@ class Huesped extends CI_Controller {
 			$crud->set_subject('estado');
 			$crud->unset_delete();
 			$crud->unset_export();
-			//$crud->unset_add();
+			$crud->unset_add();
+			$crud->unset_read();
 			
 						
 			$crud->required_fields('estado_huesped');
@@ -298,6 +375,109 @@ class Huesped extends CI_Controller {
 			$output = $crud->render();
 
 			$this->_example_output($output);
+	}
+
+
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Funciones 
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+
+
+	function insert_huesped($datos)
+	{
+		$fecha= date('Y-m-d H:i:s');
+		
+	    $huesped = array(
+	        "nombre" => $datos['nombre'],
+	        "apellido" => $datos['apellido'],
+	        "dni" => $datos['dni'],
+	        "id_tipo_huesped" => $datos['id_tipo_huesped'],
+	        "fecha_alta" => $fecha,
+	        "fecha_modificacion" => $fecha
+	    );
+	 
+	    $this->db->insert('huespedes', $huesped);
+		
+		$id_huesped=$this->db->insert_id();
+		
+		if(isset($datos['telefono'])){
+				
+			$telefono = array(
+	        "id_huesped" => $id_huesped,
+	        "telefono" => $datos['telefono']
+	    	);
+		
+			$this->db->insert('telefonos_huesped',$telefono);
+			
+		}
+		
+		if(isset($datos['email'])){
+				
+			$email = array(
+	        "id_huesped" => $id_huesped,
+	        "email" => $datos['email']
+	    	);
+		
+			$this->db->insert('emails_huesped',$email);
+			
+		}
+		
+	    return true;
+	}
+	
+	function update_huesped($datos, $id){
+		
+		$update = array(
+        	"id_huesped" => $id,
+        	"fecha_modificacion" => date('Y-m-d H:i:s')
+    	);
+
+		$this->db->update('huespedes', $update, array('id_huesped' => $id));
+		
+	}
+	
+		function buscar_telefonos($id)
+	{
+		$query = $this->db->query("SELECT * FROM telefonos_huesped WHERE id_huesped='$id' ");
+		if($query->num_rows() > 0){
+			return site_url('/admin/huesped/telefonos_huesped').'/'.$id;	
+		}else{
+			return site_url('admin/huesped/telefonos_huesped/add').'/'.$id;;
+		}
+	}
+
+	function buscar_emails($id)
+	{
+		$query = $this->db->query("SELECT * FROM emails_huesped WHERE id_huesped='$id' ");
+		if($query->num_rows() > 0){
+			return site_url('/admin/huesped/emails_huesped').'/'.$id;	
+		}else{
+			return site_url('admin/huesped/emails_huesped/add').'/'.$id;;
+		}
+	}
+
+	function buscar_direcciones($id)
+	{
+		$query = $this->db->query("SELECT * FROM direcciones_huesped WHERE id_huesped='$id' ");
+		if($query->num_rows() > 0){
+			return site_url('/admin/huesped/direcciones_huesped').'/'.$id;	
+		}else{
+			return site_url('admin/huesped/direcciones_huesped/add').'/'.$id;;
+		}
+	}
+	
+	function buscar_tarjetas($id)
+	{
+		$query = $this->db->query("SELECT * FROM tarjetas WHERE id_huesped='$id' ");
+		if($query->num_rows() > 0){
+			return site_url('/admin/huesped/tarjetas_huesped').'/'.$id;	
+		}else{
+			return site_url('admin/huesped/tarjetas_huesped/add').'/'.$id;;
+		}
 	}
 		
 

@@ -59,7 +59,11 @@
 			<div class='form-button-box'>
 				<input type='button' value='<?php echo $this->l('form_cancel'); ?>' class='ui-input-button' id="cancel-button" />
 			</div>
-			<?php }?>
+			<?php }else{ ?>
+			<div class='form-button-box'>
+				<input type='button' onclick="window.history.back()" value="Volver" class='ui-input-button'/>
+			</div>				
+			<?php } ?>
 			<div class='form-button-box loading-box'>
 				<div class='small-loading' id='FormLoading'><?php echo $this->l('form_update_loading'); ?></div>
 			</div>

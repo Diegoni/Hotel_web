@@ -46,6 +46,7 @@ foreach($css_files as $file): ?>
             	<li><a  href='<?php echo site_url('admin/huesped/direcciones_huesped')?>'>Direcciones</a></li>
             	<li><a  href='<?php echo site_url('admin/huesped/tarjetas_huesped')?>'>Tarjetas</a></li>
             	<li><a  href='<?php echo site_url('admin/huesped/tipos_tarjeta')?>'>Tipos de tarjeta</a></li>
+            	<li><a  href='<?php echo site_url('admin/huesped/tipos_huesped')?>'>Tipos huésped</a></li>
             	<li><a  href='<?php echo site_url('admin/huesped/estados_huesped')?>'>Estados huésped</a></li>
           	</ul>
         </li>

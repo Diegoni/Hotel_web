@@ -53,33 +53,47 @@ class Usuario extends CI_Controller {
 			$crud->columns(	'id_usuario',
 							'usuario',
 							'id_acceso');
+							
+			$crud->field_type('pass', 'password');
+			$crud->field_type('fecha_alta', 'readonly');
+			$crud->field_type('fecha_modificacion', 'readonly');
 			
 			$crud->display_as('id_usuario','ID')
 				 ->display_as('id_hotel','Hotel')
 				 ->display_as('usuario','Usuario')
 				 ->display_as('id_acceso','Acceso')
-				 ->display_as('fecha_alta','Fecha Alta')
+				 ->display_as('fecha_alta','Fecha alta')
+				 ->display_as('fecha_modificacion','Fecha modificación')
 				 ->display_as('pass','Password')
 				 ->display_as('id_estado_usuario','Estado');
 			
 			$crud->set_subject('usuario');
-			
+								
 			$crud->set_relation('id_estado_usuario','estados_usuario','estado_usuario');
 			$crud->set_relation('id_acceso','accesos','acceso');
 			$crud->set_relation('id_hotel','hoteles','hotel');
 			
-			$crud->add_fields('usuario','pass','id_acceso', 'id_hotel', 'id_estado_usuario');
+			$crud->add_fields('usuario','pass', 'id_acceso', 'id_hotel');
+			$crud->edit_fields('usuario','pass', 'id_acceso', 'id_hotel', 'fecha_alta', 'fecha_modificacion');
 			
 			$crud->required_fields(	'usuario',
-									'pass', 
+									'pass',
 									'id_acceso',
 									'id_hotel');
+								
+			$crud->add_action('Teléfono', '', '','fa fa-phone', array($this,'buscar_telefonos'));
+			$crud->add_action('Email', '', '','icon-emailalt', array($this,'buscar_emails'));
+			$crud->add_action('Dirección', '', '','icon-homealt', array($this,'buscar_direcciones'));
+			
+			$crud->callback_after_insert(array($this, 'insert_usuario'));
+    		$crud->callback_after_update(array($this, 'update_usuario'));
 			
 			$output = $crud->render();
 
 			$this->_example_output($output);
 	}
-	
+
+		
 	
 
 /**********************************************************************************
@@ -91,10 +105,15 @@ class Usuario extends CI_Controller {
  **********************************************************************************/
  
  
-	public function telefonos_usuario(){
+	public function telefonos_usuario($id=NULL){
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('datatables');
+			
+			if(isset($id)){
+				$crud->where('telefonos_usuario.id_usuario',$id);
+			}
+			
 			$crud->set_table('telefonos_usuario');
 			
 			$crud->columns(	'id_usuario',
@@ -127,10 +146,15 @@ class Usuario extends CI_Controller {
  **********************************************************************************/
  
  
-	public function emails_usuario(){
+	public function emails_usuario($id=NULL){
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('datatables');
+			
+			if(isset($id)){
+				$crud->where('emails_usuario.id_usuario',$id);
+			}
+			
 			$crud->set_table('emails_usuario');
 			
 			$crud->columns(	'id_usuario',
@@ -164,10 +188,15 @@ class Usuario extends CI_Controller {
  **********************************************************************************/
  
  
-	public function direcciones_usuario(){
+	public function direcciones_usuario($id=NULL){
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('datatables');
+			
+			if(isset($id)){
+				$crud->where('direcciones_usuario.id_usuario',$id);
+			}
+			
 			$crud->set_table('direcciones_usuario');
 			
 			$crud->columns(	'id_usuario',
@@ -204,74 +233,6 @@ class Usuario extends CI_Controller {
 /**********************************************************************************
  **********************************************************************************
  * 
- * 				Alta, baja y modificación de tarjetas
- * 
- * ********************************************************************************
- **********************************************************************************/
- 
- 
-	public function tarjetas_usuario(){
-			$crud = new grocery_CRUD();
-
-			$crud->set_theme('datatables');
-			$crud->set_table('tarjetas');
-			
-			$crud->columns(	'id_usuario',
-							'tarjeta',
-							'id_tipo_tarjeta');
-			
-			$crud->display_as('id_usuario','Usuario')
-				 ->display_as('id_tipo_tarjeta','Tipo');
-			
-			$crud->set_subject('tarjeta');
-			
-			$crud->set_relation('id_usuario','usuarios','usuario');
-			$crud->set_relation('id_tipo_tarjeta','tipos_tarjeta','tipo_tarjeta');
-						
-			$crud->required_fields(	'id_usuario',
-									'tarjeta',
-									'id_tipo_tarjeta');
-			
-			$output = $crud->render();
-
-			$this->_example_output($output);
-	}	
-
-/**********************************************************************************
- **********************************************************************************
- * 
- * 				Alta, baja y modificación de Tipos de tarjeta
- * 
- * ********************************************************************************
- **********************************************************************************/
- 
- 
-	public function tipos_tarjeta(){
-			$crud = new grocery_CRUD();
-
-			$crud->set_theme('datatables');
-			$crud->set_table('tipos_tarjeta');
-			
-			$crud->columns(	'id_tipo_tarjeta',
-							'tipo_tarjeta');
-			
-			$crud->display_as('id_tipos_tarjeta','ID')
-				 ->display_as('tipos_tarjeta','Tipo');
-			
-			$crud->set_subject('tipo');
-			
-						
-			$crud->required_fields('tipo_tarjeta');
-			
-			$output = $crud->render();
-
-			$this->_example_output($output);
-	}
-
-
-/**********************************************************************************
- **********************************************************************************
- * 
  * 				Alta, baja y modificación de Estados usuario
  * 
  * ********************************************************************************
@@ -293,7 +254,10 @@ class Usuario extends CI_Controller {
 			$crud->set_subject('estado');
 			$crud->unset_delete();
 			$crud->unset_export();
-			//$crud->unset_add();
+			$crud->unset_delete();
+			$crud->unset_export();
+			$crud->unset_add();
+			$crud->unset_read();	
 			
 						
 			$crud->required_fields('estado_usuario');
@@ -318,6 +282,7 @@ class Usuario extends CI_Controller {
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('datatables');
+			
 			$crud->set_table('accesos');
 			
 			$crud->columns(	'id_acceso',
@@ -358,6 +323,11 @@ class Usuario extends CI_Controller {
 							'escribir',
 							'modificar',
 							'borrar');
+							
+			$crud->change_field_type('crear', 'true_false');
+			$crud->change_field_type('escribir', 'true_false');
+			$crud->change_field_type('modificar', 'true_false');
+			$crud->change_field_type('borrar', 'true_false');
 			
 			$crud->display_as('id_acceso','Accesos')
 				 ->display_as('id_categoria','Categoria')
@@ -376,6 +346,67 @@ class Usuario extends CI_Controller {
 			$output = $crud->render();
 
 			$this->_example_output($output);
+	}
+ 
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Funciones
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+	
+	function insert_usuario($datos, $id){
+		
+		$insert = array(
+        	"id_usuario" => $id,
+        	"fecha_alta" => date('Y-m-d H:i:s'),
+        	"fecha_modificacion" => date('Y-m-d H:i:s')
+    	);
+
+		$this->db->update('usuarios', $insert, array('id_usuario' => $id));
+		
+	}
+	
+	function update_usuario($datos, $id){
+		
+		$update = array(
+        	"id_usuario" => $id,
+        	"fecha_modificacion" => date('Y-m-d H:i:s')
+    	);
+
+		$this->db->update('usuarios', $update, array('id_usuario' => $id));
+		
+	}
+
+	public function buscar_telefonos($id)
+	{
+		$query = $this->db->query("SELECT * FROM telefonos_usuario WHERE id_usuario='$id' ");
+		if($query->num_rows() > 0){
+			return site_url('/admin/usuario/telefonos_usuario').'/'.$id;	
+		}else{
+			return site_url('admin/usuario/telefonos_usuario/add').'/'.$id;;
+		}
+	}
+
+	public function buscar_emails($id)
+	{
+		$query = $this->db->query("SELECT * FROM emails_usuario WHERE id_usuario='$id' ");
+		if($query->num_rows() > 0){
+			return site_url('/admin/usuario/emails_usuario').'/'.$id;	
+		}else{
+			return site_url('admin/usuario/emails_usuario/add').'/'.$id;;
+		}
+	}
+
+	public function buscar_direcciones($id)
+	{
+		$query = $this->db->query("SELECT * FROM direcciones_usuario WHERE id_usuario='$id' ");
+		if($query->num_rows() > 0){
+			return site_url('/admin/usuario/direcciones_usuario').'/'.$id;	
+		}else{
+			return site_url('admin/usuario/direcciones_usuario/add').'/'.$id;;
+		}
 	}
 	
 
