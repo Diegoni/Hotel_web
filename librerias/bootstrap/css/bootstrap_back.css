@@ -10,15 +10,9 @@ html {
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
-
 body {
-  margin-top: 15px; 
-  /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
-  font-family: Garamond, cursive;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #FFF;
-  background-color: #57101c;
+  margin: 0;
+  background-image: url('../../../assets/uploads/fondo.jpg');
 }
 article,
 aside,
@@ -901,7 +895,14 @@ html {
 
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
+body {
+  /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  font-family: Garamond, cursive;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}
 input,
 button,
 select,
@@ -911,7 +912,7 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #f4eaa4;
+  color: #428bca;
   text-decoration: none;
 }
 a:hover,
@@ -3592,8 +3593,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
-  color: #57101c;
-  background-color: #f4eaa4;
+  background-color: #eee;
 }
 .nav > li.disabled > a {
   color: #777;
@@ -4190,7 +4190,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
 .navbar-inverse {
-  background-color: #9b1732;
+  background-color: #222;
   border-color: #080808;
 }
 .navbar-inverse .navbar-brand {
@@ -4209,8 +4209,8 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #000;
-  background-color: #FFF;
+  color: #fff;
+  background-color: transparent;
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
@@ -5001,7 +5001,7 @@ a.list-group-item-danger.active:focus {
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
           box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-  /*box-shadow: 10px 10px 5px #888888;*/
+  box-shadow: 10px 10px 5px #888888;
 }
 .panel-body {
   padding: 15px;
@@ -5717,7 +5717,6 @@ button.close {
 }
 .carousel {
   position: relative;
-  margin-bottom: 20px;
 }
 .carousel-inner {
   position: relative;

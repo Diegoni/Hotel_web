@@ -28,7 +28,7 @@
 ------------------------------------------------------------------------------
 ----------------------------------------------------------------------------->
 
-<link href="<?php echo base_url().'librerias/bootstrap/css/bootstrap_back.css'?>" rel="stylesheet" media="screen">
+<link href="<?php echo base_url().'librerias/bootstrap/css/bootstrap_front.css'?>" rel="stylesheet" media="screen">
 <script src="<?php echo base_url().'librerias/bootstrap/js/bootstrap.js'?>"></script>
 
 

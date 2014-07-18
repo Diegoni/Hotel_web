@@ -1,8 +1,8 @@
 <?php 
-class Telefonos_huesped_model extends CI_Model {
+class Paises_model extends CI_Model {
 	
-	function getTelefonos($id){
-		$query = $this->db->query("SELECT * FROM telefonos_huesped");
+	function getPaises(){
+		$query = $this->db->query("SELECT * FROM paises ORDER BY pais");
 		
 		if($query->num_rows() > 0){
 			foreach ($query->result() as $fila){
@@ -13,6 +13,6 @@ class Telefonos_huesped_model extends CI_Model {
 			return FALSE;
 		}
 	}
-
+	
 } 
 ?>
