@@ -9,7 +9,9 @@ class Reserva extends CI_Controller {
 		$this->load->database();
 		$this->load->helper('url');
 		$this->load->helper('menu');
+		$this->load->model('reservas_model');
 		$this->load->library('grocery_CRUD');
+		
 		//$this->load->library('image_CRUD');
 	}
 
@@ -198,6 +200,39 @@ class Reserva extends CI_Controller {
     	$this->db->update('reservas', $reserva, array('id_reserva' => $id));
  
     	return true;
+	}
+	
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Actulizar nuevas
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+	
+	
+	function actualizar_nuevas(){
+		$cant_reservas=$this->reservas_model->getCantNuevas();	
+		if($cant_reservas>0){
+			$reservas=$this->reservas_model->getNuevas();
+		
+			foreach ($reservas as $reserva) {
+				$id=$reserva->id_reserva;
+				if($id>0){
+					$reserva = array(
+        				"id_reserva" => $this->input->post('id_reserva'.$id),
+        				"id_estado_reserva" => $this->input->post('estado'.$id)
+    				);	
+				}else{
+					//echo "cero";
+				}
+				
+ 
+				$this->db->update('reservas', $reserva, array('id_reserva' => $id));
+			}
+				
+		}
+		redirect('admin/reserva/reservas_abm/success', 'refresh');		
 	}
 	
 	

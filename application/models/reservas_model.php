@@ -37,9 +37,15 @@ class Reservas_model extends CI_Model {
 									ON(reservas.id_huesped=huespedes.id_huesped) 
 									WHERE id_estado_reserva=1 ");
 		
-		foreach ($query->result() as $fila){
-			$data[] = $fila;
+		if($query->result()>0){
+			foreach ($query->result() as $fila){
+				$data[] = $fila;
+				
+			}	
+		}else{
+				return 0;
 		}
+		
 		
 		return $data;
 	}

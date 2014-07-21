@@ -47,7 +47,7 @@ class Huesped extends CI_Controller {
 	public function huespedes_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			////$crud->set_theme('datatables');
 			$crud->set_table('huespedes');
 			
 			$crud->columns(	'id_huesped',
@@ -109,7 +109,7 @@ class Huesped extends CI_Controller {
 	public function telefonos_huesped($id=NULL){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			
 			if(isset($id)){
 				$crud->where('telefonos_huesped.id_huesped',$id);
@@ -152,7 +152,7 @@ class Huesped extends CI_Controller {
 	public function emails_huesped($id=NULL){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			
 			if(isset($id)){
 				$crud->where('emails_huesped.id_huesped',$id);
@@ -249,7 +249,7 @@ class Huesped extends CI_Controller {
 	public function tarjetas_huesped($id=NULL){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			
 			if(isset($id)){
 				$crud->where('tarjetas.id_huesped',$id);
@@ -292,7 +292,7 @@ class Huesped extends CI_Controller {
 	public function tipos_tarjeta(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('tipos_tarjeta');
 			
 			$crud->columns(	'id_tipo_tarjeta',
@@ -323,7 +323,7 @@ class Huesped extends CI_Controller {
 	public function tipos_huesped(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('tipos_huesped');
 			
 			$crud->columns(	'id_tipo_huesped',
@@ -354,7 +354,7 @@ class Huesped extends CI_Controller {
 	public function estados_huesped(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('estados_huesped');
 			
 			$crud->columns(	'id_estado_huesped',

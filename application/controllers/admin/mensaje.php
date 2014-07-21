@@ -9,6 +9,7 @@ class Mensaje extends CI_Controller {
 		$this->load->database();
 		$this->load->helper('url');
 		$this->load->helper('menu');
+		$this->load->model('mensajes_model');
 		$this->load->library('grocery_CRUD');
 		//$this->load->library('image_CRUD');
 	}
@@ -51,25 +52,32 @@ class Mensaje extends CI_Controller {
 			$crud->set_table('mensajes');
 			
 			$crud->columns(	'id_mensaje',
-							'titulo',
+							'mensaje',
 							'emisor',
-							'id_tipo_mensaje',
 							'fecha_envio',
 							'id_estado_mensaje');
 			
 			$crud->display_as('id_mensaje','ID')
 				 ->display_as('titulo','Título')
+				 ->display_as('mensaje','Mensaje')
 				 ->display_as('emisor','De')
-				 ->display_as('id_tipo_mensaje','Tipo')
 				 ->display_as('fecha_envio','Fecha')
+				 ->display_as('id_tipo_mensaje','Tipo')
 				 ->display_as('id_estado_mensaje','Mensaje')				 ;
 			
 			$crud->set_subject('mensaje');
 			
 			$crud->set_relation('id_tipo_mensaje','tipos_mensaje','tipo_mensaje');
 			$crud->set_relation('id_estado_mensaje','estados_mensaje','estado_mensaje');
+			
+			$crud->field_type('titulo', 'readonly');
+			$crud->field_type('mensaje', 'readonly');
+			$crud->field_type('emisor', 'readonly');
+			$crud->field_type('fecha_envio', 'readonly');
+			$crud->field_type('id_tipo_mensaje', 'readonly');
 					
-			$crud->required_fields('titulo', 'mensaje');
+			$crud->unset_add();
+			//$crud->required_fields('titulo', 'mensaje');
 			
 			$output = $crud->render();
 
@@ -100,6 +108,10 @@ class Mensaje extends CI_Controller {
 				 ->display_as('tipo_mensaje','Tipo mensaje');
 			
 			$crud->set_subject('tipo mensaje');
+			$crud->unset_delete();
+			$crud->unset_export();
+			$crud->unset_add();
+			$crud->unset_read();	
 							
 			$crud->required_fields(	'tipo_mensaje');
 			
@@ -142,6 +154,43 @@ class Mensaje extends CI_Controller {
 
 			$this->_example_output($output);
 	}
+
+
+
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Actulizar nuevos
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+	
+	
+	function actualizar_nuevos(){
+		$cant_mensajes=$this->mensajes_model->getCantNuevos();	
+		
+		if($cant_mensajes>0){
+			$mensajes=$this->mensajes_model->getNuevos();
+		
+			foreach ($mensajes as $mensaje) {
+				$id=$mensaje->id_mensaje;
+				if($id>0){
+					$mensaje = array(
+        				"id_mensaje" => $this->input->post('id_mensaje'.$id),
+        				"id_estado_mensaje" => $this->input->post('estado'.$id)
+    				);	
+				}else{
+					//echo "cero";
+				}
+				
+ 
+				$this->db->update('mensajes', $mensaje, array('id_mensaje' => $id));
+			}
+				
+		}
+		redirect('admin/mensaje/mensajes_abm/success', 'refresh');		
+	}
+	
 
 
 }
