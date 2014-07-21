@@ -4521,6 +4521,10 @@ a.label:focus {
   background-color: #777;
   border-radius: 10px;
 }
+
+.badge-success {
+  background-color: #5cb85c;
+}
 .badge:empty {
   display: none;
 }

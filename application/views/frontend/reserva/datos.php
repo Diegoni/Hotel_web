@@ -7,39 +7,35 @@
   					<div class="form-group">
     					<label for="nombre" class="col-sm-2 control-label">Nombre</label>
     					<div class="col-sm-10">
-      					<input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre">
+      					<input type="text" class="form-control" name="nombre" placeholder="Ingrese nombre">
     					</div>
   					</div>
   					
   					<div class="form-group">
     					<label for="apellido" class="col-sm-2 control-label">Apellido</label>
     					<div class="col-sm-10">
-      					<input type="text" class="form-control" id="apellido" placeholder="Ingrese apellido">
+      					<input type="text" class="form-control" name="apellido" placeholder="Ingrese apellido">
     					</div>
   					</div>
   					
   					<div class="form-group">
     					<label for="email" class="col-sm-2 control-label">Email</label>
     					<div class="col-sm-10">
-      					<input type="email" class="form-control" id="email" placeholder="Ingrese email">
+      					<input type="email" class="form-control" name="email" placeholder="Ingrese email">
     					</div>
   					</div>
-  					
-  					<div class="form-group">
-    					<label for="pais" class="col-sm-2 control-label">Pais</label>
-    					<div class="col-sm-10">
-      					<select name="pais" class="form-control">
-      						<?php foreach ($paises as $pais) { ?>
-								<option value="<?php echo $pais->id_pais ?>"><?php echo $pais->pais ?></option>		  
-							<?php } ?>
-      					</select>
-    					</div>
-  					</div>
-  					
+  					  					  					
   					<div class="form-group">
     					<label for="telefono" class="col-sm-2 control-label">Telefono</label>
     					<div class="col-sm-10">
-      					<input type="teléfono" class="form-control" id="email" placeholder="Ingrese teléfono">
+      					<input type="number" class="form-control" name="telefono" placeholder="Ingrese teléfono">
+    					</div>
+  					</div>
+  					
+  					<div class="form-group slidingDiv">
+  						<label for="nota" class="col-sm-2 control-label">Nota</label>
+    					<div class="col-sm-10">
+      						<textarea class="form-control" name="nota" rows="3" placeholder="Ingrese nota"></textarea>
     					</div>
   					</div>
   					
@@ -52,12 +48,18 @@
 					      </div>
 					    </div>
 					</div>
-  					
+  					  					
   					<div class="form-group">
     					<div class="col-sm-offset-2 col-sm-10">
       						<button type="submit" class="btn btn-default">Aceptar</button>
+      						<a href="#" class="btn btn-default show_hide">Agregar nota</a>
     					</div>
   					</div>
+  					<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
+					<input type="hidden" name="salida"  value="<?php echo $this->input->post('salida') ?>">
+					<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
+					<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">					
+					<input type="hidden" name="habitacion" value="<?php echo $this->input->post('habitacion') ?>">
 				</form>
 		    </div>
 		</div>

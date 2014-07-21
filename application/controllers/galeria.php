@@ -9,7 +9,7 @@ class Galeria extends CI_Controller {
 		/* Standard Libraries */
 		$this->load->database();
 		/* ------------------ */
-		
+		$this->load->model('reservas_model');
 		$this->load->helper('url'); //Just for the examples, this is not required thought for the library
 		
 		$this->load->library('image_CRUD');
@@ -17,10 +17,12 @@ class Galeria extends CI_Controller {
 	
 	function _example_output($output = null)
 	{
+		$db['reservas']=$this->reservas_model->getCantNuevas();
+			
 		$this->load->view('backend/head.php',$output);
-		$this->load->view('backend/menu.php',$output);	
-		$this->load->view('backend/galerias.php',$output);
-		$this->load->view('backend/footer.php',$output);
+		$this->load->view('backend/menu.php',$db);	
+		$this->load->view('backend/galerias.php');
+		$this->load->view('backend/footer.php');
 	}
 	
 	function index()

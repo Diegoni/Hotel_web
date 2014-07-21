@@ -8,26 +8,26 @@ class Mensaje extends CI_Controller {
 
 		$this->load->database();
 		$this->load->helper('url');
-
+		$this->load->helper('menu');
 		$this->load->library('grocery_CRUD');
 		//$this->load->library('image_CRUD');
 	}
 
+
 	public function _example_output($output = null)
 	{
+		$reservas=buscarReservas();
+		$mensajes=buscarMensajes();
+		
+		$db=array_merge($reservas, $mensajes);
+					
 		$this->load->view('backend/head.php',$output);
-		$this->load->view('backend/menu.php',$output);	
-		$this->load->view('backend/mensajes.php',$output);
-		$this->load->view('backend/footer.php',$output);
+		$this->load->view('backend/menu.php', $db);	
+		$this->load->view('backend/modal.php');
+		$this->load->view('backend/mensajes.php');
+		$this->load->view('backend/footer.php');
 	}
 	
-	public function _example_output2($output = null)
-	{
-			$this->load->view('backend/head.php',$output);
-			$this->load->view('backend/inicio.php',$output);
-			$this->load->view('backend/bienvenida.php',$output);
-	}
-
 	public function index()
 	{
 		$this->_example_output2((object)array('output' => '' , 'js_files' => array() , 'css_files' => array()));
@@ -50,16 +50,16 @@ class Mensaje extends CI_Controller {
 			$crud->set_theme('datatables');
 			$crud->set_table('mensajes');
 			
-			$crud->columns(	'id_mensajes',
+			$crud->columns(	'id_mensaje',
 							'titulo',
-							'remitente',
+							'emisor',
 							'id_tipo_mensaje',
 							'fecha_envio',
 							'id_estado_mensaje');
 			
-			$crud->display_as('id_mensajes','ID')
+			$crud->display_as('id_mensaje','ID')
 				 ->display_as('titulo','Título')
-				 ->display_as('remitente','De')
+				 ->display_as('emisor','De')
 				 ->display_as('id_tipo_mensaje','Tipo')
 				 ->display_as('fecha_envio','Fecha')
 				 ->display_as('id_estado_mensaje','Mensaje')				 ;
@@ -69,7 +69,7 @@ class Mensaje extends CI_Controller {
 			$crud->set_relation('id_tipo_mensaje','tipos_mensaje','tipo_mensaje');
 			$crud->set_relation('id_estado_mensaje','estados_mensaje','estado_mensaje');
 					
-			$crud->required_fields('titulo', 'mensaje', 'remitente');
+			$crud->required_fields('titulo', 'mensaje');
 			
 			$output = $crud->render();
 
@@ -127,7 +127,7 @@ class Mensaje extends CI_Controller {
 			$crud->columns(	'id_estado_mensaje',
 							'estado_mensaje');
 			
-			$crud->display_as('id_estados_mensaje','ID')
+			$crud->display_as('id_estado_mensaje','ID')
 				 ->display_as('estado_mensaje','Estado');
 			
 			$crud->set_subject('estado');

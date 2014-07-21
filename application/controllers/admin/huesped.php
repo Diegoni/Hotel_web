@@ -8,26 +8,26 @@ class Huesped extends CI_Controller {
 
 		$this->load->database();
 		$this->load->helper('url');
+		$this->load->helper('menu');
 		$this->load->library('grocery_CRUD');
-		
 		//$this->load->library('image_CRUD');
 	}
 
+
 	public function _example_output($output = null)
 	{
+	$reservas=buscarReservas();
+		$mensajes=buscarMensajes();
+		
+		$db=array_merge($reservas, $mensajes);
+					
 		$this->load->view('backend/head.php',$output);
-		$this->load->view('backend/menu.php',$output);	
-		$this->load->view('backend/huespedes.php',$output);
-		$this->load->view('backend/footer.php',$output);
+		$this->load->view('backend/menu.php', $db);	
+		$this->load->view('backend/modal.php');
+		$this->load->view('backend/huespedes.php');
+		$this->load->view('backend/footer.php');
 	}
 	
-	public function _example_output2($output = null)
-	{
-			$this->load->view('backend/head.php',$output);
-			$this->load->view('backend/inicio.php',$output);
-			$this->load->view('backend/bienvenida.php',$output);
-	}
-
 	public function index()
 	{
 		$this->_example_output2((object)array('output' => '' , 'js_files' => array() , 'css_files' => array()));

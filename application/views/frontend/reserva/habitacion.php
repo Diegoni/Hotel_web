@@ -21,7 +21,7 @@
 						<?php foreach ($habitaciones as $habitacion) { ?>
 						<tr>
 							<td><a href="#" class="btn btn-default" data-toggle="modal" data-target="#<?php echo $habitacion->id_habitacion?>"><?php echo $habitacion->habitacion; ?></a></td>		
-							<td><input type="checkbox" value="<?php echo $habitacion->id_habitacion; ?>" name="habitacion"></td>
+							<td><input type="radio" value="<?php echo $habitacion->id_habitacion; ?>" name="habitacion"></td>
 							<td>$ <?php echo number_format($habitacion->precio, 2, ',', ' '); ?></td>
 							
 						</tr>
@@ -31,6 +31,10 @@
 							<td></td>
 							<td><input type="submit" value="Aceptar" class="btn btn-default" /></td>
 						</tr>
+						<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
+						<input type="hidden" name="salida"  value="<?php echo $this->input->post('salida') ?>">
+						<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
+						<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">					
 						<?php echo form_close(); ?>
 					</tbody>
 				</table>

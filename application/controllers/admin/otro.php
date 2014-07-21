@@ -8,26 +8,26 @@ class Otro extends CI_Controller {
 
 		$this->load->database();
 		$this->load->helper('url');
-
+		$this->load->helper('menu');
 		$this->load->library('grocery_CRUD');
 		//$this->load->library('image_CRUD');
 	}
 
+
 	public function _example_output($output = null)
 	{
+		$reservas=buscarReservas();
+		$mensajes=buscarMensajes();
+		
+		$db=array_merge($reservas, $mensajes);
+					
 		$this->load->view('backend/head.php',$output);
-		$this->load->view('backend/menu.php',$output);	
-		$this->load->view('backend/otros.php',$output);
-		$this->load->view('backend/footer.php',$output);
+		$this->load->view('backend/menu.php', $db);	
+		$this->load->view('backend/modal.php');
+		$this->load->view('backend/otros.php');
+		$this->load->view('backend/footer.php');
 	}
 	
-	public function _example_output2($output = null)
-	{
-			$this->load->view('backend/head.php',$output);
-			$this->load->view('backend/inicio.php',$output);
-			$this->load->view('backend/bienvenida.php',$output);
-	}
-
 	public function index()
 	{
 		$this->_example_output2((object)array('output' => '' , 'js_files' => array() , 'css_files' => array()));
@@ -236,4 +236,41 @@ class Otro extends CI_Controller {
 
 			$this->_example_output($output);
 	}
+	
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de ubicación
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+ 
+ 
+	public function ayudas_abm(){
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('datatables');
+			$crud->set_table('ayudas');
+			
+			$crud->columns(	'id_ayuda',
+							'titulo',
+							'ayuda');
+			
+			$crud->display_as('id_ayuda','ID')
+				 ->display_as('titulo','Título')
+				 ->display_as('ayuda','Ayuda');
+			
+			$crud->edit_fields('titulo', 'ayuda');
+			
+			$crud->set_subject('ayuda');
+						
+			$crud->required_fields('titulo', 'ayuda');
+			
+			$crud->unset_delete();
+			$crud->unset_add();
+			
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}	
 }

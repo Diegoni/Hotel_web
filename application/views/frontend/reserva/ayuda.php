@@ -1,11 +1,13 @@
 
 <div class="row">
 	<div class="col-md-3">
+		<?php foreach ($ayudas as $ayuda) { ?>
 		<div class="panel panel-default">
-	  		<div class="panel-heading">Reserva online</div>
-	  		<div class="panel-body">
-	  			Por favor, rellena el formulario con tus datos de contacto. Introduce un email válido ya que lo vamos a utilizar para enviarte el bono de la reserva.
+	  		<div class="panel-heading"><?php echo $ayuda->titulo; ?></div>
+	  		<div class="panel-body"> 			
+				<?php echo $ayuda->ayuda; ?>
 			</div>
 		</div>
+		<?php } ?>
 	</div>
 	

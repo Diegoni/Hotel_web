@@ -29,16 +29,25 @@ foreach($css_files as $file): ?>
 	<ul class="nav navbar-nav">
 		
 		<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-tagalt-pricealt"></span> Reservas<b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-tagalt-pricealt"></span> 
+				Reservas 
+				<?php if($cant_reservas>0){
+					echo "<span class='badge badge-success'>".$cant_reservas."</span>";	
+				} ?>				
+				<b class="caret"></b>
+			</a>
 			<ul class="dropdown-menu">
-            	<li><a  href='<?php echo site_url('admin/inicio/reservas')?>'>Reservas</a></li>
-				<li><a  href='<?php echo site_url('admin/inicio/estados_reserva')?>'>Estados reserva</a></li>
+				<?php if($cant_reservas>0){ ?>
+				<li><a  href='#' data-toggle="modal" data-target="#modal_reservas">Nuevas					
+				<?php echo "<span class='badge'>".$cant_reservas."</span></a></li>"; } ?>	
+				<li><a  href='<?php echo site_url('admin/reserva/reservas_abm')?>'>Reservas</a></li>
+				<li><a  href='<?php echo site_url('admin/reserva/estados_reserva')?>'>Estados reserva</a></li>
           	</ul>
         </li>
         
         
         <li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>  Huéspedes<b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>  Huéspedes<b class="caret"></b></a>
 			<ul class="dropdown-menu">
             	<li><a  href='<?php echo site_url('admin/huesped/huespedes_abm')?>'>Huéspedes</a></li>
             	<li><a  href='<?php echo site_url('admin/huesped/telefonos_huesped')?>'>Teléfonos</a></li>
@@ -65,7 +74,7 @@ foreach($css_files as $file): ?>
 		
 		
 		<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-university"></i> Hoteles<b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-office-building"></i> Hoteles<b class="caret"></b></a>
 			<ul class="dropdown-menu">
             	<li><a  href='<?php echo site_url('admin/hotel/hoteles_abm')?>'>Hoteles</a></li>
 				<li><a  href='<?php echo site_url('admin/hotel/telefonos_hotel')?>'>Teléfonos</a></li>
@@ -79,8 +88,16 @@ foreach($css_files as $file): ?>
         
         
         <li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-emailalt"></span> Mensajes<b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-emailalt"></span> 
+				Mensajes
+				<?php if($cant_mensajes>0){
+					echo "<span class='badge badge-success'>".$cant_mensajes."</span>";	
+				} ?>
+				<b class="caret"></b></a>
 			<ul class="dropdown-menu">
+				<?php if($cant_reservas>0){ ?>
+				<li><a  href='#' data-toggle="modal" data-target="#modal_mensajes">Nuevos					
+				<?php echo "<span class='badge'>".$cant_reservas."</span></a></li>"; } ?>
             	<li><a  href='<?php echo site_url('admin/mensaje/mensajes_abm')?>'>Mensajes</a></li>
 				<li><a  href='<?php echo site_url('admin/mensaje/tipos_mensaje')?>'>Tipos de mensaje</a></li>
 				<li><a  href='<?php echo site_url('admin/mensaje/estados_mensaje')?>'>Estados mensaje</a></li>
@@ -89,7 +106,7 @@ foreach($css_files as $file): ?>
         
 		
 		<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file-text-o"></i> Artículos<b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-document"></i> Artículos<b class="caret"></b></a>
 			<ul class="dropdown-menu">
             	<li><a  href='<?php echo site_url('admin/articulo/articulos_abm')?>'>Artículos</a></li>
 				<li><a  href='<?php echo site_url('admin/articulo/estados_articulo')?>'>Estados artículo</a></li>
@@ -141,6 +158,7 @@ foreach($css_files as $file): ?>
 				<li><a  href='<?php echo site_url('admin/otro/tipos_abm')?>'>Tipos</a></li>
 				<li class="divider"></li>
 				<li><a  href='<?php echo site_url('admin/otro/ubicacion_abm')?>'>Ubicaciones de la página</a></li>
+				<li><a  href='<?php echo site_url('admin/otro/ayudas_abm')?>'>Ayudas de la página</a></li>
           	</ul>
         </li>
         

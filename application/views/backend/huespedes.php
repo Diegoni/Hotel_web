@@ -3,7 +3,7 @@
 	<div class="col-md-2">
 		<div class="panel panel-info">
   			<div class="panel-heading">
-  				<i class="fa fa-user"></i> Huéspedes
+  				<i class="icon-user"></i> Huéspedes
   			</div>
   			<div class="panel-body">
     			<ul class="nav nav-pills nav-stacked">
@@ -23,7 +23,7 @@
 	<div class="col-md-10">
 		<div class="panel panel-info">
   			<div class="panel-heading">
-  				<i class="fa fa-user"></i> Huéspedes
+  				<i class="icon-user"></i> Huéspedes
   			</div>
   			<div class="panel-body">
     			<?php echo $output; ?>

@@ -1,14 +1,42 @@
 <?php 
 class Huespedes_model extends CI_Model {
 	
-	public function buscar_telefonos($id)
+	public function insertHuesped($datos)
 	{
-		$query = $this->db->query("SELECT * FROM telefonos_huesped WHERE id_huesped='$id' ");
-		if($query->num_rows() > 0){
-			return site_url('/admin/huesped/telefonos_huesped').'/'.$id;	
-		}else{
-			return site_url('admin/huesped/telefonos_huesped/add').'/'.$id;;
+		$fecha= date('Y-m-d H:i:s');
+			
+		$huesped = array(
+	        "nombre" => $datos['nombre'],
+	        "apellido" => $datos['apellido'],
+	        "dni" => 0,
+	        "id_tipo_huesped" => 1,
+	        "fecha_alta" => $fecha,
+	        "fecha_modificacion" => $fecha
+	    );
+	    	 
+	    $this->db->insert('huespedes', $huesped);
+		
+		$id_huesped=$this->db->insert_id();	
+		
+		if(isset($datos['telefono'])){		
+			$telefono = array(
+	        	"id_huesped" => $id_huesped,
+	        	"telefono" => $datos['telefono']
+	    	);
+		
+			$this->db->insert('telefonos_huesped',$telefono);
 		}
+		
+		if(isset($datos['email'])){
+			$email = array(
+	        	"id_huesped" => $id_huesped,
+	        	"email" => $datos['email']
+	    	);
+		
+			$this->db->insert('emails_huesped',$email);			
+		}
+		
+		return $id_huesped;
 	}
 
 } 

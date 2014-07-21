@@ -3,7 +3,7 @@
 	<div class="col-md-2">
 		<div class="panel panel-success">
   			<div class="panel-heading">
-  				<i class="fa fa-university"></i> Hoteles
+  				<i class="icon-office-building"></i> Hoteles
   			</div>
   			<div class="panel-body">
     			<ul class="nav nav-pills nav-stacked">
@@ -21,7 +21,7 @@
 	<div class="col-md-10">
 		<div class="panel panel-success">
   			<div class="panel-heading">
-  				<i class="fa fa-university"></i> Hoteles
+  				<i class="icon-office-building"></i> Hoteles
   			</div>
   			<div class="panel-body">
     			<?php echo $output; ?>

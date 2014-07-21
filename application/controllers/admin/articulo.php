@@ -8,25 +8,26 @@ class Articulo extends CI_Controller {
 
 		$this->load->database();
 		$this->load->helper('url');
-
+		$this->load->helper('menu');
 		$this->load->library('grocery_CRUD');
 		//$this->load->library('image_CRUD');
 	}
 
+
 	public function _example_output($output = null)
 	{
-			$this->load->view('backend/head.php',$output);
-			$this->load->view('backend/menu.php',$output);	
-			$this->load->view('backend/articulos.php',$output);
-			$this->load->view('backend/footer.php',$output);
+		$reservas=buscarReservas();
+		$mensajes=buscarMensajes();
+		
+		$db=array_merge($reservas, $mensajes);
+					
+		$this->load->view('backend/head.php',$output);
+		$this->load->view('backend/menu.php', $db);	
+		$this->load->view('backend/modal.php');
+		$this->load->view('backend/articulos.php');
+		$this->load->view('backend/footer.php');
 	}
 	
-	public function _example_output2($output = null)
-	{
-			$this->load->view('backend/head.php',$output);
-			$this->load->view('backend/inicio.php',$output);
-			$this->load->view('backend/bienvenida.php',$output);
-	}
 
 	public function index()
 	{
@@ -135,7 +136,7 @@ class Articulo extends CI_Controller {
 			$crud->columns(	'id_estado_articulo',
 							'estado_articulo');
 			
-			$crud->display_as('id_estados_articulo','ID')
+			$crud->display_as('id_estado_articulo','ID')
 				 ->display_as('estado_articulo','Estado');
 			
 			$crud->set_subject('estado');
@@ -145,6 +146,40 @@ class Articulo extends CI_Controller {
 			$crud->unset_read();				
 						
 			$crud->required_fields('estado_articulo');
+			
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}
+	
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de Estados Categoria
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+ 
+ 
+	public function estados_categoria(){
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('datatables');
+			$crud->set_table('estados_categoria');
+			
+			$crud->columns(	'id_estado_categoria',
+							'estado_categoria');
+			
+			$crud->display_as('id_estado_categoria','ID')
+				 ->display_as('estado_categoria','Estado');
+			
+			$crud->set_subject('estado');
+			$crud->unset_delete();
+			$crud->unset_export();
+			$crud->unset_add();
+			$crud->unset_read();				
+						
+			$crud->required_fields('estado_categoria');
 			
 			$output = $crud->render();
 
