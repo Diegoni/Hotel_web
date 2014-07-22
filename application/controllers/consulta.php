@@ -28,7 +28,6 @@ class Consulta extends CI_Controller {
 		$this->load->view('frontend/consulta/ayuda');
 		$this->load->view('frontend/consulta/envio');
 		$this->load->view('frontend/footer');
-		
-	}
+			}
 	
 }
