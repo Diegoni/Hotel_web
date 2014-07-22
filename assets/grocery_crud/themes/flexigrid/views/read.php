@@ -52,7 +52,7 @@
 		<div id='report-success' class='report-div success'></div>
 	<div class="row">
 		<div class='col-md-12'>
-			<input type='button' class="btn btn-default" value='<?php echo $this->l('form_back_to_list'); ?>' class="btn btn-large back-to-list" id="cancel-button" />
+			<input type='button' class="btn btn-default" value='<?php echo $this->l('form_back_to_list'); ?>' onclick="window.history.back()" />
 			<div class='small-loading' id='FormLoading'><?php echo $this->l('form_update_loading'); ?></div>
 		</div>
 	</div>
