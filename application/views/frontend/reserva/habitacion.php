@@ -57,11 +57,11 @@
 						<tr>
 							<th><i class="fa fa-user"></i> Adultos: </th>
 							<td><?php echo $this->input->post('adultos') ?></td>
-							<th><i class="fa fa-child"></i>Menores: </th>
+							<th><i class="fa fa-child"></i> Menores: </th>
 							<td><?php echo $this->input->post('menores') ?></td>
 						</tr>
 					</table>
 			</div>
-		</div>
+		</div> 
 	</div>
 </div>	
