@@ -47,7 +47,7 @@ class Usuario extends CI_Controller {
 	public function usuarios_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('usuarios');
 			
 			$crud->columns(	'id_usuario',
@@ -108,7 +108,7 @@ class Usuario extends CI_Controller {
 	public function telefonos_usuario($id=NULL){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			
 			if(isset($id)){
 				$crud->where('telefonos_usuario.id_usuario',$id);
@@ -149,7 +149,7 @@ class Usuario extends CI_Controller {
 	public function emails_usuario($id=NULL){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			
 			if(isset($id)){
 				$crud->where('emails_usuario.id_usuario',$id);
@@ -191,7 +191,7 @@ class Usuario extends CI_Controller {
 	public function direcciones_usuario($id=NULL){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			
 			if(isset($id)){
 				$crud->where('direcciones_usuario.id_usuario',$id);
@@ -242,7 +242,7 @@ class Usuario extends CI_Controller {
 	public function estados_usuario(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('estados_usuario');
 			
 			$crud->columns(	'id_estado_usuario',
@@ -281,7 +281,7 @@ class Usuario extends CI_Controller {
 	public function accesos_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			
 			$crud->set_table('accesos');
 			
@@ -314,7 +314,7 @@ class Usuario extends CI_Controller {
 	public function detalle_accesos(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('detalles_acceso');
 			
 			$crud->columns(	'id_acceso',

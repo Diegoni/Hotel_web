@@ -42,18 +42,20 @@
                     <?php }?>
                     <?php if(!$unset_edit){?>
 						<a href='<?php echo $row->edit_url?>' title='<?php echo $this->l('list_edit')?> <?php echo $subject?>' class="edit_button btn btn-primary btn-xs">
-							<span class='<span class="icon-edit"></span>'></span>
+							<span class="icon-edit"></span>
 						</a>
 					<?php }?>
 					<?php if(!$unset_read){?>
-						<a href='<?php echo $row->read_url?>' title='<?php echo $this->l('list_view')?> <?php echo $subject?>' class="edit_button"><span class='read-icon'></span></a>
+						<a href='<?php echo $row->read_url?>' title='<?php echo $this->l('list_view')?> <?php echo $subject?>' class="edit_button btn btn-info btn-xs">
+							<span class="icon-folder-open"></span>
+						</a>
 					<?php }?>
 					<?php 
 					if(!empty($row->action_urls)){
 						foreach($row->action_urls as $action_unique_id => $action_url){ 
 							$action = $actions[$action_unique_id];
 					?>
-							<a href="<?php echo $action_url; ?>" class="<?php echo $action->css_class; ?> crud-action" title="<?php echo $action->label?>"><?php 
+							<a href="<?php echo $action_url; ?>" class="<?php echo $action->css_class; ?> crud-action btn btn-default btn-xs" title="<?php echo $action->label?>"><?php 
 								if(!empty($action->image_url))
 								{
 									?><img src="<?php echo $action->image_url; ?>" alt="<?php echo $action->label?>" /><?php 	

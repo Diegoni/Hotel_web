@@ -47,7 +47,7 @@ class Otro extends CI_Controller {
 	public function departamentos_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('departamentos');
 			
 			$crud->columns(	'id_departamento',
@@ -85,7 +85,7 @@ class Otro extends CI_Controller {
 	public function provincias_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('provincias');
 			
 			$crud->columns(	'id_provincia',
@@ -122,7 +122,7 @@ class Otro extends CI_Controller {
 	public function paises_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('paises');
 			
 			$crud->columns(	'id_pais',
@@ -153,7 +153,7 @@ class Otro extends CI_Controller {
 	public function monedas_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('monedas');
 			
 			$crud->columns(	'id_moneda',
@@ -188,7 +188,7 @@ class Otro extends CI_Controller {
 	public function tipos_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('tipos');
 			
 			$crud->columns(	'id_tipo',
@@ -219,7 +219,7 @@ class Otro extends CI_Controller {
 	public function ubicacion_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('ubicacion');
 			
 			$crud->columns(	'id_ubicacion',
@@ -249,7 +249,7 @@ class Otro extends CI_Controller {
 	public function ayudas_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('ayudas');
 			
 			$crud->columns(	'id_ayuda',

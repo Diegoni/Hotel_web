@@ -47,7 +47,7 @@ class Huesped extends CI_Controller {
 	public function huespedes_abm(){
 			$crud = new grocery_CRUD();
 
-			////$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('huespedes');
 			
 			$crud->columns(	'id_huesped',
@@ -196,7 +196,7 @@ class Huesped extends CI_Controller {
 	public function direcciones_huesped($id=NULL){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			
 			if(isset($id)){
 				$crud->where('direcciones_huesped.id_huesped',$id);

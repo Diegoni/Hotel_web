@@ -49,7 +49,7 @@ class Reserva extends CI_Controller {
 	public function reservas_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('reservas');
 			
 			$crud->columns(	'id_reserva',
@@ -103,7 +103,7 @@ class Reserva extends CI_Controller {
 	public function reservas_nuevas(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->where('reservas.id_estado_reserva', 1);
 			$crud->set_table('reservas');
 			
@@ -161,7 +161,7 @@ class Reserva extends CI_Controller {
 	public function estados_reserva(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('estados_reserva');
 			
 			$crud->columns(	'id_estado_reserva',
