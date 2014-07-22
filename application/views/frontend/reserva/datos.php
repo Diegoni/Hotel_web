@@ -1,34 +1,53 @@
 
-	<div class="col-md-5">
+	<div class="col-md-9">
 		<div class="panel panel-default">
-			<div class="panel-heading">Datos personales</div>
+			<div class="panel-heading">
+				<div class="wizard">
+					<a class="current"><span class="badge">1</span> Fecha</a>
+	    			<a class="current"><span class="badge">2</span> Consultar precios</a>
+	    			<a class="current"><span class="badge badge-inverse">3</span> Datos personales</a>
+	    			<a><span class="badge">4</span> Confirmación</a>
+	    		</div>
+			</div>
 		  	<div class="panel-body">
 		  		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/reserva/pago'?>" />
   					<div class="form-group">
     					<label for="nombre" class="col-sm-2 control-label">Nombre</label>
     					<div class="col-sm-10">
-      					<input type="text" class="form-control" name="nombre" placeholder="Ingrese nombre">
+    						<div class="input-group">
+							    <div class="input-group-addon"><i class="fa fa-user"></i></div>
+								<input type="text" class="form-control" name="nombre" required>
+							</div>
     					</div>
   					</div>
   					
   					<div class="form-group">
     					<label for="apellido" class="col-sm-2 control-label">Apellido</label>
     					<div class="col-sm-10">
-      					<input type="text" class="form-control" name="apellido" placeholder="Ingrese apellido">
+    						<div class="input-group">
+							    <div class="input-group-addon"><i class="fa fa-users"></i></div>
+								<input type="text" class="form-control" name="apellido" required>
+							</div>
     					</div>
   					</div>
   					
   					<div class="form-group">
     					<label for="email" class="col-sm-2 control-label">Email</label>
     					<div class="col-sm-10">
-      					<input type="email" class="form-control" name="email" placeholder="Ingrese email">
-    					</div>
+    						<div class="input-group">
+								<div class="input-group-addon"><span class="icon-emailalt"></span></div>
+							    <input class="form-control" type="email" name="email" required>
+							</div>
+      					</div>
   					</div>
   					  					  					
   					<div class="form-group">
     					<label for="telefono" class="col-sm-2 control-label">Telefono</label>
     					<div class="col-sm-10">
-      					<input type="number" class="form-control" name="telefono" placeholder="Ingrese teléfono">
+    						<div class="input-group">
+								<div class="input-group-addon"><i class="fa fa-phone"></i></div>	      
+			      				<input type="number" class="form-control" name="telefono" required>
+			      			</div>
     					</div>
   					</div>
   					
@@ -43,7 +62,7 @@
 					    <div class="col-sm-offset-2 col-sm-10">
 					      <div class="checkbox">
 					        <label>
-					          <input type="checkbox"> Acepto las condiciones de la reserva. <a href="#">Ver condiciones</a> 
+					          <input type="checkbox" required> Acepto las condiciones de la reserva. <a href="#">Ver condiciones</a> 
 					        </label>
 					      </div>
 					    </div>
@@ -63,9 +82,7 @@
 				</form>
 		    </div>
 		</div>
-	</div>
 	
-	<div class="col-md-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">Huesped registrado</div>
 		  	<div class="panel-body">

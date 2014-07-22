@@ -47,7 +47,7 @@ class Galeria extends CI_Controller {
 	public function galeria_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('galerias');
 			
 			$crud->columns(	'id_galeria',

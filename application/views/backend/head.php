@@ -5,4 +5,4 @@
 
 <script src="<?php echo base_url().'librerias/bootstrap/js/bootstrap.js'?>"></script>
 <script src="<?php echo base_url().'librerias/main/js/main.js'?>"></script>
-
+<link href="<?php echo base_url().'librerias/main/css/main.css'?>" rel="stylesheet">

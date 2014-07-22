@@ -8,8 +8,8 @@
 	$this->set_js_lib($this->default_javascript_path.'/jquery_plugins/config/jquery.noty.config.js');
 ?>
 <div class="flexigrid crud-form" style='width: 100%;' data-unique-hash="<?php echo $unique_hash; ?>">
-	<div class="mDiv">
-		<div class="ftitle">
+	<div class="row">
+		<div class="col-md-12">
 			<div class='ftitle-left'>
 				<?php echo $this->l('form_edit'); ?> <?php echo $subject?>
 			</div>
@@ -20,8 +20,7 @@
 		</div>
 	</div>
 <div id='main-table-box'>
-	<?php echo form_open( $update_url, 'method="post" id="crudForm" autocomplete="off" enctype="multipart/form-data"'); ?>
-	<div class='form-div'>
+	<?php echo form_open( $update_url, 'method="post" id="crudForm" autocomplete="off" enctype="multipart/form-data" class="form-horizontal"'); ?>
 		<?php
 		$counter = 0;
 			foreach($fields as $field)
@@ -29,14 +28,13 @@
 				$even_odd = $counter % 2 == 0 ? 'odd' : 'even';
 				$counter++;
 		?>
-			<div class='form-field-box <?php echo $even_odd?>' id="<?php echo $field->field_name; ?>_field_box">
-				<div class='form-display-as-box' id="<?php echo $field->field_name; ?>_display_as_box">
+			<div class='form-group <?php echo $even_odd?>' id="<?php echo $field->field_name; ?>_field_box">
+				<div class='col-sm-2 control-label' id="<?php echo $field->field_name; ?>_display_as_box">
 					<?php echo $input_fields[$field->field_name]->display_as?><?php echo ($input_fields[$field->field_name]->required)? "<span class='required'>*</span> " : ""?> :
 				</div>
-				<div class='form-input-box' id="<?php echo $field->field_name; ?>_input_box">
+				<div class='col-sm-10' id="<?php echo $field->field_name; ?>_input_box">
 					<?php echo $input_fields[$field->field_name]->input?>
 				</div>
-				<div class='clear'></div>
 			</div>
 		<?php }?>
 		<?php if(!empty($hidden_fields)){?>
@@ -51,20 +49,16 @@
 		<?php if ($is_ajax) { ?><input type="hidden" name="is_ajax" value="true" /><?php }?>
 		<div id='report-error' class='report-div error'></div>
 		<div id='report-success' class='report-div success'></div>
-	</div>
-	<div class="pDiv">
-		<div class='form-button-box'>
-			<input  id="form-button-save" type='submit' value='<?php echo $this->l('form_update_changes'); ?>' class="btn btn-large"/>
-		</div>
+	<div class="row">
+		<div class='col-md-12'>
+			<input  id="form-button-save" type='submit' value='<?php echo $this->l('form_update_changes'); ?>' class="btn btn-default"/>
 <?php 	if(!$this->unset_back_to_list) { ?>
-		<div class='form-button-box'>
-			<input type='button' value='<?php echo $this->l('form_update_and_go_back'); ?>' id="save-and-go-back-button" class="btn btn-large"/>
-		</div>
-		<div class='form-button-box'>
-			<input type='button' value='<?php echo $this->l('form_cancel'); ?>' class="btn btn-large" id="cancel-button" />
-		</div>
-<?php 	} ?>
-		<div class='form-button-box'>
+			<input type='button' value='<?php echo $this->l('form_save_and_go_back'); ?>' class='btn btn-default' id="save-and-go-back-button"/>
+			<input type='button' value='<?php echo $this->l('form_cancel'); ?>' class='btn btn-default' id="cancel-button" />
+<?php }else{ ?>
+			<input type='button' onclick="window.history.back()" value="Volver" class='btn btn-default'/>			
+<?php } ?>
+		<div class='col-md-12'>
 			<div class='small-loading' id='FormLoading'><?php echo $this->l('form_update_loading'); ?></div>
 		</div>
 		<div class='clear'></div>

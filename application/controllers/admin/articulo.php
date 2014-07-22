@@ -48,7 +48,7 @@ class Articulo extends CI_Controller {
 	public function articulos_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('articulos');
 			
 			$crud->columns(	'id_articulo',
@@ -93,7 +93,7 @@ class Articulo extends CI_Controller {
 	public function categorias_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('categorias');
 			
 			$crud->columns(	'id_categoria',
@@ -130,7 +130,7 @@ class Articulo extends CI_Controller {
 	public function estados_articulo(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('estados_articulo');
 			
 			$crud->columns(	'id_estado_articulo',
@@ -164,7 +164,7 @@ class Articulo extends CI_Controller {
 	public function estados_categoria(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('estados_categoria');
 			
 			$crud->columns(	'id_estado_categoria',

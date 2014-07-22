@@ -48,7 +48,7 @@ class Mensaje extends CI_Controller {
 	public function mensajes_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('mensajes');
 			
 			$crud->columns(	'id_mensaje',
@@ -98,7 +98,7 @@ class Mensaje extends CI_Controller {
 	public function tipos_mensaje(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('tipos_mensaje');
 			
 			$crud->columns(	'id_tipo_mensaje',
@@ -133,7 +133,7 @@ class Mensaje extends CI_Controller {
 	public function estados_mensaje(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('estados_mensaje');
 			
 			$crud->columns(	'id_estado_mensaje',

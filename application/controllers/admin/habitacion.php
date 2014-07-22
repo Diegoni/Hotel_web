@@ -47,7 +47,7 @@ class Habitacion extends CI_Controller {
 	public function habitaciones_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('habitaciones');
 			
 			$crud->columns(	'id_habitacion',
@@ -56,6 +56,7 @@ class Habitacion extends CI_Controller {
 			
 			$crud->display_as('id_habitacion','ID')
 				 ->display_as('habitacion','Habitación')
+				 ->display_as('descripcion','descripción')
 				 ->display_as('id_hotel','Hotel')
 				 ->display_as('id_tipo_habitacion','Tipo')
 				 ->display_as('id_tarifa','Tarifa')
@@ -93,7 +94,7 @@ class Habitacion extends CI_Controller {
 	public function tipos_habitacion(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('tipos_habitacion');
 			
 			$crud->columns(	'id_tipo_habitacion',
@@ -123,7 +124,7 @@ class Habitacion extends CI_Controller {
 	public function tarifas_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('tarifas');
 			
 			$crud->columns(	'id_tarifa',
@@ -163,7 +164,7 @@ class Habitacion extends CI_Controller {
 	public function estados_habitacion(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('estados_habitacion');
 			
 			$crud->columns(	'id_estado_habitacion',

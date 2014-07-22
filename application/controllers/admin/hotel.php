@@ -47,7 +47,7 @@ class Hotel extends CI_Controller {
 	public function hoteles_abm(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('hoteles');
 			
 			$crud->columns(	'id_hotel',
@@ -93,7 +93,7 @@ class Hotel extends CI_Controller {
 	public function telefonos_hotel($id=NULL){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			
 			if(isset($id)){
 				$crud->where('telefonos_hotel.id_hotel',$id);
@@ -134,7 +134,7 @@ class Hotel extends CI_Controller {
 	public function emails_hotel($id=NULL){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			
 			if(isset($id)){
 				$crud->where('emails_hotel.id_hotel',$id);
@@ -176,7 +176,7 @@ class Hotel extends CI_Controller {
 	public function direcciones_hotel($id=NULL){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			
 			if(isset($id)){
 				$crud->where('direcciones_hotel.id_hotel',$id);
@@ -225,7 +225,7 @@ class Hotel extends CI_Controller {
 	public function config($id=NULL){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			
 			if(isset($id)){
 				$crud->where('config.id_hotel',$id);
@@ -267,7 +267,7 @@ class Hotel extends CI_Controller {
 	public function detalle_config(){
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('datatables');
+			//$crud->set_theme('datatables');
 			$crud->set_table('detalles_config');
 			
 			$crud->columns(	'id_config',
