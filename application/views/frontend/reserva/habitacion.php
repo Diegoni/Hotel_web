@@ -1,21 +1,9 @@
 <div class="col-md-9">
 	<div class="panel panel-default">
-		<div class="panel-heading">
-			<div class="wizard">
-    			<a class="current"><span class="badge">1</span> Fecha</a>
-    			<a class="current"><span class="badge">2</span> Consultar precios</a>
-    			<a ><span class="badge badge-inverse">3</span> Datos personales</a>
-    			<a><span class="badge">4</span> Confirmación</a> 
-			</div>
-		</div>
+		<div class="panel-heading">Habitación</div>
 	  	<div class="panel-body">
-	  		
-	  		
-	  		 <h1 class="text-center">Seleccione su habitación</h1>
-	  		 
-	  		 
-	  		 
-      			<?php echo form_open('reserva/datos');?>
+	  		<h1 class="text-center">Seleccione su habitación</h1>
+	  		<?php echo form_open('reserva/datos');?>
 				<?php foreach ($habitaciones as $habitacion) { ?> 
         			<div class="list-group">
           				<a href="#" class="list-group-item">

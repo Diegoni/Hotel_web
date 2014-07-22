@@ -18,10 +18,12 @@ class Reserva extends CI_Controller {
 	public function habitacion(){
 		$db['hoteles']=$this->hoteles_model->getHoteles();
 		$db['habitaciones']=$this->habitaciones_model->getHabitaciones();
+		$db['step']=2;
 				
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
 		$this->load->view('frontend/formulario_reserva');
+		$this->load->view('frontend/reserva/steps');
 		$this->load->view('frontend/reserva/habitacion');
 		$this->load->view('frontend/reserva/modal_habitaciones');
 		$this->load->view('frontend/footer');
@@ -31,10 +33,12 @@ class Reserva extends CI_Controller {
 	public function datos(){
 		$db['hoteles']=$this->hoteles_model->getHoteles();
 		$db['ayudas']=$this->ayudas_model->getAyuda('datos');
+		$db['step']=3;
 		
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
 		$this->load->view('frontend/reserva/ayuda');
+		$this->load->view('frontend/reserva/steps');
 		$this->load->view('frontend/reserva/datos');
 		$this->load->view('frontend/footer');
 		
@@ -43,6 +47,7 @@ class Reserva extends CI_Controller {
 	public function pago(){
 		$db['hoteles']=$this->hoteles_model->getHoteles();
 		$db['ayudas']=$this->ayudas_model->getAyuda('pagos');
+		$db['step']=4;
 		
 		$huesped=array(	'nombre'=> $this->input->post('nombre'),
 						'apellido'=> $this->input->post('apellido'),
@@ -84,6 +89,7 @@ class Reserva extends CI_Controller {
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
 		$this->load->view('frontend/reserva/ayuda');
+		$this->load->view('frontend/reserva/steps');
 		$this->load->view('frontend/reserva/pagos');
 		$this->load->view('frontend/footer');
 		

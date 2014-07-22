@@ -1,22 +1,15 @@
 
 	<div class="col-md-9">
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				<div class="wizard">
-					<a class="current"><span class="badge">1</span> Fecha</a>
-	    			<a class="current"><span class="badge">2</span> Consultar precios</a>
-	    			<a class="current"><span class="badge badge-inverse">3</span> Datos personales</a>
-	    			<a><span class="badge">4</span> Confirmación</a>
-	    		</div>
-			</div>
+			<div class="panel-heading">Datos personales</div>
 		  	<div class="panel-body">
 		  		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/reserva/pago'?>" />
   					<div class="form-group">
     					<label for="nombre" class="col-sm-2 control-label">Nombre</label>
     					<div class="col-sm-10">
     						<div class="input-group">
-							    <div class="input-group-addon"><i class="fa fa-user"></i></div>
-								<input type="text" class="form-control" name="nombre" required>
+								<input type="text" class="form-control" name="nombre" id="validate-text" placeholder="Ingrese nombre" required>
+								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
   					</div>
@@ -25,8 +18,8 @@
     					<label for="apellido" class="col-sm-2 control-label">Apellido</label>
     					<div class="col-sm-10">
     						<div class="input-group">
-							    <div class="input-group-addon"><i class="fa fa-users"></i></div>
-								<input type="text" class="form-control" name="apellido" required>
+								<input type="text" class="form-control" name="apellido" id="validate-text" placeholder="Ingrese apellido" required>
+								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
   					</div>
@@ -34,9 +27,9 @@
   					<div class="form-group">
     					<label for="email" class="col-sm-2 control-label">Email</label>
     					<div class="col-sm-10">
-    						<div class="input-group">
-								<div class="input-group-addon"><span class="icon-emailalt"></span></div>
-							    <input class="form-control" type="email" name="email" required>
+    						<div class="input-group" data-validate="email">
+								<input type="text" class="form-control" name="email" id="validate-email" placeholder="Ingrese Email" required>
+								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
       					</div>
   					</div>
@@ -44,10 +37,10 @@
   					<div class="form-group">
     					<label for="telefono" class="col-sm-2 control-label">Telefono</label>
     					<div class="col-sm-10">
-    						<div class="input-group">
-								<div class="input-group-addon"><i class="fa fa-phone"></i></div>	      
-			      				<input type="number" class="form-control" name="telefono" required>
-			      			</div>
+    						<div class="input-group" data-validate="phone">
+								<input type="text" class="form-control" name="validate-phone" id="validate-phone" placeholder="Ejemplo 261-4223355" required>
+								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
+							</div>
     					</div>
   					</div>
   					
@@ -90,14 +83,21 @@
   					<div class="form-group">
     					<label for="usuario" class="col-sm-2 control-label">Ususario</label>
     					<div class="col-sm-10">
-      					<input type="text" class="form-control" id="usuario" placeholder="Ingrese usuario">
+      						<div class="input-group">
+								<input type="text" class="form-control" name="nombre" id="validate-text" placeholder="Ingrese nombre" required>
+								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
+							</div>
     					</div>
-  					</div>
+    				</div>
+  					
   					
   					<div class="form-group">
     					<label for="pass" class="col-sm-2 control-label">Pass</label>
     					<div class="col-sm-10">
-      					<input type="password" class="form-control" id="pass" placeholder="Ingrese password">
+      					<div class="input-group">
+								<input type="password" class="form-control" name="pass" id="validate-text" placeholder="Ingrese pass" required>
+								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
+							</div>
     					</div>
   					</div>
   					
