@@ -106,7 +106,8 @@ a.list-group-item.active small {
 		border-left: 20px solid #efefef; 
 		position: absolute; 
 		content: ""; 
-		top: 0; right: -20px; z-index:2;}
+		top: 0; 
+		right: -20px; z-index:2;}
 .wizard a:first-child:before {border:none;}
 .wizard a:last-child:after {border:none;}
 
