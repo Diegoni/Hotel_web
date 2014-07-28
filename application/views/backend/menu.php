@@ -2,13 +2,17 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-<?php 
-foreach($css_files as $file): ?>
+<?php if(isset($css_files)){ ?>
+<?php foreach($css_files as $file): ?>
 	<link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
-<?php endforeach; ?>
+<?php endforeach; ?>	
+<?php } ?>
+
+<?php if(isset($js_files)){ ?>
 <?php foreach($js_files as $file): ?>
 	<script src="<?php echo $file; ?>"></script>
 <?php endforeach; ?>
+<?php } ?>
 </head>
 <body>
 <nav class="navbar navbar-inverse" role="navigation">
@@ -21,7 +25,7 @@ foreach($css_files as $file): ?>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a title="Administración" class="navbar-brand"href='<?php echo site_url('admin/inicio')?>'>Admin.</a>
+      <a title="Administración" class="navbar-brand"href='<?php echo site_url('admin/home')?>'>Admin.</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -160,6 +164,9 @@ foreach($css_files as $file): ?>
 				<li><a  href='<?php echo site_url('admin/otro/ubicacion_abm')?>'>Ubicaciones de la página</a></li>
 				<li><a  href='<?php echo site_url('admin/otro/ayudas_abm')?>'>Ayudas de la página</a></li>
           	</ul>
+        </li>
+        <li>
+        	<a href="<?php echo site_url('admin/home/logout')?>"><span class="icon-off"></span> Salir</a>
         </li>
         
        

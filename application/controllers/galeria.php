@@ -11,6 +11,7 @@ class Galeria extends CI_Controller {
 		/* ------------------ */
 		$this->load->model('reservas_model');
 		$this->load->helper('url'); //Just for the examples, this is not required thought for the library
+		$this->load->helper('menu');
 		
 		$this->load->library('image_CRUD');
 	}
@@ -18,6 +19,10 @@ class Galeria extends CI_Controller {
 	function _example_output($output = null)
 	{
 		$db['reservas']=$this->reservas_model->getCantNuevas();
+		$reservas=buscarReservas();
+		$mensajes=buscarMensajes();
+		
+		$db=array_merge($reservas, $mensajes);
 			
 		$this->load->view('backend/head.php',$output);
 		$this->load->view('backend/menu.php',$db);	

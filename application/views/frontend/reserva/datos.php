@@ -38,7 +38,7 @@
     					<label for="telefono" class="col-sm-2 control-label">Telefono</label>
     					<div class="col-sm-10">
     						<div class="input-group" data-validate="phone">
-								<input type="text" class="form-control" name="validate-phone" id="validate-phone" placeholder="Ejemplo 261-4223355" required>
+								<input type="text" class="form-control" name="telefono" id="validate-phone" placeholder="Ejemplo 261-4223355" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
@@ -75,7 +75,9 @@
 				</form>
 		    </div>
 		</div>
-	
+		
+		<!-- ver como lo vamos a trabajar -->
+		<!--
 		<div class="panel panel-default">
 			<div class="panel-heading">Huesped registrado</div>
 		  	<div class="panel-body">
@@ -109,5 +111,6 @@
 				</form>
 			</div>
 		</div>
+		-->
 	</div>
 </div>	

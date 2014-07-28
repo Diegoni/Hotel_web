@@ -1,3 +1,22 @@
+$(document).ready(function(){
+	$('.blockquote-primary').hide();
+	$('.blockquote-success').hide();
+	$('.blockquote-warning').hide();
+	$('.blockquote-info').hide();
+	$('.blockquote-default').hide();
+	$('.aparecer').hide();
+	
+	$('.aparecer').fadeIn( 2000 );
+	$('.blockquote-primary').delay( 1000 ).fadeIn( 2000 );
+	$('.blockquote-info').delay( 1000 ).fadeIn( 2000 );
+	$('.blockquote-success').delay( 1000 ).fadeIn( 2000 );
+	$('.blockquote-warning').delay( 1000 ).fadeIn( 2000 );
+	$('.blockquote-default').delay( 1000 ).fadeIn( 2000 );
+
+
+});
+
+
 
 /**************************************************************************
  **************************************************************************

@@ -3,6 +3,7 @@
  * 				Tablas del backend
  ***************************************************************
  ***************************************************************/
+
 .field-sorting{
 	cursor: pointer;	
 }
@@ -73,9 +74,11 @@ input.field_error
 }
 
 
-
-
-
+/****************************************************************
+ ****************************************************************
+ * 				Tabla de habitacion frontend
+ ***************************************************************
+ ***************************************************************/
 
 
 a.list-group-item {
@@ -90,10 +93,9 @@ a.list-group-item.active small {
 }
 
 
-
 /****************************************************************
  ****************************************************************
- * 				Carrusel
+ * 				Validación 
  ***************************************************************
  ***************************************************************/
 
@@ -153,3 +155,218 @@ a.list-group-item.active small {
 .bs-wizard > .bs-wizard-step:last-child  > .progress {width: 50%;}
 .bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
 
+/*******************************************************************
+ *******************************************************************
+ * 				Login
+ ******************************************************************* 
+ ******************************************************************/
+
+
+.login-container{
+    position: relative;
+    width: 300px;
+    margin: 80px auto;
+    padding: 20px 40px 40px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+#output{
+    position: absolute;
+    width: 300px;
+    top: -75px;
+    left: 0;
+    color: #fff;
+}
+
+#output.alert-success{
+    background: rgb(25, 204, 25);
+}
+
+#output.alert-danger{
+    background: rgb(228, 105, 105);
+}
+
+
+.login-container::before,.login-container::after{
+    content: "";
+    position: absolute;
+    width: 100%;height: 100%;
+    top: 3.5px;left: 0;
+    background: #fff;
+    z-index: -1;
+    -webkit-transform: rotateZ(4deg);
+    -moz-transform: rotateZ(4deg);
+    -ms-transform: rotateZ(4deg);
+    border: 1px solid #ccc;
+
+}
+
+.login-container::after{
+    top: 5px;
+    z-index: -2;
+    -webkit-transform: rotateZ(-2deg);
+     -moz-transform: rotateZ(-2deg);
+      -ms-transform: rotateZ(-2deg);
+
+}
+
+.avatar{
+    width: 100px;height: 100px;
+    margin: 10px auto 30px;
+    border-radius: 100%;
+    border: 2px solid #aaa;
+    background-size: cover;
+}
+
+.form-box input{
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    height:40px;
+    border: 1px solid #ccc;;
+    background: #fafafa;
+    transition:0.2s ease-in-out;
+
+}
+
+.form-box input:focus{
+    outline: 0;
+    background: #eee;
+}
+
+.form-box input[type="text"]{
+    border-radius: 5px 5px 0 0;
+    text-transform: lowercase;
+}
+
+.form-box input[type="password"]{
+    border-radius: 0 0 5px 5px;
+    border-top: 0;
+}
+
+.form-box button.login{
+    margin-top:15px;
+    padding: 10px 20px;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+    -ms-transform: translateY(20px);
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+}
+
+.avatar{
+	background-image: url('user.png');
+}
+
+
+/*******************************************************************
+ *******************************************************************
+ * 				Botones grandes
+ ******************************************************************* 
+ ******************************************************************/
+
+.icon-lg{font-size:3em; color:#FFF; }
+.blockquote-box{border-right:5px solid #E6E6E6;margin-bottom:25px}
+.blockquote-box .square{width:100px;min-height:50px;margin-right:22px;text-align:center!important;background-color:#E6E6E6;padding:20px 0}
+
+.blockquote-box.blockquote-primary{border-color:#357ebd}
+.blockquote-box.blockquote-primary .square{background-color:#428bca;color:#FFF}
+.blockquote-box.blockquote-primary:hover{border-color:#285e8e}
+.blockquote-box.blockquote-primary .square:hover{background-color:#3071a9;color:#FFF ; cursor:pointer}
+
+.blockquote-box.blockquote-success{border-color:#4cae4c}
+.blockquote-box.blockquote-success .square{background-color:#5cb85c;color:#FFF}
+.blockquote-box.blockquote-success:hover{border-color:#398439}
+.blockquote-box.blockquote-success .square:hover{background-color:#449d44;color:#FFF ; cursor:pointer}
+
+.blockquote-box.blockquote-info{border-color:#46b8da}
+.blockquote-box.blockquote-info .square{background-color:#5bc0de;}
+.blockquote-box.blockquote-info:hover{border-color:#269abc}
+.blockquote-box.blockquote-info .square:hover{background-color:#31b0d5;color:#FFF ; cursor:pointer}
+
+.blockquote-box.blockquote-warning{border-color: #eea236}
+.blockquote-box.blockquote-warning .square{background-color:#f0ad4e;color:#FFF}
+.blockquote-box.blockquote-warning:hover{border-color:#d58512}
+.blockquote-box.blockquote-warning .square:hover{background-color: #ec971f;color:#FFF ; cursor:pointer}
+
+
+.blockquote-box.blockquote-danger{border-color:#D43F3A}
+.blockquote-box.blockquote-danger .square{background-color:#D9534F;color:#FFF}
+.blockquote-box.blockquote-danger{border-color:#D43F3A}
+.blockquote-box.blockquote-danger .square{background-color:#D9534F;color:#FFF}
+
+
+.blockquote-box.blockquote-default{border-color:#ccc}
+.blockquote-box.blockquote-default .square{background-color:#ccc;color:#333}
+.blockquote-box.blockquote-default:hover{border-color:#adadad}
+.blockquote-box.blockquote-default .square:hover{background-color:#bbb;color:#333; cursor:pointer}
+
+
+.bs-docs-featurette-title {
+font-size: 40px;
+}
+.bs-docs-featurette-title {
+margin-bottom: 5px;
+font-size: 30px;
+font-weight: 400;
+color: #333;
+}
+
+/***************************************************************
+ ***************************************************************
+ * 		Consulta web
+ * ************************************************************* 
+ **************************************************************/
+
+.box > .icon { text-align: center; position: relative; }
+.box > .icon > .image { position: relative; z-index: 2; margin: auto; width: 88px; height: 88px; border: 8px solid white; line-height: 88px; border-radius: 50%; background: #63B76C; vertical-align: middle; }
+.box > .icon:hover > .image { background: #333; }
+.box > .icon > .image > i { font-size: 36px !important; color: #fff !important; }
+.box > .icon:hover > .image > i { color: white !important; }
+.box > .icon > .info { margin-top: -24px; background: rgba(0, 0, 0, 0.04); border: 1px solid #e0e0e0; padding: 15px 0 10px 0; }
+.box > .icon:hover > .info { background: rgba(0, 0, 0, 0.04); border-color: #e0e0e0; color: white; }
+.box > .icon > .info > h3.title { font-family: "Roboto",sans-serif !important; font-size: 16px; color: #222; font-weight: 500; }
+.box > .icon > .info > p { font-family: "Roboto",sans-serif !important; font-size: 13px; color: #666; line-height: 1.5em; margin: 20px;}
+.box > .icon:hover > .info > h3.title, .box > .icon:hover > .info > p, .box > .icon:hover > .info > .more > a { color: #222; }
+.box > .icon > .info > .more a { font-family: "Roboto",sans-serif !important; font-size: 12px; color: #222; line-height: 12px; text-transform: uppercase; text-decoration: none; }
+.box > .icon:hover > .info > .more > a { color: #fff; padding: 6px 8px; background-color: #63B76C; }
+.box .space { height: 30px; }

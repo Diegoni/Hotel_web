@@ -11,8 +11,20 @@ class Reservas_model extends CI_Model {
 	}
 	
 	function getReserva($id){
-		$query = $this->db->query("SELECT * FROM reservas WHERE id_reserva='$id' ");
-		
+		$query = $this->db->query("SELECT 
+									reservas.entrada as entrada,
+									reservas.salida as salida,
+									reservas.adultos as adultos,
+									reservas.menores as menores,
+									habitaciones.habitacion as habitacion,
+									hoteles.hotel as hotel
+									FROM 
+									reservas
+									INNER JOIN 
+									habitaciones ON(reservas.id_habitacion=habitaciones.id_habitacion)
+									INNER JOIN 
+									hoteles ON(hoteles.id_hotel=habitaciones.id_hotel)
+									WHERE reservas.id_reserva='$id' ");
 		if($query->num_rows() > 0){
 			foreach ($query->result() as $fila){
 				$data[] = $fila;
