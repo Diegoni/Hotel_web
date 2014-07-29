@@ -11,12 +11,14 @@
 						<td><i class="fa fa-sign-out"></i> Salida: </td>
 						<th><?php echo $reserva->salida; ?></th>
 					</tr>
+					<!--
 					<tr>
 						<td><i class="fa fa-user"></i> Adultos: </td>
 						<th><?php echo $reserva->adultos; ?></th>
 						<td><i class="fa fa-child"></i> Menores: </td>
 						<th><?php echo $reserva->menores; ?></th>
 					</tr>
+					-->
 					<tr>
 						<td><span class="icon-bed"></span> Habitación: </td>
 						<th><?php echo $reserva->habitacion; ?></th>

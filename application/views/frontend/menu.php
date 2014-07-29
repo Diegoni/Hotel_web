@@ -12,6 +12,7 @@
     <div class="col-md-8">
     	<ul class="nav nav-pills pull-right">
   			<li><a href="#" data-toggle="modal" data-target="#myModal">Consulta</a></li>
+  			<li><a href="<?php echo base_url().'index.php/admin/home/logout/'?>">Admin</a></li>
 		</ul>
 	</div>
 	</div>

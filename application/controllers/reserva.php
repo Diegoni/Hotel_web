@@ -10,15 +10,29 @@ class Reserva extends CI_Controller {
 		$this->load->model('reservas_model');
 		$this->load->model('notas_model');
 		$this->load->model('ayudas_model');
+		$this->load->model('configs_model');
+		$this->load->model('tipos_habitacion_model');
 		$this->load->helper('form');
       	$this->load->helper('url');
 	}
 	
 	
 	public function habitacion(){
+		$consulta=array('entrada'=>$this->input->post('entrada'),
+						'salida'=>$this->input->post('salida'),
+						'tipo'=>$this->input->post('tipo'),
+						'hotel'=>$this->input->post('hotel'),						
+						);
+
 		$db['hoteles']=$this->hoteles_model->getHoteles();
-		$db['habitaciones']=$this->habitaciones_model->getHabitaciones();
+		$db['hotel']=$this->hoteles_model->getHotel($this->input->post('hotel'));
+		$db['habitaciones']=$this->habitaciones_model->getHabitaciones($consulta);
+		$db['reservas']=$this->reservas_model->getReservas($consulta);
 		$db['step']=2;
+		$db['configs']=$this->configs_model->getConfigs();
+		$db['tipos_habitacion']=$this->tipos_habitacion_model->getTipos();
+		$db['tipo_habitacion']=$this->tipos_habitacion_model->getTipo($this->input->post('tipo'));
+		
 				
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
@@ -73,8 +87,8 @@ class Reserva extends CI_Controller {
 		
 		$reserva=array(	'entrada' => $entrada,
 						'salida' => $salida,
-						'adultos' => $this->input->post('adultos'),
-						'menores' => $this->input->post('menores'),
+						//'adultos' => $this->input->post('adultos'),
+						//'menores' => $this->input->post('menores'),
 						'id_habitacion' => $this->input->post('habitacion'),
 						'id_huesped' => $id_huesped,
 						'id_nota' => $id_nota,

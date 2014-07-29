@@ -310,34 +310,34 @@ a.list-group-item.active small {
 
 .blockquote-box.blockquote-primary{border-color:#357ebd}
 .blockquote-box.blockquote-primary .square{background-color:#428bca;color:#FFF}
-.blockquote-box.blockquote-primary:hover{border-color:#285e8e}
+.blockquote-box.blockquote-primary:hover{border-color:#285e8e; box-shadow: 10px 10px 5px #888888;}
 .blockquote-box.blockquote-primary .square:hover{background-color:#3071a9;color:#FFF ; cursor:pointer}
 
 .blockquote-box.blockquote-success{border-color:#4cae4c}
 .blockquote-box.blockquote-success .square{background-color:#5cb85c;color:#FFF}
-.blockquote-box.blockquote-success:hover{border-color:#398439}
+.blockquote-box.blockquote-success:hover{border-color:#398439; box-shadow: 10px 10px 5px #888888;}
 .blockquote-box.blockquote-success .square:hover{background-color:#449d44;color:#FFF ; cursor:pointer}
 
 .blockquote-box.blockquote-info{border-color:#46b8da}
 .blockquote-box.blockquote-info .square{background-color:#5bc0de;}
-.blockquote-box.blockquote-info:hover{border-color:#269abc}
+.blockquote-box.blockquote-info:hover{border-color:#269abc; box-shadow: 10px 10px 5px #888888;}
 .blockquote-box.blockquote-info .square:hover{background-color:#31b0d5;color:#FFF ; cursor:pointer}
 
 .blockquote-box.blockquote-warning{border-color: #eea236}
 .blockquote-box.blockquote-warning .square{background-color:#f0ad4e;color:#FFF}
-.blockquote-box.blockquote-warning:hover{border-color:#d58512}
+.blockquote-box.blockquote-warning:hover{border-color:#d58512; box-shadow: 10px 10px 5px #888888;}
 .blockquote-box.blockquote-warning .square:hover{background-color: #ec971f;color:#FFF ; cursor:pointer}
 
 
 .blockquote-box.blockquote-danger{border-color:#D43F3A}
 .blockquote-box.blockquote-danger .square{background-color:#D9534F;color:#FFF}
-.blockquote-box.blockquote-danger{border-color:#D43F3A}
+.blockquote-box.blockquote-danger{border-color:#D43F3A; box-shadow: 10px 10px 5px #888888;}
 .blockquote-box.blockquote-danger .square{background-color:#D9534F;color:#FFF}
 
 
 .blockquote-box.blockquote-default{border-color:#ccc}
 .blockquote-box.blockquote-default .square{background-color:#ccc;color:#333}
-.blockquote-box.blockquote-default:hover{border-color:#adadad}
+.blockquote-box.blockquote-default:hover{border-color:#adadad; box-shadow: 10px 10px 5px #888888;}
 .blockquote-box.blockquote-default .square:hover{background-color:#bbb;color:#333; cursor:pointer}
 
 

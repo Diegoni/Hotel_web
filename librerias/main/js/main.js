@@ -46,6 +46,7 @@ $(document).ready(function() {
     $('.input-group input[required], .input-group textarea[required], .input-group select[required]').on('keyup change', function() {
 		var $form = $(this).closest('form'),
             $group = $(this).closest('.input-group'),
+			//$addon = $group.find('.input-group-addon'),
 			$addon = $group.find('.input-group-addon'),
 			$icon = $addon.find('span'),
 			state = false;
