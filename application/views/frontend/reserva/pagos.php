@@ -18,7 +18,7 @@
 						<td><i class="fa fa-child"></i> Menores: </td>
 						<th><?php echo $reserva->menores; ?></th>
 					</tr>
-					-->
+					-->	
 					<tr>
 						<td><span class="icon-bed"></span> Habitación: </td>
 						<th><?php echo $reserva->habitacion; ?></th>
