@@ -67,7 +67,6 @@ class Reservas_model extends CI_Model {
 		$salida=$salida_array['2'].'/'.$salida_array['1'].'/'.$salida_array['0'];
 				
 		$query=$this->db->query("SELECT * FROM reservas WHERE entrada>='$entrada' AND salida<='$salida'");
-		echo $query->num_rows();
 		if($query->num_rows()>0){
 			foreach ($query->result() as $fila){
 				$data[] = $fila;

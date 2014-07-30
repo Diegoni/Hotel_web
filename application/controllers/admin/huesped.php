@@ -80,7 +80,7 @@ class Huesped extends CI_Controller {
 									'apellido', 
 									'dni');
 									
-			$crud->add_action('Teléfono', '', '','fa fa-phone', array($this,'buscar_telefonos'));
+			$crud->add_action('Teléfono', '', '','icon-phonealt', array($this,'buscar_telefonos'));
 			$crud->add_action('Email', '', '','icon-emailalt', array($this,'buscar_emails'));
 			$crud->add_action('Dirección', '', '','icon-homealt', array($this,'buscar_direcciones'));
 			$crud->add_action('Tarjetas', '', '','icon-creditcard', array($this,'buscar_tarjetas'));

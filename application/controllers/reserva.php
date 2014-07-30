@@ -12,6 +12,8 @@ class Reserva extends CI_Controller {
 		$this->load->model('ayudas_model');
 		$this->load->model('configs_model');
 		$this->load->model('tipos_habitacion_model');
+		$this->load->model('imagenes_habitacion_model');
+		$this->load->helper('main');
 		$this->load->helper('form');
       	$this->load->helper('url');
 	}

@@ -10,7 +10,7 @@ class Habitacion extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->helper('menu');
 		$this->load->library('grocery_CRUD');
-		//$this->load->library('image_CRUD');
+		$this->load->library('image_CRUD');
 	}
 
 
@@ -26,12 +26,6 @@ class Habitacion extends CI_Controller {
 		$this->load->view('backend/modal.php');
 		$this->load->view('backend/habitaciones.php');
 		$this->load->view('backend/footer.php');
-	}
-	
-	public function index()
-	{
-		$this->_example_output2((object)array('output' => '' , 'js_files' => array() , 'css_files' => array()));
-	
 	}
 
 
@@ -76,10 +70,15 @@ class Habitacion extends CI_Controller {
 									'id_hotel',
 									'id_tarifa');
 			
+			$crud->add_action('Galería', '', '','icon-images-gallery', array($this,'buscar_galeria'));
 			
 			$output = $crud->render();
 
 			$this->_example_output($output);
+	}
+
+	function buscar_galeria($id){
+		return site_url('/galeria/imagenes_habitacion').'/'.$id;	
 	}
 
 /**********************************************************************************
@@ -186,6 +185,33 @@ class Habitacion extends CI_Controller {
 			$output = $crud->render();
 
 			$this->_example_output($output);
+	}
+	
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de imagenes galeria
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+	
+	function imagenes_habitacion($id=NULL)
+	{
+		$image_crud = new image_CRUD();
+		
+		$image_crud->set_primary_key_field('id_imagen');
+		$image_crud->set_url_field('imagen');
+		$image_crud->set_title_field('descripcion');
+
+		
+		$image_crud->set_table('imagenes_habitacion')
+				   ->set_relation_field('id_habitacion')
+				   ->set_ordering_field('orden')
+				   ->set_image_path('assets/uploads');
+			
+		$output = $image_crud->render();
+	
+		$this->_example_output($output);
 	}
 
 
