@@ -46,7 +46,7 @@
 						</select>
 			  		</div>
 					<div class="form-group">
-				  		<button type="submit" class="btn btn-default">Ver precios</button>
+				  		<button type="submit" class="btn btn-primary btn-lg btn-block">Ver precios</button>
 				  	</div>
 				<?php echo form_close(); ?>	
 			</div>
