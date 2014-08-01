@@ -123,18 +123,6 @@
         
         
         <li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-burstmode"></span> Galerías<b class="caret"></b></a>
-			<ul class="dropdown-menu">
-            	<li><a  href='<?php echo site_url('admin/galeria/galeria_abm')?>'>Galerías</a></li>
-				<li><a  href='<?php echo site_url('galeria/imagenes_galeria')?>'>Imágenes galería</a></li>
-				<li class="divider"></li>
-				<li><a  href='<?php echo site_url('galeria/imagenes_carrusel')?>'>Imágenes carrusel</a></li>
-          	</ul>
-        </li>
-        
-        
-        
-        <li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-workshirt"></span> Usuarios<b class="caret"></b></a>
 			<ul class="dropdown-menu">
             	<li><a href='<?php echo site_url('admin/usuario/usuarios_abm')?>'>Usuarios</a></li>
@@ -161,6 +149,7 @@
 				<li class="divider"></li>
 				<li><a  href='<?php echo site_url('admin/otro/tipos_abm')?>'>Tipos</a></li>
 				<li class="divider"></li>
+				<li><a  href='<?php echo site_url('galeria/imagenes_carrusel')?>'>Imágenes carrusel</a></li>
 				<li><a  href='<?php echo site_url('admin/otro/ubicacion_abm')?>'>Ubicaciones de la página</a></li>
 				<li><a  href='<?php echo site_url('admin/otro/ayudas_abm')?>'>Ayudas de la página</a></li>
           	</ul>

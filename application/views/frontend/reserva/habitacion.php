@@ -2,6 +2,8 @@
 	<div class="panel panel-default">
 		<!--<div class="panel-heading">Habitación</div>-->
 		<div class="panel-body">
+			<?php $noches=restarFechasFormulario($this->input->post('salida'),$this->input->post('entrada'));?>
+			<?php if($habitaciones){?>
 			<h1 class="text-center">Seleccione su habitación</h1>
 			<?php echo form_open('reserva/datos');?>
 			<?php foreach ($habitaciones as $habitacion) { ?> 
@@ -42,12 +44,11 @@
 						<h4 class="list-group-item-heading" data-toggle="modal" data-target="#<?php echo $habitacion->id_habitacion?>"> <?php echo $habitacion->habitacion; ?> </h4>
 						<p class="list-group-item-text"> 
                     	 	<?php	echo $habitacion->descripcion;	?>
-                    	 	<button class="btn btn-default" rel="tooltip" title="Leer más"><span class="icon-googleplusold"></span></button>       
+                    	 	<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion?>" class="btn btn-default" rel="tooltip" title="Leer más" target="_blank"><span class="icon-googleplusold"></span></a>       
                     	</p>
                 	</div>
                 	<div class="col-md-3 text-center">
                     	<h2><?php echo $habitacion->simbolo; ?> 
-                    		<?php $noches=restarFechasFormulario($this->input->post('salida'),$this->input->post('entrada'));?>
                     		<?php $precio=$noches*$habitacion->precio; ?>
 							<?php echo number_format($precio, 2, ',', ' '); ?><small> <?php echo $habitacion->moneda; ?></small></h2>
                     	<button type="submit" name="habitacion" value="<?php echo $habitacion->id_habitacion; ?>" class="btn btn-primary btn-lg btn-block">Seleccionar</button>
@@ -72,9 +73,28 @@
 			<input type="hidden" name="salida"  value="<?php echo $this->input->post('salida') ?>">
 			<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
 			<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">
-        	<?php } ?>			
+        	<?php } ?>	
         	<?php echo form_close(); ?>
-			
+			<?php }else{ ?>
+			<h1 class="text-center">No hay habitaciones disponibles</h1>
+			<h3 class="text-center">Otras opciones disponibles</h3>
+			<div class="col-xs-12">
+			<div class="offer offer-primary">
+				<div class="shape">
+					<div class="shape-text">
+						top								
+					</div>
+				</div>
+				<div class="offer-content">
+					<h3 class="lead">
+						Habitación
+					</h3>
+					<p>Descripción</p>
+				</div>
+			</div>
+			</div>
+		
+			<?php } ?>
 			<table class="table table-hover">
 				<tr>
 					<th><i class="fa fa-sign-in"></i> Entrada: </th>

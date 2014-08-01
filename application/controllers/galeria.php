@@ -26,7 +26,7 @@ class Galeria extends CI_Controller {
 			
 		$this->load->view('backend/head.php',$output);
 		$this->load->view('backend/menu.php',$db);	
-		$this->load->view('backend/galerias.php');
+		$this->load->view('backend/otros.php');
 		$this->load->view('backend/footer.php');
 	}
 	

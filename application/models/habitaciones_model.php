@@ -29,6 +29,21 @@ class Habitaciones_model extends CI_Model {
 			return $data;
 		}
 	}
+	
+	function getHabitacion($id=NULL){
+		$query = $this->db->query("SELECT * FROM habitaciones
+									WHERE id_habitacion='$id'");
+									
+		if($query->num_rows() > 0){
+			foreach ($query->result() as $fila){
+				$data[] = $fila;
+			}
+			return $data;
+		}else{
+			$data=array();
+			return $data;
+		}									
+	}
 
 } 
 ?>
