@@ -19,8 +19,8 @@
 .ui-multiselect .ui-state-hover { border: none; }
 .ui-multiselect .ui-widget-header {border: none; font-size: 11px; margin-bottom: 1px;}
  
-.ui-multiselect .add-all { float: right; padding: 10px 7px 10px 0; font-size: 11px; }
-.ui-multiselect .remove-all { float: right; padding: 10px 7px 11px 0; font-size: 11px; }
+.ui-multiselect .add-all { float: right; /*padding: 10px 7px 10px 0*/	; font-size: 11px; }
+.ui-multiselect .remove-all { float: right; /*padding: 10px 7px 11px 0*/; font-size: 11px; }
 .ui-multiselect .search { float: left; padding:0;}
 .ui-multiselect .count { float: left; padding: 10px 7px;}
 

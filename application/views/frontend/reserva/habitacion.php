@@ -5,7 +5,6 @@
 			<?php $noches=restarFechasFormulario($this->input->post('salida'),$this->input->post('entrada'));?>
 			<?php if($habitaciones){?>
 			<h1 class="text-center">Seleccione su habitación</h1>
-			<?php echo form_open('reserva/datos');?>
 			<?php foreach ($habitaciones as $habitacion) { ?> 
 			<div class="panel panel-default">
         		<div class="panel-body">
@@ -44,14 +43,29 @@
 						<h4 class="list-group-item-heading" data-toggle="modal" data-target="#<?php echo $habitacion->id_habitacion?>"> <?php echo $habitacion->habitacion; ?> </h4>
 						<p class="list-group-item-text"> 
                     	 	<?php	echo $habitacion->descripcion;	?>
-                    	 	<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion?>" class="btn btn-default" rel="tooltip" title="Leer más" target="_blank"><span class="icon-googleplusold"></span></a>       
+                    	 	<?php echo form_open('habitacion/view');?>
+                    	 	<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
+							<input type="hidden" name="salida"  value="<?php echo $this->input->post('salida') ?>">
+							<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
+							<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">
+							<input type="hidden" name="id" value="<?php echo $habitacion->id_habitacion?>">
+        	  
+                    	 	<button  class="btn btn-default" rel="tooltip" title="Leer más"><span class="icon-googleplusold"></span></button>
+                    	 	<?php echo form_close(); ?>       
                     	</p>
                 	</div>
+			                	
                 	<div class="col-md-3 text-center">
                     	<h2><?php echo $habitacion->simbolo; ?> 
                     		<?php $precio=$noches*$habitacion->precio; ?>
 							<?php echo number_format($precio, 2, ',', ' '); ?><small> <?php echo $habitacion->moneda; ?></small></h2>
+						<?php echo form_open('reserva/datos');?>
+						<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
+						<input type="hidden" name="salida"  value="<?php echo $this->input->post('salida') ?>">
+						<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
+						<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">
                     	<button type="submit" name="habitacion" value="<?php echo $habitacion->id_habitacion; ?>" class="btn btn-primary btn-lg btn-block">Seleccionar</button>
+                    	<?php echo form_close(); ?>
                     	<div class="stars" >
                         	Adultos: <?php 
                         	for ($i=0; $i < $habitacion->adultos; $i++) { 
@@ -69,13 +83,8 @@
                     </div>	
                 </div>
          	</div>
-			<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
-			<input type="hidden" name="salida"  value="<?php echo $this->input->post('salida') ?>">
-			<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
-			<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">
-        	<?php } ?>	
-        	<?php echo form_close(); ?>
-			<?php }else{ ?>
+         	<?php } ?>	
+        	<?php }else{ ?>
 			<h1 class="text-center">No hay habitaciones disponibles</h1>
 			<h3 class="text-center">Otras opciones disponibles</h3>
 			<div class="col-xs-12">

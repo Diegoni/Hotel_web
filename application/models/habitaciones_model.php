@@ -32,6 +32,7 @@ class Habitaciones_model extends CI_Model {
 	
 	function getHabitacion($id=NULL){
 		$query = $this->db->query("SELECT * FROM habitaciones
+									INNER JOIN tipos_habitacion ON(habitaciones.id_tipo_habitacion=tipos_habitacion.id_tipo_habitacion)
 									WHERE id_habitacion='$id'");
 									
 		if($query->num_rows() > 0){

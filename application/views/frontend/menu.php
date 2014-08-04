@@ -19,7 +19,7 @@
 	
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="email" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   	<div class="modal-dialog">
     	<div class="modal-content">
       		<div class="modal-header">
@@ -46,6 +46,32 @@
         		<button type="submit" class="btn btn-primary">Enviar consulta</button>
       		</div>
       		</form>
+    	</div>
+  	</div>
+</div>
+
+
+
+<div class="modal fade" id="telefono" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        		<h4 class="modal-title" id="myModalLabel">Teléfonos</h4>
+      		</div>
+      		
+      		<div class="modal-body">
+      			<div class="form-group">
+    				<label for="nombre" class="col-sm-2 control-label">Hotel</label>
+    				<div class="col-sm-10">
+      					0261-5132824
+    				</div>
+  				</div>
+      		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        	</div>
+      		
     	</div>
   	</div>
 </div>

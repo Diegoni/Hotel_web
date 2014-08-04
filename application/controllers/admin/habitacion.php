@@ -44,6 +44,8 @@ class Habitacion extends CI_Controller {
 			//$crud->set_theme('datatables');
 			$crud->set_table('habitaciones');
 			
+			$crud->set_relation_n_n('servicios', 'habitacion_servicio', 'servicios', 'id_habitacion', 'id_servicio', 'servicio','prioridad');
+			
 			$crud->columns(	'id_habitacion',
 							'habitacion',
 							'id_hotel');
@@ -52,6 +54,8 @@ class Habitacion extends CI_Controller {
 				 ->display_as('habitacion','Habitación')
 				 ->display_as('descripcion','descripción')
 				 ->display_as('id_hotel','Hotel')
+				 ->display_as('estadia_min','Estadía mín')
+				 ->display_as('estadia_max','Estadía máx')
 				 ->display_as('id_tipo_habitacion','Tipo')
 				 ->display_as('id_tarifa','Tarifa')
 				 ->display_as('id_estado_habitacion','Estado');
@@ -190,29 +194,37 @@ class Habitacion extends CI_Controller {
 /**********************************************************************************
  **********************************************************************************
  * 
- * 				Alta, baja y modificación de imagenes galeria
+ * 				Alta, baja y modificación de servicios
  * 
  * ********************************************************************************
  **********************************************************************************/
-	
-	function imagenes_habitacion($id=NULL)
-	{
-		$image_crud = new image_CRUD();
-		
-		$image_crud->set_primary_key_field('id_imagen');
-		$image_crud->set_url_field('imagen');
-		$image_crud->set_title_field('descripcion');
+	 
+	public function servicios_abm(){
+			$crud = new grocery_CRUD();
 
-		
-		$image_crud->set_table('imagenes_habitacion')
-				   ->set_relation_field('id_habitacion')
-				   ->set_ordering_field('orden')
-				   ->set_image_path('assets/uploads');
+			//$crud->set_theme('datatables');
+			$crud->set_table('servicios');
 			
-		$output = $image_crud->render();
-	
-		$this->_example_output($output);
-	}
+			$crud->columns(	'id_servicio',
+							'servicio',
+							'id_estado_servicio');
+			
+			$crud->display_as('id_servicio','ID')
+				 ->display_as('servicio','Servicio')
+				 ->display_as('id_estado_servicio','Estado');
+			
+			$crud->set_subject('servicio');
+			
+			$crud->set_relation('id_estado_servicio','estados_servicio','estado_servicio');
+			
+			$crud->add_fields('servicio');
+								
+			$crud->required_fields(	'servicio',
+									'id_estado_servicio');
 
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}
 
 }

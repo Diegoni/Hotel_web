@@ -62,10 +62,13 @@
 					</div>
   					  					
   					<div class="form-group">
-    					<div class="col-sm-offset-2 col-sm-10">
-      						<button type="submit" class="btn btn-default">Aceptar</button>
-      						<a href="#" class="btn btn-default show_hide">Agregar nota</a>
+    					<div class="col-sm-offset-2 col-sm-5">
+							<button type="submit" class="btn btn-primary btn-lg btn-block">Aceptar</button>
     					</div>
+    					<div class="col-sm-5">
+							<a href="#" class="btn btn-default show_hide btn-lg btn-block">Agregar nota</a>
+      					</div>
+    					
   					</div>
   					<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
 					<input type="hidden" name="salida"  value="<?php echo $this->input->post('salida') ?>">
