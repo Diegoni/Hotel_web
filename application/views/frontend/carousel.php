@@ -1,5 +1,7 @@
 
 	<div class="col-md-9">
+		<div class="panel panel-default">
+	  	<div class="panel-body">
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 			
 			<!-- indicadores del carrusel -->
@@ -35,6 +37,8 @@
         		<span class="glyphicon glyphicon-chevron-right"></span>
       		</a>
       		
+    	</div>
+    	</div>
     	</div>
 	</div>
 </div>	

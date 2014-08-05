@@ -1,6 +1,6 @@
 
 	<div class="col-md-9">
-		<div class="panel panel-default">
+		<div class="panel panel-hotel">
 			<div class="panel-heading">Datos personales</div>
 		  	<div class="panel-body">
 		  		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/reserva/pago'?>" />
@@ -55,7 +55,7 @@
 					    <div class="col-sm-offset-2 col-sm-10">
 					      <div class="checkbox">
 					        <label>
-					          <input type="checkbox" required> Acepto las condiciones de la reserva. <a href="#">Ver condiciones</a> 
+					          <input type="checkbox" required> Acepto las condiciones de la reserva. <a href="#" class="btn btn-default btn-xs">Ver condiciones</a> 
 					        </label>
 					      </div>
 					    </div>
@@ -63,7 +63,7 @@
   					  					
   					<div class="form-group">
     					<div class="col-sm-offset-2 col-sm-5">
-							<button type="submit" class="btn btn-primary btn-lg btn-block">Aceptar</button>
+							<button type="submit" class="btn btn-hotel btn-lg btn-block">Aceptar</button>
     					</div>
     					<div class="col-sm-5">
 							<a href="#" class="btn btn-default show_hide btn-lg btn-block">Agregar nota</a>

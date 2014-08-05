@@ -1,15 +1,15 @@
 <div class="container">	
-	<div class="row">
-	<div class="col-md-4">
+	<div class="row menu">
+	<div class="col-md-3">
 		<center>
-		<a href="<?php echo base_url().'index.php/inicio/inicio'; ?>">
+		<a href="<?php echo base_url().'index.php/inicio/inicio'; ?>" class="marca">
 		<?php foreach ($hoteles as $hotel) { ?>
 			<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url;?>" alt="">
 		<?php } ?>
 		</a>
 		</center>
 	</div>	                
-    <div class="col-md-8">
+    <div class="col-md-9">
     	<ul class="nav nav-pills pull-right">
   			<li><a href="#" data-toggle="modal" data-target="#myModal">Consulta</a></li>
   			<li><a href="<?php echo base_url().'index.php/admin/home/logout/'?>">Admin</a></li>
@@ -23,7 +23,6 @@
   	<div class="modal-dialog">
     	<div class="modal-content">
       		<div class="modal-header">
-        		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         		<h4 class="modal-title" id="myModalLabel">Consulta</h4>
       		</div>
       		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/consulta/envio'?>" />
@@ -43,7 +42,7 @@
       		</div>
       		<div class="modal-footer">
         		<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        		<button type="submit" class="btn btn-primary">Enviar consulta</button>
+        		<button type="submit" class="btn btn-hotel">Enviar consulta</button>
       		</div>
       		</form>
     	</div>
@@ -56,22 +55,27 @@
   	<div class="modal-dialog">
     	<div class="modal-content">
       		<div class="modal-header">
-        		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         		<h4 class="modal-title" id="myModalLabel">Teléfonos</h4>
       		</div>
-      		
+      		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/consulta/envio'?>" />
       		<div class="modal-body">
       			<div class="form-group">
-    				<label for="nombre" class="col-sm-2 control-label">Hotel</label>
+    				<label for="nombre" class="col-sm-2 control-label">Teléfono</label>
     				<div class="col-sm-10">
-      					0261-5132824
+      					(0261) - 4235666
+    				</div>
+  				</div>
+      			<div class="form-group">
+    				<label for="nombre" class="col-sm-2 control-label">Skype</label>
+    				<div class="col-sm-10">
+      				<a href="skype:contact-mt?call" class="btn btn-default"><span>carollo_hotel</span></a>
     				</div>
   				</div>
       		</div>
       		<div class="modal-footer">
         		<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        	</div>
-      		
+      		</div>
+      		</form>
     	</div>
   	</div>
 </div>

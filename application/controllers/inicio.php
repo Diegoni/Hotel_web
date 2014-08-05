@@ -29,7 +29,7 @@ class Inicio extends CI_Controller {
 		$this->load->view('frontend/formulario_reserva');
 		$this->load->view('frontend/carousel');
 		//$this->load->view('frontend/hotel_descripcion');
-		//$this->load->view('frontend/banner');
+		$this->load->view('frontend/banner');
 		$this->load->view('frontend/footer');
 	}
 

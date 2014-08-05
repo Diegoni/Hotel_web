@@ -5,7 +5,7 @@
 
 <div class="row">
 	<div class="col-md-3">
-		<div class="panel panel-default">
+		<div class="panel panel-hotel">
 	  		<div class="panel-heading">Reserva online</div>
 	  		<div class="panel-body">
 	  			<?php echo form_open('reserva/habitacion');?> 
@@ -46,12 +46,16 @@
 						</select>
 			  		</div>
 					<div class="form-group">
-				  		<button type="submit" class="btn btn-primary btn-lg btn-block">Ver precios</button>
+				  		<button type="submit" class="btn btn-hotel btn-lg btn-block">Ver precios</button>
 				  	</div>
 				<?php echo form_close(); ?>	
 			</div>
 		</div>
 	</div>
+	
+	
+	
+	
 	
 	<!--
 		Para elegir por adultos y menores

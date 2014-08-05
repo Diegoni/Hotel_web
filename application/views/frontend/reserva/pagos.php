@@ -1,6 +1,6 @@
 
 	<div class="col-md-9">
-		<div class="panel panel-default">
+		<div class="panel panel-hotel">
 			<div class="panel-heading">Datos personales</div>
 		  	<div class="panel-body">
 		  		<table class="table table-hover">
@@ -22,7 +22,7 @@
 					<tr>
 						<td><span class="icon-bed"></span> Habitación: </td>
 						<th><?php echo $reserva->habitacion; ?></th>
-						<td><i class="icon-office-building"></i> Hotel: </td>
+						<td><i class="fa fa-building"></i> Hotel: </td>
 						<th><?php echo $reserva->hotel; ?></th>
 					</tr>
 					<?php }	?>

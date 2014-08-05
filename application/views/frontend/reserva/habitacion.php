@@ -50,7 +50,7 @@
 							<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">
 							<input type="hidden" name="id" value="<?php echo $habitacion->id_habitacion?>">
         	  
-                    	 	<button  class="btn btn-default" rel="tooltip" title="Leer más"><span class="icon-googleplusold"></span></button>
+                    	 	<button  class="btn btn-default">Leer más <span class="icon-chevron-right"></span></button>
                     	 	<?php echo form_close(); ?>       
                     	</p>
                 	</div>
@@ -64,7 +64,7 @@
 						<input type="hidden" name="salida"  value="<?php echo $this->input->post('salida') ?>">
 						<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
 						<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">
-                    	<button type="submit" name="habitacion" value="<?php echo $habitacion->id_habitacion; ?>" class="btn btn-primary btn-lg btn-block">Seleccionar</button>
+                    	<button type="submit" name="habitacion" value="<?php echo $habitacion->id_habitacion; ?>" class="btn btn-hotel btn-lg btn-block">Seleccionar</button>
                     	<?php echo form_close(); ?>
                     	<div class="stars" >
                         	Adultos: <?php 

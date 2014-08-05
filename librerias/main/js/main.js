@@ -1,3 +1,50 @@
+ 
+ /**************************************************************************
+ **************************************************************************
+ 			Ir arriba
+ ************************************************************************** 
+ *************************************************************************/
+ 
+ $(document).ready(function(){
+  
+        $(window).scroll(function(){
+            if ($(this).scrollTop() > 100) {
+                $('.scrollup').fadeIn();
+            } else {
+                $('.scrollup').fadeOut();
+            }
+        });
+  
+        $('.scrollup').click(function(){
+            $("html, body").animate({ scrollTop: 0 }, 600);
+            return false;
+        });
+  
+    });
+
+
+ /**************************************************************************
+ **************************************************************************
+ 			Favoritos
+ ************************************************************************** 
+ *************************************************************************/   
+
+
+
+function agregar(){ 
+//Para internet explorer
+if ((navigator.appName=="Microsoft Internet Explorer") && (parseInt(navigator.appVersion)>=4)) { 
+var url="http://www.tudireccion.com/"; //Cambia esta dirección por la de tu web
+var titulo="El nombre de mi web"; //Cambia esta nombre por el de tu web
+window.external.AddFavorite(url,titulo); 
+} 
+//Para Netscape y Firefox
+else { 
+if(navigator.appName == "Netscape") 
+alert ("Presione Crtl+D para agregar a este sitio en sus Bookmarks");  //Puedes personalizar este mensaje
+} 
+}
+
 /**************************************************************************
  **************************************************************************
  			Mostrar title direrentes
@@ -17,6 +64,15 @@ $( document ).ready(function() {
     ); 
 });
 
+/**************************************************************************
+ **************************************************************************
+ 			Inicio del frontend
+ ************************************************************************** 
+ *************************************************************************/
+$(document).ready(function(){
+	$('.panel').hide();
+	$('.panel').fadeIn( 1000 );
+});
 
 /**************************************************************************
  **************************************************************************
@@ -32,14 +88,12 @@ $(document).ready(function(){
 	$('.blockquote-default').hide();
 	$('.aparecer').hide();
 	
-	$('.aparecer').fadeIn( 2000 );
+	
 	$('.blockquote-primary').delay( 1000 ).fadeIn( 2000 );
 	$('.blockquote-info').delay( 1000 ).fadeIn( 2000 );
 	$('.blockquote-success').delay( 1000 ).fadeIn( 2000 );
 	$('.blockquote-warning').delay( 1000 ).fadeIn( 2000 );
 	$('.blockquote-default').delay( 1000 ).fadeIn( 2000 );
-
-
 });
 
 

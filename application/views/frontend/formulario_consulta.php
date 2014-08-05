@@ -5,7 +5,7 @@
 
 <div class="row">
 	<div class="col-md-3">
-		<div class="panel panel-default">
+		<div class="panel panel-hotel">
 	  		<div class="panel-heading">Consulta</div>
 	  		<div class="panel-body">
 	  			<form method="post" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/consulta/envio'?>" />
@@ -18,7 +18,7 @@
     					<input type="email" class="form-control" id="exampleInputEmail1">
   					</div>
   					<div class="form-group">
-  						<button type="submit" class="btn btn-primary btn-lg btn-block">Enviar</button>
+  						<button type="submit" class="btn btn-hotel btn-lg btn-block">Enviar</button>
   					</div>
 				</form>
 			</div>

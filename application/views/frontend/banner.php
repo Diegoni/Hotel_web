@@ -3,7 +3,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 	echo "<div class='row'>";
 	 	foreach ($articulos as $articulo) { ?>
 			<div class="col-md-<?php echo 12/$cantidad_categorias?>">
-				<div class="panel panel-default">
+				<div class="panel panel-hotel">
 			  		<div class="panel-heading"><?php echo $articulo->categoria;?></div>
 			  		<div class="panel-body">
 			  			<?php if($articulo->archivo_url!=""){?>
@@ -24,7 +24,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 			echo "<div class='row'>";
 		} ?>		
 			<div class="col-md-<?php echo 24/$cantidad_categorias?>">
-				<div class="panel panel-default">
+				<div class="panel panel-hotel">
 			  		<div class="panel-heading"><?php echo $articulo->categoria;?></div>
 			  		<div class="panel-body">
 			  			<?php if($articulo->archivo_url!=""){?>
@@ -49,7 +49,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 			echo "<div class='row'>";
 		} ?>		
 			<div class="col-md-<?php if($i<3){ echo 4;}else{ echo 6;}?>">
-				<div class="panel panel-default">
+				<div class="panel panel-hotel">
 			  		<div class="panel-heading"><?php echo $articulo->categoria;?></div>
 			  		<div class="panel-body">
 			  			<?php if($articulo->archivo_url!=""){?>
@@ -76,7 +76,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 		} 
 		if($i<6){ ?>		
 			<div class="col-md-<?php echo 4?>">
-				<div class="panel panel-default">
+				<div class="panel panel-hotel">
 			  		<div class="panel-heading"><?php echo $articulo->categoria;?></div>
 			  		<div class="panel-body">
 			  			<?php if($articulo->archivo_url!=""){?>
@@ -95,7 +95,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 		}else if($i==6)	{ ?>
 			<div class='row'>
 			<div class="col-md-12">
-				<div class="panel panel-default">
+				<div class="panel panel-hotel">
 			  		<div class="panel-heading">Otros</div>
 			  		<div class="panel-body">
 			    		<div class="text-banner">

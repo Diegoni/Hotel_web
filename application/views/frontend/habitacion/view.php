@@ -1,5 +1,5 @@
 	<div class="col-md-9">
-		<div class="panel panel-default">
+		<div class="panel panel-hotel">
 			<div class="panel-heading">Habitación</div>
 		  	<div class="panel-body">
 			<?php foreach ($habitaciones as $habitacion) { ?> 
@@ -27,11 +27,11 @@
 				</div>
 			</div>
 			<div class="panel">
-				<div class="badger-left badger-primary" data-badger="Descripción">
+				<div class="badger-left badger-hotel" data-badger="Descripción">
 				<div class="descripcion"><?php echo $habitacion->descripcion;?></div>
 				</div>
 				
-				<div class="badger-left badger-primary" data-badger="Servicios">
+				<div class="badger-left badger-hotel" data-badger="Servicios">
 				<div class="servicios">
 					<ul class="list-unstyled">
 					<?php foreach ($servicios as $servicio) {
@@ -42,40 +42,28 @@
 				</div>
 				</div>
 				
-				<div class="badger-left badger-primary" data-badger="Capacidad máxima">
+				<div class="badger-left badger-hotel" data-badger="Condiciones Comerciales">
 					<dl class="dl-horizontal">
 					  	<dt><i class='fa fa-user'></i> Adultos: </dt>
 					  	<dd><?php echo $habitacion->adultos;?></dd>
 					  	<dt><i class='fa fa-child'></i> Menores: </dt>
 					  	<dd><?php echo $habitacion->menores;?></dd>
 					</dl>
-				</div>
-				
-				<div class="badger-left badger-primary" data-badger="Estadía">
 					<dl class="dl-horizontal">
 						<dt><i class="fa fa-plus-square"></i> Estadía Máxima: </dt>
 						<dd><?php echo $habitacion->estadia_max;?> días</dd>
 						<dt><i class="fa fa-minus-square"></i> Estadía Mímima: </dt>
 						<dd><?php echo $habitacion->estadia_min;?> días</dd>
 					</dl>
-				</div>
-				
-				<div class="badger-left badger-primary" data-badger="Horarios">
 					<dl class="dl-horizontal">
 						<dt><i class="fa fa-sign-in"></i> Entrada: </dt>
 						<dd><?php echo date("H:i",strtotime($habitacion->entrada));?> Hs</dd>
 						<dt><i class="fa fa-sign-out"></i> Salida: </dt>
 						<dd><?php echo date("H:i",strtotime($habitacion->salida));?> Hs</dd>
-					</dl>						
+					</dl>	
 				</div>
-				
-				<div class="badger-left badger-primary" data-badger="Tipo">
-					<dl class="dl-horizontal">
-						<dt><?php echo $habitacion->tipo_habitacion?></dt>
-					</dl>
-				</div>
-				
-				<div class="badger-left badger-primary" data-badger="Ubicación">
+								
+				<div class="badger-left badger-hotel" data-badger="Ubicación">
 					<iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.3745900600725!2d-68.847059!3d-32.88826299999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9e5e8abae6963f75!2sGran+Carollo!5e0!3m2!1ses!2sar!4v1407167639519"></iframe>
         			
       				<div class="span4">
@@ -117,7 +105,7 @@
 							</div>
 							<div class="form-group">
 							    <div class="col-sm-offset-2 col-sm-10">
-							      <button type="submit" class="btn btn-default">Sign in</button>
+							      <button type="submit" class="btn btn-default">Consultar</button>
 							    </div>
 							</div>
 						</form>
@@ -125,7 +113,7 @@
 				</div>
 				
 				<div class="col-md-6">
-					<a href="javascript:window.history.back();" type="submit" class="btn btn-danger btn-lg btn-block">Volver</a>
+					<a href="javascript:window.history.back();" type="submit" class="btn btn-default btn-lg btn-block">Volver</a>
 				</div>
 				<div class="col-md-6">
 					<?php echo form_open('reserva/datos');?>
@@ -134,7 +122,7 @@
 					<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
 					<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">
 					<input type="hidden" name="habitacion" value="<?php echo $this->input->post('id') ?>">
-					<button type="submit" class="btn btn-primary btn-lg btn-block">Seleccionar</button>	 	
+					<button type="submit" class="btn btn-hotel btn-lg btn-block">Seleccionar</button>	 	
 					<?php echo form_close(); ?>      
 				</div>
 				
