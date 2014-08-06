@@ -55,7 +55,8 @@
 					    <div class="col-sm-offset-2 col-sm-10">
 					      <div class="checkbox">
 					        <label>
-					          <input type="checkbox" required> Acepto las condiciones de la reserva. <a href="#" class="btn btn-default btn-xs">Ver condiciones</a> 
+					          <input type="checkbox" required> Acepto las condiciones de la reserva. 
+					          <a href="#" class="btn btn-default btn-xs" data-toggle="modal" data-target="#terminos">Ver condiciones</a> 
 					        </label>
 					      </div>
 					    </div>
@@ -116,4 +117,23 @@
 		</div>
 		-->
 	</div>
+</div>
+
+<div class="modal fade" id="terminos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<h4 class="modal-title" id="myModalLabel">Términos y condiciones</h4>
+      		</div>
+      		<div class="modal-body">
+      			<?php foreach ($terminos as $termino) { ?>
+					  <?php echo $termino->termino; ?>
+				<?php } ?>
+      		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      		</div>
+      		</form>
+    	</div>
+  	</div>
 </div>	

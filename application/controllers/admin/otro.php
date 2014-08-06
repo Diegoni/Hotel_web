@@ -236,6 +236,44 @@ class Otro extends CI_Controller {
 
 			$this->_example_output($output);
 	}
+
+
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de términos
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+ 
+ 
+	public function terminos_abm(){
+			$crud = new grocery_CRUD();
+
+			//$crud->set_theme('datatables');
+			$crud->set_table('terminos');
+			
+			$crud->columns(	'id_termino',
+							'termino');
+			
+			$crud->display_as('id_termino','ID')
+				 ->display_as('termino','Término');
+			
+			$crud->set_subject('término');
+			$crud->unset_delete();
+			$crud->unset_export();
+			$crud->unset_delete();
+			$crud->unset_export();
+			$crud->unset_add();
+			$crud->unset_read();
+						
+			$crud->required_fields(	'termino');
+			
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}
+
 	
 /**********************************************************************************
  **********************************************************************************

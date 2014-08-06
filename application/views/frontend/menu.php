@@ -11,7 +11,7 @@
 	</div>	                
     <div class="col-md-9">
     	<ul class="nav nav-pills pull-right">
-  			<li><a href="#" data-toggle="modal" data-target="#myModal">Consulta</a></li>
+  			<li><a href="#" data-toggle="modal" data-target="#email">Consulta</a></li>
   			<li><a href="<?php echo base_url().'index.php/admin/home/logout/'?>">Admin</a></li>
 		</ul>
 	</div>
@@ -62,6 +62,7 @@
       			<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label">Teléfono</label>
     				<div class="col-sm-10">
+    					<img src="<?php echo base_url().'assets/uploads/banderas/argentina-icono-8268-48.png'?>" alt="">
       					(0261) - 4235666
     				</div>
   				</div>

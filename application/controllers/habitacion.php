@@ -13,6 +13,7 @@ class Habitacion extends CI_Controller {
 		$this->load->model('configs_model');
 		$this->load->model('habitacion_servicio_model');
 		$this->load->model('tipos_habitacion_model');
+		$this->load->model('provincias_model');
 		$this->load->model('imagenes_habitacion_model');
 		$this->load->helper('main');
 		$this->load->helper('form');
@@ -27,6 +28,7 @@ class Habitacion extends CI_Controller {
 		$db['hoteles']=$this->hoteles_model->getHoteles();
 		$db['habitaciones']=$this->habitaciones_model->getHabitacion($id);
 		$db['servicios']=$this->habitacion_servicio_model->getServicios($id);
+		$db['provincias']=$this->provincias_model->getProvincias('032');
 		$db['configs']=$this->configs_model->getConfigs();
 								
 		$this->load->view('frontend/head', $db);

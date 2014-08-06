@@ -15,7 +15,7 @@
 							<div class="input-group-addon">
 								<span class="icon-calendarthree" onclick="document.getElementById('entrada').focus();"></span>
 							</div>
-      						<input class="form-control" name="entrada" id="entrada" type="entrada" placeholder="Fecha entrada" value="<?php echo date("d/m/Y",  strtotime("+1 day")); ?>">
+      						<input class="form-control" name="entrada" id="entrada" type="entrada" placeholder="Fecha entrada" value="<?php echo date("d/m/Y",  strtotime("+1 day")); ?>" autocomplete="off">
     					</div>
 				  	</div>
 				  	<div class="form-group">
@@ -24,7 +24,7 @@
 							<div class="input-group-addon">
 								<span class="icon-calendarthree" onclick="document.getElementById('salida').focus();"></span>
 							</div>
-      						<input class="form-control" name="salida" id="salida" type="salida" placeholder="Fecha salida" value="<?php echo date("d/m/Y",  strtotime("+2 day")); ?>">
+      						<input class="form-control" name="salida" id="salida" type="salida" placeholder="Fecha salida" value="<?php echo date("d/m/Y",  strtotime("+2 day")); ?>" autocomplete="off">
     					</div>
 					</div>
 					<div class="form-group">

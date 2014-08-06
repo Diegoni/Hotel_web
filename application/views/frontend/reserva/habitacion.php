@@ -56,9 +56,10 @@
                 	</div>
 			                	
                 	<div class="col-md-3 text-center">
-                    	<h2><?php echo $habitacion->simbolo; ?> 
+                    	<h2><small> <?php echo $habitacion->moneda; ?></small>
+                    		<?php echo $habitacion->simbolo; ?> 
                     		<?php $precio=$noches*$habitacion->precio; ?>
-							<?php echo number_format($precio, 2, ',', ' '); ?><small> <?php echo $habitacion->moneda; ?></small></h2>
+							<?php echo number_format($precio, 2, ',', ' '); ?></h2>
 						<?php echo form_open('reserva/datos');?>
 						<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
 						<input type="hidden" name="salida"  value="<?php echo $this->input->post('salida') ?>">

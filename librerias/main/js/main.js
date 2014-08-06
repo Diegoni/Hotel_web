@@ -41,7 +41,7 @@ window.external.AddFavorite(url,titulo);
 //Para Netscape y Firefox
 else { 
 if(navigator.appName == "Netscape") 
-alert ("Presione Crtl+D para agregar a este sitio en sus Bookmarks");  //Puedes personalizar este mensaje
+alert ("Presione Crtl+D para agregar a este sitio en sus Marcadores");  //Puedes personalizar este mensaje
 } 
 }
 

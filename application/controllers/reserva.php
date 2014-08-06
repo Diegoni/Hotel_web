@@ -13,6 +13,7 @@ class Reserva extends CI_Controller {
 		$this->load->model('configs_model');
 		$this->load->model('tipos_habitacion_model');
 		$this->load->model('imagenes_habitacion_model');
+		$this->load->model('terminos_model');
 		$this->load->helper('main');
 		$this->load->helper('form');
       	$this->load->helper('url');
@@ -49,6 +50,7 @@ class Reserva extends CI_Controller {
 	public function datos(){
 		$db['hoteles']=$this->hoteles_model->getHoteles();
 		$db['ayudas']=$this->ayudas_model->getAyuda('datos');
+		$db['terminos']=$this->terminos_model->getTerminos();
 		$db['step']=3;
 		
 		$this->load->view('frontend/head', $db);

@@ -84,18 +84,21 @@
 							<div class="form-group">
 								<label for="nro" class="col-sm-2 control-label">Provincia</label>
 								<div class="col-sm-10">
-									<select type="medio" class="form-control" id="medio">
-										<option value="0">En coche</option>
-										<option value="1">Transporte público</option>
-										<option value="2">A pie</option>
-										<option value="0">En bicicleta</option>
+									<select name="provincia" class="form-control" id="provincia">
+										<?php foreach ($provincias as $provincia) { ?>
+											<?php if($provincia->id_provincia==12){ ?>
+												<option value="<?php echo $provincia->id_provincia; ?>" selected><?php echo $provincia->provincia; ?></option>		
+											<?php }else{ ?>
+												<option value="<?php echo $provincia->id_provincia; ?>"><?php echo $provincia->provincia; ?></option>
+											<?php } ?>
+										<?php } ?>										
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="nro" class="col-sm-2 control-label">Medio</label>
 								<div class="col-sm-10">
-									<select type="medio" class="form-control" id="medio">
+									<select name="medio" class="form-control" id="medio">
 										<option value="0">En coche</option>
 										<option value="1">Transporte público</option>
 										<option value="2">A pie</option>
@@ -105,7 +108,7 @@
 							</div>
 							<div class="form-group">
 							    <div class="col-sm-offset-2 col-sm-10">
-							      <button type="submit" class="btn btn-default">Consultar</button>
+							      <a class="btn btn-default">Consultar</a>
 							    </div>
 							</div>
 						</form>

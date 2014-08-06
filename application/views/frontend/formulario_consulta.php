@@ -14,8 +14,20 @@
     					<textarea type="email" class="form-control" id="exampleInputEmail1"></textarea>
   					</div>
   					<div class="form-group">
-    					<label for="mensaje"><i class="fa fa-user"></i> Mensaje</label>
-    					<input type="email" class="form-control" id="exampleInputEmail1">
+    					<label for="email"><i class="fa fa-envelope-o"></i> Email</label>
+    					<input type="email" class="form-control" id="nombre">
+  					</div>
+  					<div class="form-group">
+    					<label for="nombre"><i class="fa fa-user"></i> Nombre</label>
+    					<input type="text" class="form-control" name="nombre">
+  					</div>
+  					<div class="form-group">
+    					<label for="apellido"><i class="fa fa-user"></i> Apellido</label>
+    					<input type="text" class="form-control" name="apellido">
+  					</div>
+  					<div class="form-group">
+    					<label for="telefono"><i class="fa fa-phone"></i> Teléfono</label>
+    					<input type="text" class="form-control" name="apellido">
   					</div>
   					<div class="form-group">
   						<button type="submit" class="btn btn-hotel btn-lg btn-block">Enviar</button>

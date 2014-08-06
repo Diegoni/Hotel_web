@@ -151,6 +151,7 @@
 				<li class="divider"></li>
 				<li><a  href='<?php echo site_url('galeria/imagenes_carrusel')?>'>Imágenes carrusel</a></li>
 				<li><a  href='<?php echo site_url('admin/otro/ubicacion_abm')?>'>Ubicaciones de la página</a></li>
+				<li><a  href='<?php echo site_url('admin/otro/terminos_abm')?>'>Términos y condiciones</a></li>
 				<li><a  href='<?php echo site_url('admin/otro/ayudas_abm')?>'>Ayudas de la página</a></li>
           	</ul>
         </li>
