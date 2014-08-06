@@ -71,6 +71,7 @@ $( document ).ready(function() {
  *************************************************************************/
 $(document).ready(function(){
 	$('.panel').hide();
+	
 	$('.panel').fadeIn( 1000 );
 });
 

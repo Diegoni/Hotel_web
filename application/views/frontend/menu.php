@@ -2,7 +2,7 @@
 	<div class="row menu">
 	<div class="col-md-3">
 		<center>
-		<a href="<?php echo base_url().'index.php/inicio/inicio'; ?>" class="marca">
+		<a href="<?php echo base_url().'index.php/inicio/inicio'; ?>" class="logo">
 		<?php foreach ($hoteles as $hotel) { ?>
 			<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url;?>" alt="">
 		<?php } ?>
