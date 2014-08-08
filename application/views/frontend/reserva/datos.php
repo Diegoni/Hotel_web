@@ -7,7 +7,7 @@
     					<label for="nombre" class="col-sm-2 control-label">Nombre</label>
     					<div class="col-sm-10">
     						<div class="input-group">
-								<input type="text" class="form-control" name="nombre" id="validate-text" placeholder="Ingrese nombre" required>
+								<input type="text" class="form-control" name="nombre" id="validate-text" placeholder="Ingrese nombre" autofocus required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
@@ -62,23 +62,29 @@
 					</div>
   					  					
   					<div class="form-group">
+  						<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
+						<input type="hidden" name="salida"  value="<?php echo $this->input->post('salida') ?>">
+						<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
+						<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">					
+						<input type="hidden" name="hotel" value="<?php echo $this->input->post('hotel') ?>">
+						<?php 
+						foreach ($habitaciones as $clave => $valor) { ?>
+	    					<input type="hidden" name="habitacion<?php echo $clave;?>" value="<?php echo $valor?>">
+						<?php } ?>
+						<center>
     					<div class="col-sm-offset-2 col-sm-5">
-							<button type="submit" class="btn btn-hotel btn-lg btn-block">Aceptar</button>
+							<button type="submit" class="btn btn-hotel btn-xlarge">
+								<span class="icon-chevron-right font-big"></span>
+							</button>
     					</div>
     					<div class="col-sm-5">
-							<a href="#" class="btn btn-default show_hide btn-lg btn-block">Agregar nota</a>
+							<a href="#" class="btn btn-default btn-xlarge show_hide">
+								<span class="icon-stickynotealt font-big"></span>
+							</a>
       					</div>
+      					</center>
     					
-  					</div>
-  					<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
-					<input type="hidden" name="salida"  value="<?php echo $this->input->post('salida') ?>">
-					<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
-					<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">					
-					<input type="hidden" name="hotel" value="<?php echo $this->input->post('hotel') ?>">
-					<?php 
-					foreach ($habitaciones as $clave => $valor) { ?>
-    					<input type="hidden" name="habitacion<?php echo $clave;?>" value="<?php echo $valor?>">
-					<?php } ?>
+  					</div>  					
 				</form>
 		    </div>
 		</div>

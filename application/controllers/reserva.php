@@ -14,6 +14,7 @@ class Reserva extends CI_Controller {
 		$this->load->model('tipos_habitacion_model');
 		$this->load->model('imagenes_habitacion_model');
 		$this->load->model('reserva_habitacion_model');
+		$this->load->model('monedas_model');
 		$this->load->model('terminos_model');
 		$this->load->helper('main');
 		$this->load->helper('form');
@@ -34,6 +35,7 @@ class Reserva extends CI_Controller {
 		$db['habitaciones']=$this->habitaciones_model->getHabitaciones($consulta);
 		$db['reservas']=$this->reservas_model->getReservas($consulta);
 		$db['step']=2;
+		$db['monedas']=$this->monedas_model->getMonedas();
 		$db['configs']=$this->configs_model->getConfigs();
 		$db['tipos_habitacion']=$this->tipos_habitacion_model->getTipos();
 		$db['tipo_habitacion']=$this->tipos_habitacion_model->getTipo($this->input->post('tipo'));

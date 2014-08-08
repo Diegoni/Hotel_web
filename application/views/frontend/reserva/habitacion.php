@@ -41,7 +41,9 @@
         			<div class="col-md-3 text-center">
         				<h2><small> <?php echo $habitacion->habitacion; ?> </small></h2>
         				<p class="list-group-item-text"> 
-							<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion;?>" class="btn btn-default">Leer más <span class="icon-chevron-right"></span></a>
+							<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion;?>" class="btn btn-default btn-lg" title="Leer más" rel="tooltip">
+								<span class="icon-chevron-down"></span>
+							</a>
                     	</p>
         			</div>
           			<div class="media col-md-3 thumbnail">
@@ -93,7 +95,7 @@
                     <div class="col-md-3">
 						<div class="form-group">
 								<div class="col-sm-10">
-									<select name="habitacion<?php echo $habitacion->id_habitacion?>" class="form-control">
+									<select name="habitacion<?php echo $habitacion->id_habitacion?>" class="form-control habitacion" onChange="validarHabitacion()">
 										<option value="0">0</option>
 										<option value="1">1 ($<?php echo $precio=$noches*$habitacion->precio*1; ?>)</option>
 										<option value="2">2 ($<?php echo $precio=$noches*$habitacion->precio*2; ?>)</option>
@@ -107,20 +109,36 @@
                 </div>
          	</div>
          	<?php } ?>	
-         	<div class="panel panel-default">
+         	
          		<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
 				<input type="hidden" name="salida" value="<?php echo $this->input->post('salida') ?>">
 				<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
 				<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">
 				<input type="hidden" name="hotel" value="<?php echo $this->input->post('hotel') ?>">
-         		<button type="submit" class="btn btn-hotel btn-block btn-lg">Reservar</button>
-         	</div>
+				
+				<div class="col-xs-4">
+				</div>
+				<div class="col-xs-4">
+					<center>
+					<button type="submit" name="reservar" value="Seleccione una opción" class="btn btn-hotel btn-xlarge">
+						<span class="icon-chevron-right"></span>
+					</button>
+					</center>
+				</div>
+				<div class="col-xs-4">
+					<label id="habitaciones" class="pull-right"></label>
+				</div>
+					
+				
+				
+         	
          	<?php echo form_close(); ?>
+         	
         	<?php }else{ ?>
 			<h1 class="text-center">No hay habitaciones disponibles</h1>
 			<h3 class="text-center">Otras opciones disponibles</h3>
 			<div class="col-xs-12">
-			<div class="offer offer-primary">
+			<div class="offer offer-hotel">
 				<div class="shape">
 					<div class="shape-text">
 						top								
@@ -141,3 +159,9 @@
 	</div> 
 </div>
 </div>	
+
+<script>
+	$(document).ready(function(){
+		validarHabitacion();
+ 	});
+</script>

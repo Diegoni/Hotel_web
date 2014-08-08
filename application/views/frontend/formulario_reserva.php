@@ -67,11 +67,25 @@
 						</select>
 			  		</div>
 					<div class="form-group">
-				  		<button type="submit" class="btn btn-hotel btn-lg btn-block">Ver precios</button>
+						<center>
+							<button type="submit" class="btn btn-hotel btn-xlarge">
+								<span class="icon-chevron-right"></span>
+							</button>		
+						</center>
 				  	</div>
 				<?php echo form_close(); ?>	
 			</div>
 		</div>
+		<?php if(isset($monedas)){ ?>
+		<div class="panel panel-hotel">
+			<div class="panel-heading">Monedas</div>
+	  		<div class="panel-body">
+	  			<?php foreach ($monedas as $moneda) { ?>
+					  <?php echo $moneda->moneda;?>
+				<?php } ?>
+	  		</div>
+		</div>
+		<?php } ?>
 	</div>
 	
 	

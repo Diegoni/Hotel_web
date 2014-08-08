@@ -110,7 +110,11 @@
 				</div>
 				
 				<div class="col-md-12">
-					<a href="javascript:window.history.back();" type="submit" class="btn btn-default btn-lg btn-block">Volver</a>
+					<center>
+						<a href="javascript:window.history.back();" type="submit" class="btn btn-default btn-xlarge" title="volver" rel="tooltip">
+							<span class="icon-chevron-left"></span>
+						</a>
+					</center>
 				</div>
 				<!--
 				<div class="col-md-6">

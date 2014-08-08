@@ -30,7 +30,11 @@
     					<input type="text" class="form-control" name="apellido">
   					</div>
   					<div class="form-group">
-  						<button type="submit" class="btn btn-hotel btn-lg btn-block">Enviar</button>
+  						<center>
+  							<button type="submit" class="btn btn-hotel btn-xlarge">
+								<span class="icon-chevron-right"></span>
+							</button>	
+  						</center>
   					</div>
 				</form>
 			</div>

@@ -1,4 +1,36 @@
- 
+ /**************************************************************************
+ **************************************************************************
+ 			Validar habitacion
+ ************************************************************************** 
+ *************************************************************************/
+
+function validarHabitacion(){
+	importe_total = 0;	
+	$(".habitacion").each(
+		function(index, value) {
+			importe_total = importe_total + eval($(this).val());
+		}
+	);
+	if(importe_total==0){
+		cadena="Seleccione una opción";
+		document.getElementById('habitaciones').innerHTML = cadena;
+		$("#reservar").val(cadena);
+		
+		$('button[name="reservar"]').prop('disabled', true);
+	}else{
+		if(importe_total==1){
+			habitacion=" habitación";
+		}else{
+			habitacion=" habitaciones";
+		}
+		cadena="Reservar: "+importe_total+habitacion;
+		document.getElementById('habitaciones').innerHTML = cadena;
+		
+   		$('button[name="reservar"]').prop('disabled', false);	
+	}
+	 	
+}
+    
  /**************************************************************************
  **************************************************************************
  			Ir arriba
