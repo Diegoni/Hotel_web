@@ -52,8 +52,10 @@ class Reserva extends CI_Controller {
 			//$crud->set_theme('datatables');
 			$crud->set_table('reservas');
 			
+			$crud->set_relation_n_n('habitaciones', 'reserva_habitacion', 'habitaciones', 'id_reserva', 'id_habitacion', 'habitacion','prioridad');
+			
 			$crud->columns(	'id_reserva',
-							'id_habitacion',
+							'habitaciones',
 							'id_huesped',
 							'entrada',
 							'salida',
@@ -73,7 +75,7 @@ class Reserva extends CI_Controller {
 			
 			$crud->set_subject('reserva');
 			
-			$crud->set_relation('id_habitacion','habitaciones','habitacion');
+			//$crud->set_relation('id_habitacion','habitaciones','habitacion');
 			$crud->set_relation('id_huesped','huespedes','{apellido} {nombre}');
 			$crud->set_relation('id_nota','notas','nota');
 			$crud->set_relation('id_estado_reserva','estados_reserva','estado_reserva');

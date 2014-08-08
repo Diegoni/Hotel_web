@@ -50,12 +50,6 @@
 					  	<dd><?php echo $habitacion->menores;?></dd>
 					</dl>
 					<dl class="dl-horizontal">
-						<dt><i class="fa fa-plus-square"></i> Estadía Máxima: </dt>
-						<dd><?php echo $habitacion->estadia_max;?> días</dd>
-						<dt><i class="fa fa-minus-square"></i> Estadía Mímima: </dt>
-						<dd><?php echo $habitacion->estadia_min;?> días</dd>
-					</dl>
-					<dl class="dl-horizontal">
 						<dt><i class="fa fa-sign-in"></i> Entrada: </dt>
 						<dd><?php echo date("H:i",strtotime($habitacion->entrada));?> Hs</dd>
 						<dt><i class="fa fa-sign-out"></i> Salida: </dt>
@@ -115,9 +109,10 @@
     				</div>
 				</div>
 				
-				<div class="col-md-6">
+				<div class="col-md-12">
 					<a href="javascript:window.history.back();" type="submit" class="btn btn-default btn-lg btn-block">Volver</a>
 				</div>
+				<!--
 				<div class="col-md-6">
 					<?php echo form_open('reserva/datos');?>
 					<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
@@ -128,6 +123,7 @@
 					<button type="submit" class="btn btn-hotel btn-lg btn-block">Seleccionar</button>	 	
 					<?php echo form_close(); ?>      
 				</div>
+				-->
 				
 				
 			</div>

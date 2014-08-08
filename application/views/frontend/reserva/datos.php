@@ -1,4 +1,3 @@
-
 	<div class="col-md-9">
 		<div class="panel panel-hotel">
 			<div class="panel-heading">Datos personales</div>
@@ -75,7 +74,11 @@
 					<input type="hidden" name="salida"  value="<?php echo $this->input->post('salida') ?>">
 					<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
 					<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">					
-					<input type="hidden" name="habitacion" value="<?php echo $this->input->post('habitacion') ?>">
+					<input type="hidden" name="hotel" value="<?php echo $this->input->post('hotel') ?>">
+					<?php 
+					foreach ($habitaciones as $clave => $valor) { ?>
+    					<input type="hidden" name="habitacion<?php echo $clave;?>" value="<?php echo $valor?>">
+					<?php } ?>
 				</form>
 		    </div>
 		</div>

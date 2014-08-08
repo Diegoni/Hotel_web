@@ -28,39 +28,7 @@
     					</div>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword1"><i class="fa fa-user"></i> Tipo</label>
-						<select class="form-control" name="tipo">
-							<?php 
-							foreach ($tipos_habitacion as $tipo) { ?>
-								<option value="<?php echo $tipo->id_tipo_habitacion;?>"><?php echo $tipo->tipo_habitacion;?></option>
-							<?php } ?>
-						</select>
-					</div>
-			  		<div class="form-group">
-						<label for="exampleInputPassword1"><i class="fa fa-building"></i> Hotel</label>
-						<select class="form-control" name="hotel">
-							<?php 
-							foreach ($hoteles as $hotel) { ?>
-								<option value="<?php echo $hotel->id_hotel;?>"><?php echo $hotel->hotel;?></option>
-							<?php } ?>
-						</select>
-			  		</div>
-					<div class="form-group">
-				  		<button type="submit" class="btn btn-hotel btn-lg btn-block">Ver precios</button>
-				  	</div>
-				<?php echo form_close(); ?>	
-			</div>
-		</div>
-	</div>
-	
-	
-	
-	
-	
-	<!--
-		Para elegir por adultos y menores
-		
-		<label for="exampleInputPassword1"><i class="fa fa-user"></i> Ocupación</label>
+						<label for="exampleInputPassword1"><i class="fa fa-user"></i> Ocupación</label>
 						<select class="form-control" name="adultos">
 							<?php $i=1;
 							do{
@@ -87,5 +55,37 @@
 		
 							$i=$i+1;
 							}while($i<=$max_menores);?>
+						</select>
+					</div>
+			  		<div class="form-group">
+						<label for="exampleInputPassword1"><i class="fa fa-building"></i> Hotel</label>
+						<select class="form-control" name="hotel">
+							<?php 
+							foreach ($hoteles as $hotel) { ?>
+								<option value="<?php echo $hotel->id_hotel;?>"><?php echo $hotel->hotel;?></option>
+							<?php } ?>
+						</select>
+			  		</div>
+					<div class="form-group">
+				  		<button type="submit" class="btn btn-hotel btn-lg btn-block">Ver precios</button>
+				  	</div>
+				<?php echo form_close(); ?>	
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	<!--
+		Para elegir por tipos
+		
+		<label for="exampleInputPassword1"><i class="fa fa-user"></i> Tipo</label>
+						<select class="form-control" name="tipo">
+							<?php 
+							foreach ($tipos_habitacion as $tipo) { ?>
+								<option value="<?php echo $tipo->id_tipo_habitacion;?>"><?php echo $tipo->tipo_habitacion;?></option>
+							<?php } ?>
 						</select>
 	-->

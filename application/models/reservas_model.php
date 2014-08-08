@@ -15,15 +15,9 @@ class Reservas_model extends CI_Model {
 									reservas.entrada as entrada,
 									reservas.salida as salida,
 									reservas.adultos as adultos,
-									reservas.menores as menores,
-									habitaciones.habitacion as habitacion,
-									hoteles.hotel as hotel
+									reservas.menores as menores
 									FROM 
 									reservas
-									INNER JOIN 
-									habitaciones ON(reservas.id_habitacion=habitaciones.id_habitacion)
-									INNER JOIN 
-									hoteles ON(hoteles.id_hotel=habitaciones.id_hotel)
 									WHERE reservas.id_reserva='$id' ");
 		if($query->num_rows() > 0){
 			foreach ($query->result() as $fila){
@@ -43,8 +37,6 @@ class Reservas_model extends CI_Model {
 	
 	function getNuevas(){
 		$query = $this->db->query("SELECT * FROM reservas
-									INNER JOIN habitaciones
-									ON(reservas.id_habitacion=habitaciones.id_habitacion)
 									INNER JOIN huespedes
 									ON(reservas.id_huesped=huespedes.id_huesped) 
 									WHERE id_estado_reserva=1 ");

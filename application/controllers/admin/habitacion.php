@@ -53,9 +53,8 @@ class Habitacion extends CI_Controller {
 			$crud->display_as('id_habitacion','ID')
 				 ->display_as('habitacion','Habitación')
 				 ->display_as('descripcion','descripción')
+				 ->display_as('cantidad','Cantidad')
 				 ->display_as('id_hotel','Hotel')
-				 ->display_as('estadia_min','Estadía mín')
-				 ->display_as('estadia_max','Estadía máx')
 				 ->display_as('id_tipo_habitacion','Tipo')
 				 ->display_as('id_tarifa','Tarifa')
 				 ->display_as('id_estado_habitacion','Estado');
