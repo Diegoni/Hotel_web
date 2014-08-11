@@ -35,6 +35,7 @@ class Reservas_model extends CI_Model {
 		return $query->num_rows();
 	}
 	
+	
 	function getNuevas(){
 		$query = $this->db->query("SELECT * FROM reservas
 									INNER JOIN huespedes

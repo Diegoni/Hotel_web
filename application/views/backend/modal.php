@@ -5,7 +5,7 @@
 ------------------------------------------------------------------------->	
 <?php echo form_open('admin/reserva/actualizar_nuevas'); ?>
 <div class="modal fade" id="modal_reservas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -27,10 +27,17 @@
       			<?php foreach ($reservas as $reserva) { ?>
 			  	<tr>
 			  		<td><?php echo $reserva->id_reserva ?></td>
-			  		<td><a href=<?php echo base_url().'index.php/admin/habitacion/habitaciones_abm/edit/'.$reserva->id_habitacion; ?> target="_blank">
-			  			<?php echo $reserva->habitacion ?></a></td>
-			  		
-			  		<td><a href=<?php echo base_url().'index.php/admin/huesped/huespedes_abm/edit/'.$reserva->id_huesped; ?> target="_blank"> 
+			  		<td>
+			  			<?php $habitaciones=$this->reserva_habitacion_model->getReserva($reserva->id_reserva); ?>
+			  			<?php if($habitaciones){ ?>
+			  			<?php foreach($habitaciones as $habitacion){ ?>
+			  				<a href=<?php echo base_url().'index.php/admin/habitacion/habitaciones_abm/edit/'.$habitacion->habitacion; ?> target="_blank">
+			  					<?php echo $habitacion->cantidad ?> - 
+			  					<?php echo $habitacion->habitacion ?><br>
+			  				</a>	
+			  			<?php }} ?>
+			  		</td>
+					<td><a href=<?php echo base_url().'index.php/admin/huesped/huespedes_abm/edit/'.$reserva->id_huesped; ?> target="_blank"> 
 			  		 		<?php echo $reserva->apellido ?> <?php echo $reserva->nombre ?></a></td>
 			  			
 			  		<td><?php echo date("d-m-Y", strtotime($reserva->entrada)); ?></td>
