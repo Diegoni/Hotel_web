@@ -158,6 +158,7 @@ class Otro extends CI_Controller {
 			
 			$crud->columns(	'id_moneda',
 							'moneda',
+							'valor',
 							'id_pais');
 			
 			$crud->display_as('id_moneda','ID')
