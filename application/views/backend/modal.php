@@ -27,8 +27,7 @@
       			<?php foreach ($reservas as $reserva) { ?>
 			  	<tr>
 			  		<td><?php echo $reserva->id_reserva ?></td>
-			  		<td>
-			  			<?php $habitaciones=$this->reserva_habitacion_model->getReserva($reserva->id_reserva); ?>
+			  		<td><?php $habitaciones=$this->reserva_habitacion_model->getReserva($reserva->id_reserva); ?>
 			  			<?php if($habitaciones){ ?>
 			  			<?php foreach($habitaciones as $habitacion){ ?>
 			  				<a href=<?php echo base_url().'index.php/admin/habitacion/habitaciones_abm/edit/'.$habitacion->habitacion; ?> target="_blank">
@@ -38,8 +37,9 @@
 			  			<?php }} ?>
 			  		</td>
 					<td><a href=<?php echo base_url().'index.php/admin/huesped/huespedes_abm/edit/'.$reserva->id_huesped; ?> target="_blank"> 
-			  		 		<?php echo $reserva->apellido ?> <?php echo $reserva->nombre ?></a></td>
-			  			
+			  		 		<?php echo $reserva->apellido ?> <?php echo $reserva->nombre ?>
+			  		 	</a>
+			  		</td>			  			
 			  		<td><?php echo date("d-m-Y", strtotime($reserva->entrada)); ?></td>
 			  		<td><?php echo date("d-m-Y", strtotime($reserva->salida));  ?></td>
 			  		<td><select name="estado<?php echo $reserva->id_reserva ?>">

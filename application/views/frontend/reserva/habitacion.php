@@ -72,9 +72,10 @@
                 	
 			                	
                 	<div class="col-md-3 text-center">
-                    	<h2><small> <?php echo $habitacion->moneda; ?></small>
-                    		<?php echo $habitacion->simbolo; ?> 
-                    		<?php echo number_format($habitacion->precio, 2, ',', ' '); ?></h2>
+                		<?php foreach ($cambios as $cambio) { ?>
+						<h2><small> <?php echo $cambio->abreviatura ; ?></small>
+                    		<?php echo $cambio->simbolo; ?> 
+                    		<?php echo number_format($habitacion->precio/$cambio->valor, 2, ',', ' '); ?></h2>
 						<div class="stars" >
                         	Adultos: <?php 
                         	for ($i=0; $i < $habitacion->adultos; $i++) { 
@@ -91,16 +92,17 @@
                     			echo "sin menores";
                     		}
                     		?>
+                    		<?php } ?>
                     </div>
                     <div class="col-md-3">
 						<div class="form-group">
 								<div class="col-sm-10">
 									<select name="habitacion<?php echo $habitacion->id_habitacion?>" class="form-control habitacion" onChange="validarHabitacion()">
 										<option value="0">0</option>
-										<option value="1">1 ($<?php echo $precio=$noches*$habitacion->precio*1; ?>)</option>
-										<option value="2">2 ($<?php echo $precio=$noches*$habitacion->precio*2; ?>)</option>
-										<option value="3">3 ($<?php echo $precio=$noches*$habitacion->precio*3; ?>)</option>
-										<option value="4">4 ($<?php echo $precio=$noches*$habitacion->precio*4; ?>)</option>
+										<option value="1">1 ($<?php echo number_format($precio=$noches*$habitacion->precio*1/$cambio->valor, 2, ',', ' '); ?>)</option>
+										<option value="2">2 ($<?php echo number_format($precio=$noches*$habitacion->precio*2/$cambio->valor, 2, ',', ' '); ?>)</option>
+										<option value="3">3 ($<?php echo number_format($precio=$noches*$habitacion->precio*3/$cambio->valor, 2, ',', ' '); ?>)</option>
+										<option value="4">4 ($<?php echo number_format($precio=$noches*$habitacion->precio*4/$cambio->valor, 2, ',', ' '); ?>)</option>
 									</select>
 								</div>
 							</div>

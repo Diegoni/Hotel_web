@@ -5,11 +5,10 @@ class Otro extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-
-		$this->load->database();
-		$this->load->helper('url');
+		
 		$this->load->helper('menu');
 		$this->load->model('reserva_habitacion_model');
+		$this->load->model('mensajes_model');
 		$this->load->library('grocery_CRUD');
 		//$this->load->library('image_CRUD');
 	}
@@ -169,9 +168,10 @@ class Otro extends CI_Controller {
 			$crud->set_subject('moneda');
 			
 			$crud->set_relation('id_pais','paises','pais');
-			
-			
+						
 			$crud->required_fields(	'moneda');
+			
+			$crud->set_field_upload('imagen','assets/uploads/monedas');
 			
 			$output = $crud->render();
 

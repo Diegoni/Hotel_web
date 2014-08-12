@@ -18,7 +18,6 @@ class Reserva extends CI_Controller {
 		$this->load->model('terminos_model');
 		$this->load->helper('main');
 		$this->load->helper('form');
-      	$this->load->helper('url');
 	}
 	
 	
@@ -36,6 +35,7 @@ class Reserva extends CI_Controller {
 		$db['reservas']=$this->reservas_model->getReservas($consulta);
 		$db['step']=2;
 		$db['monedas']=$this->monedas_model->getMonedas();
+		$db['cambios']=$this->monedas_model->getMoneda($_COOKIE['moneda']);
 		$db['configs']=$this->configs_model->getConfigs();
 		$db['tipos_habitacion']=$this->tipos_habitacion_model->getTipos();
 		$db['tipo_habitacion']=$this->tipos_habitacion_model->getTipo($this->input->post('tipo'));
@@ -132,6 +132,13 @@ class Reserva extends CI_Controller {
 		$this->load->view('frontend/reserva/steps');
 		$this->load->view('frontend/reserva/pagos');
 		$this->load->view('frontend/footer');
-		
+
+	}
+	
+	public function cambiar_moneda($id_moneda=NULL){
+		setcookie("moneda", $id_moneda, time()+3600);
+		echo $_COOKIE['moneda'];
+		echo '<script>javascript:window.history.back();</script>';
+
 	}
 }

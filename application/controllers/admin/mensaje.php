@@ -6,8 +6,6 @@ class Mensaje extends CI_Controller {
 	{
 		parent::__construct();
 
-		$this->load->database();
-		$this->load->helper('url');
 		$this->load->helper('menu');
 		$this->load->model('reserva_habitacion_model');
 		$this->load->model('mensajes_model');

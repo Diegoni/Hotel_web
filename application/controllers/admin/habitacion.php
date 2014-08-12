@@ -5,9 +5,7 @@ class Habitacion extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-
-		$this->load->database();
-		$this->load->helper('url');
+		
 		$this->load->helper('menu');
 		$this->load->model('reserva_habitacion_model');
 		$this->load->library('grocery_CRUD');
