@@ -72,6 +72,15 @@ class Reserva extends CI_Controller {
 				 ->display_as('fecha_alta','Fecha alta')
 				 ->display_as('fecha_modificacion','Última modificación') ;
 			
+			$crud->fields(	'id_huesped',
+							'entrada',
+							'salida',
+							'adultos',
+							'menores',
+							'id_nota',
+							'id_estado_reserva',
+							'habitaciones');
+			
 			$crud->set_subject('reserva');
 			
 			//$crud->set_relation('id_habitacion','habitaciones','habitacion');
@@ -79,10 +88,7 @@ class Reserva extends CI_Controller {
 			$crud->set_relation('id_nota','notas','nota');
 			$crud->set_relation('id_estado_reserva','estados_reserva','estado_reserva');
 					
-			$crud->required_fields('id_habitacion','id_huesped','entrada', 'salida', 'adultos', 'menores');
-			
-			$crud->field_type('fecha_alta', 'readonly');
-			$crud->field_type('fecha_modificacion', 'readonly');
+						$crud->required_fields('id_habitacion','id_huesped','entrada', 'salida', 'adultos', 'menores');
 			
 			$crud->callback_after_update(array($this, 'update_reserva'));
 			
@@ -216,7 +222,7 @@ class Reserva extends CI_Controller {
 							'estado_reserva', 
 							'reserva_lugar');
 			
-			$crud->display_as('id_estados_reserva','ID')
+			$crud->display_as('id_estado_reserva','ID')
 				 ->display_as('estado_reserva','Estado')
 				 ->display_as('reserva_lugar','Reserva lugar');
 				 
@@ -246,9 +252,12 @@ class Reserva extends CI_Controller {
  **********************************************************************************/
 	
 	function update_reserva($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
     	$registro = array(
         	"id_reserva" => $id,
-        	"fecha_modificacion" => date('Y-m-d H:i:s')
+        	"fecha_modificacion" => date('Y-m-d H:i:s'),
+        	"id_usuario_modificacion" => $session_data['id_usuario']
     	);
  
     	$this->db->update('reservas', $registro, array('id_reserva' => $id));
@@ -257,9 +266,12 @@ class Reserva extends CI_Controller {
 	}
 
 	function update_disponibilidad($datos, $id){
+    	$session_data = $this->session->userdata('logged_in');	
+			
     	$registro = array(
         	"id_disponibilidad" => $id,
-        	"fecha_modificacion" => date('Y-m-d H:i:s')
+        	"fecha_modificacion" => date('Y-m-d H:i:s'),
+        	"id_usuario_modificacion" => $session_data['id_usuario']
     	);
  
     	$this->db->update('disponibilidades', $registro, array('id_disponibilidad' => $id));
@@ -268,10 +280,15 @@ class Reserva extends CI_Controller {
 	}
 	
 	function insert_disponibilidad($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
 	    $registro = array(
 	        "id_disponibilidad" => $id,
 	        "fecha_alta" => date('Y-m-d H:i:s'),
-	        "fecha_modificacion" => date('Y-m-d H:i:s')
+	        "fecha_modificacion" => date('Y-m-d H:i:s'),
+	        "id_usuario_alta" => $session_data['id_usuario'],
+	        "id_usuario_modificacion" => $session_data['id_usuario']
+	        
 	    );
 	 
 	    $this->db->update('disponibilidades', $registro, array('id_disponibilidad' => $id));

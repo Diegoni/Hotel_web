@@ -1,8 +1,8 @@
 <div class="container">
 <div class="row">
 	<div class="col-md-12">
-		<div class="aparecer">
-   			<h2 class="bs-docs-featurette-title">Bienvenido  <?php //echo $usuario; ?>!</h2>
+		<div class="">
+   			<h2 class="bs-docs-featurette-title">Bienvenido  <?php echo $usuario; ?>!</h2>
    			<p class="lead">Sistema de gestión de hoteles</p>
    		</div>
    	</div>

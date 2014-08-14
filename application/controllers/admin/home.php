@@ -17,6 +17,7 @@ class Home extends CI_Controller {
    	if($this->session->userdata('logged_in')){
 		$session_data = $this->session->userdata('logged_in');
 		$data['usuario'] = $session_data['usuario'];
+		$data['id_usuario'] = $session_data['id_usuario'];
 		$reservas=buscarReservas();
 		$mensajes=buscarMensajes();
 		
@@ -30,8 +31,7 @@ class Home extends CI_Controller {
    }
    else
    {
-     //If no session, redirect to login page
-     header('login', 'refresh');
+   	 header('login', 'refresh');
    }
  }
 

@@ -72,10 +72,38 @@
                 	
 			                	
                 	<div class="col-md-3 text-center">
+                		<?php
+                		$precio=$habitacion->precio;
+						$precio_con_descuento=0;
+						
+                		if(isset($tarifas)){
+                			foreach ($tarifas as $tarifa) { 
+								if($tarifa->id_habitacion==$habitacion->id_habitacion){
+									$datos=array('id_tipo_tarifa'=>$tarifa->id_tipo_tarifa,
+												 'valor'=>$tarifa->valor,
+												 'precio'=>$habitacion->precio); 
+									$precio=$this->tarifas_temporales_model->calcular_precio($datos);
+									if($precio<$habitacion->precio){
+										$precio_con_descuento=1;
+									}
+                				}							
+							}	
+                		} 
+						?>
+                		
                 		<?php foreach ($cambios as $cambio) { ?>
-						<h2><small> <?php echo $cambio->abreviatura ; ?></small>
-                    		<?php echo $cambio->simbolo; ?> 
-                    		<?php echo number_format($habitacion->precio/$cambio->valor, 2, ',', ' '); ?></h2>
+						<?php if($precio_con_descuento==1){ ?>
+						<del><h4><small> 
+                				<?php echo $cambio->abreviatura ; ?>
+                			</small>
+                    			<?php echo $cambio->simbolo; ?>  
+                    			<?php echo number_format($habitacion->precio/$cambio->valor, 2, ',', ' '); ?></h4></del>							
+						<?php } ?>                			
+                		<h2><small> 
+                				<?php echo $cambio->abreviatura ; ?>
+                			</small>
+                    			<?php echo $cambio->simbolo; ?>  
+                    			<?php echo number_format($precio/$cambio->valor, 2, ',', ' '); ?></h2>
 						<div class="stars" >
                         	Adultos: <?php 
                         	for ($i=0; $i < $habitacion->adultos; $i++) { 
@@ -193,3 +221,4 @@
 		validarHabitacion();
  	});
 </script>
+

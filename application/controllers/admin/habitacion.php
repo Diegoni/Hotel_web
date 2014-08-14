@@ -138,6 +138,10 @@ class Habitacion extends CI_Controller {
 				 ->display_as('tarifa','Tarifa')
 				 ->display_as('precio','Precio')
 				 ->display_as('id_moneda','Moneda');
+				 
+			$crud->fields(	'tarifa',
+							'precio',
+							'id_moneda');
 			
 			$crud->set_subject('tarifa');
 			
@@ -148,6 +152,8 @@ class Habitacion extends CI_Controller {
 									'menores',
 									'precio',
 									'id_moneda');
+									
+			$crud->callback_after_update(array($this, 'update_tarifas'));
 
 			$output = $crud->render();
 
@@ -184,15 +190,23 @@ class Habitacion extends CI_Controller {
 				 ->display_as('entrada','Entrada')
 				 ->display_as('salida','Salida')
 				 ->display_as('id_tipo_tarifa','Tipo')
-				 ->display_as('valir','Valor');
+				 ->display_as('valor','Valor')
+				 ->display_as('fecha_modificacion','Fecha modificación');
 			
 			$crud->set_subject('tarifa temporal');
+			
+			$crud->fields('tarifa_temporal','entrada','salida','id_tipo_tarifa', 'valor', 'habitaciones');
 			
 			$crud->set_relation('id_tipo_tarifa','tipos_tarifa','tipo_tarifa');
 			
 			$crud->required_fields('id_tipo_tarifa','entrada','salida', 'tipo', 'valor');
 			
-			$crud->callback_before_insert(array($this, 'insert_tarifas_temporales'));
+			$crud->field_type('fecha_alta', 'readonly');
+			$crud->field_type('fecha_modificacion', 'readonly');
+						
+			$crud->callback_after_insert(array($this, 'insert_after_tarifas_temporales'));
+			$crud->callback_after_update(array($this, 'update_tarifas_temporales'));
+			$crud->callback_before_insert(array($this, 'insert_before_tarifas_temporales'));
 			
 			$output = $crud->render();
 
@@ -323,16 +337,59 @@ class Habitacion extends CI_Controller {
  * ********************************************************************************
  **********************************************************************************/
 
+	function insert_after_tarifas_temporales($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
+	    $registro = array(
+	        "id_tarifa_temporal" => $id,
+	        "fecha_alta" => date('Y-m-d H:i:s'),
+	        "fecha_modificacion" => date('Y-m-d H:i:s'),
+	        "id_usuario_alta" => $session_data['id_usuario'],
+	        "id_usuario_modificacion" => $session_data['id_usuario']
+	    );
+	 
+	    $this->db->update('tarifas_temporales', $registro, array('id_tarifa_temporal' => $id));
+	 
+	    return true;
+	}
 	
-	function insert_tarifas_temporales($datos, $id){
+	
+	function update_tarifas_temporales($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
+    	$registro = array(
+        	"id_tarifa_temporal" => $id,
+        	"fecha_modificacion" => date('Y-m-d H:i:s'),
+        	"id_usuario_modificacion" => $session_data['id_usuario']
+    	);
+ 
+    	$this->db->update('tarifas_temporales', $registro, array('id_tarifa_temporal' => $id));
+ 
+    	return true;
+	}
+	
+	
+	function insert_before_tarifas_temporales($datos, $id){
 		if($datos['entrada']>$datos['salida']){
 			return false;
 		}else{
 			return true;	
-		}
-	 
-	    
+		} 
 	}
 	
+	
+	function update_tarifas($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
+    	$registro = array(
+        	"id_tarifa" => $id,
+        	"fecha_modificacion" => date('Y-m-d H:i:s'),
+        	"id_usuario_modificacion" => $session_data['id_usuario']
+    	);
+ 
+    	$this->db->update('tarifas', $registro, array('id_tarifa' => $id));
+ 
+    	return true;
+	}
 
 }

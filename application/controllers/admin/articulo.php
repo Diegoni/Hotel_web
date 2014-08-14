@@ -10,6 +10,7 @@ class Articulo extends CI_Controller {
 		$this->load->model('reserva_habitacion_model');
 		$this->load->library('grocery_CRUD');
 		//$this->load->library('image_CRUD');
+		
 	}
 
 
@@ -58,22 +59,42 @@ class Articulo extends CI_Controller {
 							'id_estado_articulo');
 			
 			$crud->display_as('id_articulo','ID')
+				 ->display_as('articulo','Artículo')
 				 ->display_as('titulo','Título')
 				 ->display_as('id_hotel','Hotel')
 				 ->display_as('id_categoria','Categoría')
 				 ->display_as('id_autor','Autor')
-				 ->display_as('id_estado_articulo','Estado')				 ;
+				 ->display_as('id_estado_articulo','Estado')
+				 ->display_as('archivo_url','Archivo')
+				 ->display_as('fecha_publicacion','Fecha publicación')
+				 ->display_as('fecha_despublicacion','Fecha despublicación');
 			
 			$crud->set_subject('artículo');
+			
+			$crud->fields(	'titulo',
+							'copete',
+							'articulo',
+							'fecha_publicacion', 
+							'fecha_despublicacion', 
+							'id_hotel',
+							'id_autor',
+							'id_categoria',
+							'id_estado_articulo');
 			
 			$crud->set_relation('id_hotel','hoteles','hotel');
 			$crud->set_relation('id_categoria','categorias','categoria');
 			$crud->set_relation('id_autor','usuarios','usuario');
 			$crud->set_relation('id_estado_articulo','estados_articulo','estado_articulo');
 					
-			$crud->required_fields('articulo','id_hotel','fecha_publicacion');
+			$crud->required_fields('articulo','id_hotel','fecha_publicacion', 'id_categoria');
+			
+			$crud->field_type('fecha_alta', 'readonly');
+			$crud->field_type('fecha_modificacion', 'readonly');
 			
 			$crud->set_field_upload('archivo_url','assets/uploads/articulos');
+			
+			$crud->callback_after_insert(array($this, 'insert_articulos'));
+			$crud->callback_after_update(array($this, 'update_articulos'));
 			
 			$output = $crud->render();
 
@@ -184,5 +205,54 @@ class Articulo extends CI_Controller {
 
 			$this->_example_output($output);
 	}
+
+
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Funciones
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+
+	function insert_articulos($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
+		if($datos['id_estado_articulo']==0){
+			$id_estado_articulo=1;	
+		}else{
+			$id_estado_articulo=$datos['id_estado_articulo'];
+		}	
+		
+	    $registro = array(
+	        "id_articulo" => $id,
+	        "fecha_alta" => date('Y-m-d H:i:s'),
+	        "fecha_modificacion" => date('Y-m-d H:i:s'),
+	        "id_usuario_alta" => $session_data['id_usuario'],
+	        "id_usuario_modificacion" => $session_data['id_usuario'],
+	        "id_estado_articulo" => $id_estado_articulo
+	    );
+	 
+	    $this->db->update('articulos', $registro, array('id_articulo' => $id));
+	 
+	    return true;
+	}
+	
+	
+	function update_articulos($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
+    	$registro = array(
+        	"id_articulo" => $id,
+        	"fecha_modificacion" => date('Y-m-d H:i:s'),
+        	"id_usuario_modificacion" => $session_data['id_usuario']
+        	
+    	);
+ 
+    	$this->db->update('articulos', $registro, array('id_articulo' => $id));
+ 
+    	return true;
+	}
+
 
 }

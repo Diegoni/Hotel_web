@@ -387,6 +387,7 @@ class Huesped extends CI_Controller {
 
 
 	function insert_huesped($datos){
+		$session_data = $this->session->userdata('logged_in');
 		$fecha= date('Y-m-d H:i:s');
 		
 	    $huesped = array(
@@ -395,7 +396,9 @@ class Huesped extends CI_Controller {
 	        "dni" => $datos['dni'],
 	        "id_tipo_huesped" => $datos['id_tipo_huesped'],
 	        "fecha_alta" => $fecha,
-	        "fecha_modificacion" => $fecha
+	        "fecha_modificacion" => $fecha,
+	        "id_usuario_alta" => $session_data['id_usuario'],
+	        "id_usuario_modificacion" => $session_data['id_usuario']
 	    );
 	 
 	    $this->db->insert('huespedes', $huesped);
@@ -426,9 +429,12 @@ class Huesped extends CI_Controller {
 
 
 	function update_huesped($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
 		$update = array(
         	"id_huesped" => $id,
-        	"fecha_modificacion" => date('Y-m-d H:i:s')
+        	"fecha_modificacion" => date('Y-m-d H:i:s'),
+        	"id_usuario_modificacion" => $session_data['id_usuario']
     	);
 
 		$this->db->update('huespedes', $update, array('id_huesped' => $id));
