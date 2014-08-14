@@ -8,6 +8,7 @@ class Reserva extends CI_Controller {
 
 		$this->load->helper('menu');
 		$this->load->model('reserva_habitacion_model');
+		$this->load->model('reservas_model');
 		$this->load->model('mensajes_model');
 		$this->load->library('grocery_CRUD');
 		//$this->load->library('image_CRUD');
@@ -147,6 +148,53 @@ class Reserva extends CI_Controller {
 
 
 
+	
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de disponibilidades
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+
+
+	public function disponibilidades_abm(){
+			$crud = new grocery_CRUD();
+			
+			$crud->set_table('disponibilidades');
+			
+			$crud->set_relation_n_n('habitaciones', 'disponibilidad_habitacion', 'habitaciones', 'id_disponibilidad', 'id_habitacion', 'habitacion', 'prioridad');
+			
+			$crud->columns(	'id_disponibilidad',
+							'habitaciones',
+							'disponibilidad',
+							'entrada',
+							'salida');
+							
+			$crud->display_as('id_disponibilidad','ID')
+				 ->display_as('disponibilidad','Disponibilidad')
+				 ->display_as('entrada','Comienzo')
+				 ->display_as('salida','Final')
+				 ->display_as('habitaciones','Habitaciones');
+			
+			$crud->set_subject('disponibilidad');
+			
+			$crud->fields('disponibilidad','entrada','salida', 'habitaciones');					
+			$crud->required_fields('disponibilidad','entrada','salida', 'id_habitacion');
+			
+			$crud->field_type('fecha_alta', 'readonly');
+			$crud->field_type('fecha_modificacion', 'readonly');
+			
+			$crud->callback_after_insert(array($this, 'insert_disponibilidad'));
+			$crud->callback_after_update(array($this, 'update_disponibilidad'));
+			
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}
+
+
+
 
 
 /**********************************************************************************
@@ -165,10 +213,14 @@ class Reserva extends CI_Controller {
 			$crud->set_table('estados_reserva');
 			
 			$crud->columns(	'id_estado_reserva',
-							'estado_reserva');
+							'estado_reserva', 
+							'reserva_lugar');
 			
 			$crud->display_as('id_estados_reserva','ID')
-				 ->display_as('estado_reserva','Estado');
+				 ->display_as('estado_reserva','Estado')
+				 ->display_as('reserva_lugar','Reserva lugar');
+				 
+			$crud->field_type('reserva_lugar', 'true_false');
 			
 			$crud->set_subject('estado');
 			$crud->unset_delete();
@@ -183,6 +235,8 @@ class Reserva extends CI_Controller {
 			$this->_example_output($output);
 	}
 	
+
+	
 /**********************************************************************************
  **********************************************************************************
  * 
@@ -192,14 +246,37 @@ class Reserva extends CI_Controller {
  **********************************************************************************/
 	
 	function update_reserva($datos, $id){
-    	$reserva = array(
+    	$registro = array(
         	"id_reserva" => $id,
         	"fecha_modificacion" => date('Y-m-d H:i:s')
     	);
  
-    	$this->db->update('reservas', $reserva, array('id_reserva' => $id));
+    	$this->db->update('reservas', $registro, array('id_reserva' => $id));
  
     	return true;
+	}
+
+	function update_disponibilidad($datos, $id){
+    	$registro = array(
+        	"id_disponibilidad" => $id,
+        	"fecha_modificacion" => date('Y-m-d H:i:s')
+    	);
+ 
+    	$this->db->update('disponibilidades', $registro, array('id_disponibilidad' => $id));
+ 
+    	return true;
+	}
+	
+	function insert_disponibilidad($datos, $id){
+	    $registro = array(
+	        "id_disponibilidad" => $id,
+	        "fecha_alta" => date('Y-m-d H:i:s'),
+	        "fecha_modificacion" => date('Y-m-d H:i:s')
+	    );
+	 
+	    $this->db->update('disponibilidades', $registro, array('id_disponibilidad' => $id));
+	 
+	    return true;
 	}
 	
 /**********************************************************************************

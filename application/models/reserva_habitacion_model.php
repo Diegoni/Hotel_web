@@ -42,6 +42,39 @@ class Reserva_habitacion_model extends CI_Model {
 		}
 		
 		return $data;
+	}
+	
+	
+	
+	function getReservas_habitacion($habitaciones, $consulta){
+				
+		foreach ($habitaciones as $habitacion) {
+			$query=$this->db->query("SELECT 
+							reserva_habitacion.cantidad as cantidad,
+							reserva_habitacion.id_habitacion as id_habitacion
+							FROM `reserva_habitacion` 
+							INNER JOIN reservas ON(reserva_habitacion.id_reserva=reservas.id_reserva)
+							INNER JOIN estados_reserva ON(estados_reserva.id_estado_reserva=reservas.id_estado_reserva)
+							WHERE (DATE_FORMAT(reservas.salida, '%d-%m-%Y') >= '$consulta[entrada]' 
+							AND DATE_FORMAT(reservas.entrada, '%d-%m-%Y') <= '$consulta[salida]')
+							AND reserva_habitacion.id_habitacion = '$habitacion->id_habitacion' 
+							AND (estados_reserva.reserva_lugar=1)
+							");
+			if($query->num_rows() > 0){
+				foreach ($query->result() as $fila){
+					$data[] = $fila;
+				}
+			}	
+			
+		}
+		
+		if(isset($data)){
+			return $data;	
+		}
+			
+				
 	}	
+	
+		
 } 
 ?>

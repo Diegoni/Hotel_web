@@ -14,6 +14,8 @@ class Reserva extends CI_Controller {
 		$this->load->model('tipos_habitacion_model');
 		$this->load->model('imagenes_habitacion_model');
 		$this->load->model('reserva_habitacion_model');
+		$this->load->model('disponibilidades_model');
+		$this->load->model('tarifas_temporales_model');
 		$this->load->model('monedas_model');
 		$this->load->model('terminos_model');
 		$this->load->helper('main');
@@ -32,9 +34,14 @@ class Reserva extends CI_Controller {
 		$db['hoteles']=$this->hoteles_model->getHoteles();
 		$db['hotel']=$this->hoteles_model->getHotel($this->input->post('hotel'));
 		$db['habitaciones']=$this->habitaciones_model->getHabitaciones($consulta);
-		$db['reservas']=$this->reservas_model->getReservas($consulta);
+		$db['reservas_habitacion']=$this->reserva_habitacion_model->getReservas_habitacion($db['habitaciones'], $consulta);
+		$db['disponibilidades']=$this->disponibilidades_model->getDisponibilidad($db['habitaciones'], $consulta);
+		$db['tarifas']=$this->tarifas_temporales_model->getTarifas($db['habitaciones'], $consulta);
 		$db['step']=2;
 		$db['monedas']=$this->monedas_model->getMonedas();
+		if(!(isset($_COOKIE['moneda']))){
+			$_COOKIE['moneda']=1;
+		}
 		$db['cambios']=$this->monedas_model->getMoneda($_COOKIE['moneda']);
 		$db['configs']=$this->configs_model->getConfigs();
 		$db['tipos_habitacion']=$this->tipos_habitacion_model->getTipos();

@@ -45,11 +45,12 @@
 				<li><a  href='#' data-toggle="modal" data-target="#modal_reservas">Nuevas					
 				<?php echo "<span class='badge'>".$cant_reservas."</span></a></li>"; } ?>	
 				<li><a  href='<?php echo site_url('admin/reserva/reservas_abm')?>'>Reservas</a></li>
+				<li><a  href='<?php echo site_url('admin/reserva/disponibilidades_abm')?>'>Disponibilidades</a></li>
 				<li><a  href='<?php echo site_url('admin/reserva/estados_reserva')?>'>Estados reserva</a></li>
           	</ul>
         </li>
         
-        
+        	
         <li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>  Huéspedes<b class="caret"></b></a>
 			<ul class="dropdown-menu">
@@ -69,8 +70,11 @@
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-bed"></span> Habitaciones<b class="caret"></b></a>
 			<ul class="dropdown-menu">
             	<li><a  href='<?php echo site_url('admin/habitacion/habitaciones_abm')?>'>Habitaciones</a></li>
-				<li><a  href='<?php echo site_url('admin/habitacion/tipos_habitacion')?>'>Tipos de habitación</a></li>
 				<li><a  href='<?php echo site_url('admin/habitacion/tarifas_abm')?>'>Tarifas</a></li>
+				<li><a  href='<?php echo site_url('admin/habitacion/tarifas_temporales_abm')?>'>Tarifas temporales</a></li>
+				<li><a  href='<?php echo site_url('admin/habitacion/servicios_abm')?>'>Servicios</a></li>
+				<li><a  href='<?php echo site_url('admin/habitacion/tipos_habitacion')?>'>Tipos de habitación</a></li>
+				<li><a  href='<?php echo site_url('admin/habitacion/tipo_tarifa_abm')?>'>Tipos de tarifa</a></li>
 				<li><a  href='<?php echo site_url('admin/habitacion/estados_habitacion')?>'>Estados habitación</a></li>
           	</ul>
         </li>

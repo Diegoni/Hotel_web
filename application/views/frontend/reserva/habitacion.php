@@ -96,13 +96,39 @@
                     </div>
                     <div class="col-md-3">
 						<div class="form-group">
-								<div class="col-sm-10">
+								<div class="col-sm-12">
+									<h2><small> Cantidad </small></h2>
+									<?php
+									$cantidad=$habitacion->cantidad;
+									
+									if(isset($reservas_habitacion)){
+										foreach ($reservas_habitacion as $disp) {
+											if($habitacion->id_habitacion==$disp->id_habitacion){
+												$cantidad=$cantidad-$disp->cantidad; 
+											}
+										}	
+									}
+									
+									if(isset($disponibilidades)){
+										foreach ($disponibilidades as $disponibilidad) {
+											if($habitacion->id_habitacion==$disponibilidad->id_habitacion){	
+												$cantidad=0;
+											}
+										}
+									}																			
+									 
+									
+									?>
 									<select name="habitacion<?php echo $habitacion->id_habitacion?>" class="form-control habitacion" onChange="validarHabitacion()">
-										<option value="0">0</option>
-										<option value="1">1 ($<?php echo number_format($precio=$noches*$habitacion->precio*1/$cambio->valor, 2, ',', ' '); ?>)</option>
-										<option value="2">2 ($<?php echo number_format($precio=$noches*$habitacion->precio*2/$cambio->valor, 2, ',', ' '); ?>)</option>
-										<option value="3">3 ($<?php echo number_format($precio=$noches*$habitacion->precio*3/$cambio->valor, 2, ',', ' '); ?>)</option>
-										<option value="4">4 ($<?php echo number_format($precio=$noches*$habitacion->precio*4/$cambio->valor, 2, ',', ' '); ?>)</option>
+										<?php for ($i=0; $i <= $cantidad; $i++) { ?>
+										<option value="<?php echo $i;?>">
+											<?php echo $i;
+											if($i>0){
+												echo "($ ".number_format($precio=$noches*$habitacion->precio*$i/$cambio->valor, 2, ',', ' ').")";	
+											} 											 
+											?>
+										</option>
+										<?php }?>
 									</select>
 								</div>
 							</div>

@@ -47,7 +47,8 @@ class Habitacion extends CI_Controller {
 			
 			$crud->columns(	'id_habitacion',
 							'habitacion',
-							'id_hotel');
+							'id_hotel', 
+							'id_estado_habitacion');
 			
 			$crud->display_as('id_habitacion','ID')
 				 ->display_as('habitacion','Habitación')
@@ -152,43 +153,54 @@ class Habitacion extends CI_Controller {
 
 			$this->_example_output($output);
 	}
-
+	
 /**********************************************************************************
  **********************************************************************************
  * 
- * 				Alta, baja y modificación de Estados Habitación
+ * 				Alta, baja y modificación de tarifas temporales
  * 
  * ********************************************************************************
  **********************************************************************************/
- 
- 
-	public function estados_habitacion(){
-			$crud = new grocery_CRUD();
 
-			//$crud->set_theme('datatables');
-			$crud->set_table('estados_habitacion');
+
+	public function tarifas_temporales_abm(){
+			$crud = new grocery_CRUD();
 			
-			$crud->columns(	'id_estado_habitacion',
-							'estado_habitacion');
+			$crud->set_table('tarifas_temporales');
 			
-			$crud->display_as('id_estado_habitacion','ID')
-				 ->display_as('estado_habitacion','Estado');
+			$crud->set_relation_n_n('habitaciones', 'tarifa_habitacion', 'habitaciones', 'id_tarifa_temporal', 'id_habitacion', 'habitacion', 'prioridad');
 			
-			$crud->set_subject('estado');
-			$crud->unset_delete();
-			$crud->unset_export();
-			$crud->unset_delete();
-			$crud->unset_export();
-			$crud->unset_add();
-			$crud->unset_read();				
-						
-			$crud->required_fields('estado_habitacion');
+			$crud->columns(	'id_tarifa_temporal',
+							'habitaciones',
+							'tarifa_temporal',
+							'entrada',
+							'salida',
+							'id_tipo_tarifa',
+							'valor');
+							
+			$crud->display_as('id_tarifa_temporal','ID')
+				 ->display_as('habitaciones','Habitaciones')
+				 ->display_as('tarifa_temporal','Tarifa temporal')
+				 ->display_as('entrada','Entrada')
+				 ->display_as('salida','Salida')
+				 ->display_as('id_tipo_tarifa','Tipo')
+				 ->display_as('valir','Valor');
+			
+			$crud->set_subject('tarifa temporal');
+			
+			$crud->set_relation('id_tipo_tarifa','tipos_tarifa','tipo_tarifa');
+			
+			$crud->required_fields('id_tipo_tarifa','entrada','salida', 'tipo', 'valor');
+			
+			$crud->callback_before_insert(array($this, 'insert_tarifas_temporales'));
 			
 			$output = $crud->render();
 
 			$this->_example_output($output);
 	}
-	
+
+
+
 /**********************************************************************************
  **********************************************************************************
  * 
@@ -224,5 +236,103 @@ class Habitacion extends CI_Controller {
 
 			$this->_example_output($output);
 	}
+
+
+
+
+
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de Tipos de tarifa
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+ 
+ 
+	public function tipo_tarifa_abm(){
+			$crud = new grocery_CRUD();
+
+			//$crud->set_theme('datatables');
+			$crud->set_table('tipos_tarifa');
+			
+			$crud->columns(	'id_tipo_tarifa',
+							'tipo_tarifa');
+			
+			$crud->display_as('id_tipo_tarifa','ID')
+				 ->display_as('tipo_tarifa','Estado');
+			
+			$crud->set_subject('tipo');
+			$crud->unset_delete();
+			$crud->unset_export();
+			$crud->unset_delete();
+			$crud->unset_export();
+			$crud->unset_add();
+			$crud->unset_read();				
+						
+			$crud->required_fields('tipo_tarifa');
+			
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}
+
+	
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de Estados Habitación
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+ 
+ 
+	public function estados_habitacion(){
+			$crud = new grocery_CRUD();
+
+			//$crud->set_theme('datatables');
+			$crud->set_table('estados_habitacion');
+			
+			$crud->columns(	'id_estado_habitacion',
+							'estado_habitacion');
+			
+			$crud->display_as('id_estado_habitacion','ID')
+				 ->display_as('estado_habitacion','Estado');
+			
+			$crud->set_subject('estado');
+			$crud->unset_delete();
+			$crud->unset_export();
+			$crud->unset_delete();
+			$crud->unset_export();
+			$crud->unset_add();
+			$crud->unset_read();				
+						
+			$crud->required_fields('estado_habitacion');
+			
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}
+
+	
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Funciones
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+
+	
+	function insert_tarifas_temporales($datos, $id){
+		if($datos['entrada']>$datos['salida']){
+			return false;
+		}else{
+			return true;	
+		}
+	 
+	    
+	}
+	
 
 }
