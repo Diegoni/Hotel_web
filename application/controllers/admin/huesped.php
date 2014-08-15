@@ -47,6 +47,7 @@ class Huesped extends CI_Controller {
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');
+			$crud->where('huespedes.delete', 0);
 			$crud->set_table('huespedes');
 			
 			$crud->columns(	'id_huesped',
@@ -70,11 +71,11 @@ class Huesped extends CI_Controller {
 			$crud->set_subject('huesped');
 			
 			$crud->set_relation('id_estado_huesped','estados_huesped','estado_huesped');
-			$crud->set_relation('id_tipo_huesped','tipos_huesped','tipo_huesped');
+			$crud->set_relation('id_tipo_huesped','tipos_huesped','tipo_huesped', 'delete = 0');
 			
 			$crud->add_fields('nombre','apellido','dni', 'id_tipo_huesped', 'telefono', 'email');
-			$crud->edit_fields('nombre','apellido','dni', 'id_tipo_huesped', 'fecha_alta', 'fecha_modificacion');
-						
+			$crud->edit_fields('nombre','apellido','dni', 'id_tipo_huesped');
+									
 			$crud->required_fields(	'nombre',
 									'apellido', 
 									'dni');
@@ -84,9 +85,14 @@ class Huesped extends CI_Controller {
 			$crud->add_action('Dirección', '', '','icon-homealt', array($this,'buscar_direcciones'));
 			$crud->add_action('Tarjetas', '', '','icon-creditcard', array($this,'buscar_tarjetas'));
 			
-			$crud->callback_insert(array($this,'insert_huesped'));
-			$crud->callback_before_update(array($this,'update_huesped'));
+			$_COOKIE['tabla']='huespedes';
+			$_COOKIE['id']='id_huesped';	
 			
+			$crud->callback_after_insert(array($this, 'insert_log'));
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));			
+			$crud->callback_insert(array($this,'insert_huesped'));
+						
 			$crud->unset_read();
 	
 			$output = $crud->render();
@@ -266,7 +272,7 @@ class Huesped extends CI_Controller {
 			$crud->set_subject('tarjeta');
 			
 			$crud->set_relation('id_huesped','huespedes','{apellido} {nombre}');
-			$crud->set_relation('id_tipo_tarjeta','tipos_tarjeta','tipo_tarjeta');
+			$crud->set_relation('id_tipo_tarjeta','tipos_tarjeta','tipo_tarjeta', 'delete = 0');
 						
 			$crud->required_fields(	'id_huesped',
 									'tarjeta',
@@ -292,18 +298,22 @@ class Huesped extends CI_Controller {
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');
+			$crud->where('delete', 0);
 			$crud->set_table('tipos_tarjeta');
 			
 			$crud->columns(	'id_tipo_tarjeta',
 							'tipo_tarjeta');
 			
-			$crud->display_as('id_tipos_tarjeta','ID')
-				 ->display_as('tipos_tarjeta','Tipo');
+			$crud->display_as('id_tipo_tarjeta','ID')
+				 ->display_as('tipo_tarjeta','Tipo');
 			
 			$crud->set_subject('tipo');
 			
-						
+			$crud->fields('tipo_tarjeta');
+									
 			$crud->required_fields('tipo_tarjeta');
+			
+			$crud->callback_delete(array($this,'delete_log'));
 			
 			$output = $crud->render();
 
@@ -323,6 +333,7 @@ class Huesped extends CI_Controller {
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');
+			$crud->where('delete', 0);
 			$crud->set_table('tipos_huesped');
 			
 			$crud->columns(	'id_tipo_huesped',
@@ -332,8 +343,12 @@ class Huesped extends CI_Controller {
 				 ->display_as('tipo_huesped','Tipo');
 			
 			$crud->set_subject('tipo');
+			
+			$crud->fields('tipo_huesped');
 						
 			$crud->required_fields('tipo_huesped');
+			
+			$crud->callback_delete(array($this,'delete_log'));
 			
 			$output = $crud->render();
 
@@ -359,7 +374,7 @@ class Huesped extends CI_Controller {
 			$crud->columns(	'id_estado_huesped',
 							'estado_huesped');
 			
-			$crud->display_as('id_estados_huesped','ID')
+			$crud->display_as('id_estado_huesped','ID')
 				 ->display_as('estado_huesped','Estado');
 			
 			$crud->set_subject('estado');
@@ -367,8 +382,7 @@ class Huesped extends CI_Controller {
 			$crud->unset_export();
 			$crud->unset_add();
 			$crud->unset_read();
-			
-						
+									
 			$crud->required_fields('estado_huesped');
 			
 			$output = $crud->render();
@@ -387,7 +401,6 @@ class Huesped extends CI_Controller {
 
 
 	function insert_huesped($datos){
-		$session_data = $this->session->userdata('logged_in');
 		$fecha= date('Y-m-d H:i:s');
 		
 	    $huesped = array(
@@ -428,20 +441,6 @@ class Huesped extends CI_Controller {
 	
 
 
-	function update_huesped($datos, $id){
-		$session_data = $this->session->userdata('logged_in');
-		
-		$update = array(
-        	"id_huesped" => $id,
-        	"fecha_modificacion" => date('Y-m-d H:i:s'),
-        	"id_usuario_modificacion" => $session_data['id_usuario']
-    	);
-
-		$this->db->update('huespedes', $update, array('id_huesped' => $id));
-	}
-	
-	
-	
 	function buscar_telefonos($id){
 		$query = $this->db->query("SELECT * FROM telefonos_huesped WHERE id_huesped='$id' ");
 		
@@ -487,7 +486,76 @@ class Huesped extends CI_Controller {
 			return site_url('admin/huesped/tarjetas_huesped/add').'/'.$id;;
 		}
 	}
+	
+	
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Funciones logs
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+
+	
+	function insert_control_fechas($datos, $id){
+		if($datos['entrada']>$datos['salida']){
+			return false;
+		}else{
+			return true;	
+		} 
+	}
+	
+
+	function insert_log($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
 		
+	    $registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'insert',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+	 
+	    $this->db->insert('logs_huespedes',$registro);
+	 
+	    return true;
+	}
+	
+	
+	function update_log($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
+    	$registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'update',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+ 
+    	$this->db->insert('logs_huespedes',$registro);
+ 
+    	return true;
+	}
+	
+	
+	public function delete_log($id){
+    	$session_data = $this->session->userdata('logged_in');
+		
+		$registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'delete',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+ 
+    	$this->db->insert('logs_huespedes',$registro);
+			
+    	return $this->db->update($_COOKIE['tabla'], array('delete' => 1), array($_COOKIE['id'] => $id));
+	}
+
 
 
 }

@@ -48,6 +48,7 @@ class Mensaje extends CI_Controller {
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');
+			$crud->where('mensajes.delete', 0);
 			$crud->set_table('mensajes');
 			
 			$crud->columns(	'id_mensaje',
@@ -62,7 +63,9 @@ class Mensaje extends CI_Controller {
 				 ->display_as('emisor','De')
 				 ->display_as('fecha_envio','Fecha')
 				 ->display_as('id_tipo_mensaje','Tipo')
-				 ->display_as('id_estado_mensaje','Mensaje')				 ;
+				 ->display_as('id_estado_mensaje','Mensaje');
+				 
+			$crud->fields('titulo', 'mensaje', 'emisor', 'fecha_envio', 'id_tipo_mensaje', 'id_estado_mensaje');
 			
 			$crud->set_subject('mensaje');
 			
@@ -77,6 +80,12 @@ class Mensaje extends CI_Controller {
 					
 			$crud->unset_add();
 			//$crud->required_fields('titulo', 'mensaje');
+			
+			$_COOKIE['tabla']='mensajes';
+			$_COOKIE['id']='id_mensaje';	
+			
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));	
 			
 			$output = $crud->render();
 
@@ -149,6 +158,11 @@ class Mensaje extends CI_Controller {
 						
 			$crud->required_fields('estado_mensaje');
 			
+			$_COOKIE['tabla']='estados_mensaje';
+			$_COOKIE['id']='id_estado_mensaje';	
+						
+			$crud->callback_after_update(array($this, 'update_log'));
+			
 			$output = $crud->render();
 
 			$this->_example_output($output);
@@ -182,13 +196,88 @@ class Mensaje extends CI_Controller {
 					//echo "cero";
 				}
 				
- 
+ 				
 				$this->db->update('mensajes', $mensaje, array('id_mensaje' => $id));
+				$_COOKIE['tabla']='mensajes';
+				$_COOKIE['id']='id_mensaje';
+				$this->update_log($mensaje, $id);
 			}
 				
 		}
 		redirect('admin/mensaje/mensajes_abm/success', 'refresh');		
 	}
+	
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Funciones logs
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+
+	
+	function insert_control_fechas($datos, $id){
+		if($datos['entrada']>$datos['salida']){
+			return false;
+		}else{
+			return true;	
+		} 
+	}
+	
+
+	function insert_log($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
+	    $registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'insert',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+	 
+	    $this->db->insert('logs_mensajes',$registro);
+	 
+	    return true;
+	}
+	
+	
+	function update_log($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
+    	$registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'update',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+ 
+    	$this->db->insert('logs_mensajes',$registro);
+ 
+    	return true;
+	}
+	
+	
+	public function delete_log($id){
+    	$session_data = $this->session->userdata('logged_in');
+		
+		$registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'delete',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+ 
+    	$this->db->insert('logs_mensajes',$registro);
+			
+    	return $this->db->update($_COOKIE['tabla'], array('delete' => 1), array($_COOKIE['id'] => $id));
+	}
+	
+
+
+
 	
 
 

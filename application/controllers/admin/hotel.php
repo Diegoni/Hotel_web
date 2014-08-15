@@ -67,9 +67,16 @@ class Hotel extends CI_Controller {
 			$crud->add_action('Teléfono', '', '','fa fa-phone', array($this,'buscar_telefonos'));
 			$crud->add_action('Email', '', '','icon-emailalt', array($this,'buscar_emails'));
 			$crud->add_action('Dirección', '', '','icon-homealt', array($this,'buscar_direcciones'));
-			$crud->add_action('Configuración', '', '','icon-mootools', array($this,'buscar_config'));
+			//$crud->add_action('Configuración', '', '','icon-mootools', array($this,'buscar_config'));
 			
 			$crud->set_field_upload('logo_url','assets/uploads/logos');
+			
+			$_COOKIE['tabla']='hoteles';
+			$_COOKIE['id']='id_hotel';	
+			
+			$crud->callback_after_insert(array($this, 'insert_log'));
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));		
 			
 			$output = $crud->render();
 
@@ -344,6 +351,76 @@ class Hotel extends CI_Controller {
 			return site_url('admin/hotel/config/add').'/'.$id;;
 		}
 	}
+
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Funciones logs
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+
+	
+	function insert_control_fechas($datos, $id){
+		if($datos['entrada']>$datos['salida']){
+			return false;
+		}else{
+			return true;	
+		} 
+	}
+	
+
+	function insert_log($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
+	    $registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'insert',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+	 
+	    $this->db->insert('logs_hoteles',$registro);
+	 
+	    return true;
+	}
+	
+	
+	function update_log($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
+    	$registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'update',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+ 
+    	$this->db->insert('logs_hoteles',$registro);
+ 
+    	return true;
+	}
+	
+	
+	public function delete_log($id){
+    	$session_data = $this->session->userdata('logged_in');
+		
+		$registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'delete',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+ 
+    	$this->db->insert('logs_hoteles',$registro);
+			
+    	return $this->db->update($_COOKIE['tabla'], array('delete' => 1), array($_COOKIE['id'] => $id));
+	}
+	
+
 
 
 }

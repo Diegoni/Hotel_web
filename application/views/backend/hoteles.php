@@ -11,8 +11,10 @@
 					<li><a  href='<?php echo site_url('admin/hotel/telefonos_hotel')?>'>Teléfonos</a></li>
 	            	<li><a  href='<?php echo site_url('admin/hotel/emails_hotel')?>'>Emails</a></li>
 	            	<li><a  href='<?php echo site_url('admin/hotel/direcciones_hotel')?>'>Direcciones</a></li>
+	            	<!--
 	            	<li><a  href='<?php echo site_url('admin/hotel/config')?>'>Configuración</a></li>
 	            	<li><a  href='<?php echo site_url('admin/hotel/detalle_config')?>'>Configuración avanzada</a></li>
+	            	-->
             	</ul>
   			</div>
 		</div>

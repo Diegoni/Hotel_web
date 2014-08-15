@@ -72,6 +72,7 @@
             	<li><a  href='<?php echo site_url('admin/habitacion/habitaciones_abm')?>'>Habitaciones</a></li>
 				<li><a  href='<?php echo site_url('admin/habitacion/tarifas_abm')?>'>Tarifas</a></li>
 				<li><a  href='<?php echo site_url('admin/habitacion/tarifas_temporales_abm')?>'>Tarifas temporales</a></li>
+				<li><a  href='<?php echo site_url('admin/habitacion/monedas_abm')?>'>Monedas</a></li>
 				<li><a  href='<?php echo site_url('admin/habitacion/servicios_abm')?>'>Servicios</a></li>
 				<li><a  href='<?php echo site_url('admin/habitacion/tipos_habitacion')?>'>Tipos de habitación</a></li>
 				<li><a  href='<?php echo site_url('admin/habitacion/tipo_tarifa_abm')?>'>Tipos de tarifa</a></li>
@@ -88,9 +89,11 @@
 				<li><a  href='<?php echo site_url('admin/hotel/telefonos_hotel')?>'>Teléfonos</a></li>
             	<li><a  href='<?php echo site_url('admin/hotel/emails_hotel')?>'>Emails</a></li>
             	<li><a  href='<?php echo site_url('admin/hotel/direcciones_hotel')?>'>Direcciones</a></li>
+				<!--
 				<li class="divider"></li>
             	<li><a  href='<?php echo site_url('admin/hotel/config')?>'>Configuración</a></li>
             	<li><a  href='<?php echo site_url('admin/hotel/detalle_config')?>'>Configuración avanzada</a></li>
+            	-->
             </ul>
         </li>
         
@@ -107,7 +110,9 @@
 				<li><a  href='#' data-toggle="modal" data-target="#modal_mensajes">Nuevos					
 				<?php echo "<span class='badge'>".$cant_mensajes."</span></a></li>"; } ?>
             	<li><a  href='<?php echo site_url('admin/mensaje/mensajes_abm')?>'>Mensajes</a></li>
+				<!--
 				<li><a  href='<?php echo site_url('admin/mensaje/tipos_mensaje')?>'>Tipos de mensaje</a></li>
+				-->
 				<li><a  href='<?php echo site_url('admin/mensaje/estados_mensaje')?>'>Estados mensaje</a></li>
           	</ul>
         </li>
@@ -149,12 +154,9 @@
             	<li><a  href='<?php echo site_url('admin/otro/provincias_abm')?>'>Provincias</a></li>
             	<li><a  href='<?php echo site_url('admin/otro/paises_abm')?>'>Países</a></li>
             	<li class="divider"></li>
-            	<li><a  href='<?php echo site_url('admin/otro/monedas_abm')?>'>Monedas</a></li>
-				<li class="divider"></li>
 				<li><a  href='<?php echo site_url('admin/otro/tipos_abm')?>'>Tipos</a></li>
 				<li class="divider"></li>
 				<li><a  href='<?php echo site_url('galeria/imagenes_carrusel')?>'>Imágenes carrusel</a></li>
-				<li><a  href='<?php echo site_url('admin/otro/ubicacion_abm')?>'>Ubicaciones de la página</a></li>
 				<li><a  href='<?php echo site_url('admin/otro/terminos_abm')?>'>Términos y condiciones</a></li>
 				<li><a  href='<?php echo site_url('admin/otro/ayudas_abm')?>'>Ayudas de la página</a></li>
           	</ul>

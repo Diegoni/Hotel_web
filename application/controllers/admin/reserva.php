@@ -49,9 +49,10 @@ class Reserva extends CI_Controller {
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');
+			$crud->where('reservas.delete', 0);
 			$crud->set_table('reservas');
 			
-			$crud->set_relation_n_n('habitaciones', 'reserva_habitacion', 'habitaciones', 'id_reserva', 'id_habitacion', 'habitacion','prioridad');
+			$crud->set_relation_n_n('habitaciones', 'reserva_habitacion', 'habitaciones', 'id_reserva', 'id_habitacion', 'habitacion','prioridad',  'delete = 0');
 			
 			$crud->columns(	'id_reserva',
 							'habitaciones',
@@ -86,11 +87,16 @@ class Reserva extends CI_Controller {
 			//$crud->set_relation('id_habitacion','habitaciones','habitacion');
 			$crud->set_relation('id_huesped','huespedes','{apellido} {nombre}');
 			$crud->set_relation('id_nota','notas','nota');
-			$crud->set_relation('id_estado_reserva','estados_reserva','estado_reserva');
-					
-						$crud->required_fields('id_habitacion','id_huesped','entrada', 'salida', 'adultos', 'menores');
+			$crud->set_relation('id_estado_reserva','estados_reserva','estado_reserva');		
+						
+			$crud->required_fields('id_habitacion','id_huesped','entrada', 'salida', 'adultos', 'menores');
 			
-			$crud->callback_after_update(array($this, 'update_reserva'));
+			$_COOKIE['tabla']='reservas';
+			$_COOKIE['id']='id_reserva';	
+			
+			$crud->callback_after_insert(array($this, 'insert_log'));
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));	
 			
 			$output = $crud->render();
 
@@ -167,9 +173,11 @@ class Reserva extends CI_Controller {
 	public function disponibilidades_abm(){
 			$crud = new grocery_CRUD();
 			
+			$crud->where('disponibilidades.delete', 0);
+			
 			$crud->set_table('disponibilidades');
 			
-			$crud->set_relation_n_n('habitaciones', 'disponibilidad_habitacion', 'habitaciones', 'id_disponibilidad', 'id_habitacion', 'habitacion', 'prioridad');
+			$crud->set_relation_n_n('habitaciones', 'disponibilidad_habitacion', 'habitaciones', 'id_disponibilidad', 'id_habitacion', 'habitacion', 'prioridad', 'delete = 0');
 			
 			$crud->columns(	'id_disponibilidad',
 							'habitaciones',
@@ -191,8 +199,12 @@ class Reserva extends CI_Controller {
 			$crud->field_type('fecha_alta', 'readonly');
 			$crud->field_type('fecha_modificacion', 'readonly');
 			
-			$crud->callback_after_insert(array($this, 'insert_disponibilidad'));
-			$crud->callback_after_update(array($this, 'update_disponibilidad'));
+			$_COOKIE['tabla']='disponibilidades';
+			$_COOKIE['id']='id_disponibilidad';	
+			
+			$crud->callback_after_insert(array($this, 'insert_log'));
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));	
 			
 			$output = $crud->render();
 
@@ -232,7 +244,13 @@ class Reserva extends CI_Controller {
 			$crud->unset_delete();
 			$crud->unset_export();
 			$crud->unset_add();
-			$crud->unset_read();			
+			$crud->unset_read();
+			
+			$_COOKIE['tabla']='estados_reserva';
+			$_COOKIE['id']='id_estado_reserva';	
+			
+			$crud->callback_after_update(array($this, 'update_log'));
+							
 						
 			$crud->required_fields('estado_reserva');
 			
@@ -246,56 +264,71 @@ class Reserva extends CI_Controller {
 /**********************************************************************************
  **********************************************************************************
  * 
- * 				Funciones
+ * 				Funciones logs
  * 
  * ********************************************************************************
  **********************************************************************************/
-	
-	function update_reserva($datos, $id){
-		$session_data = $this->session->userdata('logged_in');
-		
-    	$registro = array(
-        	"id_reserva" => $id,
-        	"fecha_modificacion" => date('Y-m-d H:i:s'),
-        	"id_usuario_modificacion" => $session_data['id_usuario']
-    	);
- 
-    	$this->db->update('reservas', $registro, array('id_reserva' => $id));
- 
-    	return true;
-	}
 
-	function update_disponibilidad($datos, $id){
-    	$session_data = $this->session->userdata('logged_in');	
-			
-    	$registro = array(
-        	"id_disponibilidad" => $id,
-        	"fecha_modificacion" => date('Y-m-d H:i:s'),
-        	"id_usuario_modificacion" => $session_data['id_usuario']
-    	);
- 
-    	$this->db->update('disponibilidades', $registro, array('id_disponibilidad' => $id));
- 
-    	return true;
+	
+	function insert_control_fechas($datos, $id){
+		if($datos['entrada']>$datos['salida']){
+			return false;
+		}else{
+			return true;	
+		} 
 	}
 	
-	function insert_disponibilidad($datos, $id){
+
+	function insert_log($datos, $id){
 		$session_data = $this->session->userdata('logged_in');
 		
 	    $registro = array(
-	        "id_disponibilidad" => $id,
-	        "fecha_alta" => date('Y-m-d H:i:s'),
-	        "fecha_modificacion" => date('Y-m-d H:i:s'),
-	        "id_usuario_alta" => $session_data['id_usuario'],
-	        "id_usuario_modificacion" => $session_data['id_usuario']
-	        
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'insert',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
 	    );
 	 
-	    $this->db->update('disponibilidades', $registro, array('id_disponibilidad' => $id));
+	    $this->db->insert('logs_reservas',$registro);
 	 
 	    return true;
 	}
 	
+	
+	function update_log($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
+    	$registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'update',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+ 
+    	$this->db->insert('logs_reservas',$registro);
+ 
+    	return true;
+	}
+	
+	
+	public function delete_log($id){
+    	$session_data = $this->session->userdata('logged_in');
+		
+		$registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'delete',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+ 
+    	$this->db->insert('logs_reservas',$registro);
+			
+    	return $this->db->update($_COOKIE['tabla'], array('delete' => 1), array($_COOKIE['id'] => $id));
+	}
+
 /**********************************************************************************
  **********************************************************************************
  * 
@@ -323,6 +356,10 @@ class Reserva extends CI_Controller {
 				
  
 				$this->db->update('reservas', $reserva, array('id_reserva' => $id));
+				$_COOKIE['tabla']='reservas';
+				$_COOKIE['id']='id_reserva';
+				
+				$this->update_log($reserva, $id);
 			}
 				
 		}

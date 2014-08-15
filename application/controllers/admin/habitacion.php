@@ -41,9 +41,10 @@ class Habitacion extends CI_Controller {
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');
+			$crud->where('habitaciones.delete', 0);
 			$crud->set_table('habitaciones');
 			
-			$crud->set_relation_n_n('servicios', 'habitacion_servicio', 'servicios', 'id_habitacion', 'id_servicio', 'servicio','prioridad');
+			$crud->set_relation_n_n('servicios', 'habitacion_servicio', 'servicios', 'id_habitacion', 'id_servicio', 'servicio','prioridad',  'delete = 0');
 			
 			$crud->columns(	'id_habitacion',
 							'habitacion',
@@ -59,11 +60,26 @@ class Habitacion extends CI_Controller {
 				 ->display_as('id_tarifa','Tarifa')
 				 ->display_as('id_estado_habitacion','Estado');
 			
+			$crud->fields(	'habitacion', 
+							'descripcion',
+							'adultos',
+							'menores',
+							'entrada',
+							'salida',
+							'cantidad',
+							'id_estado_habitacion',
+							'id_hotel',
+							'id_tipo_habitacion',
+							'id_tarifa',
+							'servicios');
+				 
+			$crud->field_type('delete', 'hidden');
+			
 			$crud->set_subject('habitación');
 			
-			$crud->set_relation('id_tipo_habitacion','tipos_habitacion','tipo_habitacion');
-			$crud->set_relation('id_hotel','hoteles','hotel');
-			$crud->set_relation('id_tarifa','tarifas','tarifa');
+			$crud->set_relation('id_tipo_habitacion','tipos_habitacion','tipo_habitacion', 'delete = 0');
+			$crud->set_relation('id_hotel','hoteles','hotel', 'delete = 0');
+			$crud->set_relation('id_tarifa','tarifas','{tarifa} {precio}', 'delete = 0');
 			$crud->set_relation('id_estado_habitacion','estados_habitacion','estado_habitacion');
 					
 			$crud->required_fields(	'habitacion',
@@ -73,7 +89,15 @@ class Habitacion extends CI_Controller {
 									'id_hotel',
 									'id_tarifa');
 			
-			$crud->add_action('Galería', '', '','icon-images-gallery', array($this,'buscar_galeria'));
+			$crud->add_action('Galería', '', '','icon-images-gallery', array($this, 'buscar_galeria'));
+			
+			$_COOKIE['tabla']='habitaciones';
+			$_COOKIE['id']='id_habitacion';
+			
+			$crud->callback_after_insert(array($this, 'insert_log'));
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));
+			$crud->callback_before_insert(array($this, 'insert_control_fechas'));
 			
 			$output = $crud->render();
 
@@ -97,6 +121,7 @@ class Habitacion extends CI_Controller {
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');
+			$crud->where('delete', 0);
 			$crud->set_table('tipos_habitacion');
 			
 			$crud->columns(	'id_tipo_habitacion',
@@ -106,8 +131,17 @@ class Habitacion extends CI_Controller {
 				 ->display_as('tipo_habitacion','Tipo habitación');
 			
 			$crud->set_subject('tipo habitación');
+			
+			$crud->fields('tipo_habitacion');
 							
 			$crud->required_fields(	'tipo_habitacion');
+			
+			$_COOKIE['tabla']='tipos_habitacion';
+			$_COOKIE['id']='id_tipo_habitacion';
+			
+			$crud->callback_after_insert(array($this, 'insert_log'));
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));
 			
 			$output = $crud->render();
 
@@ -127,6 +161,7 @@ class Habitacion extends CI_Controller {
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');
+			$crud->where('tarifas.delete', 0);
 			$crud->set_table('tarifas');
 			
 			$crud->columns(	'id_tarifa',
@@ -145,7 +180,7 @@ class Habitacion extends CI_Controller {
 			
 			$crud->set_subject('tarifa');
 			
-			$crud->set_relation('id_moneda','monedas','moneda');
+			$crud->set_relation('id_moneda','monedas','moneda', 'delete = 0');
 								
 			$crud->required_fields(	'tarifa',
 									'adultos', 
@@ -153,7 +188,12 @@ class Habitacion extends CI_Controller {
 									'precio',
 									'id_moneda');
 									
-			$crud->callback_after_update(array($this, 'update_tarifas'));
+			$_COOKIE['tabla']='tarifas';
+			$_COOKIE['id']='id_tarifa';
+			
+			$crud->callback_after_insert(array($this, 'insert_log'));									
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));
 
 			$output = $crud->render();
 
@@ -172,9 +212,10 @@ class Habitacion extends CI_Controller {
 	public function tarifas_temporales_abm(){
 			$crud = new grocery_CRUD();
 			
+			$crud->where('tarifas_temporales.delete', 0);
 			$crud->set_table('tarifas_temporales');
 			
-			$crud->set_relation_n_n('habitaciones', 'tarifa_habitacion', 'habitaciones', 'id_tarifa_temporal', 'id_habitacion', 'habitacion', 'prioridad');
+			$crud->set_relation_n_n('habitaciones', 'tarifa_habitacion', 'habitaciones', 'id_tarifa_temporal', 'id_habitacion', 'habitacion', 'prioridad',  'delete = 0');
 			
 			$crud->columns(	'id_tarifa_temporal',
 							'habitaciones',
@@ -197,22 +238,74 @@ class Habitacion extends CI_Controller {
 			
 			$crud->fields('tarifa_temporal','entrada','salida','id_tipo_tarifa', 'valor', 'habitaciones');
 			
-			$crud->set_relation('id_tipo_tarifa','tipos_tarifa','tipo_tarifa');
+			$crud->set_relation('id_tipo_tarifa','tipos_tarifa','tipo_tarifa', 'delete = 0');
 			
 			$crud->required_fields('id_tipo_tarifa','entrada','salida', 'tipo', 'valor');
 			
 			$crud->field_type('fecha_alta', 'readonly');
 			$crud->field_type('fecha_modificacion', 'readonly');
+			
+			$_COOKIE['tabla']='tarifas_temporales';
+			$_COOKIE['id']='id_tarifa_temporal';
 						
-			$crud->callback_after_insert(array($this, 'insert_after_tarifas_temporales'));
-			$crud->callback_after_update(array($this, 'update_tarifas_temporales'));
-			$crud->callback_before_insert(array($this, 'insert_before_tarifas_temporales'));
+			$crud->callback_after_insert(array($this, 'insert_log'));
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));
+			$crud->callback_before_insert(array($this, 'insert_control_fechas'));
 			
 			$output = $crud->render();
 
 			$this->_example_output($output);
 	}
 
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de monedas
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+ 
+ 
+	public function monedas_abm(){
+			$crud = new grocery_CRUD();
+
+			//$crud->set_theme('datatables');
+			$crud->where('monedas.delete', 0);
+			$crud->set_table('monedas');
+			
+			$crud->columns(	'id_moneda',
+							'moneda',
+							'valor',
+							'id_pais');
+			
+			$crud->display_as('id_moneda','ID')
+				 ->display_as('moneda','Moneda')
+				 ->display_as('id_pais','País')
+				 ->display_as('simbolo','Símbolo')
+				 ->display_as('imagen','Imágen');
+			
+			$crud->fields('moneda', 'abreviatura', 'simbolo', 'valor', 'imagen', 'id_pais');
+			
+			$crud->set_subject('moneda');
+			
+			$crud->set_relation('id_pais','paises','pais');
+						
+			$crud->required_fields(	'moneda');
+			
+			$crud->set_field_upload('imagen','assets/uploads/monedas');
+			
+			$_COOKIE['tabla']='monedas';
+			$_COOKIE['id']='id_moneda';
+						
+			$crud->callback_after_insert(array($this, 'insert_log'));
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));
+						
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}
 
 
 /**********************************************************************************
@@ -227,24 +320,27 @@ class Habitacion extends CI_Controller {
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');
+			$crud->where('delete', 0);
 			$crud->set_table('servicios');
 			
 			$crud->columns(	'id_servicio',
-							'servicio',
-							'id_estado_servicio');
+							'servicio');
 			
 			$crud->display_as('id_servicio','ID')
-				 ->display_as('servicio','Servicio')
-				 ->display_as('id_estado_servicio','Estado');
+				 ->display_as('servicio','Servicio');
 			
 			$crud->set_subject('servicio');
 			
-			$crud->set_relation('id_estado_servicio','estados_servicio','estado_servicio');
-			
-			$crud->add_fields('servicio');
+			$crud->fields('servicio');
 								
-			$crud->required_fields(	'servicio',
-									'id_estado_servicio');
+			$crud->required_fields(	'servicio');
+			
+			$_COOKIE['tabla']='servicios';
+			$_COOKIE['id']='id_servicio';
+			
+			$crud->callback_after_insert(array($this, 'insert_log'));
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));
 
 			$output = $crud->render();
 
@@ -282,7 +378,14 @@ class Habitacion extends CI_Controller {
 			$crud->unset_delete();
 			$crud->unset_export();
 			$crud->unset_add();
-			$crud->unset_read();				
+			$crud->unset_read();	
+			
+			$_COOKIE['tabla']='tipos_tarifa';
+			$_COOKIE['id']='id_tipo_tarifa';	
+			
+			$crud->callback_after_insert(array($this, 'insert_log'));
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));		
 						
 			$crud->required_fields('tipo_tarifa');
 			
@@ -321,8 +424,15 @@ class Habitacion extends CI_Controller {
 			$crud->unset_add();
 			$crud->unset_read();				
 						
-			$crud->required_fields('estado_habitacion');
+			$_COOKIE['tabla']='estados_habitacion';
+			$_COOKIE['id']='id_estado_habitacion';	
 			
+			$crud->callback_after_insert(array($this, 'insert_log'));
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));		
+			
+			$crud->required_fields('estado_habitacion');
+						
 			$output = $crud->render();
 
 			$this->_example_output($output);
@@ -337,39 +447,8 @@ class Habitacion extends CI_Controller {
  * ********************************************************************************
  **********************************************************************************/
 
-	function insert_after_tarifas_temporales($datos, $id){
-		$session_data = $this->session->userdata('logged_in');
-		
-	    $registro = array(
-	        "id_tarifa_temporal" => $id,
-	        "fecha_alta" => date('Y-m-d H:i:s'),
-	        "fecha_modificacion" => date('Y-m-d H:i:s'),
-	        "id_usuario_alta" => $session_data['id_usuario'],
-	        "id_usuario_modificacion" => $session_data['id_usuario']
-	    );
-	 
-	    $this->db->update('tarifas_temporales', $registro, array('id_tarifa_temporal' => $id));
-	 
-	    return true;
-	}
 	
-	
-	function update_tarifas_temporales($datos, $id){
-		$session_data = $this->session->userdata('logged_in');
-		
-    	$registro = array(
-        	"id_tarifa_temporal" => $id,
-        	"fecha_modificacion" => date('Y-m-d H:i:s'),
-        	"id_usuario_modificacion" => $session_data['id_usuario']
-    	);
- 
-    	$this->db->update('tarifas_temporales', $registro, array('id_tarifa_temporal' => $id));
- 
-    	return true;
-	}
-	
-	
-	function insert_before_tarifas_temporales($datos, $id){
+	function insert_control_fechas($datos, $id){
 		if($datos['entrada']>$datos['salida']){
 			return false;
 		}else{
@@ -377,19 +456,56 @@ class Habitacion extends CI_Controller {
 		} 
 	}
 	
+
+	function insert_log($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
+	    $registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'insert',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+	 
+	    $this->db->insert('logs_habitaciones',$registro);
+	 
+	    return true;
+	}
 	
-	function update_tarifas($datos, $id){
+	
+	function update_log($datos, $id){
 		$session_data = $this->session->userdata('logged_in');
 		
     	$registro = array(
-        	"id_tarifa" => $id,
-        	"fecha_modificacion" => date('Y-m-d H:i:s'),
-        	"id_usuario_modificacion" => $session_data['id_usuario']
-    	);
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'update',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
  
-    	$this->db->update('tarifas', $registro, array('id_tarifa' => $id));
+    	$this->db->insert('logs_habitaciones',$registro);
  
     	return true;
 	}
+	
+	
+	public function delete_log($id){
+    	$session_data = $this->session->userdata('logged_in');
+		
+		$registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'delete',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+ 
+    	$this->db->insert('logs_habitaciones',$registro);
+			
+    	return $this->db->update($_COOKIE['tabla'], array('delete' => 1), array($_COOKIE['id'] => $id));
+	}
+	
 
 }

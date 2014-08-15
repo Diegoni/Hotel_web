@@ -141,42 +141,6 @@ class Otro extends CI_Controller {
 			$this->_example_output($output);
 	}
 	
-/**********************************************************************************
- **********************************************************************************
- * 
- * 				Alta, baja y modificación de monedas
- * 
- * ********************************************************************************
- **********************************************************************************/
- 
- 
-	public function monedas_abm(){
-			$crud = new grocery_CRUD();
-
-			//$crud->set_theme('datatables');
-			$crud->set_table('monedas');
-			
-			$crud->columns(	'id_moneda',
-							'moneda',
-							'valor',
-							'id_pais');
-			
-			$crud->display_as('id_moneda','ID')
-				 ->display_as('moneda','Moneda')
-				 ->display_as('id_pais','País');
-			
-			$crud->set_subject('moneda');
-			
-			$crud->set_relation('id_pais','paises','pais');
-						
-			$crud->required_fields(	'moneda');
-			
-			$crud->set_field_upload('imagen','assets/uploads/monedas');
-			
-			$output = $crud->render();
-
-			$this->_example_output($output);
-	}
 	
 /**********************************************************************************
  **********************************************************************************
@@ -209,36 +173,6 @@ class Otro extends CI_Controller {
 	}
 	
 	
-/**********************************************************************************
- **********************************************************************************
- * 
- * 				Alta, baja y modificación de ubicación
- * 
- * ********************************************************************************
- **********************************************************************************/
- 
- 
-	public function ubicacion_abm(){
-			$crud = new grocery_CRUD();
-
-			//$crud->set_theme('datatables');
-			$crud->set_table('ubicacion');
-			
-			$crud->columns(	'id_ubicacion',
-							'ubicacion');
-			
-			$crud->display_as('id_ubicacion','ID')
-				 ->display_as('ubicacion','Ubicación');
-			
-			$crud->set_subject('ubicación');
-						
-			$crud->required_fields('ubicacion');
-			
-			$output = $crud->render();
-
-			$this->_example_output($output);
-	}
-
 
 /**********************************************************************************
  **********************************************************************************
@@ -270,6 +204,12 @@ class Otro extends CI_Controller {
 			$crud->unset_read();
 						
 			$crud->required_fields(	'termino');
+			
+			$_COOKIE['tabla']='terminos';
+			$_COOKIE['id']='id_termino';	
+			
+			$crud->callback_after_update(array($this, 'update_log'));
+			
 			
 			$output = $crud->render();
 
@@ -309,8 +249,84 @@ class Otro extends CI_Controller {
 			$crud->unset_delete();
 			$crud->unset_add();
 			
+			$_COOKIE['tabla']='ayudas';
+			$_COOKIE['id']='id_ayuda';	
+						
+			$crud->callback_after_update(array($this, 'update_log'));
+			
+			
 			$output = $crud->render();
 
 			$this->_example_output($output);
-	}	
+	}
+	
+
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Funciones logs
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+
+	
+	function insert_control_fechas($datos, $id){
+		if($datos['entrada']>$datos['salida']){
+			return false;
+		}else{
+			return true;	
+		} 
+	}
+	
+
+	function insert_log($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
+	    $registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'insert',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+	 
+	    $this->db->insert('logs_otros',$registro);
+	 
+	    return true;
+	}
+	
+	
+	function update_log($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
+    	$registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'update',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+ 
+    	$this->db->insert('logs_otros',$registro);
+ 
+    	return true;
+	}
+	
+	
+	public function delete_log($id){
+    	$session_data = $this->session->userdata('logged_in');
+		
+		$registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'delete',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+ 
+    	$this->db->insert('logs_otros',$registro);
+			
+    	return $this->db->update($_COOKIE['tabla'], array('delete' => 1), array($_COOKIE['id'] => $id));
+	}
+	
 }

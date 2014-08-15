@@ -48,6 +48,7 @@ class Usuario extends CI_Controller {
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');
+			$crud->where('usuarios.delete', 0);
 			$crud->set_table('usuarios');
 			
 			$crud->columns(	'id_usuario',
@@ -55,38 +56,44 @@ class Usuario extends CI_Controller {
 							'id_acceso');
 							
 			$crud->field_type('pass', 'password');
-			$crud->field_type('fecha_alta', 'readonly');
-			$crud->field_type('fecha_modificacion', 'readonly');
-			
+			$crud->field_type('pass2', 'password');
+						
 			$crud->display_as('id_usuario','ID')
-				 ->display_as('id_hotel','Hotel')
 				 ->display_as('usuario','Usuario')
 				 ->display_as('id_acceso','Acceso')
 				 ->display_as('fecha_alta','Fecha alta')
 				 ->display_as('fecha_modificacion','Fecha modificación')
 				 ->display_as('pass','Password')
+				 ->display_as('pass2','Repita pass')
 				 ->display_as('id_estado_usuario','Estado');
 			
 			$crud->set_subject('usuario');
 								
 			$crud->set_relation('id_estado_usuario','estados_usuario','estado_usuario');
-			$crud->set_relation('id_acceso','accesos','acceso');
-			$crud->set_relation('id_hotel','hoteles','hotel');
-			
-			$crud->add_fields('usuario','pass', 'id_acceso', 'id_hotel');
-			$crud->edit_fields('usuario','pass', 'id_acceso', 'id_hotel', 'fecha_alta', 'fecha_modificacion');
+			$crud->set_relation('id_acceso','accesos','acceso', 'delete = 0');
+						
+			$crud->fields('usuario','pass', 'pass2','id_acceso');
+						
+			$crud->callback_edit_field('pass',array($this,'set_pass_to_empty'));
+			$crud->callback_edit_field('pass2',array($this,'set_pass_to_empty2'));
 			
 			$crud->required_fields(	'usuario',
 									'pass',
-									'id_acceso',
-									'id_hotel');
+									'pass2',
+									'id_acceso');
 								
 			$crud->add_action('Teléfono', '', '','fa fa-phone', array($this,'buscar_telefonos'));
 			$crud->add_action('Email', '', '','icon-emailalt', array($this,'buscar_emails'));
 			$crud->add_action('Dirección', '', '','icon-homealt', array($this,'buscar_direcciones'));
 			
-			$crud->callback_after_insert(array($this, 'insert_usuario'));
-    		$crud->callback_after_update(array($this, 'update_usuario'));
+			$_COOKIE['tabla']='usuarios';
+			$_COOKIE['id']='id_usuario';	
+			
+			$crud->callback_after_insert(array($this, 'insert_log'));
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));	
+			$crud->callback_before_insert(array($this,'encrypt_password_callback'));
+			$crud->callback_before_update(array($this,'encrypt_password_callback'));
 			
 			$output = $crud->render();
 
@@ -248,7 +255,7 @@ class Usuario extends CI_Controller {
 			$crud->columns(	'id_estado_usuario',
 							'estado_usuario');
 			
-			$crud->display_as('id_estados_usuario','ID')
+			$crud->display_as('id_estado_usuario','ID')
 				 ->display_as('estado_usuario','Estado');
 			
 			$crud->set_subject('estado');
@@ -282,18 +289,27 @@ class Usuario extends CI_Controller {
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');
-			
+			$crud->where('accesos.delete', 0);
 			$crud->set_table('accesos');
 			
 			$crud->columns(	'id_acceso',
 							'acceso');
-			
-			$crud->display_as('id_accesos','ID')
+							
+			$crud->fields('acceso');
+						
+			$crud->display_as('id_acceso','ID')
 				 ->display_as('acceso','Acceso');
 			
 			$crud->set_subject('acceso');
 			
 			$crud->required_fields(	'acceso');
+			
+			$_COOKIE['tabla']='accesos';
+			$_COOKIE['id']='id_acceso';	
+			
+			$crud->callback_after_insert(array($this, 'insert_log'));
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));
 			
 			$output = $crud->render();
 
@@ -315,6 +331,7 @@ class Usuario extends CI_Controller {
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');
+			$crud->where('detalles_acceso.delete', 0);
 			$crud->set_table('detalles_acceso');
 			
 			$crud->columns(	'id_acceso',
@@ -323,6 +340,8 @@ class Usuario extends CI_Controller {
 							'escribir',
 							'modificar',
 							'borrar');
+			
+			$crud->fields('id_acceso', 'id_categoria', 'crear', 'escribir', 'modificar', 'borrar');
 							
 			$crud->change_field_type('crear', 'true_false');
 			$crud->change_field_type('escribir', 'true_false');
@@ -338,10 +357,17 @@ class Usuario extends CI_Controller {
 			
 			$crud->set_subject('detalle acceso');
 			
-			$crud->set_relation('id_acceso','accesos','acceso');
-			$crud->set_relation('id_categoria','categorias','categoria');
+			$crud->set_relation('id_acceso','accesos','acceso', 'delete = 0');
+			$crud->set_relation('id_categoria','categorias','categoria', 'delete = 0');
 			
 			$crud->required_fields(	'id_acceso', 'id_categoria');
+			
+			$_COOKIE['tabla']='detalles_acceso';
+			$_COOKIE['id']='id_acceso_detalle';	
+			
+			$crud->callback_after_insert(array($this, 'insert_log'));
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));
 			
 			$output = $crud->render();
 
@@ -355,29 +381,7 @@ class Usuario extends CI_Controller {
  * 
  * ********************************************************************************
  **********************************************************************************/
-	
-	function insert_usuario($datos, $id){
-		$insert = array(
-        	"id_usuario" => $id,
-        	"fecha_alta" => date('Y-m-d H:i:s'),
-        	"fecha_modificacion" => date('Y-m-d H:i:s')
-    	);
 
-		$this->db->update('usuarios', $insert, array('id_usuario' => $id));
-	}
-	
-	
-	
-	function update_usuario($datos, $id){
-		$update = array(
-        	"id_usuario" => $id,
-        	"fecha_modificacion" => date('Y-m-d H:i:s')
-    	);
-
-		$this->db->update('usuarios', $update, array('id_usuario' => $id));
-	}
-
-	
 	
 	public function buscar_telefonos($id){
 		$query = $this->db->query("SELECT * FROM telefonos_usuario WHERE id_usuario='$id' ");
@@ -412,7 +416,100 @@ class Usuario extends CI_Controller {
 			return site_url('admin/usuario/direcciones_usuario/add').'/'.$id;;
 		}
 	}
+
+
+
+	function set_pass_to_empty() {
+    	return "<input type='password' name='pass' value=''/>";
+	}
 	
+	function set_pass_to_empty2() {
+    	return "<input type='password' name='pass2' value=''/>";
+	}
+	
+	
+	
+	function encrypt_password_callback($post_array, $primary_key) {
+		if($post_array['pass']==$post_array['pass2']){
+			$post_array['pass'] = MD5($post_array['pass']);
+    		return $post_array;	
+		}else{
+			return false;
+		}
+		
+    	
+	}
+	
+
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Funciones logs
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+
+	
+	function insert_control_fechas($datos, $id){
+		if($datos['entrada']>$datos['salida']){
+			return false;
+		}else{
+			return true;	
+		} 
+	}
+	
+
+	function insert_log($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
+	    $registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'insert',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+	 
+	    $this->db->insert('logs_usuarios',$registro);
+	 
+	    return true;
+	}
+	
+	
+	function update_log($datos, $id){
+		$session_data = $this->session->userdata('logged_in');
+		
+    	$registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'update',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+ 
+    	$this->db->insert('logs_usuarios',$registro);
+ 
+    	return true;
+	}
+	
+	
+	public function delete_log($id){
+    	$session_data = $this->session->userdata('logged_in');
+		
+		$registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'delete',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+ 
+    	$this->db->insert('logs_usuarios',$registro);
+			
+    	return $this->db->update($_COOKIE['tabla'], array('delete' => 1), array($_COOKIE['id'] => $id));
+	}
+		
+		
 
 
 }

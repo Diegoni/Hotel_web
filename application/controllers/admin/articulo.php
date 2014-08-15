@@ -49,6 +49,7 @@ class Articulo extends CI_Controller {
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');
+			$crud->where('articulos.delete', 0);
 			$crud->set_table('articulos');
 			
 			$crud->columns(	'id_articulo',
@@ -78,23 +79,25 @@ class Articulo extends CI_Controller {
 							'fecha_despublicacion', 
 							'id_hotel',
 							'id_autor',
+							'archivo_url',
 							'id_categoria',
 							'id_estado_articulo');
 			
-			$crud->set_relation('id_hotel','hoteles','hotel');
-			$crud->set_relation('id_categoria','categorias','categoria');
-			$crud->set_relation('id_autor','usuarios','usuario');
+			$crud->set_relation('id_hotel','hoteles','hotel', 'delete = 0');
+			$crud->set_relation('id_categoria','categorias','categoria', 'delete = 0');
+			$crud->set_relation('id_autor','usuarios','usuario', 'delete = 0');
 			$crud->set_relation('id_estado_articulo','estados_articulo','estado_articulo');
 					
 			$crud->required_fields('articulo','id_hotel','fecha_publicacion', 'id_categoria');
 			
-			$crud->field_type('fecha_alta', 'readonly');
-			$crud->field_type('fecha_modificacion', 'readonly');
-			
 			$crud->set_field_upload('archivo_url','assets/uploads/articulos');
 			
-			$crud->callback_after_insert(array($this, 'insert_articulos'));
-			$crud->callback_after_update(array($this, 'update_articulos'));
+			$_COOKIE['tabla']='articulos';
+			$_COOKIE['id']='id_articulo';	
+			
+			$crud->callback_after_insert(array($this, 'insert_log'));
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));	
 			
 			$output = $crud->render();
 
@@ -114,24 +117,27 @@ class Articulo extends CI_Controller {
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');
+			$crud->where('categorias.delete', 0);
 			$crud->set_table('categorias');
 			
 			$crud->columns(	'id_categoria',
-							'categoria',
-							'id_ubicacion',
-							'id_estado_categoria');
+							'categoria');
 			
 			$crud->display_as('id_categoria','ID')
-				 ->display_as('categoria','Categoría')
-				 ->display_as('id_ubicacion','Ubicación')
-				 ->display_as('id_estado_categoria','Estado');
+				 ->display_as('categoria','Categoría');
 			
 			$crud->set_subject('categoría');
 			
-			$crud->set_relation('id_ubicacion','ubicacion','ubicacion');
-			$crud->set_relation('id_estado_categoria','estados_categoria','estado_categoria');
+			$crud->fields('categoria');
 					
-			$crud->required_fields('categoria','id_ubicacion');
+			$crud->required_fields('categoria');
+			
+			$_COOKIE['tabla']='categorias';
+			$_COOKIE['id']='id_categoria';	
+			
+			$crud->callback_after_insert(array($this, 'insert_log'));
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));	
 			
 			$output = $crud->render();
 
@@ -167,91 +173,84 @@ class Articulo extends CI_Controller {
 						
 			$crud->required_fields('estado_articulo');
 			
+			$_COOKIE['tabla']='estados_articulo';
+			$_COOKIE['id']='id_estado_articulo';	
+						
+			$crud->callback_after_update(array($this, 'update_log'));
+				
+			
 			$output = $crud->render();
 
 			$this->_example_output($output);
 	}
 	
+	
 /**********************************************************************************
  **********************************************************************************
  * 
- * 				Alta, baja y modificación de Estados Categoria
+ * 				Funciones logs
  * 
  * ********************************************************************************
  **********************************************************************************/
- 
- 
-	public function estados_categoria(){
-			$crud = new grocery_CRUD();
 
-			//$crud->set_theme('datatables');
-			$crud->set_table('estados_categoria');
-			
-			$crud->columns(	'id_estado_categoria',
-							'estado_categoria');
-			
-			$crud->display_as('id_estado_categoria','ID')
-				 ->display_as('estado_categoria','Estado');
-			
-			$crud->set_subject('estado');
-			$crud->unset_delete();
-			$crud->unset_export();
-			$crud->unset_add();
-			$crud->unset_read();				
-						
-			$crud->required_fields('estado_categoria');
-			
-			$output = $crud->render();
-
-			$this->_example_output($output);
+	
+	function insert_control_fechas($datos, $id){
+		if($datos['entrada']>$datos['salida']){
+			return false;
+		}else{
+			return true;	
+		} 
 	}
+	
 
-
-/**********************************************************************************
- **********************************************************************************
- * 
- * 				Funciones
- * 
- * ********************************************************************************
- **********************************************************************************/
-
-	function insert_articulos($datos, $id){
+	function insert_log($datos, $id){
 		$session_data = $this->session->userdata('logged_in');
 		
-		if($datos['id_estado_articulo']==0){
-			$id_estado_articulo=1;	
-		}else{
-			$id_estado_articulo=$datos['id_estado_articulo'];
-		}	
-		
 	    $registro = array(
-	        "id_articulo" => $id,
-	        "fecha_alta" => date('Y-m-d H:i:s'),
-	        "fecha_modificacion" => date('Y-m-d H:i:s'),
-	        "id_usuario_alta" => $session_data['id_usuario'],
-	        "id_usuario_modificacion" => $session_data['id_usuario'],
-	        "id_estado_articulo" => $id_estado_articulo
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'insert',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
 	    );
 	 
-	    $this->db->update('articulos', $registro, array('id_articulo' => $id));
+	    $this->db->insert('logs_articulos',$registro);
 	 
 	    return true;
 	}
 	
 	
-	function update_articulos($datos, $id){
+	function update_log($datos, $id){
 		$session_data = $this->session->userdata('logged_in');
 		
     	$registro = array(
-        	"id_articulo" => $id,
-        	"fecha_modificacion" => date('Y-m-d H:i:s'),
-        	"id_usuario_modificacion" => $session_data['id_usuario']
-        	
-    	);
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'update',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
  
-    	$this->db->update('articulos', $registro, array('id_articulo' => $id));
+    	$this->db->insert('logs_articulos',$registro);
  
     	return true;
+	}
+	
+	
+	public function delete_log($id){
+    	$session_data = $this->session->userdata('logged_in');
+		
+		$registro = array(
+	        "tabla" => $_COOKIE['tabla'],
+	        "id_tabla" => $id,
+	        "accion" => 'delete',
+	        "fecha" => date('Y-m-d H:i:s'),
+	        "id_usuario" => $session_data['id_usuario']
+	    );
+ 
+    	$this->db->insert('logs_articulos',$registro);
+			
+    	return $this->db->update($_COOKIE['tabla'], array('delete' => 1), array($_COOKIE['id'] => $id));
 	}
 
 
