@@ -161,6 +161,20 @@
 				<li><a  href='<?php echo site_url('admin/otro/ayudas_abm')?>'>Ayudas de la página</a></li>
           	</ul>
         </li>
+        
+        <li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-taskmanager-logprograms"></span> Logs<b class="caret"></b></a>
+			<ul class="dropdown-menu">
+            	<li><a  href='<?php echo site_url('admin/log/logs_articulos_abm')?>'>Artículos</a></li>
+            	<li><a  href='<?php echo site_url('admin/log/logs_habitaciones_abm')?>'>Habitaciones</a></li>
+            	<li><a  href='<?php echo site_url('admin/log/logs_hoteles_abm')?>'>Hoteles</a></li>
+            	<li><a  href='<?php echo site_url('admin/log/logs_huespedes_abm')?>'>Huespedes</a></li>
+            	<li><a  href='<?php echo site_url('admin/log/logs_mensajes_abm')?>'>Mensajes</a></li>
+            	<li><a  href='<?php echo site_url('admin/log/logs_otros_abm')?>'>Otros</a></li>
+            	<li><a  href='<?php echo site_url('admin/log/logs_reservas_abm')?>'>Reservas</a></li>
+            	<li><a  href='<?php echo site_url('admin/log/logs_usuarios_abm')?>'>Usuarios</a></li>
+          	</ul>
+        </li>
         <li>
         	<a href="<?php echo site_url('admin/home/logout')?>"><span class="icon-off"></span> Salir</a>
         </li>

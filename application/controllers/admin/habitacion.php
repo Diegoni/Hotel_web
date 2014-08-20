@@ -463,7 +463,7 @@ class Habitacion extends CI_Controller {
 	    $registro = array(
 	        "tabla" => $_COOKIE['tabla'],
 	        "id_tabla" => $id,
-	        "accion" => 'insert',
+	        "id_accion" => 1,
 	        "fecha" => date('Y-m-d H:i:s'),
 	        "id_usuario" => $session_data['id_usuario']
 	    );
@@ -480,7 +480,7 @@ class Habitacion extends CI_Controller {
     	$registro = array(
 	        "tabla" => $_COOKIE['tabla'],
 	        "id_tabla" => $id,
-	        "accion" => 'update',
+	        "id_accion" => 2,
 	        "fecha" => date('Y-m-d H:i:s'),
 	        "id_usuario" => $session_data['id_usuario']
 	    );
@@ -497,7 +497,7 @@ class Habitacion extends CI_Controller {
 		$registro = array(
 	        "tabla" => $_COOKIE['tabla'],
 	        "id_tabla" => $id,
-	        "accion" => 'delete',
+	        "id_accion" => 3,
 	        "fecha" => date('Y-m-d H:i:s'),
 	        "id_usuario" => $session_data['id_usuario']
 	    );
