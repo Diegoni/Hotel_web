@@ -7,6 +7,7 @@ class Mensaje extends CI_Controller {
 		parent::__construct();
 
 		$this->load->helper('menu');
+		$this->load->helper('logs');
 		$this->load->model('reserva_habitacion_model');
 		$this->load->model('mensajes_model');
 		$this->load->library('grocery_CRUD');
@@ -200,7 +201,7 @@ class Mensaje extends CI_Controller {
 				$this->db->update('mensajes', $mensaje, array('id_mensaje' => $id));
 				$_COOKIE['tabla']='mensajes';
 				$_COOKIE['id']='id_mensaje';
-				$this->update_log($mensaje, $id);
+				update_log($mensaje, $id);
 			}
 				
 		}
@@ -242,7 +243,7 @@ class Mensaje extends CI_Controller {
 	}
 	
 	
-	function update_log($datos, $id){
+	function update_log2($datos, $id){
 		$session_data = $this->session->userdata('logged_in');
 		
     	$registro = array(
