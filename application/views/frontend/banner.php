@@ -1,7 +1,8 @@
 <?php 
-if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1){ 
+if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1){
 	echo "<div class='row'>";
-	 	foreach ($articulos as $articulo) { ?>
+	 	foreach ($articulos as $articulo) { 
+	 		//echo $articulo->id_categoria;?>
 			<div class="col-md-<?php echo 12/$cantidad_categorias?>">
 				<div class="panel panel-hotel">
 			  		<div class="panel-heading"><?php echo $articulo->categoria;?></div>
@@ -12,12 +13,13 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 			    		<div class="text-banner">
 			    			<?php echo $articulo->articulo; ?>
 			    		</div>
+			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria; ?>">Leer más</a>
 					</div>
 				</div>
 			</div>			
 	<?php }
 	echo "</div>";
-}else if($cantidad_categorias==4 || $cantidad_categorias==6){  
+}else if($cantidad_categorias==4 || $cantidad_categorias==6){
 	$i=0;
 	foreach ($articulos as $articulo) { 
 		if($i==0 || $cantidad_categorias*0.5==$i){
@@ -33,6 +35,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 			    		<div class="text-banner">
 			    			<?php echo $articulo->articulo; ?>
 			    		</div>
+			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria; ?>">Leer más</a>
 					</div>
 				</div>
 			</div>			
@@ -58,6 +61,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 			    		<div class="text-banner">
 			    			<?php echo $articulo->articulo; ?>
 			    		</div>
+			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria; ?>">Leer más</a>
 					</div>
 				</div>
 			</div>			
@@ -68,7 +72,38 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 	$i=$i+1;
 	}//cierra 
 
-}else{ 
+}else if($cantidad_categorias>6){
+	$i=0;
+	foreach ($articulos as $articulo) {
+		if($i<6){	 
+		if($i==0 || 6*0.5==$i){
+			echo "<div class='row'>";
+		} ?>		
+			<div class="col-md-4">
+				<div class="panel panel-hotel">
+			  		<div class="panel-heading"><?php echo $articulo->categoria;?></div>
+			  		<div class="panel-body">
+			  			<?php if($articulo->archivo_url!=""){?>
+			    			<img class="img-circle img-banner" src="<?php echo base_url().'assets/uploads/articulos/'.$articulo->archivo_url?>">
+			    		<?php } ?>
+			    		<div class="text-banner">
+			    			<?php echo $articulo->articulo; ?>
+			    		</div>
+			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria; ?>">Leer más</a>
+					</div>
+				</div>
+			</div>			
+		<?php
+		if((6*0.5)-1==$i || 6-1==$i){
+			echo "</div>";
+		} 
+		$i=$i+1;
+		}
+	}//cierra el foreach 
+	
+	
+	 
+ /*
 	$i=0;
 	foreach ($articulos as $articulo) { 
 		if($i==0 || $i==3){
@@ -109,10 +144,10 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 			</div>	
 			
 			
-<?php	}
+<?php}
 		
 	$i=$i+1;
-	}//cierra el foreach 
+	}//cierra el foreach */
  } ?>
 
 

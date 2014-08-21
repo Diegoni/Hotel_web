@@ -52,7 +52,7 @@
 							<p>comentario</p>
 							<p>
 								<a href="#" class="btn btn-info btn-xs" rel="tooltip" title="Enviar por correo"><span class="icon-emailalt"></span></a>
-								<a href="#" class="btn btn-default btn-xs" rel="tooltip" title="Ver fotos"><span class="icon-play"></span></a>
+								<a href="<?php echo base_url().'index.php/habitacion/galeria/'.$habitacion->id_habitacion?>" class="btn btn-default btn-xs" rel="tooltip" title="Ver fotos"><span class="icon-play"></span></a>
 							</p>
 						</div>
 						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -177,7 +177,7 @@
 				<div class="col-xs-4">
 					<center>
 					<button type="submit" name="reservar" value="Seleccione una opción" class="btn btn-hotel btn-xlarge">
-						<span class="icon-chevron-right"></span>
+						<span class="icon-ok"></span>
 					</button>
 					</center>
 				</div>

@@ -114,8 +114,7 @@ class Reserva extends CI_Controller {
 						'id_huesped' => $id_huesped,
 						'id_nota' => $id_nota,
 						'id_estado_reserva'=> 1, 
-						'fecha_alta' => $fecha,
-						'fecha_modificacion' => $fecha
+						'fecha_alta' => $fecha
 						);
 						
 		

@@ -73,7 +73,6 @@ class Articulo extends CI_Controller {
 			$crud->set_subject('artículo');
 			
 			$crud->fields(	'titulo',
-							'copete',
 							'articulo',
 							'fecha_publicacion', 
 							'fecha_despublicacion', 

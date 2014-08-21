@@ -32,7 +32,7 @@
   					<div class="form-group">
   						<center>
   							<button type="submit" class="btn btn-hotel btn-xlarge">
-								<span class="icon-chevron-right"></span>
+								<span class="icon-ok"></span>
 							</button>	
   						</center>
   					</div>

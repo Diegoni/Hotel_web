@@ -73,10 +73,23 @@ class Log extends CI_Controller {
 			
 			$crud->set_relation('id_accion','accion','accion');
 			$crud->set_relation('id_usuario','usuarios','usuario');
+			
+			$crud->add_action('View', '', '','icon-chevron-right', array($this,'view_articulos'));
 						
 			$output = $crud->render();
 
 			$this->_example_output($output);
+	}
+	
+	function view_articulos($id){
+		$query = $this->db->query("SELECT * FROM logs_articulos WHERE id_log_articulo='$id' ");
+		foreach ($query->result_array() as $row){
+   			$id=$row['id_tabla'];
+			$tabla=$row['tabla'];
+	  
+		}
+			
+		return site_url('/admin/articulo/'.$tabla.'_abm/read').'/'.$id;	
 	}
 	
 /**********************************************************************************
@@ -95,14 +108,12 @@ class Log extends CI_Controller {
 			
 			$crud->columns(	'id_log_habitacion',
 							'tabla',
-							'id_tabla',
 							'id_accion',
 							'fecha', 
 							'id_usuario');
 			
 			$crud->display_as('id_log_habitacion','ID')
 				 ->display_as('tabla','Tabla')
-				 ->display_as('id_tabla','Registro')
 				 ->display_as('id_accion','Acción')
 				 ->display_as('fecha','Fecha')
 				 ->display_as('id_usuario','Usuario');
@@ -116,10 +127,23 @@ class Log extends CI_Controller {
 			
 			$crud->set_relation('id_accion','accion','accion');
 			$crud->set_relation('id_usuario','usuarios','usuario');
-						
+
+			$crud->add_action('View', '', '','icon-chevron-right', array($this,'view_habitaciones'));
+			
 			$output = $crud->render();
 
 			$this->_example_output($output);
+	}
+	
+	function view_habitaciones($id){
+		$query = $this->db->query("SELECT * FROM logs_habitaciones WHERE id_log_habitacion='$id' ");
+		foreach ($query->result_array() as $row){
+   			$id=$row['id_tabla'];
+			$tabla=$row['tabla'];
+	  
+		}
+			
+		return site_url('/admin/habitacion/'.$tabla.'_abm/read').'/'.$id;	
 	}
 
 /**********************************************************************************
@@ -138,14 +162,12 @@ class Log extends CI_Controller {
 			
 			$crud->columns(	'id_log_hotel',
 							'tabla',
-							'id_tabla',
 							'id_accion',
 							'fecha', 
 							'id_usuario');
 			
 			$crud->display_as('id_log_hotel','ID')
 				 ->display_as('tabla','Tabla')
-				 ->display_as('id_tabla','Registro')
 				 ->display_as('id_accion','Acción')
 				 ->display_as('fecha','Fecha')
 				 ->display_as('id_usuario','Usuario');
@@ -159,10 +181,23 @@ class Log extends CI_Controller {
 			
 			$crud->set_relation('id_accion','accion','accion');
 			$crud->set_relation('id_usuario','usuarios','usuario');
+			
+			$crud->add_action('View', '', '','icon-chevron-right', array($this,'view_hoteles'));
 						
 			$output = $crud->render();
 
 			$this->_example_output($output);
+	}
+	
+	function view_hoteles($id){
+		$query = $this->db->query("SELECT * FROM logs_hoteles WHERE id_log_hotel='$id' ");
+		foreach ($query->result_array() as $row){
+   			$id=$row['id_tabla'];
+			$tabla=$row['tabla'];
+	  
+		}
+			
+		return site_url('/admin/hotel/'.$tabla.'_abm/read').'/'.$id;	
 	}
 	
 /**********************************************************************************
@@ -181,14 +216,12 @@ class Log extends CI_Controller {
 			
 			$crud->columns(	'id_log_huesped',
 							'tabla',
-							'id_tabla',
 							'id_accion',
 							'fecha', 
 							'id_usuario');
 			
 			$crud->display_as('id_log_hueped','ID')
 				 ->display_as('tabla','Tabla')
-				 ->display_as('id_tabla','Registro')
 				 ->display_as('id_accion','Acción')
 				 ->display_as('fecha','Fecha')
 				 ->display_as('id_usuario','Usuario');
@@ -202,11 +235,26 @@ class Log extends CI_Controller {
 			
 			$crud->set_relation('id_accion','accion','accion');
 			$crud->set_relation('id_usuario','usuarios','usuario');
+			
+			$crud->add_action('View', '', '','icon-chevron-right', array($this,'view_huespedes'));
 						
 			$output = $crud->render();
 
 			$this->_example_output($output);
 	}
+	
+	function view_huespedes($id){
+		$query = $this->db->query("SELECT * FROM logs_huespedes WHERE id_log_huesped='$id' ");
+		foreach ($query->result_array() as $row){
+   			$id=$row['id_tabla'];
+			$tabla=$row['tabla'];
+	  
+		}
+			
+		return site_url('/admin/huesped/'.$tabla.'_abm/edit').'/'.$id;	
+	}
+	
+	
 	
 /**********************************************************************************
  **********************************************************************************
@@ -224,14 +272,12 @@ class Log extends CI_Controller {
 			
 			$crud->columns(	'id_log_mensaje',
 							'tabla',
-							'id_tabla',
 							'id_accion',
 							'fecha', 
 							'id_usuario');
 			
 			$crud->display_as('id_log_mensaje','ID')
 				 ->display_as('tabla','Tabla')
-				 ->display_as('id_tabla','Registro')
 				 ->display_as('id_accion','Acción')
 				 ->display_as('fecha','Fecha')
 				 ->display_as('id_usuario','Usuario');
@@ -245,10 +291,23 @@ class Log extends CI_Controller {
 			
 			$crud->set_relation('id_accion','accion','accion');
 			$crud->set_relation('id_usuario','usuarios','usuario');
+			
+			$crud->add_action('View', '', '','icon-chevron-right', array($this,'view_mensajes'));
 						
 			$output = $crud->render();
 
 			$this->_example_output($output);
+	}
+	
+	function view_mensajes($id){
+		$query = $this->db->query("SELECT * FROM logs_mensajes WHERE id_log_mensaje='$id' ");
+		foreach ($query->result_array() as $row){
+   			$id=$row['id_tabla'];
+			$tabla=$row['tabla'];
+	  
+		}
+			
+		return site_url('/admin/mensaje/'.$tabla.'_abm/read').'/'.$id;	
 	}
 	
 /**********************************************************************************
@@ -267,14 +326,12 @@ class Log extends CI_Controller {
 			
 			$crud->columns(	'id_log_otro',
 							'tabla',
-							'id_tabla',
 							'id_accion',
 							'fecha', 
 							'id_usuario');
 			
 			$crud->display_as('id_log_otro','ID')
 				 ->display_as('tabla','Tabla')
-				 ->display_as('id_tabla','Registro')
 				 ->display_as('id_accion','Acción')
 				 ->display_as('fecha','Fecha')
 				 ->display_as('id_usuario','Usuario');
@@ -288,10 +345,23 @@ class Log extends CI_Controller {
 			
 			$crud->set_relation('id_accion','accion','accion');
 			$crud->set_relation('id_usuario','usuarios','usuario');
+			
+			$crud->add_action('View', '', '','icon-chevron-right', array($this,'view_otros'));
 						
 			$output = $crud->render();
 
 			$this->_example_output($output);
+	}
+	
+	function view_otros($id){
+		$query = $this->db->query("SELECT * FROM logs_otros WHERE id_log_otro='$id' ");
+		foreach ($query->result_array() as $row){
+   			$id=$row['id_tabla'];
+			$tabla=$row['tabla'];
+	  
+		}
+			
+		return site_url('/admin/otro/'.$tabla.'_abm/edit').'/'.$id;	
 	}
 	
 /**********************************************************************************
@@ -310,14 +380,12 @@ class Log extends CI_Controller {
 			
 			$crud->columns(	'id_log_reserva',
 							'tabla',
-							'id_tabla',
 							'id_accion',
 							'fecha', 
 							'id_usuario');
 			
 			$crud->display_as('id_log_reserva','ID')
 				 ->display_as('tabla','Tabla')
-				 ->display_as('id_tabla','Registro')
 				 ->display_as('id_accion','Acción')
 				 ->display_as('fecha','Fecha')
 				 ->display_as('id_usuario','Usuario');
@@ -331,10 +399,23 @@ class Log extends CI_Controller {
 			
 			$crud->set_relation('id_accion','accion','accion');
 			$crud->set_relation('id_usuario','usuarios','usuario');
+			
+			$crud->add_action('View', '', '','icon-chevron-right', array($this,'view_reservas'));
 						
 			$output = $crud->render();
 
 			$this->_example_output($output);
+	}
+	
+	function view_reservas($id){
+		$query = $this->db->query("SELECT * FROM logs_reservas WHERE id_log_reserva='$id' ");
+		foreach ($query->result_array() as $row){
+   			$id=$row['id_tabla'];
+			$tabla=$row['tabla'];
+	  
+		}
+			
+		return site_url('/admin/reserva/'.$tabla.'_abm/read').'/'.$id;	
 	}
 	
 /**********************************************************************************
@@ -353,14 +434,12 @@ class Log extends CI_Controller {
 			
 			$crud->columns(	'id_log_usuario',
 							'tabla',
-							'id_tabla',
 							'id_accion',
 							'fecha', 
 							'id_usuario');
 			
 			$crud->display_as('id_log_usuario','ID')
 				 ->display_as('tabla','Tabla')
-				 ->display_as('id_tabla','Registro')
 				 ->display_as('id_accion','Acción')
 				 ->display_as('fecha','Fecha')
 				 ->display_as('id_usuario','Usuario');
@@ -374,10 +453,23 @@ class Log extends CI_Controller {
 			
 			$crud->set_relation('id_accion','accion','accion');
 			$crud->set_relation('id_usuario','usuarios','usuario');
+			
+			$crud->add_action('View', '', '','icon-chevron-right', array($this,'view_usuarios'));
 						
 			$output = $crud->render();
 
 			$this->_example_output($output);
+	}
+	
+	function view_usuarios($id){
+		$query = $this->db->query("SELECT * FROM logs_usuarios WHERE id_log_usuario='$id' ");
+		foreach ($query->result_array() as $row){
+   			$id=$row['id_tabla'];
+			$tabla=$row['tabla'];
+	  
+		}
+			
+		return site_url('/admin/usuario/'.$tabla.'_abm/read').'/'.$id;	
 	}
 
 }

@@ -39,6 +39,25 @@
       				<input class="form-control" name="email" type="email">
     				</div>
   				</div>
+  				
+  				<div class="form-group">
+    				<label for="nombre" class="col-sm-2 control-label">Nombre</label>
+    				<div class="col-sm-10">
+    				<input type="text" class="form-control" name="nombre">
+    				</div>
+  				</div>
+  				<div class="form-group">
+    				<label for="apellido" class="col-sm-2 control-label">Apellido</label>
+    				<div class="col-sm-10">
+    				<input type="text" class="form-control" name="apellido">
+    				</div>
+  				</div>
+  				<div class="form-group">
+    				<label for="telefono"class="col-sm-2 control-label" >Teléfono</label>
+    				<div class="col-sm-10">
+    				<input type="text" class="form-control" name="apellido">
+    				</div>
+  				</div>
       		</div>
       		<div class="modal-footer">
         		<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

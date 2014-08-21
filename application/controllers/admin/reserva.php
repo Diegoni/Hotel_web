@@ -70,8 +70,7 @@ class Reserva extends CI_Controller {
 				 ->display_as('menores','Menores')
 				 ->display_as('id_nota','Nota')
 				 ->display_as('id_estado_reserva','Estado')
-				 ->display_as('fecha_alta','Fecha alta')
-				 ->display_as('fecha_modificacion','Última modificación') ;
+				 ->display_as('fecha_alta','Fecha alta');
 			
 			$crud->fields(	'id_huesped',
 							'entrada',
@@ -80,9 +79,12 @@ class Reserva extends CI_Controller {
 							'menores',
 							'id_nota',
 							'id_estado_reserva',
+							'fecha_alta',
 							'habitaciones');
 			
 			$crud->set_subject('reserva');
+			
+			$crud->field_type('fecha_alta', 'readonly');
 			
 			//$crud->set_relation('id_habitacion','habitaciones','habitacion');
 			$crud->set_relation('id_huesped','huespedes','{apellido} {nombre}');

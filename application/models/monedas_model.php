@@ -2,7 +2,7 @@
 class Monedas_model extends CI_Model {
 	
 	function getMonedas(){
-		$query = $this->db->query("SELECT * FROM monedas");
+		$query = $this->db->query("SELECT * FROM monedas WHERE monedas.delete = 0");
 		
 		if($query->num_rows()>0){
 			foreach ($query->result() as $fila){

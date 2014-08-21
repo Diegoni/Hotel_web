@@ -74,7 +74,7 @@
 						<center>
     					<div class="col-sm-offset-2 col-sm-5">
 							<button type="submit" class="btn btn-hotel btn-xlarge">
-								<span class="icon-chevron-right font-big"></span>
+								<span class="icon-ok font-big"></span>
 							</button>
     					</div>
     					<div class="col-sm-5">

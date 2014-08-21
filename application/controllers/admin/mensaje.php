@@ -7,7 +7,7 @@ class Mensaje extends CI_Controller {
 		parent::__construct();
 
 		$this->load->helper('menu');
-		$this->load->helper('logs');
+		//$this->load->helper('logs');
 		$this->load->model('reserva_habitacion_model');
 		$this->load->model('mensajes_model');
 		$this->load->library('grocery_CRUD');
@@ -243,7 +243,7 @@ class Mensaje extends CI_Controller {
 	}
 	
 	
-	function update_log2($datos, $id){
+	function update_log($datos, $id){
 		$session_data = $this->session->userdata('logged_in');
 		
     	$registro = array(

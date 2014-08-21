@@ -60,6 +60,11 @@
 <link href="<?php echo base_url().'librerias/ui/jquery-ui.css'?>" rel="stylesheet" media="screen">
 <script src="<?php echo base_url().'librerias/ui/jquery-ui.js'?>"></script>
 
+
+
+<link rel="stylesheet" href="//frontend.reklamor.com/fancybox/jquery.fancybox.css" media="screen">
+<script src="//frontend.reklamor.com/fancybox/jquery.fancybox.js"></script>
+
 </head>
 <body>
 
