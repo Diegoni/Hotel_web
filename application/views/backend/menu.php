@@ -45,7 +45,7 @@
 				<li><a  href='#' data-toggle="modal" data-target="#modal_reservas">Nuevas					
 				<?php echo "<span class='badge'>".$cant_reservas."</span></a></li>"; } ?>	
 				<li><a  href='<?php echo site_url('admin/reserva/reservas_abm')?>'>Reservas</a></li>
-				<li><a  href='<?php echo site_url('admin/reserva/disponibilidades_abm')?>'>Disponibilidades</a></li>
+				<li><a  href='<?php echo site_url('admin/reserva/disponibilidades_abm')?>'>Cierre de ventas</a></li>
 				<li><a  href='<?php echo site_url('admin/reserva/estados_reserva')?>'>Estados reserva</a></li>
           	</ul>
         </li>

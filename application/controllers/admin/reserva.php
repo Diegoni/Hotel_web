@@ -188,12 +188,12 @@ class Reserva extends CI_Controller {
 							'salida');
 							
 			$crud->display_as('id_disponibilidad','ID')
-				 ->display_as('disponibilidad','Disponibilidad')
+				 ->display_as('disponibilidad','Descripción')
 				 ->display_as('entrada','Comienzo')
 				 ->display_as('salida','Final')
 				 ->display_as('habitaciones','Habitaciones');
 			
-			$crud->set_subject('disponibilidad');
+			$crud->set_subject('cierre de ventas');
 			
 			$crud->fields('disponibilidad','entrada','salida', 'habitaciones');					
 			$crud->required_fields('disponibilidad','entrada','salida', 'id_habitacion');

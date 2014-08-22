@@ -4,20 +4,22 @@ class Reserva extends CI_Controller {
 	
 	function __construct(){
 		parent::__construct();
-		$this->load->model('hoteles_model');
-		$this->load->model('habitaciones_model');
-		$this->load->model('huespedes_model');
-		$this->load->model('reservas_model');
-		$this->load->model('notas_model');
 		$this->load->model('ayudas_model');
 		$this->load->model('configs_model');
-		$this->load->model('tipos_habitacion_model');
-		$this->load->model('imagenes_habitacion_model');
-		$this->load->model('reserva_habitacion_model');
 		$this->load->model('disponibilidades_model');
-		$this->load->model('tarifas_temporales_model');
+		$this->load->model('habitaciones_model');
+		$this->load->model('hoteles_model');
+		$this->load->model('huespedes_model');
+		$this->load->model('imagenes_habitacion_model');
 		$this->load->model('monedas_model');
+		$this->load->model('notas_model');
+		$this->load->model('reserva_habitacion_model');
+		$this->load->model('reservas_model');
+		$this->load->model('tarifas_temporales_model');
+		$this->load->model('tarjetas_model');
 		$this->load->model('terminos_model');
+		$this->load->model('tipos_habitacion_model');
+		$this->load->model('tipos_tarjeta_model');
 		$this->load->helper('main');
 		$this->load->helper('form');
 	}
@@ -68,6 +70,7 @@ class Reserva extends CI_Controller {
 		$db['hoteles']=$this->hoteles_model->getHoteles();
 		$db['ayudas']=$this->ayudas_model->getAyuda('datos');
 		$db['habitaciones']=$this->habitaciones_model->getHabitaciones_post($consulta);
+		$db['tipos_tarjeta']=$this->tipos_tarjeta_model->getTipos();
 		$db['terminos']=$this->terminos_model->getTerminos();
 		$db['step']=3;
 		
@@ -100,6 +103,12 @@ class Reserva extends CI_Controller {
 			$id_nota=0;
 		}
 		
+		$tarjeta=array(	'id_huesped' => $id_huesped,
+						'id_tipo_tarjeta' => $this->input->post('tipo_tarjeta'),
+					   	'tarjeta' => $this->input->post('tarjeta')
+						);
+		
+		$id_tarjeta=$this->tarjetas_model->insertTarjeta($tarjeta);
 		
 		$array_entrada = explode("/", $this->input->post('entrada')); 
 		$entrada=$array_entrada[2]."/".$array_entrada[1]."/".$array_entrada[0];

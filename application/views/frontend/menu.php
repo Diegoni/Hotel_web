@@ -3,9 +3,14 @@
 	<div class="col-md-3">
 		<center>
 		<a href="<?php echo base_url().'index.php/inicio/inicio'; ?>" class="logo">
-		<?php foreach ($hoteles as $hotel) { ?>
-			<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url;?>" alt="">
-		<?php } ?>
+		<?php  
+			foreach ($hoteles as $hotel) {
+				$logo_url=array();
+				if (!(in_array($hotel->logo_url, $logo_url))) {
+					$logo_url[]=$hotel->logo_url;	
+				} 
+  		}?>
+			<img src="<?php echo base_url().'assets/uploads/logos/'.$logo_url[0];?>" alt="">
 		</a>
 		</center>
 	</div>	                

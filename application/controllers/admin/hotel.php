@@ -64,12 +64,14 @@ class Hotel extends CI_Controller {
 			
 			$crud->required_fields('hotel','descripcion', 'url');
 			
-			$crud->add_action('Teléfono', '', '','fa fa-phone', array($this,'buscar_telefonos'));
+			$crud->add_action('Teléfono', '', '','icon-phonealt', array($this,'buscar_telefonos'));
 			$crud->add_action('Email', '', '','icon-emailalt', array($this,'buscar_emails'));
 			$crud->add_action('Dirección', '', '','icon-homealt', array($this,'buscar_direcciones'));
 			//$crud->add_action('Configuración', '', '','icon-mootools', array($this,'buscar_config'));
 			
 			$crud->set_field_upload('logo_url','assets/uploads/logos');
+			
+			$crud->field_type('delete', 'hidden');
 			
 			$_COOKIE['tabla']='hoteles';
 			$_COOKIE['id']='id_hotel';	
@@ -173,7 +175,7 @@ class Hotel extends CI_Controller {
 /**********************************************************************************
  **********************************************************************************
  * 
- * 				Alta, baja y modificación de Direcciones
+ * 				Alta, baja y modificación de 	s
  * 
  * ********************************************************************************
  **********************************************************************************/
@@ -193,7 +195,6 @@ class Hotel extends CI_Controller {
 			$crud->columns(	'id_hotel',
 							'calle',
 							'nro',
-							'id_departamento',
 							'id_provincia');
 			
 			$crud->display_as('id_hotel','Hotel')

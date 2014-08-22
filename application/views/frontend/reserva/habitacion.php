@@ -150,10 +150,15 @@
 									<select name="habitacion<?php echo $habitacion->id_habitacion?>" class="form-control habitacion" onChange="validarHabitacion()">
 										<?php for ($i=0; $i <= $cantidad; $i++) { ?>
 										<option value="<?php echo $i;?>">
-											<?php echo $i;
-											if($i>0){
-												echo "(".$cambio->simbolo." ".number_format($precio*$i/$cambio->valor, 2, ',', ' ').")";	
-											} 											 
+											<?php 
+											if($cantidad==0){
+												echo "sin disponibilidad";
+											}else{
+												echo $i;
+												if($i>0){
+													echo "(".$cambio->simbolo." ".number_format($precio*$i/$cambio->valor, 2, ',', ' ').")";	
+												}	
+											}											 
 											?>
 										</option>
 										<?php }?>

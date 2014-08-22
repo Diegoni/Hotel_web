@@ -34,10 +34,35 @@
   					</div>
   					  					  					
   					<div class="form-group">
-    					<label for="telefono" class="col-sm-2 control-label">Telefono</label>
+    					<label for="telefono" class="col-sm-2 control-label">Teléfono</label>
     					<div class="col-sm-10">
     						<div class="input-group" data-validate="phone">
 								<input type="text" class="form-control" name="telefono" id="validate-phone" placeholder="Ejemplo 261-4223355" required>
+								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
+							</div>
+    					</div>
+  					</div>
+  					
+  					<div class="form-group">
+            			<label for="tipo_tarjeta" class="col-sm-2 control-label">Tipo tarjeta</label>
+						<div class="col-sm-10">
+							<div class="input-group">
+		                        <select class="form-control" name="tipo_tarjeta" id="tipo_tajeta"required>
+		                            <option value="">Selecciona una tarjeta</option>
+		                            <?php foreach ($tipos_tarjeta as $tipo_tarjeta) { ?>
+										<option value="<?php echo $tipo_tarjeta->id_tipo_tarjeta; ?>"><?php echo $tipo_tarjeta->tipo_tarjeta; ?></option>	
+									<?php } ?>
+		                        </select>
+								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+    					<label for="tarjeta" class="col-sm-2 control-label">Tarjeta</label>
+    					<div class="col-sm-10">
+    						<div class="input-group" data-validate="phone">
+								<input type="text" class="form-control" name="tarjeta" id="tarjeta" placeholder="Ejemplo 261-4223355" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
@@ -47,6 +72,15 @@
   						<label for="nota" class="col-sm-2 control-label">Nota</label>
     					<div class="col-sm-10">
       						<textarea class="form-control" name="nota" rows="3" placeholder="Ingrese nota"></textarea>
+    					</div>
+  					</div>
+  					
+  					<div class="form-group">
+  						<label for="nota" class="col-sm-2 control-label"></label>
+    					<div class="col-sm-10">
+      						<a href="#" class="btn btn-default show_hide">
+								Agregar nota
+							</a>
     					</div>
   					</div>
   					
@@ -78,9 +112,7 @@
 							</button>
     					</div>
     					<div class="col-sm-5">
-							<a href="#" class="btn btn-default btn-xlarge show_hide">
-								<span class="icon-stickynotealt font-big"></span>
-							</a>
+							
       					</div>
       					</center>
     					
