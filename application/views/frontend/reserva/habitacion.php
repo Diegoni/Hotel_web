@@ -49,7 +49,7 @@
           			<div class="media col-md-3 thumbnail">
           				<div class="caption">
 							<h4>Habitación</h4>
-							<p>comentario</p>
+							<!--<p>comentario</p>-->
 							<p>
 								<a href="#" class="btn btn-info btn-xs" rel="tooltip" title="Enviar por correo"><span class="icon-emailalt"></span></a>
 								<a href="<?php echo base_url().'index.php/habitacion/galeria/'.$habitacion->id_habitacion?>" class="btn btn-default btn-xs" rel="tooltip" title="Ver fotos"><span class="icon-play"></span></a>
@@ -152,7 +152,7 @@
 										<option value="<?php echo $i;?>">
 											<?php echo $i;
 											if($i>0){
-												echo "($ ".number_format($precio=$noches*$habitacion->precio*$i/$cambio->valor, 2, ',', ' ').")";	
+												echo "(".$cambio->simbolo." ".number_format($precio*$i/$cambio->valor, 2, ',', ' ').")";	
 											} 											 
 											?>
 										</option>

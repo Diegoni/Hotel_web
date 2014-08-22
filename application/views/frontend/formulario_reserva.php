@@ -35,7 +35,7 @@
 								if($i==1){ ?>
 									<option value="<?php echo $i;?>"><?php echo $i;?> adulto</option>	
 								<?php }else{?>
-									<option value="<?php echo $i;?>"><?php echo $i;?> adultos</option>
+									<option value="<?php echo $i;?>" <?php if($i==2){echo "selected";};?>><?php echo $i;?> adultos</option>
 							<?php 
 								}
 							$i=$i+1;

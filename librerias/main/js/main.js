@@ -38,7 +38,7 @@ function validarHabitacion(){
 		}
 	);
 	if(importe_total==0){
-		cadena="Seleccione una opción";
+		cadena="Haga su selección";
 		document.getElementById('habitaciones').innerHTML = cadena;
 		$("#reservar").val(cadena);
 		
