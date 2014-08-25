@@ -12,8 +12,8 @@
 	    			<div class="form-group">
 						<label for="exampleInputEmail1"><i class="fa fa-sign-in"></i> Entrada</label>
 						<div class="input-group">
-							<div class="input-group-addon">
-								<span class="icon-calendarthree" onclick="document.getElementById('entrada').focus();"></span>
+							<div class="input-group-addon" onclick="document.getElementById('entrada').focus();">
+								<span class="icon-calendarthree"></span>
 							</div>
       						<input class="form-control" name="entrada" id="entrada" type="entrada" placeholder="Fecha entrada" value="<?php echo date("d/m/Y",  strtotime("+1 day")); ?>" autocomplete="off">
     					</div>
@@ -21,8 +21,8 @@
 				  	<div class="form-group">
 					    <label for="exampleInputEmail1"><i class="fa fa-sign-out"></i> Salida</label>
 						<div class="input-group">
-							<div class="input-group-addon">
-								<span class="icon-calendarthree" onclick="document.getElementById('salida').focus();"></span>
+							<div class="input-group-addon" onclick="document.getElementById('salida').focus();">
+								<span class="icon-calendarthree"></span>
 							</div>
       						<input class="form-control" name="salida" id="salida" type="salida" placeholder="Fecha salida" value="<?php echo date("d/m/Y",  strtotime("+2 day")); ?>" autocomplete="off">
     					</div>

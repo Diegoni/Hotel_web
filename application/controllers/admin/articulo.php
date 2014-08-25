@@ -56,7 +56,6 @@ class Articulo extends CI_Controller {
 							'titulo',
 							'id_hotel',
 							'id_categoria',
-							'id_autor',
 							'id_estado_articulo');
 			
 			$crud->display_as('id_articulo','ID')
@@ -68,7 +67,8 @@ class Articulo extends CI_Controller {
 				 ->display_as('id_estado_articulo','Estado')
 				 ->display_as('archivo_url','Archivo')
 				 ->display_as('fecha_publicacion','Fecha publicación')
-				 ->display_as('fecha_despublicacion','Fecha despublicación');
+				 ->display_as('fecha_despublicacion','Fecha despublicación')
+				 ->display_as('id_tarifa_temporal','Tarifa temporal');
 			
 			$crud->set_subject('artículo');
 			
@@ -80,12 +80,14 @@ class Articulo extends CI_Controller {
 							'id_autor',
 							'archivo_url',
 							'id_categoria',
-							'id_estado_articulo');
+							'id_estado_articulo', 
+							'id_tarifa_temporal');
 			
 			$crud->set_relation('id_hotel','hoteles','hotel', 'delete = 0');
 			$crud->set_relation('id_categoria','categorias','categoria', 'delete = 0');
 			$crud->set_relation('id_autor','usuarios','usuario', 'delete = 0');
 			$crud->set_relation('id_estado_articulo','estados_articulo','estado_articulo');
+			$crud->set_relation('id_tarifa_temporal','tarifas_temporales','tarifa_temporal');
 					
 			$crud->required_fields('articulo','id_hotel','fecha_publicacion', 'id_categoria');
 			

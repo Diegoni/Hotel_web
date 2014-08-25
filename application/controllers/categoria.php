@@ -8,6 +8,7 @@ class Categoria extends CI_Controller {
 		$this->load->model('mensajes_model');
 		$this->load->model('articulos_model');
 		$this->load->model('categorias_model');
+		$this->load->model('tarifas_temporales_model');
 		$this->load->model('configs_model');
 		$this->load->helper('form');
       	$this->load->helper('url');

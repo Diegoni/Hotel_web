@@ -20,6 +20,90 @@
 					    		</div>
 								</blockquote>
 							</div>
+							<?php if($articulo->id_tarifa_temporal!=0){
+								$fechas=$this->tarifas_temporales_model->getFechas($articulo->id_tarifa_temporal);
+								foreach ($fechas as $fecha) {
+									if($fecha->entrada>date("Y/m/d")){}
+										$fecha->entrada=date("Y/m/d");
+									?>
+									<form class="form-inline" role="form" action="<?php echo base_url().'index.php/reserva/habitacion' ?>" method="post">
+										<div class="form-group">
+											<div class="input-group">
+										    	<div class="input-group-addon" onclick="document.getElementById('entrada_articulo').focus();">
+										    		<span class="icon-calendarthree"></span>
+												</div>
+												<input type="text" name="entrada" class="form-control" id="entrada_articulo" placeholder="Entrada" autocomplete="off">
+											</div>
+  										</div>
+  										<div class="form-group">
+											<div class="input-group">
+										    	<div class="input-group-addon" onclick="document.getElementById('salida_articulo').focus();">
+													<span class="icon-calendarthree"></span>
+												</div>
+												<input type="text" name="salida" class="form-control" id="salida_articulo" placeholder="Salida" autocomplete="off">
+											</div>
+										</div>
+										<div class="form-group">
+											<select class="form-control" name="adultos">
+												<?php 
+												foreach ($configs as $config) {
+													$max_adultos=$config->max_adultos;
+													$max_menores=$config->max_menores;
+												}
+												$i=1;
+												do{
+													if($i==1){ ?>
+														<option value="<?php echo $i;?>"><?php echo $i;?> adulto</option>	
+													<?php }else{?>
+														<option value="<?php echo $i;?>" <?php if($i==2){echo "selected";};?>><?php echo $i;?> adultos</option>
+												<?php 
+													}
+												$i=$i+1;
+												}while($i<=$max_adultos);?>
+											</select>
+								     		<select class="form-control" name="menores">
+									  			<?php $i=0;
+												do{
+													if($i==0){ ?>
+														<option value="<?php echo $i;?>">sin menores</option>
+													<?php }else if($i==1){ ?>
+														<option value="<?php echo $i;?>"><?php echo $i;?> menor</option>	
+													<?php }else{?>
+														<option value="<?php echo $i;?>"><?php echo $i;?> menores</option>
+												<?php 
+													}
+							
+												$i=$i+1;
+												}while($i<=$max_menores);?>
+											</select>
+										</div>
+										<input name="hotel" type="hidden" value="2" />
+										<div class="form-group">
+											<button class="btn btn-hotel" type="submit">Reservar</button>
+										</div>
+										
+									</form>
+									<script>
+									  $(function() {
+									    $( "#entrada_articulo" ).datepicker({
+									      minDate: "<?php echo date("d/m/Y", strtotime($fecha->entrada));?>",
+										  maxDate: "<?php echo date("d/m/Y", strtotime($fecha->salida));?>",
+									      onClose: function( selectedDate ) {
+									        $( "#salida_articulo" ).datepicker( "option", "minDate", selectedDate );
+									      }
+									    });
+									    $( "#salida_articulo" ).datepicker({
+									      minDate: "<?php echo date("d/m/Y", strtotime($fecha->entrada));?>",
+										  maxDate: "<?php echo date("d/m/Y", strtotime($fecha->salida));?>",
+									      onClose: function( selectedDate ) {
+									        $( "#entrada_articulo" ).datepicker( "option", "maxDate", selectedDate );
+									      }
+									    });
+									  });
+									</script>
+								<?php
+								}
+							} ?>
 						</div>
 						<small>Fecha publicación : <?php echo date("d-m-Y" ,strtotime($articulo->fecha_publicacion));?></small>						
 					</div>

@@ -41,6 +41,24 @@ class Tarifas_temporales_model extends CI_Model {
 		}
 		
 		return $valor;
+	}
+	
+	function getFechas($id){
+		$query=$this->db->query("SELECT 
+							tarifas_temporales.entrada,
+							tarifas_temporales.salida
+							FROM tarifas_temporales 
+							WHERE tarifas_temporales.id_tarifa_temporal = '$id'
+							");
+							
+		if($query->num_rows() > 0){
+			foreach ($query->result() as $fila){
+				$data[] = $fila;
+			}
+		}	
+			
+		return $data;				
+		
 	}	
 	
 		
