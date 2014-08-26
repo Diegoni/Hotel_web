@@ -21,11 +21,17 @@ class Reserva extends CI_Controller {
 		$this->load->model('tipos_habitacion_model');
 		$this->load->model('tipos_tarjeta_model');
 		$this->load->helper('main');
-		$this->load->helper('form');
+		$this->load->helper('form');		
 	}
 	
 	
 	public function habitacion(){
+		if(!(isset($_COOKIE['idioma']))){
+			$_COOKIE['idioma']=0;
+		}
+		
+		$db['texto']=$this->idiomas_model->getIdioma($_COOKIE['idioma']);
+		
 		$consulta=array('entrada'=>$this->input->post('entrada'),
 						'salida'=>$this->input->post('salida'),
 						'adultos'=>$this->input->post('adultos'),
@@ -41,9 +47,11 @@ class Reserva extends CI_Controller {
 		$db['tarifas']=$this->tarifas_temporales_model->getTarifas($db['habitaciones'], $consulta);
 		$db['step']=2;
 		$db['monedas']=$this->monedas_model->getMonedas();
+		
 		if(!(isset($_COOKIE['moneda']))){
 			$_COOKIE['moneda']=1;
 		}
+		
 		$db['cambios']=$this->monedas_model->getMoneda($_COOKIE['moneda']);
 		$db['configs']=$this->configs_model->getConfigs();
 		$db['tipos_habitacion']=$this->tipos_habitacion_model->getTipos();
@@ -60,6 +68,12 @@ class Reserva extends CI_Controller {
 	}
 	
 	public function datos(){
+		if(!(isset($_COOKIE['idioma']))){
+			$_COOKIE['idioma']=0;
+		}
+		
+		$db['texto']=$this->idiomas_model->getIdioma($_COOKIE['idioma']);
+		
 		$consulta=array('entrada'=>$this->input->post('entrada'),
 						'salida'=>$this->input->post('salida'),
 						'adultos'=>$this->input->post('adultos'),
@@ -84,6 +98,13 @@ class Reserva extends CI_Controller {
 	
 	
 	public function pago(){
+		if(!(isset($_COOKIE['idioma']))){
+			$_COOKIE['idioma']=0;
+		}
+		
+		$db['texto']=$this->idiomas_model->getIdioma($_COOKIE['idioma']);
+		
+		
 		$db['hoteles']=$this->hoteles_model->getHoteles();
 		$db['ayudas']=$this->ayudas_model->getAyuda('pagos');
 		$db['step']=4;
@@ -152,7 +173,12 @@ class Reserva extends CI_Controller {
 	
 	public function cambiar_moneda($id_moneda=NULL){
 		setcookie("moneda", $id_moneda, time()+3600);
-		echo $_COOKIE['moneda'];
+		echo '<script>javascript:window.history.back();</script>';
+
+	}
+	
+	public function cambiar_idioma($id_idioma=NULL){
+		setcookie("idioma", $id_idioma, time()+3600);
 		echo '<script>javascript:window.history.back();</script>';
 
 	}

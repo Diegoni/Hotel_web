@@ -13,7 +13,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 			    		<div class="text-banner">
 			    			<?php echo $articulo->articulo; ?>
 			    		</div>
-			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria; ?>">Leer más</a>
+			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria; ?>"><?php echo $texto['leer_mas'];?></a>
 					</div>
 				</div>
 			</div>			
@@ -35,7 +35,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 			    		<div class="text-banner">
 			    			<?php echo $articulo->articulo; ?>
 			    		</div>
-			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria; ?>">Leer más</a>
+			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria; ?>"><?php echo $texto['leer_mas'];?></a>
 					</div>
 				</div>
 			</div>			
@@ -61,7 +61,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 			    		<div class="text-banner">
 			    			<?php echo $articulo->articulo; ?>
 			    		</div>
-			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria; ?>">Leer más</a>
+			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria; ?>"><?php echo $texto['leer_mas'];?></a>
 					</div>
 				</div>
 			</div>			
@@ -89,7 +89,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 			    		<div class="text-banner">
 			    			<?php echo $articulo->articulo; ?>
 			    		</div>
-			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria; ?>">Leer más</a>
+			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria; ?>"><?php echo $texto['leer_mas'];?></a>
 					</div>
 				</div>
 			</div>			

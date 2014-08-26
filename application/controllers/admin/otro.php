@@ -215,6 +215,53 @@ class Otro extends CI_Controller {
 
 			$this->_example_output($output);
 	}
+	
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de monedas
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+ 
+ 
+	public function idiomas_abm(){
+			$crud = new grocery_CRUD();
+
+			//$crud->set_theme('datatables');
+			$crud->where('idiomas.delete', 0);
+			$crud->set_table('idiomas');
+			
+			$crud->columns(	'id_idioma',
+							'idioma',
+							'imagen');
+			
+			$crud->display_as('id_idioma','ID')
+				 ->display_as('idioma','Idioma')
+				 ->display_as('imagen','Imágen');
+			
+			$crud->fields('idioma', 'imagen');
+			
+			$crud->set_subject('idioma');
+						
+			$crud->required_fields('idioma', 'imagen');
+			
+			$crud->set_field_upload('imagen','assets/uploads/idiomas');
+			
+			$crud->unset_add();
+			$crud->unset_delete();
+			
+			$_COOKIE['tabla']='idiomas';
+			$_COOKIE['id']='id_idioma';
+			
+			$crud->callback_after_update(array($this, 'update_log'));
+						
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}
+
+	
 
 	
 /**********************************************************************************
@@ -259,6 +306,8 @@ class Otro extends CI_Controller {
 
 			$this->_example_output($output);
 	}
+	
+	
 	
 
 /**********************************************************************************

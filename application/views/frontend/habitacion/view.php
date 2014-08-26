@@ -1,6 +1,6 @@
 	<div class="col-md-9">
 		<div class="panel panel-hotel">
-			<div class="panel-heading">Habitación</div>
+			<div class="panel-heading"><?php echo $texto['habitacion']?></div>
 		  	<div class="panel-body">
 			<?php foreach ($habitaciones as $habitacion) { ?> 
 			<div class="panel">
@@ -27,11 +27,11 @@
 				</div>
 			</div>
 			<div class="panel">
-				<div class="badger-left badger-hotel" data-badger="Descripción">
+				<div class="badger-left badger-hotel" data-badger="<?php echo $texto['descripcion']?>">
 				<div class="descripcion"><?php echo $habitacion->descripcion;?></div>
 				</div>
 				
-				<div class="badger-left badger-hotel" data-badger="Servicios">
+				<div class="badger-left badger-hotel" data-badger="<?php echo $texto['servicios']?>">
 				<div class="servicios">
 					<ul class="list-unstyled">
 					<?php foreach ($servicios as $servicio) {
@@ -42,41 +42,41 @@
 				</div>
 				</div>
 				
-				<div class="badger-left badger-hotel" data-badger="Condiciones Comerciales">
+				<div class="badger-left badger-hotel" data-badger="<?php echo $texto['condiciones']?>">
 					<dl class="dl-horizontal">
-					  	<dt><i class='fa fa-user'></i> Adultos: </dt>
+					  	<dt><i class='fa fa-user'></i> <?php echo $texto['adultos']?>: </dt>
 					  	<dd><?php echo $habitacion->adultos;?></dd>
-					  	<dt><i class='fa fa-child'></i> Menores: </dt>
+					  	<dt><i class='fa fa-child'></i> <?php echo $texto['menores']?>: </dt>
 					  	<dd><?php echo $habitacion->menores;?></dd>
 					</dl>
 					<dl class="dl-horizontal">
-						<dt><i class="fa fa-sign-in"></i> Entrada: </dt>
+						<dt><i class="fa fa-sign-in"></i> <?php echo $texto['entrada']?>: </dt>
 						<dd><?php echo date("H:i",strtotime($habitacion->entrada));?> Hs</dd>
-						<dt><i class="fa fa-sign-out"></i> Salida: </dt>
+						<dt><i class="fa fa-sign-out"></i> <?php echo $texto['salida']?>: </dt>
 						<dd><?php echo date("H:i",strtotime($habitacion->salida));?> Hs</dd>
 					</dl>	
 				</div>
 								
-				<div class="badger-left badger-hotel" data-badger="Ubicación">
+				<div class="badger-left badger-hotel" data-badger="<?php echo $texto['como_llegar']?>">
 					<iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.3745900600725!2d-68.847059!3d-32.88826299999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9e5e8abae6963f75!2sGran+Carollo!5e0!3m2!1ses!2sar!4v1407167639519"></iframe>
         			
       				<div class="span4">
-    					<h2>Como llegar</h2>
+    					<h2><?php echo $texto['como_llegar']?></h2>
     					<form class="form-horizontal" role="form">
 							<div class="form-group">
-								<label for="calle" class="col-sm-2 control-label">Calle</label>
+								<label for="calle" class="col-sm-2 control-label"><?php echo $texto['calle']?></label>
 								<div class="col-sm-10">
 									<input type="calle" class="form-control" id="calle">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="nro" class="col-sm-2 control-label">Número</label>
+								<label for="nro" class="col-sm-2 control-label"><?php echo $texto['numero']?></label>
 								<div class="col-sm-10">
 									<input type="nro" class="form-control" id="calle">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="nro" class="col-sm-2 control-label">Provincia</label>
+								<label for="nro" class="col-sm-2 control-label"><?php echo $texto['provincia']?></label>
 								<div class="col-sm-10">
 									<select name="provincia" class="form-control" id="provincia">
 										<?php foreach ($provincias as $provincia) { ?>
@@ -90,19 +90,19 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="nro" class="col-sm-2 control-label">Medio</label>
+								<label for="nro" class="col-sm-2 control-label"><?php echo $texto['medio']?></label>
 								<div class="col-sm-10">
 									<select name="medio" class="form-control" id="medio">
-										<option value="0">En coche</option>
-										<option value="1">Transporte público</option>
-										<option value="2">A pie</option>
-										<option value="0">En bicicleta</option>
+										<option value="0"><?php echo $texto['coche']?></option>
+										<option value="1"><?php echo $texto['transporte_publico']?></option>
+										<option value="2"><?php echo $texto['pie']?></option>
+										<option value="0"><?php echo $texto['bicicleta']?></option>
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
 							    <div class="col-sm-offset-2 col-sm-10">
-							      <a class="btn btn-default">Consultar</a>
+							      <a class="btn btn-default"><?php echo $texto['consulta']?></a>
 							    </div>
 							</div>
 						</form>
@@ -111,7 +111,7 @@
 				
 				<div class="col-md-12">
 					<center>
-						<a href="javascript:window.history.back();" type="submit" class="btn btn-default btn-xlarge" title="volver" rel="tooltip">
+						<a href="javascript:window.history.back();" type="submit" class="btn btn-default btn-xlarge" title="<?php echo $texto['volver']?>" rel="tooltip">
 							<span class="icon-chevron-left"></span>
 						</a>
 					</center>

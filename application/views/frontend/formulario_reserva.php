@@ -6,11 +6,11 @@
 <div class="row">
 	<div class="col-md-3">
 		<div class="panel panel-hotel">
-	  		<div class="panel-heading">Reserva online</div>
+	  		<div class="panel-heading"><?php echo $texto['reserva_online']?></div>
 	  		<div class="panel-body">
 	  			<?php echo form_open('reserva/habitacion');?> 
 	    			<div class="form-group">
-						<label for="exampleInputEmail1"><i class="fa fa-sign-in"></i> Entrada</label>
+						<label for="exampleInputEmail1"><i class="fa fa-sign-in"></i> <?php echo $texto['entrada']?></label>
 						<div class="input-group">
 							<div class="input-group-addon" onclick="document.getElementById('entrada').focus();">
 								<span class="icon-calendarthree"></span>
@@ -19,7 +19,7 @@
     					</div>
 				  	</div>
 				  	<div class="form-group">
-					    <label for="exampleInputEmail1"><i class="fa fa-sign-out"></i> Salida</label>
+					    <label for="exampleInputEmail1"><i class="fa fa-sign-out"></i> <?php echo $texto['salida']?></label>
 						<div class="input-group">
 							<div class="input-group-addon" onclick="document.getElementById('salida').focus();">
 								<span class="icon-calendarthree"></span>
@@ -28,14 +28,14 @@
     					</div>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword1"><i class="fa fa-user"></i> Ocupación</label>
+						<label for="exampleInputPassword1"><i class="fa fa-user"></i> <?php echo $texto['ocupacion']?></label>
 						<select class="form-control" name="adultos">
 							<?php $i=1;
 							do{
 								if($i==1){ ?>
-									<option value="<?php echo $i;?>"><?php echo $i;?> adulto</option>	
+									<option value="<?php echo $i;?>"><?php echo $i;?> <?php echo $texto['adulto']?></option>	
 								<?php }else{?>
-									<option value="<?php echo $i;?>" <?php if($i==2){echo "selected";};?>><?php echo $i;?> adultos</option>
+									<option value="<?php echo $i;?>" <?php if($i==2){echo "selected";};?>><?php echo $i;?> <?php echo $texto['adultos'] ?></option>
 							<?php 
 								}
 							$i=$i+1;
@@ -45,11 +45,11 @@
 				  			<?php $i=0;
 							do{
 								if($i==0){ ?>
-									<option value="<?php echo $i;?>">sin menores</option>
+									<option value="<?php echo $i;?>"><?php echo $texto['sin_menores']?></option>
 								<?php }else if($i==1){ ?>
-									<option value="<?php echo $i;?>"><?php echo $i;?> menor</option>	
+									<option value="<?php echo $i;?>"><?php echo $i;?> <?php echo $texto['menor']?><</option>	
 								<?php }else{?>
-									<option value="<?php echo $i;?>"><?php echo $i;?> menores</option>
+									<option value="<?php echo $i;?>"><?php echo $i;?> <?php echo $texto['menores']?></option>
 							<?php 
 								}
 		
@@ -58,7 +58,7 @@
 						</select>
 					</div>
 			  		<div class="form-group">
-						<label for="exampleInputPassword1"><i class="fa fa-building"></i> Hotel</label>
+						<label for="exampleInputPassword1"><i class="fa fa-building"></i> <?php echo $texto['hotel']?></label>
 						<select class="form-control" name="hotel">
 							<?php 
 							foreach ($hoteles as $hotel) { ?>
@@ -78,7 +78,7 @@
 		</div>
 		<?php if(isset($monedas)){ ?>
 		<div class="panel panel-hotel">
-			<div class="panel-heading">Monedas</div>
+			<div class="panel-heading"><?php echo $texto['monedas']?></div>
 	  		<div class="panel-body">
 	  			<form method="post" action="<?php echo base_url().'index.php/reserva/habitacion' ?>">
 	  				<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">

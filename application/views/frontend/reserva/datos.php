@@ -1,54 +1,54 @@
 	<div class="col-md-9">
 		<div class="panel panel-hotel">
-			<div class="panel-heading">Datos personales</div>
+			<div class="panel-heading"><?php echo $texto['datos_personales']?></div>
 		  	<div class="panel-body">
 		  		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/reserva/pago'?>" />
   					<div class="form-group">
-    					<label for="nombre" class="col-sm-2 control-label">Nombre</label>
+    					<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['nombre']?></label>
     					<div class="col-sm-10">
     						<div class="input-group">
-								<input type="text" class="form-control" name="nombre" id="validate-text" placeholder="Ingrese nombre" autofocus required>
+								<input type="text" class="form-control" name="nombre" id="validate-text" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['nombre']?>" autofocus required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
   					</div>
   					
   					<div class="form-group">
-    					<label for="apellido" class="col-sm-2 control-label">Apellido</label>
+    					<label for="apellido" class="col-sm-2 control-label"><?php echo $texto['apellido']?></label>
     					<div class="col-sm-10">
     						<div class="input-group">
-								<input type="text" class="form-control" name="apellido" id="validate-text" placeholder="Ingrese apellido" required>
+								<input type="text" class="form-control" name="apellido" id="validate-text" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['apellido']?>" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
   					</div>
   					
   					<div class="form-group">
-    					<label for="email" class="col-sm-2 control-label">Email</label>
+    					<label for="email" class="col-sm-2 control-label"><?php echo $texto['email']?></label>
     					<div class="col-sm-10">
     						<div class="input-group" data-validate="email">
-								<input type="text" class="form-control" name="email" id="validate-email" placeholder="Ingrese Email" required>
+								<input type="text" class="form-control" name="email" id="validate-email" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['email']?>" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
       					</div>
   					</div>
   					  					  					
   					<div class="form-group">
-    					<label for="telefono" class="col-sm-2 control-label">Teléfono</label>
+    					<label for="telefono" class="col-sm-2 control-label"><?php echo $texto['telefono']?></label>
     					<div class="col-sm-10">
     						<div class="input-group" data-validate="phone">
-								<input type="text" class="form-control" name="telefono" id="validate-phone" placeholder="Ejemplo 261-4223355" required>
+								<input type="text" class="form-control" name="telefono" id="validate-phone" placeholder="<?php echo $texto['ejemplo']?> 261-4223355" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
   					</div>
   					
   					<div class="form-group">
-            			<label for="tipo_tarjeta" class="col-sm-2 control-label">Tipo tarjeta</label>
+            			<label for="tipo_tarjeta" class="col-sm-2 control-label"><?php echo $texto['tipo_tarjeta']?></label>
 						<div class="col-sm-10">
 							<div class="input-group">
 		                        <select class="form-control" name="tipo_tarjeta" id="tipo_tajeta"required>
-		                            <option value="">Selecciona una tarjeta</option>
+		                            <option value=""><?php echo $texto['seleccione_tarjeta']?></option>
 		                            <?php foreach ($tipos_tarjeta as $tipo_tarjeta) { ?>
 										<option value="<?php echo $tipo_tarjeta->id_tipo_tarjeta; ?>"><?php echo $tipo_tarjeta->tipo_tarjeta; ?></option>	
 									<?php } ?>
@@ -59,19 +59,19 @@
 					</div>
 					
 					<div class="form-group">
-    					<label for="tarjeta" class="col-sm-2 control-label">Tarjeta</label>
+    					<label for="tarjeta" class="col-sm-2 control-label"><?php echo $texto['tarjeta']?></label>
     					<div class="col-sm-10">
     						<div class="input-group" data-validate="phone">
-								<input type="text" class="form-control" name="tarjeta" id="tarjeta" placeholder="Ejemplo 261-4223355" required>
+								<input type="text" class="form-control" name="tarjeta" id="tarjeta" placeholder="<?php echo $texto['ejemplo']?> 261-4223355" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
   					</div>
   					
   					<div class="form-group slidingDiv">
-  						<label for="nota" class="col-sm-2 control-label">Nota</label>
+  						<label for="nota" class="col-sm-2 control-label"><?php echo $texto['nota']?></label>
     					<div class="col-sm-10">
-      						<textarea class="form-control" name="nota" rows="3" placeholder="Ingrese nota"></textarea>
+      						<textarea class="form-control" name="nota" rows="3" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['nota']?>"></textarea>
     					</div>
   					</div>
   					
@@ -79,7 +79,7 @@
   						<label for="nota" class="col-sm-2 control-label"></label>
     					<div class="col-sm-10">
       						<a href="#" class="btn btn-default show_hide">
-								Agregar nota
+								<?php echo $texto['agregar_nota']?>
 							</a>
     					</div>
   					</div>
@@ -88,8 +88,8 @@
 					    <div class="col-sm-offset-2 col-sm-10">
 					      <div class="checkbox">
 					        <label>
-					          <input type="checkbox" required> Acepto las condiciones de la reserva. 
-					          <a href="#" class="btn btn-default btn-xs" data-toggle="modal" data-target="#terminos">Ver condiciones</a> 
+					          <input type="checkbox" required> <?php echo $texto['acepto_condiciones']?> 
+					          <a href="#" class="btn btn-default btn-xs" data-toggle="modal" data-target="#terminos"><?php echo $texto['ver_condiciones']?> </a> 
 					        </label>
 					      </div>
 					    </div>
@@ -164,7 +164,7 @@
   	<div class="modal-dialog">
     	<div class="modal-content">
       		<div class="modal-header">
-        		<h4 class="modal-title" id="myModalLabel">Términos y condiciones</h4>
+        		<h4 class="modal-title" id="myModalLabel"><?php echo $texto['terminos_condiciones']?></h4>
       		</div>
       		<div class="modal-body">
       			<?php foreach ($terminos as $termino) { ?>
@@ -172,7 +172,7 @@
 				<?php } ?>
       		</div>
       		<div class="modal-footer">
-        		<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $texto['cerrar']?></button>
       		</div>
       		</form>
     	</div>

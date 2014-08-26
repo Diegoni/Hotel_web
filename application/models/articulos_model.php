@@ -15,6 +15,7 @@ class Articulos_model extends CI_Model {
 									ORDER BY articulos.id_articulo");
 			
 		}else{
+			$id_idioma=$_COOKIE['idioma'];
 			
 			$query = $this->db->query("SELECT * FROM articulos 
 									INNER JOIN categorias ON(articulos.id_categoria=categorias.id_categoria)
@@ -22,7 +23,8 @@ class Articulos_model extends CI_Model {
 									articulos.id_estado_articulo != 2 AND
 									DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') <= '$date' AND
 									(DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') >= '$date' OR 
-									articulos.fecha_despublicacion=0 )
+									articulos.fecha_despublicacion=0 ) AND
+									(articulos.id_idioma = 0 OR articulos.id_idioma = '$id_idioma' )
 									ORDER BY articulos.id_articulo");	
 		}
 		

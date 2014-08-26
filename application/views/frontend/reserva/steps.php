@@ -14,7 +14,7 @@ function step($step, $id){
 	<div class="panel panel-default">
 	<div class="row bs-wizard" style="border-bottom:0;">
 	<div class="col-xs-3 bs-wizard-step <?php echo step($step, 1);?>">
-		<div class="text-center bs-wizard-stepnum">Fecha</div>
+		<div class="text-center bs-wizard-stepnum"><?php echo $texto['fecha']?></div>
 		<div class="progress">
 			<div class="progress-bar"></div>
 		</div>
@@ -22,7 +22,7 @@ function step($step, $id){
 	</div>
                 
 	<div class="col-xs-3 bs-wizard-step <?php echo step($step, 2);?>">
-		<div class="text-center bs-wizard-stepnum">Habitación</div>
+		<div class="text-center bs-wizard-stepnum"><?php echo $texto['habitacion']?></div>
 		<div class="progress">
 			<div class="progress-bar"></div>
 		</div>
@@ -30,7 +30,7 @@ function step($step, $id){
 	</div>
                 
 	<div class="col-xs-3 bs-wizard-step <?php echo step($step, 3);?>">
-		<div class="text-center bs-wizard-stepnum">Datos personales</div>
+		<div class="text-center bs-wizard-stepnum"><?php echo $texto['datos_personales']?></div>
 		<div class="progress">
 			<div class="progress-bar"></div>
 		</div>
@@ -38,7 +38,7 @@ function step($step, $id){
 	</div>
                 
 	<div class="col-xs-3 bs-wizard-step <?php echo step($step, 4);?>">
-		<div class="text-center bs-wizard-stepnum">Confirmación</div>
+		<div class="text-center bs-wizard-stepnum"><?php echo $texto['confirmacion']?></div>
 		<div class="progress">
 			<div class="progress-bar"></div>
 		</div>

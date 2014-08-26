@@ -26,6 +26,7 @@
 									if($fecha->entrada>date("Y/m/d")){}
 										$fecha->entrada=date("Y/m/d");
 									?>
+									<h3 class="panel-heading"><?php echo $texto['reservar'] ?></h3>
 									<form class="form-inline" role="form" action="<?php echo base_url().'index.php/reserva/habitacion' ?>" method="post">
 										<div class="form-group">
 											<div class="input-group">
@@ -53,9 +54,9 @@
 												$i=1;
 												do{
 													if($i==1){ ?>
-														<option value="<?php echo $i;?>"><?php echo $i;?> adulto</option>	
+														<option value="<?php echo $i;?>"><?php echo $i;?> <?php echo $texto['adulto']?></option>	
 													<?php }else{?>
-														<option value="<?php echo $i;?>" <?php if($i==2){echo "selected";};?>><?php echo $i;?> adultos</option>
+														<option value="<?php echo $i;?>" <?php if($i==2){echo "selected";};?>><?php echo $i;?> <?php echo $texto['adultos']?></option>
 												<?php 
 													}
 												$i=$i+1;
@@ -65,11 +66,11 @@
 									  			<?php $i=0;
 												do{
 													if($i==0){ ?>
-														<option value="<?php echo $i;?>">sin menores</option>
+														<option value="<?php echo $i;?>"><?php echo $texto['sin_menores']?></option>
 													<?php }else if($i==1){ ?>
-														<option value="<?php echo $i;?>"><?php echo $i;?> menor</option>	
+														<option value="<?php echo $i;?>"><?php echo $i;?> <?php echo $texto['menor']?></option>	
 													<?php }else{?>
-														<option value="<?php echo $i;?>"><?php echo $i;?> menores</option>
+														<option value="<?php echo $i;?>"><?php echo $i;?> <?php echo $texto['menores']?></option>
 												<?php 
 													}
 							
@@ -79,7 +80,7 @@
 										</div>
 										<input name="hotel" type="hidden" value="2" />
 										<div class="form-group">
-											<button class="btn btn-hotel" type="submit">Reservar</button>
+											<button class="btn btn-hotel" type="submit"><?php echo $texto['reservar']?></button>
 										</div>
 										
 									</form>
@@ -105,13 +106,13 @@
 								}
 							} ?>
 						</div>
-						<small>Fecha publicación : <?php echo date("d-m-Y" ,strtotime($articulo->fecha_publicacion));?></small>						
+						<small><?php echo $texto['fecha_publicacion']; ?> : <?php echo date("d-m-Y" ,strtotime($articulo->fecha_publicacion));?></small>						
 					</div>
 					
 					<?php } ?>
 					<div class="panel-body">
 					<center>
-						<a href="javascript:window.history.back();" type="submit" class="btn btn-default btn-xlarge" title="volver" rel="tooltip">
+						<a href="javascript:window.history.back();" type="submit" class="btn btn-default btn-xlarge" title="<?php echo $texto['volver']?>" rel="tooltip">
 							<span class="icon-chevron-left"></span>
 						</a>
 					</center>
