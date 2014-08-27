@@ -2,7 +2,7 @@
 class Idiomas_model extends CI_Model {
 	
 	function getIdioma(){
-		$id=$this->config->item('idioma');;
+		$id=$this->config->item('idioma');
 		
 		$query = $this->db->query("SELECT * FROM idiomas WHERE id_idioma='$id'");
 		

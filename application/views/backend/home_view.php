@@ -10,11 +10,11 @@
 <div class="row">
         <div class="col-md-6">
             <div class="blockquote-box blockquote-primary clearfix">
-                <div class="square pull-left">
-                	<a  href='<?php echo site_url('admin/reserva/reservas_abm')?>'>
-                    <span class="icon-tagalt-pricealt icon-lg"></span>
-                   	</a>
-                </div>
+            	<a  href='<?php echo site_url('admin/reserva/reservas_abm')?>'>
+	                <div class="square pull-left">
+	                    <span class="icon-tagalt-pricealt icon-lg"></span>
+	                </div>
+                </a>
                 <h4>
                     Reservas</h4>
                 <p>
@@ -22,11 +22,11 @@
                 </p>
             </div>
            	<div class="blockquote-box blockquote-info clearfix">
-                <div class="square pull-left">
-                	<a  href='<?php echo site_url('admin/huesped/huespedes_abm')?>'>
-                    <i class="icon-user icon-lg"></i>
-                   	</a>
-                </div>
+                <a  href='<?php echo site_url('admin/huesped/huespedes_abm')?>'>
+	                <div class="square pull-left">
+	                    <i class="icon-user icon-lg"></i>
+	                </div>
+                </a>
                 <h4>
                     Huéspedes</h4>
                 <p>
@@ -34,11 +34,11 @@
                 </p>
             </div>
             <div class="blockquote-box blockquote-success clearfix">
-                <div class="square pull-left">
-                	<a  href='<?php echo site_url('admin/habitacion/habitaciones_abm')?>'>
-                    <span class="icon-bed icon-lg"></span>
-                   	</a>
-                </div>
+                <a  href='<?php echo site_url('admin/habitacion/habitaciones_abm')?>'>
+	                <div class="square pull-left">
+	                    <span class="icon-bed icon-lg"></span>
+	                </div>
+                </a>
                 <h4>
                     Habitaciones</h4>
                 <p>
@@ -48,11 +48,11 @@
         </div>
         <div class="col-md-6">
            <div class="blockquote-box blockquote-success clearfix">
-                <div class="square pull-left">
-                	<a  href='<?php echo site_url('admin/hotel/hoteles_abm')?>'>
-                    <i class="icon-office-building icon-lg"></i>
-                   	</a>
-                </div>
+                <a  href='<?php echo site_url('admin/hotel/hoteles_abm')?>'>
+                	<div class="square pull-left">
+                    	<i class="icon-office-building icon-lg"></i>
+                	</div>
+                </a>
                 <h4>
                     Hoteles</h4>
                 <p>
@@ -60,11 +60,11 @@
                 </p>
             </div>
             <div class="blockquote-box blockquote-warning clearfix">
-                <div class="square pull-left">
-                	<a  href='<?php echo site_url('admin/mensaje/mensajes_abm')?>'>
-                    <span class="icon-emailalt icon-lg"></span>
-                   	</a>
-                </div>
+                <a  href='<?php echo site_url('admin/mensaje/mensajes_abm')?>'>
+                	<div class="square pull-left">
+                    	<span class="icon-emailalt icon-lg"></span>
+                	</div>
+                </a>
                 <h4>
                     Mensajes</h4>
                 <p>
@@ -72,11 +72,11 @@
                 </p>
             </div>
             <div class="blockquote-box blockquote-default clearfix">
-                <div class="square pull-left">
-                	<a  href='<?php echo site_url('admin/articulo/articulos_abm')?>'>
-                    <i class="icon-document icon-lg"></i>
-                   	</a>
-                </div>
+                <a  href='<?php echo site_url('admin/articulo/articulos_abm')?>'>
+                	<div class="square pull-left">
+                    	<i class="icon-document icon-lg"></i>
+                	</div>
+                </a>
                 <h4>
                     Artículos</h4>
                 <p>

@@ -44,6 +44,7 @@ class Reserva extends CI_Controller {
 		$db['step']=2;
 		$db['monedas']=$this->monedas_model->getMonedas();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
+		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
 		
 		if(!(isset($_COOKIE['moneda']))){
 			$_COOKIE['moneda']=1;
@@ -82,6 +83,7 @@ class Reserva extends CI_Controller {
 		$db['habitaciones']=$this->habitaciones_model->getHabitaciones_post($consulta);
 		$db['tipos_tarjeta']=$this->tipos_tarjeta_model->getTipos();
 		$db['terminos']=$this->terminos_model->getTerminos();
+		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
 		$db['step']=3;
 		
 		$this->load->view('frontend/head', $db);
@@ -97,7 +99,11 @@ class Reserva extends CI_Controller {
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['hoteles']=$this->hoteles_model->getHoteles();
-		$db['ayudas']=$this->ayudas_model->getAyuda('pagos');
+		$ayuda=array('sector' => 'pagos',
+					 'id_idioma' => $_COOKIE['idioma']);
+		
+		$db['ayudas']=$this->ayudas_model->getAyuda($ayuda);
+		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
 		$db['step']=4;
 		
 		$huesped=array(	'nombre'=> $this->input->post('nombre'),
@@ -152,6 +158,7 @@ class Reserva extends CI_Controller {
 		$habitaciones=$this->habitaciones_model->getHabitaciones_post($consulta);
 		$db['habitaciones']=$this->reserva_habitacion_model->insertReserva_habitacion($id_reserva, $habitaciones);
 		$db['reservas']=$this->reserva_habitacion_model->getReserva($id_reserva);
+		$db['mensajes']=$this->hoteles_email_model->correoReserva($huesped, $tarjeta, $consulta, $habitaciones);
 		
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');

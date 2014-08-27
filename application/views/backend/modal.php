@@ -30,7 +30,7 @@
 			  		<td><?php $habitaciones=$this->reserva_habitacion_model->getReserva($reserva->id_reserva); ?>
 			  			<?php if($habitaciones){ ?>
 			  			<?php foreach($habitaciones as $habitacion){ ?>
-			  				<a href=<?php echo base_url().'index.php/admin/habitacion/habitaciones_abm/edit/'.$habitacion->habitacion; ?> target="_blank">
+			  				<a href=<?php echo base_url().'index.php/admin/habitacion/habitaciones_abm/read/'.$habitacion->id_habitacion; ?> target="_blank">
 			  					<?php echo $habitacion->cantidad ?> - 
 			  					<?php echo $habitacion->habitacion ?><br>
 			  				</a>	
@@ -98,8 +98,12 @@
       			<?php foreach ($mensajes as $mensaje) { ?>
 			  	<tr>
 			  		<td><?php echo $mensaje->mensaje ?></td>
-			  		<td><?php echo $mensaje->emisor ?> <a title="responder" href=<?php echo base_url().'index.php/admin/mensaje/mensajes_abm/add'?> target="_blank">
-			  			<span class="icon-emailforward"></span></a></td>
+			  		<td><?php echo $mensaje->emisor ?> 
+			  			<!--
+			  			<a title="responder" href=<?php echo base_url().'index.php/admin/mensaje/mensajes_abm/add'?> target="_blank">
+			  				<span class="icon-emailforward"></span>
+			  			</a>-->
+			  		</td>
 			  		<td><?php echo $mensaje->id_tipo_mensaje ?></td>
 			  		<td><?php echo date("d-m-Y", strtotime($mensaje->fecha_envio));  ?></td>
 			  		<td><select name="estado<?php echo $mensaje->id_mensaje; ?>">

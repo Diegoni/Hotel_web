@@ -17,6 +17,12 @@
 //local
 $config['base_url']	= ''; 
 
+if(isset($_COOKIE['idioma'])){
+	
+}else{
+	$_COOKIE['idioma']=1;
+}
+
 $config['idioma'] = $_COOKIE['idioma'];
 //sitio tms
 //$config['base_url']	= 'http://mail.tmsgroup.com.ar/carollo/';

@@ -19,6 +19,7 @@ class Inicio extends CI_Controller {
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['hoteles']=$this->hoteles_model->getHoteles();
+		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
 		$db['imagenes_carrusel']=$this->imagenes_carrusel_model->getImagenes();
 		$db['articulos']=$this->articulos_model->getArticulos();
 		$db['cantidad_categorias']=count($db['articulos']);

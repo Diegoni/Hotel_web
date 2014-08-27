@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('idiomas_model');
+$autoload['model'] = array('idiomas_model', 'hoteles_email_model');
 
 
 /* End of file autoload.php */

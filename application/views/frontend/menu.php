@@ -103,17 +103,13 @@
 <?php 
   					$telefono=array();
 					$direccion=array();
-					$email=array();
-  					foreach ($hoteles as $hotel) {
+					foreach ($hoteles as $hotel) {
   						if (!(in_array($hotel->telefono, $telefono))) {
     						$telefono[]=$hotel->telefono;	
 						} 
 						if (!(in_array($hotel->nro." - ".$hotel->calle." - ".$hotel->provincia, $direccion))) {
 							$direccion[]=$hotel->nro." - ".$hotel->calle." - ".$hotel->provincia;
-						}	
-						if (!(in_array($hotel->email, $email))) {
-							$email[]=$hotel->email;
-						}
+						}						
 } ?>	
 
 

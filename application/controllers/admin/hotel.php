@@ -49,6 +49,9 @@ class Hotel extends CI_Controller {
 			//$crud->set_theme('datatables');
 			$crud->set_table('hoteles');
 			
+			$crud->set_relation_n_n('emails_reserva' , 'hotel_email_reserva', 'emails_hotel', 'id_hotel', 'id_email', '{email}', 'prioridad');
+			$crud->set_relation_n_n('emails_mensaje', 'hotel_email_mensaje', 'emails_hotel', 'id_hotel', 'id_email', '{email}', 'prioridad');
+			
 			$crud->columns(	'id_hotel',
 							'hotel',
 							'descripcion',
@@ -58,14 +61,15 @@ class Hotel extends CI_Controller {
 			$crud->display_as('id_hotel','ID')
 				 ->display_as('hotel','Hotel')
 				 ->display_as('descripcion','Descripción')
-				 ->display_as('url','Sitio');
+				 ->display_as('url','Sitio')
+				 ->display_as('emails_reserva','Emails para recibir reservas')
+				 ->display_as('emails_mensaje','Emails para recibir mensajes');
 			
 			$crud->set_subject('hotel');
 			
 			$crud->required_fields('hotel','descripcion', 'url');
 			
 			$crud->add_action('Teléfono', '', '','icon-phonealt', array($this,'buscar_telefonos'));
-			$crud->add_action('Email', '', '','icon-emailalt', array($this,'buscar_emails'));
 			$crud->add_action('Dirección', '', '','icon-homealt', array($this,'buscar_direcciones'));
 			//$crud->add_action('Configuración', '', '','icon-mootools', array($this,'buscar_config'));
 			
@@ -144,27 +148,23 @@ class Hotel extends CI_Controller {
 
 			//$crud->set_theme('datatables');
 			
-			if(isset($id)){
-				$crud->where('emails_hotel.id_hotel',$id);
-			}
-			
 			$crud->set_table('emails_hotel');
 			
-			$crud->columns(	'id_hotel',
-							'email',
+			$crud->columns(	'email',
 							'id_tipo');
 			
-			$crud->display_as('id_hotel','Hotel')
-				 ->display_as('email','Email')
-				 ->display_as('id_tipo','Tipo');
+			$crud->display_as('email','Email')
+				 ->display_as('id_tipo','Tipo')
+				 ->display_as('mostrar','Mostrar en la web');
+			
+			$crud->field_type('mostrar', 'true_false');
 			
 			$crud->set_subject('email');
 			
-			$crud->set_relation('id_hotel','hoteles','hotel');
+			//$crud->set_relation('id_hotel','hoteles','hotel');
 			$crud->set_relation('id_tipo','tipos','tipo');
 			
-			$crud->required_fields(	'id_hotel',
-									'email');
+			$crud->required_fields(	'email');
 			
 			$output = $crud->render();
 

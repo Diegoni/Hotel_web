@@ -24,6 +24,7 @@ class Reserva_habitacion_model extends CI_Model {
 							reservas.entrada as entrada,
 							reservas.salida as salida,
 							habitaciones.habitacion as habitacion,
+							habitaciones.id_habitacion as id_habitacion,
 							reserva_habitacion.cantidad as cantidad,
 							hoteles.hotel as hotel
 							FROM `reserva_habitacion` 

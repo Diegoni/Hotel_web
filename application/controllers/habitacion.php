@@ -32,6 +32,7 @@ class Habitacion extends CI_Controller {
 		$db['servicios']=$this->habitacion_servicio_model->getServicios($id);
 		$db['provincias']=$this->provincias_model->getProvincias('032');
 		$db['configs']=$this->configs_model->getConfigs();
+		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
 								
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
@@ -52,6 +53,7 @@ class Habitacion extends CI_Controller {
 		$db['servicios']=$this->habitacion_servicio_model->getServicios($id);
 		$db['provincias']=$this->provincias_model->getProvincias('032');
 		$db['configs']=$this->configs_model->getConfigs();
+		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
 								
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');

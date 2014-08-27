@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,700,400italic);
+
 .fa{
 	color: #ab2e3e;
 }
@@ -20,7 +22,8 @@ html {
 body {
   margin-top: 15px; 
   /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
-  font-family: Garamond, cursive;
+  /*font-family: Garamond, cursive;*/
+ 	font-family: Ubuntu, Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
