@@ -33,7 +33,7 @@
 										    	<div class="input-group-addon" onclick="document.getElementById('entrada_articulo').focus();">
 										    		<span class="icon-calendarthree"></span>
 												</div>
-												<input type="text" name="entrada" class="form-control" id="entrada_articulo" placeholder="Entrada" autocomplete="off">
+												<input type="text" name="entrada" class="form-control" id="entrada_articulo" placeholder="<?php echo $texto['entrada']?>" autocomplete="off">
 											</div>
   										</div>
   										<div class="form-group">
@@ -41,7 +41,7 @@
 										    	<div class="input-group-addon" onclick="document.getElementById('salida_articulo').focus();">
 													<span class="icon-calendarthree"></span>
 												</div>
-												<input type="text" name="salida" class="form-control" id="salida_articulo" placeholder="Salida" autocomplete="off">
+												<input type="text" name="salida" class="form-control" id="salida_articulo" placeholder="<?php echo $texto['salida']?>" autocomplete="off">
 											</div>
 										</div>
 										<div class="form-group">

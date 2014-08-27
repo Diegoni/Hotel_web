@@ -16,14 +16,37 @@
 	</div>	                
     <div class="col-md-9">
     	<ul class="nav nav-pills pull-right">
-  			<li><a href="#" data-toggle="modal" data-target="#email">Consulta</a></li>
+  			<li><a href="#" data-toggle="modal" data-target="#email"><?php echo $texto['consulta']?></a></li>
+  			<li>
+			  	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			    	<?php echo $texto['idiomas']?>
+			  	</a>
+			  	<ul class="dropdown-menu" role="menu">
+			    <?php foreach ($idiomas as $idioma) { ?>
+						<input class="moneda" 
+						name="boton1" type="image" 
+						title="<?php echo $idioma->idioma;?>" rel="tooltip" 
+						src="<?php echo base_url().'assets/uploads/idiomas/'.$idioma->imagen;?>" 
+						onclick="document.cookie = 'idioma=<?php echo $idioma->id_idioma ?>', location.reload()">
+				<?php } ?>
+
+			  	</ul>
+			</li>
   			<li><a href="<?php echo base_url().'index.php/admin/home/logout/'?>">Admin</a></li>
 		</ul>
 	</div>
 	</div>
 	
 
-<!-- Modal -->
+<!---------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+					
+							Modal consulta
+
+-----------------------------------------------------------------------------------
+---------------------------------------------------------------------------------->	
+
+
 <div class="modal fade" id="email" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   	<div class="modal-dialog">
     	<div class="modal-content">
@@ -75,6 +98,35 @@
 
 
 
+
+
+<?php 
+  					$telefono=array();
+					$direccion=array();
+					$email=array();
+  					foreach ($hoteles as $hotel) {
+  						if (!(in_array($hotel->telefono, $telefono))) {
+    						$telefono[]=$hotel->telefono;	
+						} 
+						if (!(in_array($hotel->nro." - ".$hotel->calle." - ".$hotel->provincia, $direccion))) {
+							$direccion[]=$hotel->nro." - ".$hotel->calle." - ".$hotel->provincia;
+						}	
+						if (!(in_array($hotel->email, $email))) {
+							$email[]=$hotel->email;
+						}
+} ?>	
+
+
+
+<!---------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+					
+						Modal telefono 
+
+-----------------------------------------------------------------------------------
+---------------------------------------------------------------------------------->	
+
+
 <div class="modal fade" id="telefono" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   	<div class="modal-dialog">
     	<div class="modal-content">
@@ -86,8 +138,11 @@
       			<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['telefono']?></label>
     				<div class="col-sm-10">
-    					<img src="<?php echo base_url().'assets/uploads/banderas/argentina-icono-8268-48.png'?>" alt="">
-      					(0261) - 4235666
+    					<?php 
+						foreach ($telefono as $key => $value) {
+							echo $value."<br>";
+						}
+						?>
     				</div>
   				</div>
       			<div class="form-group">
@@ -105,6 +160,14 @@
   	</div>
 </div>
 
+
+<!---------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+					
+						Modal dirección 
+
+-----------------------------------------------------------------------------------
+---------------------------------------------------------------------------------->	
 
 
 <div class="modal fade" id="direccion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

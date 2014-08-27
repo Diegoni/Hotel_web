@@ -24,6 +24,7 @@
 	$texto['maximo_menores']		= 'Maximum minor';
 	$texto['cantidad']				= 'Quantity';
 	$texto['sin_disponibilidad']	= 'no availability';
+	$texto['idiomas']				= 'Languages';
 	
 	/* reserva datos personales */
 	$texto['datos_personales']		= 'Personal data';

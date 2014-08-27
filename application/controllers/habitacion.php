@@ -22,14 +22,11 @@ class Habitacion extends CI_Controller {
 	
 	
 	public function view($id=NULL){
-		if(!(isset($_COOKIE['idioma']))){
-			$_COOKIE['idioma']=0;
-		}
-		
 		if($id==NULL){
 			$id=$this->input->post('id');
 		}
-		$db['texto']=$this->idiomas_model->getIdioma($_COOKIE['idioma']);
+		$db['texto']=$this->idiomas_model->getIdioma();
+		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['hoteles']=$this->hoteles_model->getHoteles();
 		$db['habitaciones']=$this->habitaciones_model->getHabitacion($id);
 		$db['servicios']=$this->habitacion_servicio_model->getServicios($id);
@@ -45,14 +42,11 @@ class Habitacion extends CI_Controller {
 	}
 	
 		public function galeria($id=NULL){
-		if(!(isset($_COOKIE['idioma']))){
-			$_COOKIE['idioma']=0;
-		}
-		
 		if($id==NULL){
 			$id=$this->input->post('id');
 		}
-		$db['texto']=$this->idiomas_model->getIdioma($_COOKIE['idioma']);
+		$db['texto']=$this->idiomas_model->getIdioma();
+		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['hoteles']=$this->hoteles_model->getHoteles();
 		$db['habitaciones']=$this->habitaciones_model->getHabitacion($id);
 		$db['servicios']=$this->habitacion_servicio_model->getServicios($id);

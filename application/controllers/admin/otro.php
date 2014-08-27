@@ -281,25 +281,34 @@ class Otro extends CI_Controller {
 			
 			$crud->columns(	'id_ayuda',
 							'titulo',
-							'ayuda');
+							'ayuda',
+							'id_idioma');
 			
 			$crud->display_as('id_ayuda','ID')
 				 ->display_as('titulo','Título')
-				 ->display_as('ayuda','Ayuda');
+				 ->display_as('ayuda','Ayuda')
+				 ->display_as('id_idioma','Idioma');
 			
-			$crud->edit_fields('titulo', 'ayuda');
+			$crud->edit_fields('titulo', 'ayuda', 'sector', 'id_idioma');
 			
 			$crud->set_subject('ayuda');
-						
-			$crud->required_fields('titulo', 'ayuda');
 			
-			$crud->unset_delete();
-			$crud->unset_add();
+			$crud->set_relation('id_idioma','idiomas','idioma');
+						
+			$crud->required_fields('titulo', 'ayuda', 'sector', 'id_idioma');
+			
+			$crud->field_type('sector','dropdown',
+                               array( "datos"  => "datos", "pagos" => "pagos"));
+			
+			//$crud->unset_delete();
+			//$crud->unset_add();
 			
 			$_COOKIE['tabla']='ayudas';
 			$_COOKIE['id']='id_ayuda';	
 						
+			$crud->callback_after_insert(array($this, 'insert_log'));	
 			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));
 			
 			
 			$output = $crud->render();

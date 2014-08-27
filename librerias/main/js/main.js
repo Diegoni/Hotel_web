@@ -1,3 +1,36 @@
+
+function setCookie(cname,cvalue,exdays) {
+	alert();
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname+"="+cvalue+"; "+expires;
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var user=getCookie("idioma");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+       user = prompt("Please enter your name:","");
+       if (user != "" && user != null) {
+           setCookie("idioma", user, 30);
+       }
+    }
+}
 /**************************************************************************
  **************************************************************************
  			Desabilitar la tecla f5
@@ -17,25 +50,63 @@
  *************************************************************************/
 
 function validarHabitacion(){
-	importe_total = 0;	
+	importe_total = 0;
+	var idioma=getCookie("idioma");
+	
 	$(".habitacion").each(
 		function(index, value) {
 			importe_total = importe_total + eval($(this).val());
 		}
 	);
+	
 	if(importe_total==0){
-		cadena="Haga su selección";
+		if(idioma==2){
+			cadena="Make your selection";	
+		}else if(idioma==3){
+			cadena="Faites votre choix";	
+		}else if(idioma==4){
+			cadena="Faça sua seleção";	
+		}else{
+			cadena="Haga su selección";	
+		}
+		
 		document.getElementById('habitaciones').innerHTML = cadena;
 		$("#reservar").val(cadena);
 		
 		$('button[name="reservar"]').prop('disabled', true);
 	}else{
-		if(importe_total==1){
-			habitacion=" habitación";
+		if(idioma==2){
+			if(importe_total==1){
+				habitacion=" room";
+			}else{
+				habitacion=" rooms";
+			}	
+			reservar="Book";
+		}else if(idioma==3){
+			if(importe_total==1){
+				habitacion=" chambre";
+			}else{
+				habitacion=" chambres";
+			}	
+			reservar="Livre";	
+		}else if(idioma==4){
+			if(importe_total==1){
+				habitacion=" quarto";
+			}else{
+				habitacion=" quartos";
+			}	
+			reservar="Livro";	
 		}else{
-			habitacion=" habitaciones";
+			if(importe_total==1){
+				habitacion=" habitación";
+			}else{
+				habitacion=" habitaciones";
+			}
+			reservar="Reservar";		
 		}
-		cadena="Reservar: "+importe_total+habitacion;
+		
+		
+		cadena= reservar+": "+importe_total+habitacion;
 		document.getElementById('habitaciones').innerHTML = cadena;
 		
    		$('button[name="reservar"]').prop('disabled', false);	

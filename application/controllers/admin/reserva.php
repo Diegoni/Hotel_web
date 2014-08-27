@@ -52,7 +52,7 @@ class Reserva extends CI_Controller {
 			$crud->where('reservas.delete', 0);
 			$crud->set_table('reservas');
 			
-			$crud->set_relation_n_n('habitaciones', 'reserva_habitacion', 'habitaciones', 'id_reserva', 'id_habitacion', 'habitacion','prioridad',  'delete = 0');
+			$crud->set_relation_n_n('habitaciones', 'reserva_habitacion', 'habitaciones', 'id_reserva', 'id_habitacion', '{habitacion} - {id_hotel}', 'prioridad',  'delete = 0');
 			
 			$crud->columns(	'id_reserva',
 							'habitaciones',
@@ -179,7 +179,7 @@ class Reserva extends CI_Controller {
 			
 			$crud->set_table('disponibilidades');
 			
-			$crud->set_relation_n_n('habitaciones', 'disponibilidad_habitacion', 'habitaciones', 'id_disponibilidad', 'id_habitacion', 'habitacion', 'prioridad', 'delete = 0');
+			$crud->set_relation_n_n('habitaciones', 'disponibilidad_habitacion', 'habitaciones', 'id_disponibilidad', 'id_habitacion', '{habitacion} - {id_hotel}', 'prioridad', 'delete = 0');
 			
 			$crud->columns(	'id_disponibilidad',
 							'habitaciones',

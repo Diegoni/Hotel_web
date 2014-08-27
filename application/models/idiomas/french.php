@@ -24,6 +24,7 @@
 	$texto['maximo_menores']		= 'Enfants maximum';
 	$texto['cantidad']				= 'Quantité';
 	$texto['sin_disponibilidad']	= 'pas de disponibilité';
+	$texto['idiomas']				= 'Langues';
 	
 	/* reserva datos personales */
 	$texto['datos_personales']		= 'Données personnelles';

@@ -12,11 +12,7 @@ class Consulta extends CI_Controller {
 	
 	
 	public function envio(){
-		if(!(isset($_COOKIE['idioma']))){
-			$_COOKIE['idioma']=0;
-		}
-		
-		$db['texto']=cargar_idioma($_COOKIE['idioma']);
+		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['hoteles']=$this->hoteles_model->getHoteles();
 		
 		$mensaje=array(	'titulo'=>'Consulta web',

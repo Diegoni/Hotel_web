@@ -110,8 +110,12 @@
 							<button type="submit" class="btn btn-hotel btn-xlarge">
 								<span class="icon-ok font-big"></span>
 							</button>
+							
     					</div>
     					<div class="col-sm-5">
+    						<a href="javascript:window.history.back();" type="submit" class="btn btn-default btn-xlarge" title="<?php echo $texto['volver']?>" rel="tooltip">
+								<span class="icon-chevron-left"></span>
+							</a>
 							
       					</div>
       					</center>

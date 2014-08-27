@@ -26,11 +26,7 @@ class Reserva extends CI_Controller {
 	
 	
 	public function habitacion(){
-		if(!(isset($_COOKIE['idioma']))){
-			$_COOKIE['idioma']=0;
-		}
-		
-		$db['texto']=$this->idiomas_model->getIdioma($_COOKIE['idioma']);
+		$db['texto']=$this->idiomas_model->getIdioma();
 		
 		$consulta=array('entrada'=>$this->input->post('entrada'),
 						'salida'=>$this->input->post('salida'),
@@ -47,6 +43,7 @@ class Reserva extends CI_Controller {
 		$db['tarifas']=$this->tarifas_temporales_model->getTarifas($db['habitaciones'], $consulta);
 		$db['step']=2;
 		$db['monedas']=$this->monedas_model->getMonedas();
+		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		
 		if(!(isset($_COOKIE['moneda']))){
 			$_COOKIE['moneda']=1;
@@ -68,12 +65,8 @@ class Reserva extends CI_Controller {
 	}
 	
 	public function datos(){
-		if(!(isset($_COOKIE['idioma']))){
-			$_COOKIE['idioma']=0;
-		}
-		
-		$db['texto']=$this->idiomas_model->getIdioma($_COOKIE['idioma']);
-		
+		$db['texto']=$this->idiomas_model->getIdioma();
+		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$consulta=array('entrada'=>$this->input->post('entrada'),
 						'salida'=>$this->input->post('salida'),
 						'adultos'=>$this->input->post('adultos'),
@@ -82,7 +75,10 @@ class Reserva extends CI_Controller {
 						);
 							
 		$db['hoteles']=$this->hoteles_model->getHoteles();
-		$db['ayudas']=$this->ayudas_model->getAyuda('datos');
+		$ayuda=array('sector' => 'datos',
+					 'id_idioma' => $_COOKIE['idioma']);
+		
+		$db['ayudas']=$this->ayudas_model->getAyuda($ayuda);
 		$db['habitaciones']=$this->habitaciones_model->getHabitaciones_post($consulta);
 		$db['tipos_tarjeta']=$this->tipos_tarjeta_model->getTipos();
 		$db['terminos']=$this->terminos_model->getTerminos();
@@ -98,13 +94,8 @@ class Reserva extends CI_Controller {
 	
 	
 	public function pago(){
-		if(!(isset($_COOKIE['idioma']))){
-			$_COOKIE['idioma']=0;
-		}
-		
-		$db['texto']=$this->idiomas_model->getIdioma($_COOKIE['idioma']);
-		
-		
+		$db['texto']=$this->idiomas_model->getIdioma();
+		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['hoteles']=$this->hoteles_model->getHoteles();
 		$db['ayudas']=$this->ayudas_model->getAyuda('pagos');
 		$db['step']=4;

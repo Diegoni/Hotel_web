@@ -215,7 +215,7 @@ class Habitacion extends CI_Controller {
 			$crud->where('tarifas_temporales.delete', 0);
 			$crud->set_table('tarifas_temporales');
 			
-			$crud->set_relation_n_n('habitaciones', 'tarifa_habitacion', 'habitaciones', 'id_tarifa_temporal', 'id_habitacion', 'habitacion', 'prioridad',  'delete = 0');
+			$crud->set_relation_n_n('habitaciones', 'tarifa_habitacion', 'habitaciones', 'id_tarifa_temporal', 'id_habitacion', '{habitacion} - {id_hotel}', 'prioridad',  'delete = 0');
 			
 			$crud->columns(	'id_tarifa_temporal',
 							'habitaciones',

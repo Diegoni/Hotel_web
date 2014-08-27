@@ -16,11 +16,8 @@ class Categoria extends CI_Controller {
 	
 	
 	public function articulos($id){
-		if(!(isset($_COOKIE['idioma']))){
-			$_COOKIE['idioma']=0;
-		}
-		
-		$db['texto']=$this->idiomas_model->getIdioma($_COOKIE['idioma']);
+		$db['texto']=$this->idiomas_model->getIdioma();
+		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['hoteles']=$this->hoteles_model->getHoteles();
 		$db['configs']=$this->configs_model->getConfigs();
 		$datos=array(	'dato'=> $id,

@@ -93,6 +93,28 @@
 	  		</div>
 		</div>
 		<?php } ?>
+		
+		<?php if(isset($monedas)){ ?>
+		<div class="panel panel-hotel">
+			<div class="panel-heading"><?php echo $texto['idiomas']?></div>
+	  		<div class="panel-body">
+	  			<form method="post" action="<?php echo base_url().'index.php/reserva/habitacion' ?>">
+	  				<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
+						<input type="hidden" name="salida" value="<?php echo $this->input->post('salida') ?>">
+						<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
+						<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">
+						<input type="hidden" name="hotel" value="<?php echo $this->input->post('hotel') ?>">
+	  			<?php foreach ($idiomas as $idioma) { ?>
+						<input class="moneda" 
+						name="boton1" type="image" 
+						title="<?php echo $idioma->idioma;?>" rel="tooltip" 
+						src="<?php echo base_url().'assets/uploads/idiomas/'.$idioma->imagen;?>" 
+						onclick="document.cookie = 'idioma=<?php echo $idioma->id_idioma ?>'">
+				<?php } ?>
+				</form>  
+	  		</div>
+		</div>
+		<?php } ?>
 	</div>
 	
 	

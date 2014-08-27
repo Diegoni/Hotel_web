@@ -16,11 +16,8 @@ class Inicio extends CI_Controller {
 	
 
 	public function index(){
-		if(!(isset($_COOKIE['idioma']))){
-			$_COOKIE['idioma']=0;
-		}
-		
-		$db['texto']=$this->idiomas_model->getIdioma($_COOKIE['idioma']);
+		$db['texto']=$this->idiomas_model->getIdioma();
+		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['hoteles']=$this->hoteles_model->getHoteles();
 		$db['imagenes_carrusel']=$this->imagenes_carrusel_model->getImagenes();
 		$db['articulos']=$this->articulos_model->getArticulos();

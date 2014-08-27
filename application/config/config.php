@@ -16,6 +16,8 @@
 */
 //local
 $config['base_url']	= ''; 
+
+$config['idioma'] = $_COOKIE['idioma'];
 //sitio tms
 //$config['base_url']	= 'http://mail.tmsgroup.com.ar/carollo/';
 
