@@ -68,7 +68,7 @@ class Consulta extends CI_Controller {
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
 		$this->load->view('frontend/formulario_reserva');
-		$this->load->view('frontend/consulta/envio');
+		$this->load->view('frontend/consulta/envio_habitacion');
 		$this->load->view('frontend/footer');
 		
 	}
