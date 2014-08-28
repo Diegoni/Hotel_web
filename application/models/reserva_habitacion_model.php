@@ -23,10 +23,14 @@ class Reserva_habitacion_model extends CI_Model {
 		$query=$this->db->query("SELECT 
 							reservas.entrada as entrada,
 							reservas.salida as salida,
+							reservas.adultos as adultos,
+							reservas.menores as menores,
+							reservas.fecha_alta as fecha_alta,
 							habitaciones.habitacion as habitacion,
 							habitaciones.id_habitacion as id_habitacion,
 							reserva_habitacion.cantidad as cantidad,
-							hoteles.hotel as hotel
+							hoteles.hotel as hotel,
+							hoteles.id_hotel as id_hotel
 							FROM `reserva_habitacion` 
 							INNER JOIN reservas ON(reserva_habitacion.id_reserva=reservas.id_reserva)
 							INNER JOIN habitaciones ON(reserva_habitacion.id_habitacion=habitaciones.id_habitacion)

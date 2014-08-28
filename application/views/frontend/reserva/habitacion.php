@@ -97,13 +97,13 @@
                 				<?php echo $cambio->abreviatura ; ?>
                 			</small>
                     			<?php echo $cambio->simbolo; ?>  
-                    			<?php echo number_format($habitacion->precio/$cambio->valor, 2, ',', ' '); ?></h4></del>							
+                    			<?php echo number_format($habitacion->precio/$cambio->valor*$noches, 2, ',', ' '); ?></h4></del>							
 						<?php } ?>                			
                 		<h2><small> 
                 				<?php echo $cambio->abreviatura ; ?>
                 			</small>
                     			<?php echo $cambio->simbolo; ?>  
-                    			<?php echo number_format($precio/$cambio->valor, 2, ',', ' '); ?></h2>
+                    			<?php echo number_format($precio/$cambio->valor*$noches, 2, ',', ' '); ?></h2>
 						<div class="stars" >
                         	<?php echo $texto['adultos']?>: <?php 
                         	for ($i=0; $i < $habitacion->adultos; $i++) { 
@@ -156,7 +156,7 @@
 											}else{
 												echo $i;
 												if($i>0){
-													echo "(".$cambio->simbolo." ".number_format($precio*$i/$cambio->valor, 2, ',', ' ').")";	
+													echo "(".$cambio->simbolo." ".number_format($precio*$i/$cambio->valor*$noches, 2, ',', ' ').")";	
 												}	
 											}											 
 											?>

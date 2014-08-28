@@ -67,6 +67,8 @@ class Hotel extends CI_Controller {
 			
 			$crud->set_subject('hotel');
 			
+			$crud->fields('hotel', 'descripcion', 'logo_url', 'url', 'correo_mensaje', 'emails_mensaje', 'correo_reserva', 'emails_reserva');
+			
 			$crud->required_fields('hotel','descripcion', 'url');
 			
 			$crud->add_action('Teléfono', '', '','icon-phonealt', array($this,'buscar_telefonos'));

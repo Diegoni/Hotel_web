@@ -37,30 +37,76 @@ class Hoteles_email_model extends CI_Model {
 		}
 	}
 	
-	function correoMensaje($mensaje){
-		$query = $this->db->query("	SELECT emails_hotel.email  FROM hotel_email_mensaje
-									INNER JOIN emails_hotel ON(hotel_email_mensaje.id_email=emails_hotel.id_email) 
-									WHERE hotel_email_mensaje.id_hotel = '$mensaje[id_hotel]'");
-		$título = $mensaje['titulo'];
-		$mensaje = 
+	function correoMensaje($consulta){
+		
+		$título = $consulta['titulo'];
+		
+		$query = $this->db->query("	SELECT hoteles.correo_mensaje  FROM hoteles
+									WHERE hoteles.id_hotel = '$consulta[id_hotel]'");
+		
+		if($query->num_rows() > 0){
+			foreach ($query->result() as $fila){
+				$correo_mensaje = $fila->correo_mensaje;		
+			}
+		}
+		
+		$mensaje = $correo_mensaje."<br>";
+		$mensaje .= 
 		"
 		<html>
 		<head>
-  			<title>".$mensaje['titulo']."</title>
+		<style type='text/css'>
+		table.gridtable {
+			font-family: verdana,arial,sans-serif;
+			font-size:11px;
+			color:#333333;
+			border-width: 1px;
+			border-color: #666666;
+			border-collapse: collapse;
+		}
+		table.gridtable th {
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			border-color: #666666;
+			background-color: #dedede;
+		}
+		table.gridtable td {
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			border-color: #666666;
+			background-color: #ffffff;
+		}
+		</style>".
+			header('Content-type: text/html; charset=utf-8')." 
+  			<title>".$título."</title>
 		</head>
 		<body>
-  			<table>
+  			<table class='gridtable'>
 	  		<tr>
 	      		<td>Mensaje: </td>
-	      		<th>".$mensaje['mensaje']."</th>
+	      		<th>".$consulta['mensaje']."</th>
 	    	</tr>
 	    	<tr>
-	      		<td>Fecha: </td>
-	      		<th>".$mensaje['fecha_envio']."</th>
+	      		<td>Fecha de envio: </td>
+	      		<th>".date("H:i:s d-m-Y", strtotime($consulta['fecha_envio']))."</th>
 	    	</tr>
 	    	<tr>
-	      		<td>De: </td>
-	      		<th>".$mensaje['emisor']."</th>
+	      		<td>Email: </td>
+	      		<th>".$consulta['emisor']."</th>
+	    	</tr>
+	    	<tr>
+	      		<td>Nombre: </td>
+	      		<th>".$consulta['nombre']."</th>
+	    	</tr>
+	    	<tr>
+	      		<td>Apellido: </td>
+	      		<th>".$consulta['apellido']."</th>
+	    	</tr>
+	    	<tr>
+	      		<td>Telefono: </td>
+	      		<th>".$consulta['telefono']."</th>
 	    	</tr>
 	  		</table>
 		</body>
@@ -74,6 +120,9 @@ class Hoteles_email_model extends CI_Model {
 		// Cabeceras adicionales
 		$cabeceras .= 'From: Hoteles Gold <consulta@hoteles.com>' . "\r\n";
 		
+		$query = $this->db->query("	SELECT emails_hotel.email  FROM hotel_email_mensaje
+									INNER JOIN emails_hotel ON(hotel_email_mensaje.id_email=emails_hotel.id_email) 
+									WHERE hotel_email_mensaje.id_hotel = '$consulta[id_hotel]'");
 		
 		if($query->num_rows() > 0){
 			foreach ($query->result() as $fila){
@@ -89,19 +138,61 @@ class Hoteles_email_model extends CI_Model {
 	}
 	
 	
-	function correoReserva($huesped, $tarjeta, $consulta, $habitaciones){
-		$query = $this->db->query("	SELECT emails_hotel.email  FROM hotel_email_reserva
-									INNER JOIN emails_hotel ON(hotel_email_reserva.id_email=emails_hotel.id_email) 
-									WHERE hotel_email_reserva.id_hotel = '$consulta[hotel]'");
+	function correoReserva($huesped, $tarjeta, $reservas){
+		foreach ($reservas as $reserva) {
+			$entrada=$reserva->entrada;
+			$salida=$reserva->salida;
+			$adultos=$reserva->adultos;
+			$menores=$reserva->menores;
+			$hotel=$reserva->hotel;
+			$id_hotel=$reserva->id_hotel;
+			$fecha_alta=$reserva->fecha_alta;
+		}
+		$query = $this->db->query("	SELECT hoteles.correo_reserva  FROM hoteles
+									WHERE hoteles.id_hotel = '$id_hotel'");
+		
+		if($query->num_rows() > 0){
+			foreach ($query->result() as $fila){
+				$correo_reserva = $fila->correo_reserva;		
+			}
+		}
+			
+											
 		$título = 'Reserva online';
-		$mensaje = 
+		$mensaje = $correo_reserva."<br>";
+		$mensaje .= 
 		"
 		<html>
 		<head>
+		<style type='text/css'>
+		table.gridtable {
+			font-family: verdana,arial,sans-serif;
+			font-size:11px;
+			color:#333333;
+			border-width: 1px;
+			border-color: #666666;
+			border-collapse: collapse;
+		}
+		table.gridtable th {
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			border-color: #666666;
+			background-color: #dedede;
+		}
+		table.gridtable td {
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			border-color: #666666;
+			background-color: #ffffff;
+		}
+		</style>".
+			header('Content-type: text/html; charset=utf-8')." 
   			<title>".$título."</title>
 		</head>
 		<body>
-  			<table>
+  			<table class='gridtable'>
 	  		<tr>
 	      		<td>Nombre: </td>
 	      		<th>".$huesped['nombre']."</th>
@@ -124,21 +215,42 @@ class Hoteles_email_model extends CI_Model {
 	    	</tr>
 	    	<tr>
 	      		<td>Entrada: </td>
-	      		<th>".$consulta['entrada']."</th>
+	      		<th>".date("d-m-Y", strtotime($entrada))."</th>
 	    	</tr>
 	    	<tr>
 	      		<td>Salida: </td>
-	      		<th>".$consulta['salida']."</th>
+	      		<th>".date("d-m-Y", strtotime($salida))."</th>
 	    	</tr>
 	    	<tr>
 	      		<td>Adultos: </td>
-	      		<th>".$consulta['adultos']."</th>
+	      		<th>".$adultos."</th>
 	    	</tr>
 	    	<tr>
 	      		<td>Menores: </td>
-	      		<th>".$consulta['menores']."</th>
+	      		<th>".$menores."</th>
 	    	</tr>
-	  		</table>
+	    	<tr>
+	      		<td>Hotel: </td>
+	      		<th>".$hotel."</th>
+	    	</tr>";
+	    foreach ($reservas as $reserva) {
+	    $mensaje.=
+	    	"<tr>
+	      		<td>Cantidad: </td>
+	      		<th>".$reserva->cantidad."</th>
+	    	</tr>
+	    	<tr>
+	      		<td>Habitacion: </td>
+	      		<th>".$reserva->habitacion."</th>
+	    	</tr>";
+		}
+	    
+	    $mensaje.= 
+	  		"<tr>
+	      		<td>Hotel: </td>
+	      		<th>".date('H:i:s d-m-Y', strtotime($fecha_alta))."</th>
+	    	</tr>
+	    	</table>
 		</body>
 		</html>
 		";
@@ -150,6 +262,9 @@ class Hoteles_email_model extends CI_Model {
 		// Cabeceras adicionales
 		$cabeceras .= 'From: Hoteles Gold <consulta@hoteles.com>' . "\r\n";
 		
+		$query = $this->db->query("	SELECT emails_hotel.email  FROM hotel_email_reserva
+									INNER JOIN emails_hotel ON(hotel_email_reserva.id_email=emails_hotel.id_email) 
+									WHERE hotel_email_reserva.id_hotel = '$id_hotel'");
 		
 		if($query->num_rows() > 0){
 			foreach ($query->result() as $fila){

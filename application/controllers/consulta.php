@@ -23,6 +23,9 @@ class Consulta extends CI_Controller {
 						'fecha_envio' => date("Y-m-d h:i:s"),
 						'mensaje'=>$this->input->post('consulta'),
 						'emisor'=>$this->input->post('email'),
+						'nombre'=>$this->input->post('nombre'),
+						'apellido'=>$this->input->post('apellido'),
+						'telefono'=>$this->input->post('telefono'),
 						'id_tipo_mensaje'=>1,
 						'id_estado_mensaje'=>1,
 						'id_hotel'=>2);

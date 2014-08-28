@@ -83,7 +83,7 @@
   				<div class="form-group">
     				<label for="telefono"class="col-sm-2 control-label" ><?php echo $texto['telefono']?></label>
     				<div class="col-sm-10">
-    				<input type="text" class="form-control" name="apellido">
+    				<input type="text" class="form-control" name="telefono">
     				</div>
   				</div>
       		</div>

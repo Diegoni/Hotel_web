@@ -62,13 +62,14 @@ class Mensaje extends CI_Controller {
 			$crud->display_as('id_mensaje','ID')
 				 ->display_as('titulo','Título')
 				 ->display_as('mensaje','Mensaje')
-				 ->display_as('emisor','De')
+				 ->display_as('emisor','Email')
 				 ->display_as('fecha_envio','Fecha')
 				 ->display_as('id_tipo_mensaje','Tipo')
 				 ->display_as('id_estado_mensaje','Mensaje')
-				 ->display_as('id_hotel','Hotel');
+				 ->display_as('id_hotel','Hotel')
+				 ->display_as('comentario','Comentario');
 				 
-			$crud->fields('titulo', 'mensaje', 'emisor', 'fecha_envio', 'id_tipo_mensaje', 'id_estado_mensaje', 'id_hotel');
+			$crud->fields('titulo', 'mensaje', 'emisor', 'nombre', 'apellido', 'telefono', 'fecha_envio', 'id_tipo_mensaje', 'id_estado_mensaje', 'id_hotel', 'comentario');
 			
 			$crud->set_subject('mensaje');
 			
@@ -79,6 +80,9 @@ class Mensaje extends CI_Controller {
 			$crud->field_type('titulo', 'readonly');
 			$crud->field_type('mensaje', 'readonly');
 			$crud->field_type('emisor', 'readonly');
+			$crud->field_type('nombre', 'readonly');
+			$crud->field_type('apellido', 'readonly');
+			$crud->field_type('telefono', 'readonly');
 			$crud->field_type('fecha_envio', 'readonly');
 			$crud->field_type('id_tipo_mensaje', 'readonly');
 			$crud->field_type('id_hotel', 'readonly');
