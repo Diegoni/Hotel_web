@@ -74,4 +74,9 @@
 	$texto['pie']					= 'Caminhada';
 	$texto['bicicleta']				= 'Bicicleta';
 	
+	/* consulta */
+	$texto['gracias_mensaje'] 		= 'Obrigado por sua mensagem';
+	$texto['en_breve'] 				= 'Logo entraremos em contato com você.';
+	$texto['envio_habitacion']		= 'O quarto foi enviada.';
+	
 ?>	

@@ -41,5 +41,36 @@ class Consulta extends CI_Controller {
 		$this->load->view('frontend/footer');
 		
 	}
+
+	public function email_habitacion(){
+		$db['texto']=$this->idiomas_model->getIdioma();
+		$db['idiomas']=$this->idiomas_model->getIdiomas();
+		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
+		$db['hoteles']=$this->hoteles_model->getHoteles();
+		$db['configs']=$this->configs_model->getConfigs();
+		
+		$mensaje=array(	'titulo'=>'Envió de habitacion ID: '.$this->input->post('id_habitacion'),
+						'fecha_envio' => date("Y-m-d h:i:s"),
+						'mensaje'=>$this->input->post('consulta'),
+						'emisor'=>$this->input->post('email'),
+						'nombre'=>$this->input->post('nombre'),
+						'apellido'=>$this->input->post('apellido'),
+						'id_tipo_mensaje'=>2,
+						'id_estado_mensaje'=>1,
+						'id_hotel'=>2);
+		$habitacion=array(	'habitacion'=>$this->input->post('habitacion'),
+							'id_habitacion'=>$this->input->post('id_habitacion'));
+		
+		$db['mensajes']=$this->mensajes_model->insertMensaje($mensaje);
+		$db['mensajes']=$this->hoteles_email_model->correoHabitacion($mensaje, $habitacion);
+		
+				
+		$this->load->view('frontend/head', $db);
+		$this->load->view('frontend/menu');
+		$this->load->view('frontend/formulario_reserva');
+		$this->load->view('frontend/consulta/envio');
+		$this->load->view('frontend/footer');
+		
+	}
 	
 }

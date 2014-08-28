@@ -44,6 +44,9 @@
 							<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion;?>" class="btn btn-default btn-lg" title="<?php echo $texto['leer_mas']?>" rel="tooltip">
 								<span class="icon-chevron-down"></span>
 							</a>
+							<a href="#" class="btn btn-default btn-lg" title="<?php echo $texto['email']?>" rel="tooltip" data-toggle="modal" data-target="#habitacion<?php echo $habitacion->id_habitacion?>">
+								<span class="icon-emailalt"></span>
+							</a>
                     	</p>
         			</div>
           			<div class="media col-md-3 thumbnail">
@@ -51,8 +54,7 @@
 							<h4><?php echo $texto['habitacion']?></h4>
 							<!--<p>comentario</p>-->
 							<p>
-								<a href="#" class="btn btn-info btn-xs" rel="tooltip" title="<?php echo $texto['email']?>"><span class="icon-emailalt"></span></a>
-								<a href="<?php echo base_url().'index.php/habitacion/galeria/'.$habitacion->id_habitacion?>" class="btn btn-default btn-xs" rel="tooltip" title="<?php echo $texto['ver_fotos']?>"><span class="icon-play"></span></a>
+								<a href="<?php echo base_url().'index.php/habitacion/galeria/'.$habitacion->id_habitacion?>" class="btn btn-default" rel="tooltip" title="<?php echo $texto['ver_fotos']?>"><span class="icon-play"></span></a>
 							</p>
 						</div>
 						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -220,6 +222,75 @@
 	</div> 
 </div>
 </div>	
+
+
+
+
+
+
+
+
+
+
+
+
+<!---------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+					
+						Modal habitaciones 
+
+-----------------------------------------------------------------------------------
+---------------------------------------------------------------------------------->	
+
+<?php foreach ($habitaciones as $habitacion) { ?>
+<div class="modal fade" id="habitacion<?php echo $habitacion->id_habitacion?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<h4 class="modal-title" id="myModalLabel"><?php echo $texto['habitacion']?> : <?php echo $habitacion->habitacion?></h4>
+      		</div>
+      		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/consulta/email_habitacion'?>"/>
+      		<div class="modal-body">
+      			<div class="form-group">
+    				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['mensaje']?></label>
+    				<div class="col-sm-10">
+      				<textarea class="form-control" name="consulta" rows="3"></textarea>
+    				</div>
+  				</div>
+      			<div class="form-group">
+    				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['email']?></label>
+    				<div class="col-sm-10">
+      				<input class="form-control" name="email" type="email">
+    				</div>
+  				</div>
+  				<div class="form-group">
+    				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['nombre']?></label>
+    				<div class="col-sm-10">
+    				<input type="text" class="form-control" name="nombre">
+    				</div>
+  				</div>
+  				<div class="form-group">
+    				<label for="apellido" class="col-sm-2 control-label"><?php echo $texto['apellido']?></label>
+    				<div class="col-sm-10">
+    				<input type="text" class="form-control" name="apellido">
+    				</div>
+  				</div>  
+  					<input type="hidden" name="id_habitacion" value="<?php echo $habitacion->id_habitacion?>">				
+  					<input type="hidden" name="habitacion" value="<?php echo $habitacion->habitacion?>">
+      			</div>
+      			
+      			<div class="modal-footer">
+        			<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $texto['cerrar']?></button>
+        			<button type="submit" class="btn btn-hotel"><?php echo $texto['email']?></button>
+      			</div>
+      		</div>
+      		</form>
+    	</div>
+  	</div>
+</div>
+<?php } ?>
+
+
 
 <script>
 	$(document).ready(function(){

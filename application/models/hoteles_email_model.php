@@ -279,6 +279,100 @@ class Hoteles_email_model extends CI_Model {
 		}	
 		
 	}
+	
+	
+	function correoHabitacion($consulta, $habitacion){
+		$título = $consulta['titulo'];
+		
+		$query = $this->db->query("	SELECT hoteles.correo_habitacion  FROM hoteles
+									WHERE hoteles.id_hotel = '$consulta[id_hotel]'");
+		
+		if($query->num_rows() > 0){
+			foreach ($query->result() as $fila){
+				$correo_habitacion = $fila->correo_habitacion;		
+			}
+		}
+		
+		$mensaje = $correo_habitacion."<br>";
+		$mensaje .= 
+		"
+		<html>
+		<head>
+		<style type='text/css'>
+		table.gridtable {
+			font-family: verdana,arial,sans-serif;
+			font-size:11px;
+			color:#333333;
+			border-width: 1px;
+			border-color: #666666;
+			border-collapse: collapse;
+		}
+		table.gridtable th {
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			border-color: #666666;
+			background-color: #dedede;
+		}
+		table.gridtable td {
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			border-color: #666666;
+			background-color: #ffffff;
+		}
+		</style>".
+			header('Content-type: text/html; charset=utf-8')." 
+  			<title>".$título."</title>
+		</head>
+		<body>
+  			<table class='gridtable'>
+	  		<tr>
+	      		<td>Mensaje: </td>
+	      		<th>".$consulta['mensaje']."</th>
+	    	</tr>
+	    	<tr>
+	      		<td>Fecha de envio: </td>
+	      		<th>".date("H:i:s d-m-Y", strtotime($consulta['fecha_envio']))."</th>
+	    	</tr>
+	    	<tr>
+	      		<td>De: </td>
+	      		<th>".$consulta['nombre']." ".$consulta['apellido']."</th>
+	    	</tr>
+	    	<tr>
+	      		<td>Habitacion: </td>
+	      		<th><a href='http://tmsgroup.com.ar/carollo/index.php/habitacion/view/".$habitacion['id_habitacion']."'>".$habitacion['habitacion']."</a></th>
+	    	</tr>
+	  		</table>
+		</body>
+		</html>
+		";
+		
+		// Para enviar un correo HTML
+		$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+		$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		
+		// Cabeceras adicionales
+		$cabeceras .= 'From: Hoteles Gold <consulta@hoteles.com>' . "\r\n";
+		
+		mail($consulta['emisor'], $título, $mensaje, $cabeceras);
+		
+		$query = $this->db->query("	SELECT emails_hotel.email  FROM hotel_email_mensaje
+									INNER JOIN emails_hotel ON(hotel_email_mensaje.id_email=emails_hotel.id_email) 
+									WHERE hotel_email_mensaje.id_hotel = '$consulta[id_hotel]'");
+		
+		if($query->num_rows() > 0){
+			foreach ($query->result() as $fila){
+				$para = $fila->email;
+				mail($para, $título, $mensaje, $cabeceras);
+				
+				$data[] = $fila;	
+			}
+			return $data;
+		}else{
+			return FALSE;
+		}
+	}
 
 } 
 ?>
