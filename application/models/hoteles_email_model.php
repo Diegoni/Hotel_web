@@ -282,7 +282,7 @@ class Hoteles_email_model extends CI_Model {
 	
 	
 	function correoHabitacion($consulta, $habitacion){
-		$título = $consulta['titulo'];
+		$título = $habitacion['habitacion'];
 		
 		$query = $this->db->query("	SELECT hoteles.correo_habitacion  FROM hoteles
 									WHERE hoteles.id_hotel = '$consulta[id_hotel]'");

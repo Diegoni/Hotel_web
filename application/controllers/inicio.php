@@ -14,8 +14,15 @@ class Inicio extends CI_Controller {
       	$this->load->helper('url');
 	}
 	
-
+	
 	public function index(){
+		$db['hoteles']=$this->hoteles_model->getHotelesIntro();
+		
+		$this->load->view('frontend/intro', $db);
+	}
+	
+
+	public function hotel(){
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['hoteles']=$this->hoteles_model->getHoteles();

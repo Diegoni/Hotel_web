@@ -2,7 +2,7 @@
 	<div class="row menu">
 	<div class="col-md-3">
 		<center>
-		<a href="<?php echo base_url().'index.php/inicio/inicio'; ?>" class="logo">
+		<a href="<?php echo base_url().'index.php/inicio/hotel'; ?>" class="logo">
 		<?php  
 			foreach ($hoteles as $hotel) {
 				$logo_url=array();
