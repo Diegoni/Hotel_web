@@ -42,13 +42,18 @@
 			<?php foreach ($hoteles as $hotel) { ?> 
 				<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel; ?>">
 					<figure class="<?php echo $efectos[$i]?>">
-						<img src="<?php echo base_url().'librerias/intro/img/1.jpg'?>" alt="img01"/>
+						<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->fondo_intro?>" alt="img01"/>
 						<figcaption>
 							<h2>Hotel <span><?php echo $hotel->hotel ?></span></h2>
 							<p><?php echo $hotel->descripcion ?></p>
 						</figcaption>			
 					</figure>
 				</a>
+				<?php 	$i=$i+1; 
+						if($i-1>count($efectos)){
+							$i=0;
+						}
+				?>
 			<?php } ?>
 			</div>
 			

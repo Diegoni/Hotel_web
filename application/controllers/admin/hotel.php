@@ -47,6 +47,7 @@ class Hotel extends CI_Controller {
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');
+			$crud->where('hoteles.delete', 0);
 			$crud->set_table('hoteles');
 			
 			$crud->set_relation_n_n('emails_reserva' , 'hotel_email_reserva', 'emails_hotel', 'id_hotel', 'id_email', '{email}', 'prioridad');
@@ -67,15 +68,16 @@ class Hotel extends CI_Controller {
 			
 			$crud->set_subject('hotel');
 			
-			$crud->fields('hotel', 'descripcion', 'logo_url', 'url', 'correo_mensaje', 'emails_mensaje', 'correo_reserva', 'emails_reserva', 'correo_habitacion');
+			$crud->fields('hotel', 'descripcion', 'logo_url', 'url', 'correo_mensaje', 'emails_mensaje', 'correo_reserva', 'emails_reserva', 'correo_habitacion', 'fondo_intro');
 			
-			$crud->required_fields('hotel','descripcion', 'url');
+			$crud->required_fields('hotel','descripcion', 'url', 'fondo_intro');
 			
 			$crud->add_action('Teléfono', '', '','icon-phonealt', array($this,'buscar_telefonos'));
 			$crud->add_action('Dirección', '', '','icon-homealt', array($this,'buscar_direcciones'));
 			//$crud->add_action('Configuración', '', '','icon-mootools', array($this,'buscar_config'));
 			
 			$crud->set_field_upload('logo_url','assets/uploads/logos');
+			$crud->set_field_upload('fondo_intro','assets/uploads/logos');
 			
 			$crud->field_type('delete', 'hidden');
 			
