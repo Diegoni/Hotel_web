@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
-		<title>Hover Effect Ideas</title>
+		<title>Hotel</title>
 		
 		<script src="<?php echo base_url().'librerias/jquery.js'?>" type="text/javascript"></script>
 		<script src="<?php echo base_url().'librerias/main/js/intro_function.js'?>"></script>
@@ -50,16 +50,12 @@
 					</figure>
 				</a>
 				<?php 	$i=$i+1; 
-						if($i-1>count($efectos)){
+						if($i>count($efectos)){
 							$i=0;
 						}
 				?>
 			<?php } ?>
 			</div>
-			
-			
-			
 		</div><!-- /container -->
-		
 	</body>
 </html>

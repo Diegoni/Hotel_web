@@ -2,7 +2,11 @@
 		<div class="panel panel-hotel">
 			<div class="panel-heading"><?php echo $texto['datos_personales']?></div>
 		  	<div class="panel-body">
-		  		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/reserva/pago'?>" />
+		  		<form method="post" class="form-horizontal register" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/reserva/pago'?>" />
+		  			<h3>
+						<span class="label label-danger">1</span> Datos
+					</h3>
+					<hr />
   					<div class="form-group">
     					<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['nombre']?></label>
     					<div class="col-sm-10">
@@ -43,6 +47,12 @@
     					</div>
   					</div>
   					
+  					<hr />
+  					<h3>
+						<span class="label label-danger">2</span> Tarjeta
+					</h3>
+  					<hr />
+  					
   					<div class="form-group">
             			<label for="tipo_tarjeta" class="col-sm-2 control-label"><?php echo $texto['tipo_tarjeta']?></label>
 						<div class="col-sm-10">
@@ -68,6 +78,39 @@
     					</div>
   					</div>
   					
+  					<div class="form-group">
+    					<label for="tarjeta" class="col-sm-2 control-label">Pin</label>
+    					<div class="col-sm-10">
+    						<div class="input-group" data-validate="phone">
+								<input type="text" class="form-control" name="tarjeta" id="tarjeta" placeholder="<?php echo $texto['ingrese']?> Pin" required>
+								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
+							</div>
+    					</div>
+  					</div>
+  					
+  					<div class="form-group">
+    					<label for="tarjeta" class="col-sm-2 control-label">Vencimiento</label>
+    					<div class="col-sm-10">
+    						<div class="input-group" data-validate="phone">
+								<input type="text" class="form-control" name="tarjeta" id="tarjeta" placeholder="<?php echo $texto['ingrese']?> Venicimiento" required>
+								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
+							</div>
+    					</div>
+  					</div>
+  					
+  					<hr />
+  					<h3>
+						<span class="label label-danger">3</span> Vuelo
+					</h3>
+  					<hr />
+  					
+  					<div class="form-group">
+    					<label for="tarjeta" class="col-sm-2 control-label">Transfer</label>
+    					<div class="col-sm-10">
+							<input type="text" class="form-control" name="transfer" id="transfer" placeholder="Transfer">
+    					</div>
+  					</div>
+  					
   					<div class="form-group slidingDiv">
   						<label for="nota" class="col-sm-2 control-label"><?php echo $texto['nota']?></label>
     					<div class="col-sm-10">
@@ -78,7 +121,7 @@
   					<div class="form-group">
   						<label for="nota" class="col-sm-2 control-label"></label>
     					<div class="col-sm-10">
-      						<a href="#" class="btn btn-default show_hide">
+      						<a class="btn btn-default show_hide">
 								<?php echo $texto['agregar_nota']?>
 							</a>
     					</div>
