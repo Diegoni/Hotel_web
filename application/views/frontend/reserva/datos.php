@@ -3,8 +3,15 @@
 			<div class="panel-heading"><?php echo $texto['datos_personales']?></div>
 		  	<div class="panel-body">
 		  		<form method="post" class="form-horizontal register" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/reserva/pago'?>" />
+		  			
+		  			<!--------------------------------------------------------------------------------
+		  			----------------------------------------------------------------------------------
+		  							Datos Personales
+		  			----------------------------------------------------------------------------------
+		  			--------------------------------------------------------------------------------->	
+		  			
 		  			<h3>
-						<span class="label label-danger">1</span> Datos
+						<span class="label label-danger">1</span> <?php echo $texto['datos'] ?>
 					</h3>
 					<hr />
   					<div class="form-group">
@@ -48,8 +55,15 @@
   					</div>
   					
   					<hr />
+  					
+  					<!--------------------------------------------------------------------------------
+		  			----------------------------------------------------------------------------------
+		  							Tarjeta
+		  			----------------------------------------------------------------------------------
+		  			--------------------------------------------------------------------------------->	
+  					
   					<h3>
-						<span class="label label-danger">2</span> Tarjeta
+						<span class="label label-danger">2</span> <?php echo $texto['tarjeta']?>
 					</h3>
   					<hr />
   					
@@ -79,35 +93,61 @@
   					</div>
   					
   					<div class="form-group">
-    					<label for="tarjeta" class="col-sm-2 control-label">Pin</label>
+    					<label for="pin" class="col-sm-2 control-label"><?php echo $texto['pin'] ?></label>
     					<div class="col-sm-10">
-    						<div class="input-group" data-validate="phone">
-								<input type="text" class="form-control" name="tarjeta" id="tarjeta" placeholder="<?php echo $texto['ingrese']?> Pin" required>
+    						<div class="input-group" data-validate="pin">
+								<input type="text" class="form-control" name="pin" id="pin" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['pin'] ?>" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
   					</div>
   					
   					<div class="form-group">
-    					<label for="tarjeta" class="col-sm-2 control-label">Vencimiento</label>
+    					<label for="tarjeta" class="col-sm-2 control-label"><?php echo $texto['vencimiento'] ?></label>
     					<div class="col-sm-10">
-    						<div class="input-group" data-validate="phone">
-								<input type="text" class="form-control" name="tarjeta" id="tarjeta" placeholder="<?php echo $texto['ingrese']?> Venicimiento" required>
+    						<div class="input-group">
+    							<input type="text" class="form-control" name="vencimiento" id="vencimiento" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['vencimiento'] ?>" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
   					</div>
   					
   					<hr />
+  					
+  					<!--------------------------------------------------------------------------------
+		  			----------------------------------------------------------------------------------
+		  							Vuelo
+		  			----------------------------------------------------------------------------------
+		  			--------------------------------------------------------------------------------->	
+		  			
   					<h3>
-						<span class="label label-danger">3</span> Vuelo
+						<span class="label label-danger">3</span> <?php echo $texto['vuelo'] ?>
 					</h3>
   					<hr />
   					
   					<div class="form-group">
-    					<label for="tarjeta" class="col-sm-2 control-label">Transfer</label>
+    					<label for="tarjeta" class="col-sm-2 control-label"><?php echo $texto['nro_de_vuelo']?></label>
     					<div class="col-sm-10">
-							<input type="text" class="form-control" name="transfer" id="transfer" placeholder="Transfer">
+							<input type="text" class="form-control" name="nro_de_vuelo" id="nro_de_vuelo" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['nro_de_vuelo']?>">
+    					</div>
+  					</div>
+  					
+  					<div class="form-group">
+    					<label for="tarjeta" class="col-sm-2 control-label"><?php echo $texto['horario_llegada']?></label>
+    					<div class="col-sm-10">
+    						<input type="text" class="form-control" name="horario_llegada" id="horario" onkeypress="return false" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['horario_llegada']?>">
+    					</div>
+  					</div>
+  					
+  					<div class="form-group">
+    					<label for="tarjeta" class="col-sm-2 control-label"><?php echo $texto['aerolinea'] ?></label>
+    					<div class="col-sm-10">
+							<select class="form-control" name="aerolinea" id="aerolinea" placeholder="<?php echo $texto['aerolinea'] ?>">
+								<option value=""></option>
+								<?php foreach ($aerolineas as $aerolinea) { ?>
+									<option value="<?php echo $aerolinea->id_aerolinea?>"><?php echo $aerolinea->aerolinea ?></option>
+								<?php } ?>
+							</select>
     					</div>
   					</div>
   					

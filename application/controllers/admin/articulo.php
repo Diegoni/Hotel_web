@@ -67,16 +67,20 @@ class Articulo extends CI_Controller {
 				 ->display_as('id_estado_articulo','Estado')
 				 ->display_as('id_idioma','Idioma')
 				 ->display_as('archivo_url','Archivo')
+				 ->display_as('pagina_principal','Página Principal')
 				 ->display_as('fecha_publicacion','Fecha publicación')
 				 ->display_as('fecha_despublicacion','Fecha despublicación')
 				 ->display_as('id_tarifa_temporal','Tarifa temporal');
 			
 			$crud->set_subject('artículo');
 			
+			$crud->field_type('pagina_principal', 'true_false');
+			
 			$crud->fields(	'titulo',
 							'articulo',
 							'fecha_publicacion', 
-							'fecha_despublicacion', 
+							'fecha_despublicacion',
+							'pagina_principal', 
 							'id_hotel',
 							'id_autor',
 							'archivo_url',

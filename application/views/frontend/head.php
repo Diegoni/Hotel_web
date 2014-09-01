@@ -60,10 +60,25 @@
 <link href="<?php echo base_url().'librerias/ui/jquery-ui.css'?>" rel="stylesheet" media="screen">
 <script src="<?php echo base_url().'librerias/ui/jquery-ui.js'?>"></script>
 
+<!----------------------------------------------------------------------------
+------------------------------------------------------------------------------
+								Jquery UI tiem picker
+------------------------------------------------------------------------------
+----------------------------------------------------------------------------->
+
+
+<link href="<?php echo base_url() ?>librerias/ui/jquery.ui.timepicker.css?v=0.3.3" rel="stylesheet" type="text/css" />
+<script src="<?php echo base_url() ?>librerias/ui/jquery.ui.core.min.js" type="text/javascript" ></script>
+<script src="<?php echo base_url() ?>librerias/ui/jquery.ui.timepicker.js?v=0.3.3" type="text/javascript"></script>
+
 
 
 <link rel="stylesheet" href="//frontend.reklamor.com/fancybox/jquery.fancybox.css" media="screen">
 <script src="//frontend.reklamor.com/fancybox/jquery.fancybox.js"></script>
+
+
+
+
 
 </head>
 <body>

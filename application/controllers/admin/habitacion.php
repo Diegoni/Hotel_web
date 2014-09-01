@@ -52,7 +52,7 @@ class Habitacion extends CI_Controller {
 							'id_estado_habitacion');
 			
 			$crud->display_as('id_habitacion','ID')
-				 ->display_as('habitacion','Habitación')
+				 ->display_as('habitacion','Descripción')
 				 ->display_as('descripcion','descripción')
 				 ->display_as('cantidad','Cantidad')
 				 ->display_as('id_hotel','Hotel')
@@ -170,7 +170,7 @@ class Habitacion extends CI_Controller {
 							'id_moneda');
 			
 			$crud->display_as('id_tarifa','ID')
-				 ->display_as('tarifa','Tarifa')
+				 ->display_as('tarifa','Descripción')
 				 ->display_as('precio','Precio')
 				 ->display_as('id_moneda','Moneda');
 				 
@@ -227,7 +227,7 @@ class Habitacion extends CI_Controller {
 							
 			$crud->display_as('id_tarifa_temporal','ID')
 				 ->display_as('habitaciones','Habitaciones')
-				 ->display_as('tarifa_temporal','Tarifa temporal')
+				 ->display_as('tarifa_temporal','Descripción')
 				 ->display_as('entrada','Entrada')
 				 ->display_as('salida','Salida')
 				 ->display_as('id_tipo_tarifa','Tipo')

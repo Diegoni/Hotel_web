@@ -357,9 +357,9 @@ class Hoteles_email_model extends CI_Model {
 		
 		mail($consulta['emisor'], $título, $mensaje, $cabeceras);
 		
-		$query = $this->db->query("	SELECT emails_hotel.email  FROM hotel_email_mensaje
-									INNER JOIN emails_hotel ON(hotel_email_mensaje.id_email=emails_hotel.id_email) 
-									WHERE hotel_email_mensaje.id_hotel = '$consulta[id_hotel]'");
+		$query = $this->db->query("	SELECT emails_hotel.email  FROM hotel_email_habitacion
+									INNER JOIN emails_hotel ON(hotel_email_habitacion.id_email=emails_hotel.id_email) 
+									WHERE hotel_email_habitacion.id_hotel = '$consulta[id_hotel]'");
 		
 		if($query->num_rows() > 0){
 			foreach ($query->result() as $fila){

@@ -40,9 +40,17 @@
 	$texto['nota'] 					= 'Nota';
 	$texto['acepto_condiciones'] 	= 'Acepto las condiciones de la reserva.';
 	$texto['ver_condiciones'] 		= 'Ver condiciones';
-	$texto['seleccione_tarjeta']	= 'Selecciona una tarjeta';
+	$texto['seleccione_tarjeta']	= 'Seleccione una tarjeta';
 	$texto['terminos_condiciones']	= 'Términos y condiciones';
 	$texto['cerrar']				= 'Cerrar';
+	$texto['pin']					= 'Pin';
+	$texto['vencimiento']			= 'Vencimiento';
+	$texto['vuelo']					= 'Vuelo';
+	$texto['nro_de_vuelo']			= 'Número de vuelo';
+	$texto['horario_llegada']		= 'Horario de llegada';	
+	$texto['aerolinea']				= 'Aerolínea';
+	$texto['datos']					= 'Datos';
+	
 	
 	/* consultas */
 	$texto['mensaje']				= 'Mensaje';

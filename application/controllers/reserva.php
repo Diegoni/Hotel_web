@@ -4,6 +4,7 @@ class Reserva extends CI_Controller {
 	
 	function __construct(){
 		parent::__construct();
+		$this->load->model('aerolineas_model');
 		$this->load->model('ayudas_model');
 		$this->load->model('configs_model');
 		$this->load->model('disponibilidades_model');
@@ -83,6 +84,7 @@ class Reserva extends CI_Controller {
 		$db['habitaciones']=$this->habitaciones_model->getHabitaciones_post($consulta);
 		$db['tipos_tarjeta']=$this->tipos_tarjeta_model->getTipos();
 		$db['terminos']=$this->terminos_model->getTerminos();
+		$db['aerolineas']=$this->aerolineas_model->getAerolineas();
 		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
 		$db['step']=3;
 		

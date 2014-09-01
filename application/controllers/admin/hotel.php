@@ -52,6 +52,7 @@ class Hotel extends CI_Controller {
 			
 			$crud->set_relation_n_n('emails_reserva' , 'hotel_email_reserva', 'emails_hotel', 'id_hotel', 'id_email', '{email}', 'prioridad');
 			$crud->set_relation_n_n('emails_mensaje', 'hotel_email_mensaje', 'emails_hotel', 'id_hotel', 'id_email', '{email}', 'prioridad');
+			$crud->set_relation_n_n('emails_habitacion', 'hotel_email_habitacion', 'emails_hotel', 'id_hotel', 'id_email', '{email}', 'prioridad');
 			
 			$crud->columns(	'id_hotel',
 							'hotel',
@@ -64,11 +65,12 @@ class Hotel extends CI_Controller {
 				 ->display_as('descripcion','Descripción')
 				 ->display_as('url','Sitio')
 				 ->display_as('emails_reserva','Emails para recibir reservas')
-				 ->display_as('emails_mensaje','Emails para recibir mensajes');
+				 ->display_as('emails_mensaje','Emails para recibir mensajes')
+				 ->display_as('emails_habitacion','Emails cuando se envia habitación');
 			
 			$crud->set_subject('hotel');
 			
-			$crud->fields('hotel', 'descripcion', 'logo_url', 'url', 'correo_mensaje', 'emails_mensaje', 'correo_reserva', 'emails_reserva', 'correo_habitacion', 'fondo_intro');
+			$crud->fields('hotel', 'descripcion', 'logo_url', 'url', 'correo_mensaje', 'emails_mensaje', 'correo_reserva', 'emails_reserva', 'correo_habitacion', 'emails_habitacion', 'fondo_intro');
 			
 			$crud->required_fields('hotel','descripcion', 'url', 'fondo_intro');
 			
