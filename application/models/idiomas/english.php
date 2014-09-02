@@ -43,6 +43,13 @@
 	$texto['seleccione_tarjeta']	= 'Select a card';
 	$texto['terminos_condiciones']	= 'Terms and Conditions';
 	$texto['cerrar']				= 'Close';
+	$texto['pin']					= 'Pin';
+	$texto['vencimiento']			= 'Expiration';
+	$texto['vuelo']					= 'Flight';
+	$texto['nro_de_vuelo']			= 'Número de vuelo';
+	$texto['horario_llegada']		= 'Arrival time';	
+	$texto['aerolinea']				= 'Airline';
+	$texto['datos']					= 'Data';
 	
 	/* consultas */
 	$texto['mensaje']				= 'Post';
