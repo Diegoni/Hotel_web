@@ -93,6 +93,8 @@ class Reserva extends CI_Controller {
 						
 			$crud->required_fields('id_habitacion','id_huesped','entrada', 'salida', 'adultos', 'menores');
 			
+			$crud->add_action('Vuelos', '', '','icon-plane', array($this,'buscar_vuelos'));
+			
 			$_COOKIE['tabla']='reservas';
 			$_COOKIE['id']='id_reserva';	
 			
@@ -253,7 +255,6 @@ class Reserva extends CI_Controller {
 			
 			$crud->callback_after_update(array($this, 'update_log'));
 							
-						
 			$crud->required_fields('estado_reserva');
 			
 			$output = $crud->render();
@@ -261,6 +262,61 @@ class Reserva extends CI_Controller {
 			$this->_example_output($output);
 	}
 	
+
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de Vuelos
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+
+
+	public function vuelos_abm(){
+			$crud = new grocery_CRUD();
+			
+			$crud->where('vuelos.delete', 0);
+			
+			$crud->set_table('vuelos');
+			
+			$crud->columns(	'id_vuelo',
+							'id_reserva',
+							'id_huesped',
+							'id_aerolinea',
+							'nro_vuelo',
+							'horario_llegada');
+							
+			$crud->display_as('id_vuelo','ID')
+				 ->display_as('id_reserva','Reserva')
+				 ->display_as('id_huesped','Huesped')
+				 ->display_as('id_aerolinea','Aerolinea')
+				 ->display_as('nro_vuelo','Número vuelo')
+				 ->display_as('horario_llegada','Horario de llegada');
+			
+			$crud->fields('id_reserva', 'id_huesped', 'id_aerolinea', 'nro_vuelo', 'horario_llegada');
+			
+			$crud->set_subject('vuelos');
+			
+			$crud->set_relation('id_huesped','huespedes','{apellido} {nombre}');
+			$crud->set_relation('id_reserva','reservas','id_reserva', 'delete = 0');			
+			$crud->set_relation('id_aerolinea','aerolineas','aerolinea', 'delete = 0');
+			
+			$crud->add_action('Reserva', '', '','icon-tagalt-pricealt', array($this,'buscar_reservas'));
+			
+			$_COOKIE['tabla']='vuelos';
+			$_COOKIE['id']='id_vuelo';	
+			
+			$crud->callback_after_insert(array($this, 'insert_log'));
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));	
+			
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}
+
+
+
 
 	
 /**********************************************************************************
@@ -369,4 +425,37 @@ class Reserva extends CI_Controller {
 	}
 	
 	
+	
+	function buscar_vuelos($id){
+		$query = $this->db->query("SELECT id_vuelo FROM vuelos WHERE id_reserva='$id' ");
+		
+		if($query->num_rows() > 0){
+			foreach ($query->result() as $fila){
+				$id_vuelo = $fila->id_vuelo;
+			}
+			
+			return site_url('admin/reserva/vuelos_abm/read').'/'.$id_vuelo;	
+		}else{
+			return site_url('no_fly').'/';
+		}
+	}
+	
+	
+	function buscar_reservas($id){
+		$query = $this->db->query("SELECT id_reserva FROM vuelos WHERE id_vuelo='$id' ");
+			foreach ($query->result() as $fila){
+				$id_reserva = $fila->id_reserva;
+			}
+			
+			return site_url('admin/reserva/reservas_abm/read').'/'.$id_reserva;	
+	}
+	
+	
 }
+//script para poner disabled los que no tengan vuelo
+?>
+<script>
+	$(document).ready(function(){
+ 	$('a[href*="no_fly"]').addClass('disabled', true);
+});
+</script>

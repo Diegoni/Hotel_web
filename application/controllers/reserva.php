@@ -21,6 +21,7 @@ class Reserva extends CI_Controller {
 		$this->load->model('terminos_model');
 		$this->load->model('tipos_habitacion_model');
 		$this->load->model('tipos_tarjeta_model');
+		$this->load->model('vuelos_model');
 		$this->load->helper('main');
 		$this->load->helper('form');		
 	}
@@ -29,11 +30,11 @@ class Reserva extends CI_Controller {
 	public function habitacion(){
 		$db['texto']=$this->idiomas_model->getIdioma();
 		
-		$consulta=array('entrada'=>$this->input->post('entrada'),
-						'salida'=>$this->input->post('salida'),
-						'adultos'=>$this->input->post('adultos'),
-						'menores'=>$this->input->post('menores'),
-						'hotel'=>$this->input->post('hotel'),						
+		$consulta=array('entrada'	=>$this->input->post('entrada'),
+						'salida'	=>$this->input->post('salida'),
+						'adultos'	=>$this->input->post('adultos'),
+						'menores'	=>$this->input->post('menores'),
+						'hotel'		=>$this->input->post('hotel'),						
 						);
 		
 		$db['hoteles']=$this->hoteles_model->getHoteles();
@@ -69,16 +70,16 @@ class Reserva extends CI_Controller {
 	public function datos(){
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
-		$consulta=array('entrada'=>$this->input->post('entrada'),
-						'salida'=>$this->input->post('salida'),
-						'adultos'=>$this->input->post('adultos'),
-						'menores'=>$this->input->post('menores'),
-						'hotel'=>$this->input->post('hotel'),						
+		$consulta=array('entrada'	=>$this->input->post('entrada'),
+						'salida'	=>$this->input->post('salida'),
+						'adultos'	=>$this->input->post('adultos'),
+						'menores'	=>$this->input->post('menores'),
+						'hotel'		=>$this->input->post('hotel'),						
 						);
 							
 		$db['hoteles']=$this->hoteles_model->getHoteles();
-		$ayuda=array('sector' => 'datos',
-					 'id_idioma' => $_COOKIE['idioma']);
+		$ayuda=array('sector' 		=> 'datos',
+					 'id_idioma' 	=> $_COOKIE['idioma']);
 		
 		$db['ayudas']=$this->ayudas_model->getAyuda($ayuda);
 		$db['habitaciones']=$this->habitaciones_model->getHabitaciones_post($consulta);
@@ -108,10 +109,10 @@ class Reserva extends CI_Controller {
 		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
 		$db['step']=4;
 		
-		$huesped=array(	'nombre'=> $this->input->post('nombre'),
-						'apellido'=> $this->input->post('apellido'),
-						'email'=> $this->input->post('email'),
-						'telefono'=> $this->input->post('telefono'),
+		$huesped=array(	'nombre'		=> $this->input->post('nombre'),
+						'apellido'		=> $this->input->post('apellido'),
+						'email'			=> $this->input->post('email'),
+						'telefono'		=> $this->input->post('telefono'),
 						);
 		
 		$id_huesped=$this->huespedes_model->insertHuesped($huesped);
@@ -123,39 +124,50 @@ class Reserva extends CI_Controller {
 			$id_nota=0;
 		}
 		
-		$tarjeta=array(	'id_huesped' => $id_huesped,
-						'id_tipo_tarjeta' => $this->input->post('tipo_tarjeta'),
-					   	'tarjeta' => $this->input->post('tarjeta')
+		$tarjeta=array(	'id_huesped' 	=> $id_huesped,
+						'id_tipo_tarjeta'=> $this->input->post('tipo_tarjeta'),
+					   	'tarjeta' 		=> $this->input->post('tarjeta'),
+						'pin' 			=> $this->input->post('pin'),
+						'vencimiento' 	=> $this->input->post('vencimiento')
 						);
 		
 		$id_tarjeta=$this->tarjetas_model->insertTarjeta($tarjeta);
-		
+				
 		$array_entrada = explode("/", $this->input->post('entrada')); 
 		$entrada=$array_entrada[2]."/".$array_entrada[1]."/".$array_entrada[0];
 		$array_salida = explode("/", $this->input->post('salida')); 
 		$salida=$array_salida[2]."/".$array_salida[1]."/".$array_salida[0];
 		$fecha= date('Y-m-d H:i:s');		
 		
-		$reserva=array(	'entrada' => $entrada,
-						'salida' => $salida,
-						'adultos' => $this->input->post('adultos'),
-						'menores' => $this->input->post('menores'),
-						'id_huesped' => $id_huesped,
-						'id_nota' => $id_nota,
+		$reserva=array(	'entrada' 		=> $entrada,
+						'salida' 		=> $salida,
+						'adultos'		=> $this->input->post('adultos'),
+						'menores' 		=> $this->input->post('menores'),
+						'id_huesped' 	=> $id_huesped,
+						'id_nota' 		=> $id_nota,
 						'id_estado_reserva'=> 1, 
-						'fecha_alta' => $fecha
+						'fecha_alta' 	=> $fecha
 						);
 						
 		
 		$id_reserva=$this->reservas_model->insertReserva($reserva);
 		
-		$consulta=array('entrada'=>$this->input->post('entrada'),
-						'salida'=>$this->input->post('salida'),
-						'adultos'=>$this->input->post('adultos'),
-						'menores'=>$this->input->post('menores'),
-						'hotel'=>$this->input->post('hotel'),						
+		$consulta=array('entrada'		=> $this->input->post('entrada'),
+						'salida'		=> $this->input->post('salida'),
+						'adultos'		=> $this->input->post('adultos'),
+						'menores'		=> $this->input->post('menores'),
+						'hotel'			=> $this->input->post('hotel'),						
 						);
 		
+		if(null !== $this->input->post('nro_de_vuelo') || null !== $this->input->post('horario_llegada')){
+			$vuelo=array('id_huesped'	=> $id_huesped,
+						'nro_vuelo' 	=> $this->input->post('nro_de_vuelo'),
+						'id_reserva'	=> $id_reserva,
+						'horario_llegada'=> $this->input->post('horario_llegada'),
+						'id_aerolinea' 	=> $this->input->post('aerolinea'));
+		
+			$id_vuelo=$this->vuelos_model->insertVuelo($vuelo);
+		}
 		
 		$habitaciones=$this->habitaciones_model->getHabitaciones_post($consulta);
 		$db['habitaciones']=$this->reserva_habitacion_model->insertReserva_habitacion($id_reserva, $habitaciones);

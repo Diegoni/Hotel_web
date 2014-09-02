@@ -45,6 +45,7 @@
 				<li><a  href='#' data-toggle="modal" data-target="#modal_reservas">Nuevas					
 				<?php echo "<span class='badge'>".$cant_reservas."</span></a></li>"; } ?>	
 				<li><a  href='<?php echo site_url('admin/reserva/reservas_abm')?>'>Reservas</a></li>
+				<li><a  href='<?php echo site_url('admin/reserva/vuelos_abm')?>'>Vuelos</a></li>
 				<li><a  href='<?php echo site_url('admin/reserva/disponibilidades_abm')?>'>Cierre de ventas</a></li>
 				<li><a  href='<?php echo site_url('admin/reserva/estados_reserva')?>'>Estados reserva</a></li>
           	</ul>
@@ -155,6 +156,7 @@
             	<li><a  href='<?php echo site_url('admin/otro/paises_abm')?>'>Países</a></li>
             	<li class="divider"></li>
 				<li><a  href='<?php echo site_url('admin/otro/tipos_abm')?>'>Tipos</a></li>
+				<li><a  href='<?php echo site_url('admin/otro/aerolineas_abm')?>'>Aerolineas</a></li>
 				<li class="divider"></li>
 				<li><a  href='<?php echo site_url('galeria/imagenes_carrusel')?>'>Imágenes carrusel</a></li>
 				<li><a  href='<?php echo site_url('admin/otro/terminos_abm')?>'>Términos y condiciones</a></li>

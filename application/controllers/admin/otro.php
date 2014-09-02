@@ -171,6 +171,40 @@ class Otro extends CI_Controller {
 
 			$this->_example_output($output);
 	}
+
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de aerolineas 
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+ 
+ 
+	public function aerolineas_abm(){
+			$crud = new grocery_CRUD();
+
+			//$crud->set_theme('datatables');
+			$crud->set_table('aerolineas');
+			
+			$crud->columns(	'id_aerolinea',
+							'aerolinea');
+			
+			$crud->display_as('id_aerolinea','ID')
+				 ->display_as('aerolinea','Aerolinea');
+				 
+			$crud->fields('aerolinea');
+			
+			$crud->set_subject('aerolinea');
+							
+			$crud->required_fields(	'aerolinea');
+			
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}
+	
+	
 	
 	
 
