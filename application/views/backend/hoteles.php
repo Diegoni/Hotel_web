@@ -11,6 +11,34 @@
 					<li><a  href='<?php echo site_url('admin/hotel/telefonos_hotel')?>'>Teléfonos</a></li>
 	            	<li><a  href='<?php echo site_url('admin/hotel/emails_hotel')?>'>Emails</a></li>
 	            	<li><a  href='<?php echo site_url('admin/hotel/direcciones_hotel')?>'>Direcciones</a></li>
+	            	<li>
+	            		<a class="dropdown-toggle" data-toggle="dropdown">
+							Config email reserva <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a  href='<?php echo site_url('admin/hotel/config_email_reserva/1')?>'>Administración</a></li>			
+							<li><a  href='<?php echo site_url('admin/hotel/config_email_reserva/2')?>'>Huesped</a></li>
+						</ul>
+					</li>
+	            	<li>
+	            		<a class="dropdown-toggle" data-toggle="dropdown">
+							Config email mensaje <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a  href='<?php echo site_url('admin/hotel/config_email_mensaje/1')?>'>Administración</a></li>			
+							<li><a  href='<?php echo site_url('admin/hotel/config_email_mensaje/2')?>'>Huesped</a></li>
+						</ul>
+					</li>
+	            	<li>
+	            		<a class="dropdown-toggle" data-toggle="dropdown">
+							Config email habitación <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a  href='<?php echo site_url('admin/hotel/config_email_habitacion/1')?>'>Administración</a></li>			
+							<li><a  href='<?php echo site_url('admin/hotel/config_email_habitacion/2')?>'>Huesped</a></li>
+						</ul>
+					</li>
+	            	
 	            	<!--
 	            	<li><a  href='<?php echo site_url('admin/hotel/config')?>'>Configuración</a></li>
 	            	<li><a  href='<?php echo site_url('admin/hotel/detalle_config')?>'>Configuración avanzada</a></li>

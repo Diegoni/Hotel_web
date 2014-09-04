@@ -169,11 +169,9 @@
   					
   					<div class="form-group">
 					    <div class="col-sm-offset-2 col-sm-10">
-					      <div class="checkbox">
-					        <label>
+					      <div class="input-group">
 					          <input type="checkbox" required> <?php echo $texto['acepto_condiciones']?> 
 					          <a href="#" class="btn btn-default btn-xs" data-toggle="modal" data-target="#terminos"><?php echo $texto['ver_condiciones']?> </a> 
-					        </label>
 					      </div>
 					    </div>
 					</div>
