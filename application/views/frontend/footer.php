@@ -23,8 +23,8 @@
   						if (!(in_array($hotel->telefono, $telefono))) {
     						$telefono[]=$hotel->telefono;	
 						} 
-						if (!(in_array($hotel->nro." - ".$hotel->calle." - ".$hotel->provincia, $direccion))) {
-							$direccion[]=$hotel->nro." - ".$hotel->calle." - ".$hotel->provincia;
+						if (!(in_array($hotel->calle." - ".$hotel->provincia, $direccion))) {
+							$direccion[]=$hotel->calle." - ".$hotel->provincia;
 						}	
 					} ?>		
 					<h4 class="footer-text"><i class="fa fa-phone"></i>

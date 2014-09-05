@@ -7,6 +7,7 @@ class Habitaciones_model extends CI_Model {
 									INNER JOIN tarifas ON(habitaciones.id_tarifa=tarifas.id_tarifa) 
 									WHERE id_hotel='$consulta[hotel]'
 									AND adultos<='$consulta[adultos]'
+									AND habitaciones.delete=0
 									ORDER BY id_hotel");	
 		
 		}else{
@@ -14,6 +15,7 @@ class Habitaciones_model extends CI_Model {
 									INNER JOIN tarifas ON(habitaciones.id_tarifa=tarifas.id_tarifa) 
 									INNER JOIN monedas ON(tarifas.id_moneda=monedas.id_moneda)
 									WHERE id_hotel='$consulta[hotel]' 
+									AND habitaciones.delete=0
 									ORDER BY id_hotel");
 		}
 		

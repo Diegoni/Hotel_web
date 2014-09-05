@@ -81,7 +81,7 @@
 
 
 </head>
-<body>
+<body onload="initialize()">
 
 		
 

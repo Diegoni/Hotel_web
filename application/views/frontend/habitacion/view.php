@@ -58,57 +58,107 @@
 				</div>
 								
 				<div class="badger-left badger-hotel" data-badger="<?php echo $texto['como_llegar']?>">
-					<iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.3745900600725!2d-68.847059!3d-32.88826299999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9e5e8abae6963f75!2sGran+Carollo!5e0!3m2!1ses!2sar!4v1407167639519"></iframe>
-        			
-      				<div class="span4">
-    					<h2><?php echo $texto['como_llegar']?></h2>
-    					<form class="form-horizontal" role="form">
-							<div class="form-group">
-								<label for="calle" class="col-sm-2 control-label"><?php echo $texto['calle']?></label>
-								<div class="col-sm-10">
-									<input type="calle" class="form-control" id="calle">
-								</div>
+				<?php 
+  					$telefono=array();
+					$direccion=array();
+					
+					foreach ($hoteles as $hotel) {
+						if (!(in_array($hotel->calle." - ".$hotel->provincia, $direccion))) {
+							$direccion[]=$hotel->hotel.", ".$hotel->calle.", ".$hotel->provincia;
+						}	
+					} 
+					
+					foreach ($direccion as $key => $value) {
+						$direccion_final=$value;
+					}
+				?>
+				<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&languaje=sp"></script>
+				<script type="text/javascript" src="<?php echo base_url().'librerias/main/js/google_maps.js'?>"></script>
+
+  				<div id="map_canvas" style="float:left;width:100%;height:60%; margin-bottom: 15px;"></div>
+				<form class="form-horizontal" role="form">
+					
+					<div class="form-group">
+    					<label for="inputEmail3" class="col-sm-2 control-label">
+    						<?php echo $texto['destino'];?>:
+    					</label>
+    					<div class="col-sm-10">
+							<input type="text" id="end" class="form-control" value="<?php echo $direccion_final ?>" readonly>
+						</div>
+  					</div>
+			
+					<div class="form-group">
+    					<label for="inputEmail3" class="col-sm-2 control-label">
+    						<?php echo $texto['desde'];?>:
+    					</label>
+    					<div class="col-sm-10">
+							<input type="text" class="form-control" id="start" value="">
+						</div>
+  					</div>
+  					
+  					<div class="form-group">
+    					<label for="inputEmail3" class="col-sm-2 control-label">
+    						<?php echo $texto['puntos_intermedios'];?>:
+    					</label>
+    					<div class="col-sm-10">
+							<input type="text" id="waypoints1" class="form-control">
+							<input type="text" id="waypoints2" class="form-control">
+							<input type="text" id="waypoints3" class="form-control">
+						</div>
+  					</div>
+  			
+  					<div class="form-group">
+    					<label for="inputEmail3" class="col-sm-2 control-label">
+    						<?php echo $texto['vehiculo_consumo'];?>
+    					</label>
+    					<div class="col-sm-10">
+    						<div class="input-group">
+      							<input type="text" class="form-control" id="consumo" value="8">
+      							<div class="input-group-addon"><?php echo $texto['litros_kilometros'];?></div>
 							</div>
-							<div class="form-group">
-								<label for="nro" class="col-sm-2 control-label"><?php echo $texto['numero']?></label>
-								<div class="col-sm-10">
-									<input type="nro" class="form-control" id="calle">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="nro" class="col-sm-2 control-label"><?php echo $texto['provincia']?></label>
-								<div class="col-sm-10">
-									<select name="provincia" class="form-control" id="provincia">
-										<?php foreach ($provincias as $provincia) { ?>
-											<?php if($provincia->id_provincia==12){ ?>
-												<option value="<?php echo $provincia->id_provincia; ?>" selected><?php echo $provincia->provincia; ?></option>		
-											<?php }else{ ?>
-												<option value="<?php echo $provincia->id_provincia; ?>"><?php echo $provincia->provincia; ?></option>
-											<?php } ?>
-										<?php } ?>										
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="nro" class="col-sm-2 control-label"><?php echo $texto['medio']?></label>
-								<div class="col-sm-10">
-									<select name="medio" class="form-control" id="medio">
-										<option value="0"><?php echo $texto['coche']?></option>
-										<option value="1"><?php echo $texto['transporte_publico']?></option>
-										<option value="2"><?php echo $texto['pie']?></option>
-										<option value="0"><?php echo $texto['bicicleta']?></option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-							    <div class="col-sm-offset-2 col-sm-10">
-							      <a class="btn btn-default"><?php echo $texto['consulta']?></a>
-							    </div>
-							</div>
-						</form>
-    				</div>
+						</div>
+  					</div>
+  			
+  					<div class="form-group">
+    					<label for="inputEmail3" class="col-sm-2 control-label">
+    						<?php echo $texto['precio_combustible'];?>
+    					</label>
+    					<div class="col-sm-10">
+							<input type="text" class="form-control" id="combustible" value="9">
+						</div>
+  					</div>
+  			
+  					<div class="form-group">
+    					<label for="inputEmail3" class="col-sm-2 control-label">
+    					</label>
+    					<div class="col-sm-10">
+							<a onclick="calcRoute(); document.getElementById('como_llegar').disabled=false;" class="btn btn-default show_hide2"><?php echo $texto['ruta']?></a>
+						</div>
+  					</div>
+  			
+  				<div class="slidingDiv2">
+	  				<div class="form-group">
+		    			<label for="inputEmail3" class="col-sm-2 control-label">
+		    			</label>
+		    			<div class="col-sm-10">
+							<div id="directions_panel" class="alert alert-success"></div>
+						</div>
+	  				</div>
+  			
+	    		
+		    		<div class="form-group">
+	    				<label for="inputEmail3" class="col-sm-2 control-label">
+	    				</label>
+	    				<div class="col-sm-10">
+							<a id="a" class='show_hide btn btn-default' title='<?php echo $texto['leer_mas']?>'><?php echo $texto['como_llegar']?></a>
+						</div>
+	  				</div>
+		    		<div class='slidingDiv'>
+						<div id="directions-panel"></div>
+					</div>
 				</div>
-				
+				</form>
+				</div>
 				<div class="col-md-12">
 					<center>
 						<a href="javascript:window.history.back();" type="submit" class="btn btn-default btn-xlarge" title="<?php echo $texto['volver']?>" rel="tooltip">

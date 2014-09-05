@@ -80,6 +80,13 @@
 	$texto['transporte_publico']	= 'Public transport';
 	$texto['pie']					= 'Walk';
 	$texto['bicicleta']				= 'Bike';
+	$texto['destino']				= 'Destination';
+	$texto['desde']					= 'Order';
+	$texto['puntos_intermedios']	= 'Waypoints';
+	$texto['vehiculo_consumo']		= 'Vehicle consumption';
+	$texto['precio_combustible']	= 'Fuel price';
+	$texto['ruta']					= 'Path';
+	$texto['litros_kilometros']		= 'Listros x km';
 	
 	/* consulta */
 	$texto['gracias_mensaje'] 		= 'Thank you for your message';

@@ -194,7 +194,6 @@ class Hotel extends CI_Controller {
 			
 			$crud->columns(	'id_hotel',
 							'calle',
-							'nro',
 							'id_provincia');
 			
 			$crud->display_as('id_hotel','Hotel')
@@ -211,7 +210,6 @@ class Hotel extends CI_Controller {
 			
 			$crud->required_fields(	'id_hotel',
 									'calle',
-									'nro',
 									'id_provincia');
 			
 			$output = $crud->render();
