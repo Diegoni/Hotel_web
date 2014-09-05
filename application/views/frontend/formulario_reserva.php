@@ -57,15 +57,11 @@
 							}while($i<=$max_menores);?>
 						</select>
 					</div>
-			  		<div class="form-group">
-						<label for="exampleInputPassword1"><i class="fa fa-building"></i> <?php echo $texto['hotel']?></label>
-						<select class="form-control" name="hotel">
-							<?php 
-							foreach ($hoteles as $hotel) { ?>
-								<option value="<?php echo $hotel->id_hotel;?>"><?php echo $hotel->hotel;?></option>
-							<?php } ?>
-						</select>
-			  		</div>
+			  		<?php 
+					foreach ($hoteles as $hotel) { 
+						 $id_hotel=$hotel->id_hotel;
+					} ?>
+					<input type="hidden" value="<?php echo $id_hotel;?>" name="hotel">
 					<div class="form-group">
 						<center>
 							<button type="submit" class="btn btn-hotel btn-xlarge">

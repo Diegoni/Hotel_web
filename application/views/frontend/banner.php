@@ -1,4 +1,5 @@
-<?php 
+<?php
+if($articulos){ 
 if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1){
 	echo "<div class='row'>";
 	 	foreach ($articulos as $articulo) { 
@@ -148,6 +149,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 		
 	$i=$i+1;
 	}//cierra el foreach */
+ }
  } ?>
 
 

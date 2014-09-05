@@ -42,12 +42,14 @@ class Articulos_model extends CI_Model {
 	
 	
 	
-	function getArticulos_paginaprincipal($datos=NULL){
+	function getArticulos_paginaprincipal($id_hotel=NULL){
 		$date=date("Y-m-d");
 		$id_idioma=$_COOKIE['idioma'];
 		$query = $this->db->query("SELECT * FROM articulos 
 									INNER JOIN categorias ON(articulos.id_categoria=categorias.id_categoria)
-									WHERE articulos.delete = 0 AND
+									WHERE 
+									articulos.id_hotel='$id_hotel' AND
+									articulos.delete = 0 AND
 									articulos.id_estado_articulo != 2 AND
 									DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') <= '$date' AND
 									(DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') >= '$date' OR 

@@ -28,6 +28,8 @@ class Reserva extends CI_Controller {
 	
 	
 	public function habitacion(){
+		$id_hotel=$this->input->post('hotel');
+		
 		$db['texto']=$this->idiomas_model->getIdioma();
 		
 		$consulta=array('entrada'	=>$this->input->post('entrada'),
@@ -37,7 +39,7 @@ class Reserva extends CI_Controller {
 						'hotel'		=>$this->input->post('hotel'),						
 						);
 		
-		$db['hoteles']=$this->hoteles_model->getHoteles();
+		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
 		$db['hotel']=$this->hoteles_model->getHotel($this->input->post('hotel'));
 		$db['habitaciones']=$this->habitaciones_model->getHabitaciones($consulta);
 		$db['reservas_habitacion']=$this->reserva_habitacion_model->getReservas_habitacion($db['habitaciones'], $consulta);
@@ -46,7 +48,7 @@ class Reserva extends CI_Controller {
 		$db['step']=2;
 		$db['monedas']=$this->monedas_model->getMonedas();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
-		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
+		$db['emails_hotel']=$this->hoteles_email_model->getEmails($id_hotel	);
 		
 		if(!(isset($_COOKIE['moneda']))){
 			$_COOKIE['moneda']=1;
@@ -68,6 +70,7 @@ class Reserva extends CI_Controller {
 	}
 	
 	public function datos(){
+		$id_hotel=$this->input->post('hotel');
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$consulta=array('entrada'	=>$this->input->post('entrada'),
@@ -77,7 +80,7 @@ class Reserva extends CI_Controller {
 						'hotel'		=>$this->input->post('hotel'),						
 						);
 							
-		$db['hoteles']=$this->hoteles_model->getHoteles();
+		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
 		$ayuda=array('sector' 		=> 'datos',
 					 'id_idioma' 	=> $_COOKIE['idioma']);
 		
@@ -86,7 +89,7 @@ class Reserva extends CI_Controller {
 		$db['tipos_tarjeta']=$this->tipos_tarjeta_model->getTipos();
 		$db['terminos']=$this->terminos_model->getTerminos();
 		$db['aerolineas']=$this->aerolineas_model->getAerolineas();
-		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
+		$db['emails_hotel']=$this->hoteles_email_model->getEmails($id_hotel);
 		$db['step']=3;
 		
 		$this->load->view('frontend/head', $db);
@@ -99,9 +102,10 @@ class Reserva extends CI_Controller {
 	
 	
 	public function pago(){
+		$id_hotel=$this->input->post('hotel');
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
-		$db['hoteles']=$this->hoteles_model->getHoteles();
+		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
 		$ayuda=array('sector' => 'pagos',
 					 'id_idioma' => $_COOKIE['idioma']);
 		

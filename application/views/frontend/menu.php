@@ -1,15 +1,16 @@
 <div class="container">	
 	<div class="row menu">
 	<div class="col-md-3">
-		<center>
-		<a href="<?php echo base_url().'index.php/inicio/hotel'; ?>" class="logo">
 		<?php  
 			foreach ($hoteles as $hotel) {
+				$id_hotel=$hotel->id_hotel;
 				$logo_url=array();
 				if (!(in_array($hotel->logo_url, $logo_url))) {
 					$logo_url[]=$hotel->logo_url;	
 				} 
   		}?>
+		<center>
+		<a href="<?php echo base_url().'index.php/inicio/hotel/'.$id_hotel; ?>" class="logo">
 			<img src="<?php echo base_url().'assets/uploads/logos/'.$logo_url[0];?>" alt="">
 		</a>
 		</center>

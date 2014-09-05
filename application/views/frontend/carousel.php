@@ -8,6 +8,7 @@
 			<ol class="carousel-indicators">
 				<?php 
 				$i=0;
+				if($imagenes_carrusel){
 				foreach ($imagenes_carrusel as $imagenes) { ?>
 				<li data-target="#carousel-example-generic" data-slide-to="<?php echo $imagenes->orden-1;?>" class="<?php if($i==0){echo 'active';}?>"></li>
 				<?php $i=$i+1?>
@@ -26,7 +27,8 @@
 					</div>
         		</div>
         		<?php $i=$i+1?>
-				<?php } ?>
+				<?php } 
+				}?>
 			</div>
 			
 			<!-- direcciones del carrusel -->

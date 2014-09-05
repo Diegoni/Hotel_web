@@ -23,13 +23,18 @@ class Inicio extends CI_Controller {
 	}
 	
 
-	public function hotel(){
+	public function hotel($id=NULL){
+		if($id==NULL){
+			header('Location: home', 'refresh');
+		}else{
+			$_COOKIE['id_hotel']=$id;
+		}
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
-		$db['hoteles']=$this->hoteles_model->getHoteles();
-		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
-		$db['imagenes_carrusel']=$this->imagenes_carrusel_model->getImagenes();
-		$db['articulos']=$this->articulos_model->getArticulos_paginaprincipal();
+		$db['hoteles']=$this->hoteles_model->getHoteles($_COOKIE['id_hotel']);
+		$db['emails_hotel']=$this->hoteles_email_model->getEmails($_COOKIE['id_hotel']);
+		$db['imagenes_carrusel']=$this->imagenes_carrusel_model->getImagenes($_COOKIE['id_hotel']);
+		$db['articulos']=$this->articulos_model->getArticulos_paginaprincipal($_COOKIE['id_hotel']);
 		$db['cantidad_categorias']=count($db['articulos']);
 		$db['configs']=$this->configs_model->getConfigs();
 		$db['tipos_habitacion']=$this->tipos_habitacion_model->getTipos();
@@ -41,7 +46,7 @@ class Inicio extends CI_Controller {
 		$this->load->view('frontend/carousel');
 		//$this->load->view('frontend/hotel_descripcion');
 		$this->load->view('frontend/banner');
-		$this->load->view('frontend/footer');
+		//$this->load->view('frontend/footer');
 	}
 
 }
