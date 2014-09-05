@@ -16,7 +16,6 @@
 */
 //local
 $config['base_url']	= ''; 
-
 if(isset($_COOKIE['idioma'])){
 	
 }else{

@@ -26,6 +26,8 @@ class Reserva_habitacion_model extends CI_Model {
 							reservas.adultos as adultos,
 							reservas.menores as menores,
 							reservas.fecha_alta as fecha_alta,
+							reservas.id_nota as id_nota,
+							reservas.id_reserva as id_reserva,
 							habitaciones.habitacion as habitacion,
 							habitaciones.id_habitacion as id_habitacion,
 							reserva_habitacion.cantidad as cantidad,

@@ -315,7 +315,7 @@ class Hotel extends CI_Controller {
 			if($id==1){
 				$crud->where('config_email_reserva.id_tipo_correo', 1);
 				$crud->where('config_email_reserva.delete', 0);
-				$crud->set_relation_n_n('emails_reserva' , 'hotel_email_reserva', 'emails_hotel', 'id_hotel', 'id_email', '{email}', 'prioridad');
+				$crud->set_relation_n_n('emails_reserva' , 'hotel_email_reserva', 'emails_hotel', 'id_config', 'id_email', '{email}', 'prioridad');
 			}else{
 				$crud->where('config_email_reserva.delete', 0);
 				$crud->where('config_email_reserva.id_tipo_correo', 2);
@@ -393,7 +393,7 @@ class Hotel extends CI_Controller {
 			if($id==1){
 				$crud->where('config_email_mensaje.id_tipo_correo', 1);
 				$crud->where('config_email_mensaje.delete', 0);
-				$crud->set_relation_n_n('emails_mensaje', 'hotel_email_mensaje', 'emails_hotel', 'id_hotel', 'id_email', '{email}', 'prioridad');
+				$crud->set_relation_n_n('emails_mensaje', 'hotel_email_mensaje', 'emails_hotel', 'id_config', 'id_email', '{email}', 'prioridad');
 			}else{
 				$crud->where('config_email_mensaje.delete', 0);
 				$crud->where('config_email_mensaje.id_tipo_correo', 2);
@@ -419,7 +419,9 @@ class Hotel extends CI_Controller {
 		  	$crud->field_type('apellido', 'true_false');  
 		  	$crud->field_type('email', 'true_false');  
 		  	$crud->field_type('telefono', 'true_false');
-			$crud->field_type('habitacion', 'true_false');  
+			$crud->field_type('habitacion', 'true_false'); 
+			$crud->field_type('fecha', 'true_false');
+			$crud->field_type('delete', 'hidden');  
 			
 			$crud->set_relation('id_hotel','hoteles','hotel');
 			$crud->set_relation('id_tipo_correo','tipos_correo','tipo_correo');
@@ -448,7 +450,7 @@ class Hotel extends CI_Controller {
 			if($id==1){
 				$crud->where('config_email_habitacion.id_tipo_correo', 1);
 				$crud->where('config_email_habitacion.delete', 0);
-				$crud->set_relation_n_n('emails_habitacion', 'hotel_email_habitacion', 'emails_hotel', 'id_hotel', 'id_email', '{email}', 'prioridad');
+				$crud->set_relation_n_n('emails_habitacion', 'hotel_email_habitacion', 'emails_hotel', 'id_config', 'id_email', '{email}', 'prioridad');
 			}else{
 				$crud->where('config_email_habitacion.delete', 0);
 				$crud->where('config_email_habitacion.id_tipo_correo', 2);
@@ -461,8 +463,7 @@ class Hotel extends CI_Controller {
 			$crud->display_as('id_config_email_habitacion','ID')
 				 ->display_as('habitacion','Habitación')
 				 ->display_as('id_hotel','Hotel')
-				 ->display_as('id_tipo_correo','Tipo')
-				 ->display_as('telefono','Teléfono');
+				 ->display_as('id_tipo_correo','Tipo');
 			
 			$crud->set_subject('Email Mensaje');
 			
@@ -473,8 +474,9 @@ class Hotel extends CI_Controller {
 		  	$crud->field_type('nombre', 'true_false');  
 		  	$crud->field_type('apellido', 'true_false');  
 		  	$crud->field_type('email', 'true_false');  
-		  	$crud->field_type('telefono', 'true_false');
-			$crud->field_type('habitacion', 'true_false');  
+		  	$crud->field_type('habitacion', 'true_false');
+			$crud->field_type('fecha', 'true_false');
+			$crud->field_type('delete', 'hidden');   
 			
 			$crud->set_relation('id_hotel','hoteles','hotel');
 			$crud->set_relation('id_tipo_correo','tipos_correo','tipo_correo');

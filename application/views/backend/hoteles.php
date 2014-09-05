@@ -13,7 +13,7 @@
 	            	<li><a  href='<?php echo site_url('admin/hotel/direcciones_hotel')?>'>Direcciones</a></li>
 	            	<li>
 	            		<a class="dropdown-toggle" data-toggle="dropdown">
-							Config email reserva <span class="caret"></span>
+							Email reserva <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a  href='<?php echo site_url('admin/hotel/config_email_reserva/1')?>'>Administración</a></li>			
@@ -22,7 +22,7 @@
 					</li>
 	            	<li>
 	            		<a class="dropdown-toggle" data-toggle="dropdown">
-							Config email mensaje <span class="caret"></span>
+							Email mensaje <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a  href='<?php echo site_url('admin/hotel/config_email_mensaje/1')?>'>Administración</a></li>			
@@ -31,7 +31,7 @@
 					</li>
 	            	<li>
 	            		<a class="dropdown-toggle" data-toggle="dropdown">
-							Config email habitación <span class="caret"></span>
+							Email habitación <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a  href='<?php echo site_url('admin/hotel/config_email_habitacion/1')?>'>Administración</a></li>			

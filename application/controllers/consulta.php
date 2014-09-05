@@ -31,9 +31,9 @@ class Consulta extends CI_Controller {
 						'id_hotel'=>2);
 		
 		$db['mensajes']=$this->mensajes_model->insertMensaje($mensaje);
-		$db['mensajes']=$this->hoteles_email_model->correoMensaje($mensaje);
-		
-				
+		$this->hoteles_email_model->correoMensaje($mensaje,1);
+		$this->hoteles_email_model->correoMensaje($mensaje,2);
+						
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
 		$this->load->view('frontend/formulario_reserva');
@@ -62,7 +62,8 @@ class Consulta extends CI_Controller {
 							'id_habitacion'=>$this->input->post('id_habitacion'));
 		
 		$db['mensajes']=$this->mensajes_model->insertMensaje($mensaje);
-		$db['mensajes']=$this->hoteles_email_model->correoHabitacion($mensaje, $habitacion);
+		$this->hoteles_email_model->correoHabitacion($mensaje, $habitacion, 1);
+		$this->hoteles_email_model->correoHabitacion($mensaje, $habitacion, 2);
 		
 				
 		$this->load->view('frontend/head', $db);

@@ -167,12 +167,15 @@ class Reserva extends CI_Controller {
 						'id_aerolinea' 	=> $this->input->post('aerolinea'));
 		
 			$id_vuelo=$this->vuelos_model->insertVuelo($vuelo);
+		}else{
+			$vuelo =array();
 		}
 		
 		$habitaciones=$this->habitaciones_model->getHabitaciones_post($consulta);
 		$db['habitaciones']=$this->reserva_habitacion_model->insertReserva_habitacion($id_reserva, $habitaciones);
 		$db['reservas']=$this->reserva_habitacion_model->getReserva($id_reserva);
-		$db['mensajes']=$this->hoteles_email_model->correoReserva($huesped, $tarjeta, $this->reserva_habitacion_model->getReserva($id_reserva));
+		$this->hoteles_email_model->correoReserva($huesped, $tarjeta, $this->reserva_habitacion_model->getReserva($id_reserva), $vuelo, 1);
+		$this->hoteles_email_model->correoReserva($huesped, $tarjeta, $this->reserva_habitacion_model->getReserva($id_reserva), $vuelo, 2);
 		
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
