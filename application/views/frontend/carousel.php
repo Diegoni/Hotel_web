@@ -20,7 +20,7 @@
 				$i=0;
 				foreach ($imagenes_carrusel as $imagenes) { ?>
 				<div class="item <?php if($i==0){echo 'active';}?>">
-          			<img alt="slide" src="<?php echo base_url().'assets/uploads/'.$imagenes->imagen;?>">
+          			<img alt="slide" src="<?php echo base_url().'assets/uploads/carrusel/'.$imagenes->imagen;?>">
 					<div class="carousel-caption">
 						<p><?php echo $imagenes->descripcion;?></p>
 					</div>

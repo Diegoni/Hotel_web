@@ -26,7 +26,7 @@ class Galeria extends CI_Controller {
 			
 		$this->load->view('backend/head.php',$output);
 		$this->load->view('backend/menu.php',$db);	
-		$this->load->view('backend/otros.php');
+		$this->load->view('backend/hoteles.php');
 		$this->load->view('backend/footer.php');
 	}
 	
@@ -66,7 +66,7 @@ class Galeria extends CI_Controller {
 		$image_crud->set_table('imagenes_habitacion')
 				   ->set_relation_field('id_habitacion')
 				   ->set_ordering_field('orden')
-				   ->set_image_path('assets/uploads/articulos');
+				   ->set_image_path('assets/uploads/habitaciones');
 			
 		$output = $image_crud->render();
 	
@@ -81,16 +81,44 @@ class Galeria extends CI_Controller {
  * ********************************************************************************
  **********************************************************************************/
 	
-	function imagenes_carrusel()
+	function imagenes_carrusel($id=NULL)
 	{
 		$image_crud = new image_CRUD();
 	
 		$image_crud->set_primary_key_field('id_imagen');
 		$image_crud->set_url_field('imagen');
 		$image_crud->set_title_field('descripcion');
+		
 		$image_crud->set_table('imagenes_carrusel')
-		->set_ordering_field('orden')
-		->set_image_path('assets/uploads');
+				   ->set_relation_field('id_hotel')
+				   ->set_ordering_field('orden')
+				   ->set_image_path('assets/uploads/carrusel');
+			
+		$output = $image_crud->render();
+	
+		$this->_example_output($output);
+	}	
+	
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de imagenes carrusel
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+	
+	function imagenes_hoteles($id=NULL)
+	{
+		$image_crud = new image_CRUD();
+	
+		$image_crud->set_primary_key_field('id_imagen');
+		$image_crud->set_url_field('imagen');
+		$image_crud->set_title_field('descripcion');
+		
+		$image_crud->set_table('imagenes_hoteles')
+				   ->set_relation_field('id_hotel')
+				   ->set_ordering_field('orden')
+				   ->set_image_path('assets/uploads/hoteles');
 			
 		$output = $image_crud->render();
 	

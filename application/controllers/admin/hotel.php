@@ -68,6 +68,8 @@ class Hotel extends CI_Controller {
 			
 			$crud->add_action('Teléfono', '', '','icon-phonealt', array($this,'buscar_telefonos'));
 			$crud->add_action('Dirección', '', '','icon-homealt', array($this,'buscar_direcciones'));
+			$crud->add_action('Galería', '', '','icon-images-gallery', array($this, 'buscar_hoteles'));
+			$crud->add_action('Carrusel', '', '','icon-circleplayempty', array($this, 'buscar_carrusel'));
 			//$crud->add_action('Configuración', '', '','icon-mootools', array($this,'buscar_config'));
 			
 			$crud->set_field_upload('logo_url','assets/uploads/logos');
@@ -86,8 +88,15 @@ class Hotel extends CI_Controller {
 			
 			$output = $crud->render();
 
-			$this->_example_output($output);
-			
+			$this->_example_output($output);	
+	}
+
+	function buscar_hoteles($id){
+		return site_url('/galeria/imagenes_hoteles').'/'.$id;	
+	}
+	
+	function buscar_carrusel($id){
+		return site_url('/galeria/imagenes_carrusel').'/'.$id;	
 	}
 	
 		

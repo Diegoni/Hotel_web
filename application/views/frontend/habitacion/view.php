@@ -12,7 +12,7 @@
 						foreach ($imagenes_habitacion as $imagenes) { ?>
 						<a href="#" class="item <?php if($i==0){echo 'active';}?>" class="thumbnail">
 							
-								<img alt="slide" src="<?php echo base_url().'assets/uploads/articulos/'.$imagenes->imagen;?>" ">
+								<img alt="slide" src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>" ">
 															
 						</a>
 						<?php $i=$i+1?>

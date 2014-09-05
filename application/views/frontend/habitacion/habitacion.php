@@ -27,7 +27,7 @@
 								$i=0;
 								foreach ($imagenes_habitacion as $imagenes) { ?>
 									<a href="#" class="item <?php if($i==0){echo 'active';}?>" class="thumbnail">								
-										<img alt="slide" src="<?php echo base_url().'assets/uploads/articulos/'.$imagenes->imagen;?>" style="max-width: 160px; max-height: 120px;">
+										<img alt="slide" src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>" style="max-width: 160px; max-height: 120px;">
 									</a>
 									<?php $i=$i+1?>
 								<?php } ?>

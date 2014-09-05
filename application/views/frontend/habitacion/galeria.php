@@ -9,8 +9,8 @@
 					<?php	$imagenes_habitacion=$this->imagenes_habitacion_model->getImagenes($id); ?>
 					<?php	foreach ($imagenes_habitacion as $imagenes) { ?>
 		            <div class='col-md-6'>
-		                <a class="fancybox" rel="ligthbox" href="<?php echo base_url().'assets/uploads/articulos/'.$imagenes->imagen;?>">
-		                    <img class="img-responsive gris" alt="" src="<?php echo base_url().'assets/uploads/articulos/'.$imagenes->imagen;?>" />
+		                <a class="fancybox" rel="ligthbox" href="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>">
+		                    <img class="img-responsive gris" alt="" src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>" />
 		                    <div class='text-right'>
 		                        <small class='text-muted'><?php echo $imagenes->descripcion;?></small>
 		                    </div>
