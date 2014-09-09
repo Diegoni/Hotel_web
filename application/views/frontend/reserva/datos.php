@@ -106,7 +106,7 @@
     					<label for="tarjeta" class="col-sm-2 control-label"><?php echo $texto['vencimiento'] ?></label>
     					<div class="col-sm-10">
     						<div class="input-group">
-    							<input type="text" class="form-control" name="vencimiento" id="vencimiento" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['vencimiento'] ?>" required>
+    							<input type="text" class="form-control" name="vencimiento" id="vencimiento" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['vencimiento'] ?>" autocomplete="off" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
@@ -135,7 +135,7 @@
   					<div class="form-group">
     					<label for="tarjeta" class="col-sm-2 control-label"><?php echo $texto['horario_llegada']?></label>
     					<div class="col-sm-10">
-    						<input type="text" class="form-control" name="horario_llegada" id="horario" onkeypress="return false" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['horario_llegada']?>">
+    						<input type="text" class="form-control" name="horario_llegada" id="horario" onkeypress="return false" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['horario_llegada']?>" autocomplete="off">
     					</div>
   					</div>
   					

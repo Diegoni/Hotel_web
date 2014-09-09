@@ -3,6 +3,7 @@ class Articulos_model extends CI_Model {
 	
 	function getArticulos($datos=NULL){
 		$date=date("Y-m-d");
+		$id_idioma=$_COOKIE['idioma'];
 		if(isset($datos)){
 			$query = $this->db->query("SELECT * FROM articulos 
 									INNER JOIN categorias ON(articulos.id_categoria=categorias.id_categoria)
@@ -11,12 +12,11 @@ class Articulos_model extends CI_Model {
 									DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') <= '$date' AND
 									(DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') >= '$date' OR 
 									articulos.fecha_despublicacion=0 ) AND
-									articulos.$datos[columna] = '$datos[dato]'
+									articulos.$datos[columna] = '$datos[dato]' and
+									(articulos.id_idioma = 0 OR articulos.id_idioma = '$id_idioma' )
 									ORDER BY articulos.id_articulo");
 			
 		}else{
-			$id_idioma=$_COOKIE['idioma'];
-			
 			$query = $this->db->query("SELECT * FROM articulos 
 									INNER JOIN categorias ON(articulos.id_categoria=categorias.id_categoria)
 									WHERE articulos.delete = 0 AND

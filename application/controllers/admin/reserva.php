@@ -52,6 +52,8 @@ class Reserva extends CI_Controller {
 			$crud->where('reservas.delete', 0);
 			$crud->set_table('reservas');
 			
+			//'habitaciones INNER JOIN hoteles ON(habitaciones.id_hotel=hoteles.id_hotel)'
+			
 			$crud->set_relation_n_n('habitaciones', 'reserva_habitacion', 'habitaciones', 'id_reserva', 'id_habitacion', '{habitacion} - {id_hotel}', 'prioridad',  'delete = 0');
 			
 			$crud->columns(	'id_reserva',
@@ -77,6 +79,7 @@ class Reserva extends CI_Controller {
 							'salida',
 							'adultos',
 							'menores',
+							'total',
 							'id_nota',
 							'id_estado_reserva',
 							'fecha_alta',
@@ -86,7 +89,6 @@ class Reserva extends CI_Controller {
 			
 			$crud->field_type('fecha_alta', 'readonly');
 			
-			//$crud->set_relation('id_habitacion','habitaciones','habitacion');
 			$crud->set_relation('id_huesped','huespedes','{apellido} {nombre}');
 			$crud->set_relation('id_nota','notas','nota');
 			$crud->set_relation('id_estado_reserva','estados_reserva','estado_reserva');		

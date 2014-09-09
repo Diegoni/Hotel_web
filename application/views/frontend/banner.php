@@ -1,4 +1,5 @@
 <?php
+$id_hotel=$_COOKIE['id_hotel'];
 if($articulos){ 
 if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1){
 	echo "<div class='row'>";
@@ -14,7 +15,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 			    		<div class="text-banner">
 			    			<?php echo $articulo->articulo; ?>
 			    		</div>
-			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria; ?>"><?php echo $texto['leer_mas'];?></a>
+			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria.'/'.$id_hotel; ?>"><?php echo $texto['leer_mas'];?></a>
 					</div>
 				</div>
 			</div>			
@@ -36,7 +37,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 			    		<div class="text-banner">
 			    			<?php echo $articulo->articulo; ?>
 			    		</div>
-			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria; ?>"><?php echo $texto['leer_mas'];?></a>
+			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria.'/'.$id_hotel; ?>"><?php echo $texto['leer_mas'];?></a>
 					</div>
 				</div>
 			</div>			
@@ -62,7 +63,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 			    		<div class="text-banner">
 			    			<?php echo $articulo->articulo; ?>
 			    		</div>
-			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria; ?>"><?php echo $texto['leer_mas'];?></a>
+			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria.'/'.$id_hotel; ?>"><?php echo $texto['leer_mas'];?></a>
 					</div>
 				</div>
 			</div>			
@@ -90,7 +91,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 			    		<div class="text-banner">
 			    			<?php echo $articulo->articulo; ?>
 			    		</div>
-			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria; ?>"><?php echo $texto['leer_mas'];?></a>
+			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria.'/'.$id_hotel; ?>"><?php echo $texto['leer_mas'];?></a>
 					</div>
 				</div>
 			</div>			

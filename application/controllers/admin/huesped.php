@@ -114,8 +114,6 @@ class Huesped extends CI_Controller {
 	public function telefonos_huesped($id=NULL){
 			$crud = new grocery_CRUD();
 
-			//$crud->set_theme('datatables');
-			
 			if(isset($id)){
 				$crud->where('telefonos_huesped.id_huesped',$id);
 			}
