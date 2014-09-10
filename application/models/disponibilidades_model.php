@@ -27,6 +27,15 @@ class Disponibilidades_model extends CI_Model {
 				
 	}	
 	
+	function insertDisponibilidad($registro){
+		$this->db->insert('disponibilidades', $registro);
+		
+		$id=$this->db->insert_id();
+		
+		return $id;	
+		
+	}
+	
 		
 } 
 ?>

@@ -8,8 +8,16 @@ class Reserva extends CI_Controller {
 
 		$this->load->helper('menu');
 		$this->load->model('reserva_habitacion_model');
-		$this->load->model('reservas_model');
 		$this->load->model('mensajes_model');
+		$this->load->model('huespedes_model');
+		$this->load->model('habitaciones_model');
+		$this->load->model('notas_model');
+		$this->load->model('estados_reserva_model');
+		$this->load->model('disponibilidades_model');
+		$this->load->model('disponibilidad_habitacion_model');
+		$this->load->model('reservas_model');
+		$this->load->model('reserva_habitacion_model');
+		$this->load->helper('form');
 		$this->load->library('grocery_CRUD');
 		//$this->load->library('image_CRUD');
 	}
@@ -35,6 +43,145 @@ class Reserva extends CI_Controller {
 	
 	}
 
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 			Reserva formulario con hoteles y cantidades
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+
+	
+	
+	public function reservas_formulario($id=NULL)
+	{
+		$mensaje="";
+		$nuevas=0;
+		
+		if($this->input->post('aceptar')){
+			if($this->input->post('id_nota')!=0){
+				$nota=array('nota'			=>$this->input->post('nota'),
+							'id_nota'		=>$this->input->post('id_nota'));
+				$this->notas_model->updateNota($nota);
+				$id_nota=$this->input->post('id_nota');
+			}else if($this->input->post('nota')!=""){
+				$nota=array('nota'			=>$this->input->post('nota'));
+				$id_nota=$this->notas_model->insertNota($nota);
+			}else{
+				$id_nota=0;
+			}
+			
+			$array_entrada = explode("/", $this->input->post('entrada')); 
+			$entrada=$array_entrada[2]."/".$array_entrada[1]."/".$array_entrada[0];
+			$salida_array = explode("/", $this->input->post('salida'));	
+			$salida=$salida_array['2'].'/'.$salida_array['1'].'/'.$salida_array['0'];
+			
+			$reserva=array(	'id_reserva'	=>$id,
+							'id_huesped'	=>$this->input->post('id_huesped'),
+							'entrada'		=>$entrada,
+							'salida'		=>$salida,
+							'adultos'		=>$this->input->post('adultos'),
+							'menores'		=>$this->input->post('menores'),
+							'total'			=>$this->input->post('total'),
+							'id_estado_reserva'=>$this->input->post('id_estado_reserva'),
+							'id_nota'		=>$id_nota
+							);
+			$this->reservas_model->updateReserva($reserva);
+			
+			foreach ($this->input->post('id_habitaciones') as $key => $value) {
+				$habitaciones[]=$value;
+			}
+			$nuevas=$this->reserva_habitacion_model->cambioHabitaciones($habitaciones, $id);
+			$mensaje="La actualización se ha realizado correctamente";	
+			
+			$_COOKIE['tabla']='reservas';
+			$_COOKIE['id']='id_reserva';
+			$this->update_log($reserva, $id);
+			
+		}else if($this->input->post('cantidad')){
+				
+			$reserva_habitacion=$this->reserva_habitacion_model->getReserva($id);
+			foreach ($reserva_habitacion as $row) {
+				$registro=array(
+							'id_reserva' 		=> $id,
+							'id_habitacion'		=> $row->id_habitacion,
+							'cantidad'			=> $this->input->post('id_habitacion'.$row->id_habitacion));
+				$this->db->update('reserva_habitacion', $registro, array('id_reserva_habitacion' => $row->id_reserva_habitacion));
+			}
+			$mensaje="Las cantidades se han cargado correctamente";
+		}
+		$reservas=buscarReservas();
+		$mensajes=buscarMensajes();
+		$db=array_merge($reservas, $mensajes);
+		
+		$db['huespedes']	=$this->huespedes_model->getHuespedes();
+		$db['estados']		=$this->estados_reserva_model->getEstados();
+		$db['habitaciones']	=$this->habitaciones_model->getHabitaciones();
+		$db['reservas']		=$this->reserva_habitacion_model->getReserva($id);
+		$db['reserva_habitacion']=$this->reservas_model->getReserva($id);
+		$db['mensaje']=$mensaje;
+		
+		$db['nuevas']=$nuevas;	
+		
+		$this->load->view('backend/head.php');
+		$this->load->view('backend/menu.php', $db);	
+		$this->load->view('backend/modal.php');
+		$this->load->view('backend/reservas_formulario.php');
+		$this->load->view('backend/footer.php');
+	}
+	
+	
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 			Cierre de ventas
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+
+	
+	
+	public function cierre_ventas_formulario($id=NULL)
+	{
+		$reservas=buscarReservas();
+		$mensajes=buscarMensajes();
+		$db=array_merge($reservas, $mensajes);
+		
+		if($this->input->post('aceptar')){
+			$array_entrada = explode("/", $this->input->post('comienzo')); 
+			$entrada=$array_entrada[2]."/".$array_entrada[1]."/".$array_entrada[0];
+			$salida_array = explode("/", $this->input->post('final'));	
+			$salida=$salida_array['2'].'/'.$salida_array['1'].'/'.$salida_array['0'];
+			
+			$registro=array('disponibilidad' 	=> $this->input->post('descripcion'),
+							'entrada'			=> $entrada,
+							'salida'			=> $salida,
+							'delete'			=> 0);
+			
+			$id=$this->disponibilidades_model->insertDisponibilidad($registro);
+			
+			foreach ($this->input->post('id_habitaciones') as $key => $value) {
+				$habitaciones[]=$value;
+			}
+			
+			$db['disponibilidad_habitacion']=$this->disponibilidad_habitacion_model->insertHabitaciones($habitaciones, $id);
+			$db['registro']=$registro;
+		}
+		
+		
+		
+		$db['habitaciones']	=$this->habitaciones_model->getHabitaciones();
+		
+		$this->load->view('backend/head.php');
+		$this->load->view('backend/menu.php', $db);	
+		$this->load->view('backend/modal.php');
+		$this->load->view('backend/cierre_ventas_formulario.php');
+		$this->load->view('backend/footer.php');
+	}
+	
+	
+
+
 
 /**********************************************************************************
  **********************************************************************************
@@ -54,7 +201,7 @@ class Reserva extends CI_Controller {
 			
 			//'habitaciones INNER JOIN hoteles ON(habitaciones.id_hotel=hoteles.id_hotel)'
 			
-			$crud->set_relation_n_n('habitaciones', 'reserva_habitacion', 'habitaciones', 'id_reserva', 'id_habitacion', '{habitacion} - {id_hotel}', 'prioridad',  'delete = 0');
+			$crud->set_relation_n_n('habitaciones', 'reserva_habitacion', 'habitaciones', 'id_reserva', 'id_habitacion', 'habitacion', 'prioridad',  'delete = 0');
 			
 			$crud->columns(	'id_reserva',
 							'habitaciones',
@@ -87,6 +234,8 @@ class Reserva extends CI_Controller {
 			
 			$crud->set_subject('reserva');
 			
+			$crud->unset_edit();
+			
 			$crud->field_type('fecha_alta', 'readonly');
 			
 			$crud->set_relation('id_huesped','huespedes','{apellido} {nombre}');
@@ -96,6 +245,7 @@ class Reserva extends CI_Controller {
 			$crud->required_fields('id_habitacion','id_huesped','entrada', 'salida', 'adultos', 'menores');
 			
 			$crud->add_action('Vuelos', '', '','icon-plane', array($this,'buscar_vuelos'));
+			$crud->add_action('Editar reserva', '', '','icon-edit', array($this,'edit_reserva'));
 			
 			$_COOKIE['tabla']='reservas';
 			$_COOKIE['id']='id_reserva';	
@@ -440,6 +590,10 @@ class Reserva extends CI_Controller {
 		}else{
 			return site_url('no_fly').'/';
 		}
+	}
+	
+	function edit_reserva($id){
+		return site_url('admin/reserva/reservas_formulario').'/'.$id;
 	}
 	
 	

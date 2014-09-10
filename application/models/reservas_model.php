@@ -15,7 +15,12 @@ class Reservas_model extends CI_Model {
 									reservas.entrada as entrada,
 									reservas.salida as salida,
 									reservas.adultos as adultos,
-									reservas.menores as menores
+									reservas.menores as menores,
+									reservas.total as total,
+									reservas.fecha_alta as fecha_alta,
+									reservas.id_huesped as id_huesped,
+									reservas.id_estado_reserva,
+									reservas.id_nota
 									FROM 
 									reservas
 									WHERE reservas.id_reserva='$id' ");
@@ -41,16 +46,17 @@ class Reservas_model extends CI_Model {
 									INNER JOIN huespedes
 									ON(reservas.id_huesped=huespedes.id_huesped) 
 									WHERE id_estado_reserva=1 ");
-		
-		if($query->result()>0){
+
+		if($query->num_rows()>0){
 			foreach ($query->result() as $fila){
 				$data[] = $fila;
 				
 			}	
+			return $data;
 		}else{
 				return 0;
 		}
-		return $data;
+		
 	}
 	
 	function getReservas($consulta=NULL){
@@ -73,6 +79,10 @@ class Reservas_model extends CI_Model {
 		
 	
 	}
+	
+	function updateReserva($reserva){
+		$this->db->update('reservas', $reserva, array('id_reserva' => $reserva['id_reserva']));
+	}	
 	
 	
 } 

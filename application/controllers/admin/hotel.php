@@ -627,7 +627,7 @@ class Hotel extends CI_Controller {
 	        "id_usuario" => $session_data['id_usuario']
 	    );
 	 
-	    $this->db->insert('logs_huespedes',$registro);
+	    $this->db->insert('logs_hoteles',$registro);
 	 
 	    return true;
 	}
@@ -644,7 +644,7 @@ class Hotel extends CI_Controller {
 	        "id_usuario" => $session_data['id_usuario']
 	    );
  
-    	$this->db->insert('logs_huespedes',$registro);
+    	$this->db->insert('logs_hoteles',$registro);
  
     	return true;
 	}
@@ -661,7 +661,7 @@ class Hotel extends CI_Controller {
 	        "id_usuario" => $session_data['id_usuario']
 	    );
  
-    	$this->db->insert('logs_huespedes',$registro);
+    	$this->db->insert('logs_hoteles',$registro);
 			
     	return $this->db->update($_COOKIE['tabla'], array('delete' => 1), array($_COOKIE['id'] => $id));
 	}

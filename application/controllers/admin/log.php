@@ -220,7 +220,7 @@ class Log extends CI_Controller {
 							'fecha', 
 							'id_usuario');
 			
-			$crud->display_as('id_log_hueped','ID')
+			$crud->display_as('id_log_huesped','ID')
 				 ->display_as('tabla','Tabla')
 				 ->display_as('id_accion','Acción')
 				 ->display_as('fecha','Fecha')

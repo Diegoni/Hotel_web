@@ -166,6 +166,8 @@ alert ("Presione Crtl+D para agregar a este sitio en sus Marcadores");  //Puedes
 } 
 }
 
+
+
 /**************************************************************************
  **************************************************************************
  			Mostrar title direrentes
@@ -360,6 +362,21 @@ $(function() {
       changeYear: true
     });
     
+    $( "#comienzo" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      onClose: function( selectedDate ) {
+        $( "#final" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    
+    $( "#final" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      onClose: function( selectedDate ) {
+        $( "#comienzo" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
     $('#horario').timepicker({
 	});
   });

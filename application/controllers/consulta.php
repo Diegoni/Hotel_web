@@ -16,7 +16,7 @@ class Consulta extends CI_Controller {
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
-		$db['hoteles']=$this->hoteles_model->getHoteles();
+		$db['hoteles']=$this->hoteles_model->getHoteles(2);
 		$db['configs']=$this->configs_model->getConfigs();
 		
 		$mensaje=array(	'titulo'=>'Consulta web',

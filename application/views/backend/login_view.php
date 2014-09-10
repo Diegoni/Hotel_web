@@ -15,8 +15,8 @@
             	<?php } ?>
                 
 				<?php echo form_open('admin/verifylogin'); ?>
-                    <input  type="text" name="username"  id="username" placeholder="Usuario" autofocus>
-                    <input type="password" id="passowrd" name="password" placeholder="Pass">
+                    <input type="text"     id="username" name="username" placeholder="Usuario" autofocus>
+                    <input type="password" id="password" name="password" placeholder="Pass">
                     <button class="btn btn-info btn-block login" type="submit">Login</button>
                 </form>
             </div>

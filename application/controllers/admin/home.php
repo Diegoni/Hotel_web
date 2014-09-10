@@ -8,16 +8,15 @@ class Home extends CI_Controller {
    	
 	$this->load->helper('menu');
 	$this->load->model('reserva_habitacion_model');
-	$this->load->library('grocery_CRUD');   
+	$this->load->library('grocery_CRUD');  
+	 
 	
  }
 
  function index()
  {
    	if($this->session->userdata('logged_in')){
-		$session_data = $this->session->userdata('logged_in');
-		$data['usuario'] = $session_data['usuario'];
-		$data['id_usuario'] = $session_data['id_usuario'];
+		$data = $this->session->userdata('logged_in');
 		$reservas=buscarReservas();
 		$mensajes=buscarMensajes();
 		
@@ -28,10 +27,8 @@ class Home extends CI_Controller {
 		$this->load->view('backend/modal.php');   
      	$this->load->view('backend/home_view', $data);
 		$this->load->view('backend/footer.php');
-   }
-   else
-   {
-   	 header('login', 'refresh');
+   }else{
+   	 redirect('/admin/home/logout/','refresh');
    }
  }
 

@@ -6,3 +6,23 @@
 <script src="<?php echo base_url().'librerias/bootstrap/js/bootstrap.js'?>"></script>
 <script src="<?php echo base_url().'librerias/main/js/main.js'?>"></script>
 <link href="<?php echo base_url().'librerias/main/css/main.css'?>" rel="stylesheet">
+
+<!--------------------------------------------------------------------
+----------------------------------------------------------------------
+						Chosen
+----------------------------------------------------------------------
+--------------------------------------------------------------------->
+<link href="<?php echo base_url().'librerias/chosen/chosen.css'?>" rel="stylesheet">
+  <style type="text/css" media="all">
+    /* fix rtl for demo */
+    .chosen-rtl .chosen-drop { left: -9000px; }
+  </style>
+  
+  <!----------------------------------------------------------------------------
+------------------------------------------------------------------------------
+								Jquery UI
+------------------------------------------------------------------------------
+----------------------------------------------------------------------------->
+
+
+<script src="<?php echo base_url().'librerias/ui/jquery-ui.js'?>"></script>

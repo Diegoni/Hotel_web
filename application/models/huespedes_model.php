@@ -49,5 +49,19 @@ class Huespedes_model extends CI_Model {
 		return $id_huesped;
 	}
 
+	
+	function getHuespedes(){
+		$query = $this->db->query("SELECT * FROM huespedes WHERE huespedes.delete = 0");
+			
+		if($query->num_rows() > 0){	
+			foreach ($query->result() as $fila){
+				$data[] = $fila;
+			}
+			return $data;
+		}else{
+			return FALSE;
+		}
+	}
+
 } 
 ?>
