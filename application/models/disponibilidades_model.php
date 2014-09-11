@@ -36,6 +36,21 @@ class Disponibilidades_model extends CI_Model {
 		
 	}
 	
+	function getDisponibilidadId($id){
+		$query=$this->db->query("SELECT 
+							*
+							FROM `disponibilidades`
+							WHERE disponibilidades.id_disponibilidad='$id'");
+		if($query->num_rows() > 0){
+			foreach ($query->result() as $fila){
+					$data[] = $fila;
+			}
+			return $data;
+		}else{
+			return false;
+		}
+	}
+	
 		
 } 
 ?>

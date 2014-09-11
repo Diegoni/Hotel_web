@@ -1,37 +1,40 @@
-<!--
-<a href="<?php echo base_url();?>" target="_blank">
-	<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" />
-</a>
--->
 <div class="container">
 <div class="row">
 	<div class="col-md-2">
-		<div class="panel panel-primary">
+		<div class="panel panel-success">
   			<div class="panel-heading">
-  				<i class="icon-tagalt-pricealt"></i> Reservas
+  				<span class="icon-bed"></span> Habitaciones
   			</div>
   			<div class="panel-body">
     			<ul class="nav nav-pills nav-stacked">
-	            	<li><a  href='<?php echo site_url('admin/reserva/reservas_abm')?>'>Reservas</a></li>
-	            	<li><a  href='<?php echo site_url('admin/reserva/vuelos_abm')?>'>Vuelos</a></li>
-	            	<li><a  href='<?php echo site_url('admin/reserva/disponibilidades_abm')?>'>Cierre de ventas</a></li>
-					<li><a  href='<?php echo site_url('admin/reserva/estados_reserva')?>'>Estados reserva</a></li>
-            	</ul>
+	            	<li><a  href='<?php echo site_url('admin/habitacion/habitaciones_abm')?>'>Habitaciones</a></li>
+					<li><a  href='<?php echo site_url('admin/habitacion/tarifas_abm')?>'>Tarifas</a></li>
+					<li><a  href='<?php echo site_url('admin/habitacion/tarifas_temporales_abm')?>'>Tarifas temporales</a></li>
+					<li><a  href='<?php echo site_url('admin/habitacion/monedas_abm')?>'>Monedas</a></li>
+					<li><a  href='<?php echo site_url('admin/habitacion/servicios_abm')?>'>Servicios</a></li>
+					<li><a  href='<?php echo site_url('admin/habitacion/tipos_habitacion')?>'>Tipos de habitación</a></li>
+					<li><a  href='<?php echo site_url('admin/habitacion/tipo_tarifa_abm')?>'>Tipos tarifa</a></li>
+					<li><a  href='<?php echo site_url('admin/habitacion/estados_habitacion')?>'>Estados habitación</a></li>
+          		</ul>
   			</div>
 		</div>
 	</div>
 
 	<div class="col-md-10">
-		<div class="panel panel-primary">
+		<div class="panel panel-success">
   			<div class="panel-heading">
-  				<i class="icon-tagalt-pricealt"></i> Reservas
+  				<span class="icon-bed"></span> Habitaciones
   			</div>
   			<div class="panel-body">
   				<?php 
   					if(!empty($registro)){
-  						$descripcion=$registro['disponibilidad'];
+  						$descripcion=$registro['tarifa_temporal'];
+						$valor=$registro['valor'];
+						$id_tipo_tarifa=$registro['id_tipo_tarifa'];
   					}else{
   						$descripcion="";	
+						$valor=0;
+						$id_tipo_tarifa=0;
   					}  				
   					
 					if(!empty($mensaje)){ ?>
@@ -52,21 +55,47 @@
 						</div>
 					</div>
     				
-					<div class="form-group even" id="final_field_box">
-						<div class="col-sm-2 control-label" id="comienzo_display_as_box">
-						Comienzo<span class="required">*</span>  :
+					<div class="form-group even" id="Salida_field_box">
+						<div class="col-sm-2 control-label" id="entrada_display_as_box">
+						Entrada<span class="required">*</span>  :
 						</div>
-						<div class="col-sm-10" id="comienzo_input_box">
-							<input id="comienzo" name="comienzo" type="text" value="" maxlength="10" class="form-control" autocomplete="off" required>		
+						<div class="col-sm-10" id="Entrada_input_box">
+							<input id="comienzo" name="entrada" type="text" value="" maxlength="10" class="form-control" autocomplete="off" required>		
 						</div>
 					</div>
 					
-					<div class="form-group even" id="final_field_box">
-						<div class="col-sm-2 control-label" id="final_display_as_box">
-						Final<span class="required">*</span>  :
+					<div class="form-group even" id="Salida_field_box">
+						<div class="col-sm-2 control-label" id="salida_display_as_box">
+						Salida<span class="required">*</span>  :
 						</div>
-						<div class="col-sm-10" id="final_input_box">
-							<input id="final" name="final" type="text" value="" maxlength="10" class="form-control" autocomplete="off" required>		
+						<div class="col-sm-10" id="Salida_input_box">
+							<input id="final" name="salida" type="text" value="" maxlength="10" class="form-control" autocomplete="off" required>		
+						</div>
+					</div>
+					
+					<div class="form-group even">
+						<div class="col-sm-2 control-label">
+						Tipo<span class="required">*</span>  :
+						</div>
+						<div class="col-sm-10">
+							<select name="id_tipo_tarifa" class="chosen-select chzn-done form-control" data-placeholder="Seleccionar tipo de tarifa">
+								<?php foreach ($tipos as $tipo) { ?>
+									<?php if($id_tipo_tarifa==$tipo->id_tipo_tarifa){ ?>
+										<option value=<?php echo $tipo->id_tipo_tarifa ?> selected><?php echo $tipo->tipo_tarifa ?></option>
+									<?php }else{ ?>
+										<option value=<?php echo $tipo->id_tipo_tarifa ?> ><?php echo $tipo->tipo_tarifa ?></option>
+									<?php } ?>	
+								<?php } ?>
+							</select>				
+						</div>
+					</div>
+					
+					<div class="form-group even">
+						<div class="col-sm-2 control-label">
+						Valor<span class="required">*</span>  :
+						</div>
+						<div class="col-sm-10">
+							<input id="valor" name="valor" value="<?php echo $valor ?>" maxlength="10" class="form-control" autocomplete="off" required>		
 						</div>
 					</div>
 					
@@ -77,9 +106,9 @@
 						<div class="col-sm-10" id="adultos_input_box">
 							<select id="id_habitaciones" name="id_habitaciones[]" class="chosen-select chzn-done form-control" data-placeholder="Seleccionar habitaciones"  multiple="">
 								<?php 
-								if(!empty($disponibilidad_habitacion)){
+								if(!empty($tarifa_habitacion)){
 									foreach ($habitaciones as $habitacion) {
-										if(in_array($habitacion->id_habitacion, $disponibilidad_habitacion)){ ?>
+										if(in_array($habitacion->id_habitacion, $tarifa_habitacion)){ ?>
 											<option value="<?php echo $habitacion->id_habitacion ?>" selected><?php echo $habitacion->habitacion." - ".$habitacion->hotel ?></option>
 									<?php }else{?>
 											<option value="<?php echo $habitacion->id_habitacion ?>"><?php echo $habitacion->habitacion." - ".$habitacion->hotel ?></option>
@@ -102,30 +131,36 @@
 						</div>
 						<div class="col-sm-10" id="total_input_box">
 							<button type="submit" name="aceptar" value="1" class="btn btn-default">Aceptar</button>		
-							<a href="http://localhost/Hotel_web/index.php/admin/reserva/disponibilidades_abm" class="btn btn-default">Cierre de ventas</a>
+							<a href="http://localhost/Hotel_web/index.php/admin/habitacion/tarifas_temporales_abm" class="btn btn-default">Tarifas Temporales</a>
 						</div>
 					</div>
 
     			</form>
-    			<?php if(!empty($disponibilidad_habitacion)){ ?>
-    				<div class="form-group even" id="final_field_box">
-						<div class="col-sm-4">
-							<b>Disponibilidad</b>
+    			<?php if(!empty($tarifa_habitacion)){ ?>
+    				<div class="form-group even" id="Salida_field_box">
+						<div class="col-sm-2">
+							<b>Tarifa temporal</b>
 						</div>
 						<div class="col-sm-2">
-							<b>Comienzo</b>
+							<b>Entrada</b>
 						</div>
 						<div class="col-sm-2">
-							<b>Final</b>		
+							<b>Salida</b>		
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-2">
+							<b>Tipo</b>		
+						</div>
+						<div class="col-sm-2">
+							<b>Valor</b>		
+						</div>
+						<div class="col-sm-2">
 							<b>Habitación</b>		
 						</div>
 					</div>	
     			<?php foreach ($cargas as $row) { ?> 
-					<div class="form-group even" id="final_field_box">
-						<div class="col-sm-4">
-							<?php echo $row->disponibilidad ?>
+					<div class="form-group even" id="Salida_field_box">
+						<div class="col-sm-2">
+							<?php echo $row->tarifa_temporal ?>
 						</div>
 						<div class="col-sm-2">
 							<?php echo date('d/m/Y', strtotime($row->entrada)); ?>
@@ -133,7 +168,13 @@
 						<div class="col-sm-2">
 							<?php echo date('d/m/Y', strtotime($row->salida)); ?>		
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-2">
+							<?php echo $row->tipo_tarifa ?>		
+						</div>
+						<div class="col-sm-2">
+							<?php echo $row->valor ?>		
+						</div>
+						<div class="col-sm-2">
 							<?php echo $row->habitacion ?>		
 						</div>
 					</div>	

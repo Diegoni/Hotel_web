@@ -7,7 +7,11 @@ class Habitacion extends CI_Controller {
 		parent::__construct();
 		
 		$this->load->helper('menu');
+		$this->load->model('habitaciones_model');
 		$this->load->model('reserva_habitacion_model');
+		$this->load->model('tarifa_habitacion_model');
+		$this->load->model('tarifas_temporales_model');
+		$this->load->model('tipos_tarifa_model');
 		$this->load->library('grocery_CRUD');
 		$this->load->library('image_CRUD');
 	}
@@ -26,6 +30,74 @@ class Habitacion extends CI_Controller {
 		$this->load->view('backend/habitaciones.php');
 		$this->load->view('backend/footer.php');
 	}
+	
+	
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 			Tarifas temporales formulario
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+	
+	
+	public function tarifas_temporales_formulario($id=NULL)
+	{
+		$reservas=buscarReservas();
+		$mensajes=buscarMensajes();
+		$db=array_merge($reservas, $mensajes);
+		
+		if($this->input->post('aceptar')){
+			$array_entrada = explode("/", $this->input->post('entrada')); 
+			$entrada=$array_entrada[2]."/".$array_entrada[1]."/".$array_entrada[0];
+			$salida_array = explode("/", $this->input->post('salida'));	
+			$salida=$salida_array['2'].'/'.$salida_array['1'].'/'.$salida_array['0'];
+			
+			$registro=array('tarifa_temporal' 	=> $this->input->post('descripcion'),
+							'entrada'			=> $entrada,
+							'salida'			=> $salida,
+							'id_tipo_tarifa'	=> $this->input->post('id_tipo_tarifa'),
+							'valor'				=> $this->input->post('valor'),
+							'delete'			=> 0);
+			
+			$id=$this->tarifas_temporales_model->insertTarifa($registro);
+			
+			foreach ($this->input->post('id_habitaciones') as $key => $value) {
+				$habitaciones[]=$value;
+			}
+			
+			$db['tarifa_habitacion']=$this->tarifa_habitacion_model->insertHabitaciones($habitaciones, $id);
+			
+			$_COOKIE['tabla']='tarifas_temporales';
+			$_COOKIE['id']='id_tarifa_temporal';
+			$this->insert_log($registro, $id);
+			
+			$db['mensaje']="La carga se ha realizado con éxito";
+		}else{
+			$registro=$this->tarifas_temporales_model->getTarifaID($id);
+			
+			foreach ($registro as $row) {
+				$registro=array('tarifa_temporal' 	=> $row->tarifa_temporal,
+								'valor'				=> $row->valor,
+								'id_tipo_tarifa'	=> $row->id_tipo_tarifa);
+			}
+			
+			$db['tarifa_habitacion']=$this->tarifa_habitacion_model->getTarifaID($id);
+			
+		}
+		
+		$db['cargas']=$this->tarifa_habitacion_model->getTarifaNombre($registro['tarifa_temporal']);
+		$db['habitaciones']	=$this->habitaciones_model->getHabitaciones();
+		$db['tipos']=$this->tipos_tarifa_model->getTipos();
+		$db['registro']=$registro;
+		
+		$this->load->view('backend/head.php');
+		$this->load->view('backend/menu.php', $db);	
+		$this->load->view('backend/modal.php');
+		$this->load->view('backend/tarifas_temporales_formulario.php');
+		$this->load->view('backend/footer.php');
+	}
+	
 
 
 /**********************************************************************************
@@ -253,6 +325,8 @@ class Habitacion extends CI_Controller {
 			$crud->callback_delete(array($this,'delete_log'));
 			$crud->callback_before_insert(array($this, 'insert_control_fechas'));
 			
+			$crud->add_action('Insertar multiples', '', '','icon-databaseadd', array($this,'insert_tarifa_temporales'));
+			
 			$output = $crud->render();
 
 			$this->_example_output($output);
@@ -447,6 +521,9 @@ class Habitacion extends CI_Controller {
  * ********************************************************************************
  **********************************************************************************/
 
+ 	function insert_tarifa_temporales($id){
+		return site_url('admin/habitacion/tarifas_temporales_formulario').'/'.$id;
+	}
 	
 	function insert_control_fechas($datos, $id){
 		if($datos['entrada']>$datos['salida']){

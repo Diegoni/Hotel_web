@@ -43,6 +43,7 @@ class Reserva extends CI_Controller {
 	
 	}
 
+
 /**********************************************************************************
  **********************************************************************************
  * 
@@ -50,7 +51,6 @@ class Reserva extends CI_Controller {
  * 
  * ********************************************************************************
  **********************************************************************************/
-
 	
 	
 	public function reservas_formulario($id=NULL)
@@ -138,7 +138,6 @@ class Reserva extends CI_Controller {
  * 
  * ********************************************************************************
  **********************************************************************************/
-
 	
 	
 	public function cierre_ventas_formulario($id=NULL)
@@ -166,10 +165,26 @@ class Reserva extends CI_Controller {
 			
 			$db['disponibilidad_habitacion']=$this->disponibilidad_habitacion_model->insertHabitaciones($habitaciones, $id);
 			$db['registro']=$registro;
+			$db['cargas']=$this->disponibilidad_habitacion_model->getDisponibilidadNombre($registro['disponibilidad']);
+			
+			$_COOKIE['tabla']='disponibilidades';
+			$_COOKIE['id']='id_disponibilidad';
+			$this->insert_log($registro, $id);
+			
+			$db['mensaje']="La carga se ha realizado con éxito";
+		}else{
+			$registro=$this->disponibilidades_model->getDisponibilidadId($id);
+			
+			foreach ($registro as $row) {
+				$registro=array('disponibilidad' 	=> $row->disponibilidad);
+			}
+			$db['cargas']=$this->disponibilidad_habitacion_model->getDisponibilidadNombre($registro['disponibilidad']);
+			$db['disponibilidad_habitacion']=$this->disponibilidad_habitacion_model->getDisponibilidadID($id);
+			$db['registro']=$registro;
+			
+			
 		}
-		
-		
-		
+
 		$db['habitaciones']	=$this->habitaciones_model->getHabitaciones();
 		
 		$this->load->view('backend/head.php');
@@ -179,9 +194,6 @@ class Reserva extends CI_Controller {
 		$this->load->view('backend/footer.php');
 	}
 	
-	
-
-
 
 /**********************************************************************************
  **********************************************************************************
@@ -314,8 +326,6 @@ class Reserva extends CI_Controller {
 			$this->_example_output($output);
 	}
 
-
-
 	
 /**********************************************************************************
  **********************************************************************************
@@ -354,6 +364,8 @@ class Reserva extends CI_Controller {
 			
 			$crud->field_type('fecha_alta', 'readonly');
 			$crud->field_type('fecha_modificacion', 'readonly');
+			
+			$crud->add_action('Insertar multiples', '', '','icon-databaseadd', array($this,'insert_disponibilidad'));
 			
 			$_COOKIE['tabla']='disponibilidades';
 			$_COOKIE['id']='id_disponibilidad';	
@@ -453,7 +465,7 @@ class Reserva extends CI_Controller {
 			$crud->set_relation('id_reserva','reservas','id_reserva', 'delete = 0');			
 			$crud->set_relation('id_aerolinea','aerolineas','aerolinea', 'delete = 0');
 			
-			$crud->add_action('Reserva', '', '','icon-tagalt-pricealt', array($this,'buscar_reservas'));
+			//$crud->add_action('Reserva', '', '','icon-tagalt-pricealt', array($this,'buscar_reservas'));
 			
 			$_COOKIE['tabla']='vuelos';
 			$_COOKIE['id']='id_vuelo';	
@@ -594,6 +606,10 @@ class Reserva extends CI_Controller {
 	
 	function edit_reserva($id){
 		return site_url('admin/reserva/reservas_formulario').'/'.$id;
+	}
+	
+	function insert_disponibilidad($id){
+		return site_url('admin/reserva/cierre_ventas_formulario').'/'.$id;
 	}
 	
 	
