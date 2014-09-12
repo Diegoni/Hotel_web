@@ -1,4 +1,10 @@
-@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,700,400italic);
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Ubuntu Light'), local('Ubuntu-Light'), url(ubuntu.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
 
 .fa{
 	color: #ab2e3e;
@@ -2760,9 +2766,10 @@ select[multiple].input-lg {
 .btn:focus,
 .btn:active:focus,
 .btn.active:focus {
-  /*outline: thin dotted;
+  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;*/
+  outline-offset: -2px;
+  outline: none;
 }
 .btn:hover,
 .btn:focus {
@@ -4606,8 +4613,9 @@ a.list-group-item.active > .badge,
   padding: 4px;
   margin-bottom: 20px;
   line-height: 1.42857143;
-  background-color: #fff;
+ /* background-color: #fff;
   border: 1px solid #ddd;
+  */
   border-radius: 4px;
   -webkit-transition: all .2s ease-in-out;
        -o-transition: all .2s ease-in-out;

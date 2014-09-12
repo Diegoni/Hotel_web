@@ -37,7 +37,7 @@
 			<h1 class="text-center"><?php echo $texto['seleccione_habitacion']?></h1>
 			<?php echo form_open('reserva/datos');?>
 			<?php foreach ($habitaciones as $habitacion) { ?> 
-			<div class="panel panel-default">
+			<div class="panel panel-hotel">
         		<div class="panel-body">
         			<div class="col-md-3 text-center">
         				<h2><small> <?php echo $habitacion->habitacion; ?> </small></h2>

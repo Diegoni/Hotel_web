@@ -1,10 +1,9 @@
-@import url(http://fonts.googleapis.com/css?family=Cinzel);
-
 @font-face {
-  font-family: 'titulo';
+  font-family: 'Cinzel';
   font-style: normal;
   font-weight: 400;
-  src: local('Cinzel-Regular'), url(http://fonts.gstatic.com/s/cinzeldecorative/v4/fmgK7oaJJIXAkhd9798yQlAYmmMvk1bBRfdFEGChS8U.woff2) format('woff2');
+  /*src: local('Cinzel-Regular'), url(http://fonts.gstatic.com/s/cinzel/v4/GUdIaltLF-l6nIaNvN3eY_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');*/
+  src: local('Cinzel-Regular'), url(font.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
