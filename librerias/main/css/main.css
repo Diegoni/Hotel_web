@@ -1,12 +1,52 @@
+@import url(http://fonts.googleapis.com/css?family=Cinzel);
+
 @font-face {
   font-family: 'titulo';
   font-style: normal;
-  font-weight: 700;
-  src: local('Open Sans Bold'), local('OpenSans-Bold'), 
-  url(http://themes.googleusercontent.com/static/fonts/tangerine/v3/HGfsyCL5WASpHOFnouG-RD8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+  font-weight: 400;
+  src: local('Cinzel-Regular'), url(http://fonts.gstatic.com/s/cinzeldecorative/v4/fmgK7oaJJIXAkhd9798yQlAYmmMvk1bBRfdFEGChS8U.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
- 
+.icono-rojo{
+	color: #8d1431;
+	padding-right: 10px;
+}
+
+.separador{
+	padding-top: 5px;
+}
+
+
+.boton-redondo {
+	background-size: 60%; /* Tamaño de la imagen */
+  	height: 60px;  /* Alto del botón */
+  	width: 60px;  /* Ancho del botón */
+  	display: table;
+  	border-radius: 100%;
+  	font-size: 2em; 
+  	cursor: pointer;
+    box-shadow:
+	/* Sombras externa */
+	inset 0 10px 15px rgba(255,255,255,.35), 
+	inset 0 -10px 15px rgba(0,0,0,.05), 
+	inset 10px 0 15px rgba(0,0,0,.05), 
+	inset -10px 0 15px rgba(0,0,0,.05),
+	/* Sombra interna */
+	0 5px 20px rgba(0,0,0,.1);
+}
+
+/* Al presionar */
+.boton-redondo:active {
+  box-shadow: inset 0 5px 30px rgba(0,0,0,.2); /* Sombra interior */
+  background-size: 55%; /* Cambiamos el tamaño de la imagen */
+}
+
+
+
+.logo_img{
+	width: 200px;
+} 
 
 /**********************************************************************
  **********************************************************************
@@ -102,8 +142,9 @@ right: 0;
 
 .btn-hotel {
   color: #fff;
-  background-color: #57101c;
+  background-color: #801a2e;
   border-color: #3d0811;
+   border-width:2px;
 }
 .btn-hotel:hover,
 .btn-hotel:focus,
@@ -118,21 +159,40 @@ right: 0;
 
 
 .panel-hotel {
-  border-color: #ddd;
+  border-color: #5c1b21;
+  border-radius: 10px;
+  background-color: #f8eda7;
 }
 .panel-hotel > .panel-heading {
-	font-family: "titulo";
-	font-size: 30px;
-  	color: #FFF;
+	font-family: Cinzel;
+	font-size: 25px;
+  	color: #f8eda7;
   	background-color: #57101c;
-  	border-color: #ddd;
+  	border-color: #5c1b21;
  	background-image: url("uno.png");
 	background-size: 100% 100%;
     background-repeat: no-repeat;
-    padding: 5px 15px;
-    font-weight: bold;
+    padding: 8px 15px;
+    /*font-weight: bold;*/
     text-decoration: none;
+    text-align: center;
 }
+
+.panel-menu{
+	font-size:15px;
+	padding: 10px 10px;
+	padding-top: 10px;
+	text-decoration: none;
+}
+
+.panel-menu:hover{
+	font-size:15px;
+	padding-right:15px;
+	text-decoration: none;
+	color: #dbcf82;
+	cursor: pointer;
+}
+
 .panel-hotel > .panel-heading + .panel-collapse > .panel-body {
   border-top-color: #ddd;
 }
@@ -150,8 +210,8 @@ right: 0;
     position: relative;
     margin: 15px 0;
     padding: 39px 19px 14px;
-    background: #fff;
-    border: 1px solid #ddd;
+    background: #f8eda7;
+    border: 1px solid #5d1b21;
     border-radius: 6px;
 }
 

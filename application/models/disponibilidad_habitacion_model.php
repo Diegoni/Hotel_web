@@ -12,9 +12,9 @@ class Disponibilidad_habitacion_model extends CI_Model {
             $id=$this->db->insert_id();
 			
 			$query=$this->db->query("SELECT 
-							disponibilidad_habitacion.id_habitacion
-							FROM `disponibilidad_habitacion` 
-							WHERE disponibilidad_habitacion.id_disponibilidad_habitacion='$id'");
+								disponibilidad_habitacion.id_habitacion
+								FROM `disponibilidad_habitacion` 
+								WHERE disponibilidad_habitacion.id_disponibilidad_habitacion='$id'");
 			
 			foreach ($query->result() as $fila){
 				$disponibilidad_habitacion[] = $fila->id_habitacion;
@@ -28,14 +28,14 @@ class Disponibilidad_habitacion_model extends CI_Model {
 	
 	function getDisponibilidadNombre($disponibilidad){
 		$query=$this->db->query("SELECT 
-								*
-								FROM `disponibilidad_habitacion`
-								INNER JOIN habitaciones 
-								ON(disponibilidad_habitacion.id_habitacion=habitaciones.id_habitacion)
-								INNER JOIN disponibilidades
-								ON(disponibilidad_habitacion.id_disponibilidad=disponibilidades.id_disponibilidad) 
-								WHERE disponibilidades.disponibilidad='$disponibilidad'
-								ORDER BY disponibilidades.entrada");
+							*
+							FROM `disponibilidad_habitacion`
+							INNER JOIN habitaciones 
+							ON(disponibilidad_habitacion.id_habitacion=habitaciones.id_habitacion)
+							INNER JOIN disponibilidades
+							ON(disponibilidad_habitacion.id_disponibilidad=disponibilidades.id_disponibilidad) 
+							WHERE disponibilidades.disponibilidad='$disponibilidad'
+							ORDER BY disponibilidades.entrada");
 		if($query->num_rows() > 0){	
 			foreach ($query->result() as $fila){
 				$data[] = $fila;

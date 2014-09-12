@@ -11,7 +11,7 @@
   		}?>
 		<center>
 		<a href="<?php echo base_url().'index.php/inicio/hotel/'.$id_hotel; ?>" class="logo">
-			<img src="<?php echo base_url().'assets/uploads/logos/'.$logo_url[0];?>" alt="">
+			<img src="<?php echo base_url().'assets/uploads/logos/'.$logo_url[0];?>" class="logo_img">
 		</a>
 		</center>
 	</div>	                

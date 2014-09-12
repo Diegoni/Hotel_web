@@ -1,5 +1,5 @@
 
-	<div class='col-md-9'>
+	<div class='col-md-8'>
 				<div class="panel panel-hotel">
 					<?php
 			  		foreach ($categorias as $categoria) { ?>
@@ -112,7 +112,7 @@
 					<?php } ?>
 					<div class="panel-body">
 					<center>
-						<a href="javascript:window.history.back();" type="submit" class="btn btn-default btn-xlarge" title="<?php echo $texto['volver']?>" rel="tooltip">
+						<a href="javascript:window.history.back();" type="submit" class="btn btn-default boton-redondo" title="<?php echo $texto['volver']?>" rel="tooltip">
 							<span class="icon-chevron-left"></span>
 						</a>
 					</center>

@@ -1,4 +1,5 @@
-<div class="col-md-9">
+<?php $id_hotel=$_COOKIE['id_hotel']?>
+<div class="col-md-8">
 	<div class="panel panel-default">
 		<!--<div class="panel-heading">Habitación</div>-->
 		<div class="panel-body">
@@ -17,7 +18,7 @@
 							<h4><?php echo $texto['habitacion']?></h4>
 							<!--<p>comentario</p>-->
 							<p>
-								<a href="<?php echo base_url().'index.php/habitacion/galeria/'.$habitacion->id_habitacion?>" class="btn btn-default" rel="tooltip" title="<?php echo $texto['ver_fotos']?>"><span class="icon-play"></span></a>
+								<a href="<?php echo base_url().'index.php/habitacion/galeria/'.$habitacion->id_habitacion.'/'.$id_hotel?>" class="btn btn-default" rel="tooltip" title="<?php echo $texto['ver_fotos']?>"><span class="icon-play"></span></a>
 							</p>
 						</div>
 						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -62,9 +63,17 @@
 			                    	
 						</div>
                 	</div>	
+                	
                 </div>
          	</div>
          	<?php } ?>	
+         	<div class="panel-body">
+					<center>
+						<a href="javascript:window.history.back();" type="submit" class="btn btn-default boton-redondo" title="<?php echo $texto['volver']?>" rel="tooltip">
+							<span class="icon-chevron-left"></span>
+						</a>
+					</center>
+			</div>
 
          	
         	<?php }else{ ?>

@@ -12,9 +12,9 @@ class Tarifa_habitacion_model extends CI_Model {
             $id=$this->db->insert_id();
 			
 			$query=$this->db->query("SELECT 
-							tarifa_habitacion.id_habitacion
-							FROM `tarifa_habitacion` 
-							WHERE tarifa_habitacion.id_tarifa_habitacion='$id'");
+								tarifa_habitacion.id_habitacion
+								FROM `tarifa_habitacion` 
+								WHERE tarifa_habitacion.id_tarifa_habitacion='$id'");
 			
 			foreach ($query->result() as $fila){
 				$tarifa_habitacion[] = $fila->id_habitacion;
@@ -28,16 +28,16 @@ class Tarifa_habitacion_model extends CI_Model {
 	
 	function getTarifaNombre($tarifa_temporal){
 		$query=$this->db->query("SELECT 
-								*
-								FROM `tarifa_habitacion`
-								INNER JOIN habitaciones 
-								ON(tarifa_habitacion.id_habitacion=habitaciones.id_habitacion)
-								INNER JOIN tarifas_temporales
-								ON(tarifa_habitacion.id_tarifa_temporal=tarifas_temporales.id_tarifa_temporal)
-								INNER JOIN tipos_tarifa
-								ON(tarifas_temporales.id_tipo_tarifa=tipos_tarifa.id_tipo_tarifa) 
-								WHERE tarifas_temporales.tarifa_temporal='$tarifa_temporal'
-								ORDER BY tarifas_temporales.entrada");
+							*
+							FROM `tarifa_habitacion`
+							INNER JOIN habitaciones 
+							ON(tarifa_habitacion.id_habitacion=habitaciones.id_habitacion)
+							INNER JOIN tarifas_temporales
+							ON(tarifa_habitacion.id_tarifa_temporal=tarifas_temporales.id_tarifa_temporal)
+							INNER JOIN tipos_tarifa
+							ON(tarifas_temporales.id_tipo_tarifa=tipos_tarifa.id_tipo_tarifa) 
+							WHERE tarifas_temporales.tarifa_temporal='$tarifa_temporal'
+							ORDER BY tarifas_temporales.entrada");
 		if($query->num_rows() > 0){	
 			foreach ($query->result() as $fila){
 				$data[] = $fila;

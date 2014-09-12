@@ -1,6 +1,25 @@
-
-	<div class="col-md-9">
-		<div class="panel panel-default">
+<?php $id_hotel=$_COOKIE['id_hotel']; ?>
+	<div class="col-md-8">
+		<div class="panel panel-hotel">
+			<div class="panel-heading" style="padding: 14px 10px;">
+				<a class="panel-menu" href="<?php echo base_url().'index.php/hoteles/habitaciones/'.$id_hotel; ?>">
+					<?php echo $texto['habitaciones'] ?>
+				</a>
+				<?php 
+				$i=0;
+				foreach ($categorias as $categoria) { 
+					if($i<3){?>
+					<a class="panel-menu" href="<?php echo base_url().'index.php/categoria/articulos/'.$categoria->id_categoria.'/'.$id_hotel; ?>">
+						<?php echo $categoria->categoria ?>
+					</a>	
+				<?php 
+					}
+				$i=$i+1;
+				} ?>
+				<a class="panel-menu" href="<?php echo base_url().'index.php/hoteles/galeria/'.$id_hotel; ?>">
+					<?php echo $texto['galeria'] ?>
+				</a>
+			</div>
 	  	<div class="panel-body">
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 			

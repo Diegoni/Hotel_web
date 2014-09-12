@@ -4,7 +4,7 @@
 }?>
 
 <div class="row">
-	<div class="col-md-3">
+	<div class="col-md-4">
 		<div class="panel panel-hotel">
 	  		<div class="panel-heading"><?php echo $texto['consulta'];?></div>
 	  		<div class="panel-body">
@@ -31,7 +31,7 @@
   					</div>
   					<div class="form-group">
   						<center>
-  							<button type="submit" class="btn btn-hotel btn-xlarge">
+  							<button type="submit" class="btn btn-hotel boton-redondo">
 								<span class="icon-ok"></span>
 							</button>	
   						</center>

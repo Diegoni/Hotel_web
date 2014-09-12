@@ -6,6 +6,7 @@ class Inicio extends CI_Controller {
 		parent::__construct();
 		$this->load->model('hoteles_model');
 		$this->load->model('articulos_model');
+		$this->load->model('categorias_model');
 		$this->load->model('imagenes_carrusel_model');
 		$this->load->model('habitaciones_model');
 		$this->load->model('configs_model');
@@ -38,6 +39,7 @@ class Inicio extends CI_Controller {
 		$db['cantidad_categorias']=count($db['articulos']);
 		$db['configs']=$this->configs_model->getConfigs();
 		$db['tipos_habitacion']=$this->tipos_habitacion_model->getTipos();
+		$db['categorias']=$this->categorias_model->getCategorias($_COOKIE['id_hotel']);
 		
 
 		$this->load->view('frontend/head' , $db);

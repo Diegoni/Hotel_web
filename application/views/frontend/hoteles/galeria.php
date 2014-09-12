@@ -1,4 +1,4 @@
-	<div class="col-md-9">
+	<div class="col-md-8">
 		<div class="panel panel-hotel">
 			<div class="panel-heading"><?php echo $texto['hotel']?></div>
 		  	<div class="panel-body">
@@ -22,7 +22,7 @@
 			</div>
 			<div class="panel-body">
 					<center>
-						<a href="javascript:window.history.back();" type="submit" class="btn btn-default btn-xlarge" title="<?php $texto['volver']?>" rel="tooltip">
+						<a href="javascript:window.history.back();" type="submit" class="btn btn-default boton-redondo" title="<?php $texto['volver']?>" rel="tooltip">
 							<span class="icon-chevron-left"></span>
 						</a>
 					</center>

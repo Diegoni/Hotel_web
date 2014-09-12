@@ -1,4 +1,4 @@
-	<div class="col-md-9">
+	<div class="col-md-8">
 		<div class="panel panel-hotel">
 			<div class="panel-heading"><?php echo $texto['datos_personales']?></div>
 		  	<div class="panel-body">
@@ -188,14 +188,14 @@
 						<?php } ?>
 						<center>
     					<div class="col-sm-offset-2 col-sm-5">
-							<button type="submit" class="btn btn-hotel btn-xlarge">
+							<button type="submit" class="btn btn-hotel boton-redondo">
 								<span class="icon-ok font-big"></span>
 							</button>
 							
     					</div>
     					<div class="col-sm-5">
-    						<a href="javascript:window.history.back();" type="submit" class="btn btn-default btn-xlarge" title="<?php echo $texto['volver']?>" rel="tooltip">
-								<span class="icon-chevron-left"></span>
+    						<a href="javascript:window.history.back();" type="submit" class="btn btn-default boton-redondo" title="<?php echo $texto['volver']?>" rel="tooltip">
+								<span class="icon-arrow-left"></span>
 							</a>
 							
       					</div>

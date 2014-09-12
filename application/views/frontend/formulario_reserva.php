@@ -4,31 +4,31 @@
 }?>
 
 <div class="row">
-	<div class="col-md-3">
+	<div class="col-md-4">
 		<div class="panel panel-hotel">
 	  		<div class="panel-heading"><?php echo $texto['reserva_online']?></div>
 	  		<div class="panel-body">
 	  			<?php echo form_open('reserva/habitacion');?> 
 	    			<div class="form-group">
-						<label for="exampleInputEmail1"><i class="fa fa-sign-in"></i> <?php echo $texto['entrada']?></label>
+						<label for="exampleInputEmail1"><i class="icon-arrow-right icono-rojo"></i> <?php echo $texto['entrada']?></label>
 						<div class="input-group">
+							<input class="form-control" name="entrada" id="entrada" type="entrada" placeholder="Fecha entrada" value="<?php echo date("d/m/Y",  strtotime("+1 day")); ?>" autocomplete="off">
 							<div class="input-group-addon" onclick="document.getElementById('entrada').focus();">
 								<span class="icon-calendarthree"></span>
 							</div>
-      						<input class="form-control" name="entrada" id="entrada" type="entrada" placeholder="Fecha entrada" value="<?php echo date("d/m/Y",  strtotime("+1 day")); ?>" autocomplete="off">
     					</div>
 				  	</div>
 				  	<div class="form-group">
-					    <label for="exampleInputEmail1"><i class="fa fa-sign-out"></i> <?php echo $texto['salida']?></label>
+					    <label for="exampleInputEmail1"><i class="icon-arrow-left icono-rojo"></i> <?php echo $texto['salida']?></label>
 						<div class="input-group">
+							<input class="form-control" name="salida" id="salida" type="salida" placeholder="Fecha salida" value="<?php echo date("d/m/Y",  strtotime("+2 day")); ?>" autocomplete="off">
 							<div class="input-group-addon" onclick="document.getElementById('salida').focus();">
 								<span class="icon-calendarthree"></span>
 							</div>
-      						<input class="form-control" name="salida" id="salida" type="salida" placeholder="Fecha salida" value="<?php echo date("d/m/Y",  strtotime("+2 day")); ?>" autocomplete="off">
     					</div>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword1"><i class="fa fa-user"></i> <?php echo $texto['ocupacion']?></label>
+						<label for="exampleInputPassword1"><i class="fa fa-user icono-rojo"></i> <?php echo $texto['ocupacion']?></label>
 						<select class="form-control" name="adultos">
 							<?php $i=1;
 							do{
@@ -41,13 +41,14 @@
 							$i=$i+1;
 							}while($i<=$max_adultos);?>
 						</select>
+						<div class="separador"></div>
 			     		<select class="form-control" name="menores">
 				  			<?php $i=0;
 							do{
 								if($i==0){ ?>
 									<option value="<?php echo $i;?>"><?php echo $texto['sin_menores']?></option>
 								<?php }else if($i==1){ ?>
-									<option value="<?php echo $i;?>"><?php echo $i;?> <?php echo $texto['menor']?><</option>	
+									<option value="<?php echo $i;?>"><?php echo $i;?> <?php echo $texto['menor']?></option>	
 								<?php }else{?>
 									<option value="<?php echo $i;?>"><?php echo $i;?> <?php echo $texto['menores']?></option>
 							<?php 
@@ -62,13 +63,13 @@
 						 $id_hotel=$hotel->id_hotel;
 					} ?>
 					<input type="hidden" value="<?php echo $id_hotel;?>" name="hotel">
-					<div class="form-group">
+					
 						<center>
-							<button type="submit" class="btn btn-hotel btn-xlarge">
+							<button type="submit" class="btn btn-hotel boton-redondo">
 								<span class="icon-ok"></span>
 							</button>		
 						</center>
-				  	</div>
+				  	
 				<?php echo form_close(); ?>	
 			</div>
 		</div>

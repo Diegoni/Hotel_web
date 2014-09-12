@@ -12,6 +12,7 @@
 	$texto['menores'] 				= 'Menores';
 	$texto['hotel'] 				= 'Hotel';
 	$texto['monedas'] 				= 'Monedas';
+	$texto['galeria'] 				= 'Galería';
 	
 	/* reserva habitacions */
 	$texto['leer_mas'] 				= 'Leer más';

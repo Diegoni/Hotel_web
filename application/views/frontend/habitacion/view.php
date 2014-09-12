@@ -1,4 +1,4 @@
-	<div class="col-md-9">
+	<div class="col-md-8">
 		<div class="panel panel-hotel">
 			<div class="panel-heading"><?php echo $texto['habitacion']?></div>
 		  	<div class="panel-body">
@@ -102,7 +102,9 @@
     					</label>
     					<div class="col-sm-10">
 							<input type="text" id="waypoints1" class="form-control">
+							<div class="separador"></div>
 							<input type="text" id="waypoints2" class="form-control">
+							<div class="separador"></div>
 							<input type="text" id="waypoints3" class="form-control">
 						</div>
   					</div>
@@ -161,8 +163,8 @@
 				</div>
 				<div class="col-md-12">
 					<center>
-						<a href="javascript:window.history.back();" type="submit" class="btn btn-default btn-xlarge" title="<?php echo $texto['volver']?>" rel="tooltip">
-							<span class="icon-chevron-left"></span>
+						<a href="javascript:window.history.back();" type="submit" class="btn btn-default boton-redondo" title="<?php echo $texto['volver']?>" rel="tooltip">
+							<span class="icon-arrow-left"></span>
 						</a>
 					</center>
 				</div>

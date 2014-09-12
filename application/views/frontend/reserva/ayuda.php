@@ -1,6 +1,6 @@
 
 <div class="row">
-	<div class="col-md-3">
+	<div class="col-md-4">
 		<?php foreach ($ayudas as $ayuda) { ?>
 		<div class="panel panel-hotel">
 	  		<div class="panel-heading"><?php echo $ayuda->titulo; ?></div>

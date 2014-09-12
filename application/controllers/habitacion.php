@@ -43,18 +43,24 @@ class Habitacion extends CI_Controller {
 		
 	}
 	
-	public function galeria($id=NULL){
+	public function galeria($id=NULL, $id_hotel=NULL){
+		if($id_hotel==NULL){
+			header('Location: home', 'refresh');
+		}else{
+			$_COOKIE['id_hotel']=$id_hotel;
+		}
+		
 		if($id==NULL){
 			$id=$this->input->post('id');
 		}
+		
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
-		$db['hoteles']=$this->hoteles_model->getHoteles();
+		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
 		$db['habitaciones']=$this->habitaciones_model->getHabitacion($id);
 		$db['servicios']=$this->habitacion_servicio_model->getServicios($id);
-		$db['provincias']=$this->provincias_model->getProvincias('032');
 		$db['configs']=$this->configs_model->getConfigs();
-		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
+		$db['emails_hotel']=$this->hoteles_email_model->getEmails($id_hotel);
 								
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');

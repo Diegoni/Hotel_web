@@ -113,8 +113,9 @@ class Huesped extends CI_Controller {
  
 	public function telefonos_huesped($id=NULL){
 			$crud = new grocery_CRUD();
-
-			if(isset($id)){
+			
+			$id_registro=$id;
+			if(empty($id_registro)){
 				$crud->where('telefonos_huesped.id_huesped',$id);
 			}
 			
@@ -130,7 +131,7 @@ class Huesped extends CI_Controller {
 			
 			$crud->set_subject('teléfono');
 			
-			$crud->set_relation('id_huesped','huespedes','{apellido} {nombre}');
+			$crud->set_relation('id_huesped','huespedes','{apellido} {nombre}', 'delete = 0');
 			$crud->set_relation('id_tipo','tipos','tipo');
 			
 			$crud->required_fields(	'id_huesped',
@@ -157,7 +158,8 @@ class Huesped extends CI_Controller {
 
 			//$crud->set_theme('datatables');
 			
-			if(isset($id)){
+			$id_registro=$id;
+			if(empty($id_registro)){
 				$crud->where('emails_huesped.id_huesped',$id);
 			}
 			
@@ -173,7 +175,7 @@ class Huesped extends CI_Controller {
 			
 			$crud->set_subject('email');
 			
-			$crud->set_relation('id_huesped','huespedes','{apellido} {nombre}');
+			$crud->set_relation('id_huesped','huespedes','{apellido} {nombre}', 'delete = 0');
 			$crud->set_relation('id_tipo','tipos','tipo');
 			
 			$crud->required_fields(	'id_huesped',
@@ -201,7 +203,8 @@ class Huesped extends CI_Controller {
 
 			//$crud->set_theme('datatables');
 			
-			if(isset($id)){
+			$id_registro=$id;
+			if(empty($id_registro)){
 				$crud->where('direcciones_huesped.id_huesped',$id);
 			}
 			
@@ -221,7 +224,7 @@ class Huesped extends CI_Controller {
 			
 			$crud->set_subject('dirección');
 			
-			$crud->set_relation('id_huesped','huespedes','{apellido} {nombre}');
+			$crud->set_relation('id_huesped','huespedes','{apellido} {nombre}', 'delete = 0');
 			$crud->set_relation('id_departamento','departamentos','departamento');
 			$crud->set_relation('id_provincia','provincias','provincia');
 			$crud->set_relation('id_pais','paises','pais');
@@ -254,7 +257,7 @@ class Huesped extends CI_Controller {
 
 			//$crud->set_theme('datatables');
 			
-			if(isset($id)){
+			if($id=""){
 				$crud->where('tarjetas.id_huesped',$id);
 			}
 			
@@ -269,7 +272,7 @@ class Huesped extends CI_Controller {
 			
 			$crud->set_subject('tarjeta');
 			
-			$crud->set_relation('id_huesped','huespedes','{apellido} {nombre}');
+			$crud->set_relation('id_huesped','huespedes','{apellido} {nombre}', 'delete = 0');
 			$crud->set_relation('id_tipo_tarjeta','tipos_tarjeta','tipo_tarjeta', 'delete = 0');
 						
 			$crud->required_fields(	'id_huesped',

@@ -14,6 +14,7 @@ class Hoteles extends CI_Controller {
 		$this->load->model('habitacion_servicio_model');
 		$this->load->model('tipos_habitacion_model');
 		$this->load->model('provincias_model');
+		$this->load->model('imagenes_habitacion_model');
 		$this->load->model('imagenes_hotel_model');
 		$this->load->model('monedas_model');
 		$this->load->helper('main');
@@ -22,17 +23,19 @@ class Hoteles extends CI_Controller {
 	}
 	
 	
-	public function galeria($id=NULL){
-		if($id==NULL){
-			$id=$this->input->post('id');
+	public function galeria($id_hotel=NULL){
+		if($id_hotel==NULL){
+			header('Location: home', 'refresh');
+		}else{
+			$_COOKIE['id_hotel']=$id_hotel;
 		}
 		
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
-		$db['hoteles']=$this->hoteles_model->getHoteles();
-		$db['habitaciones']=$this->hoteles_model->getHotel($id);
+		$db['hoteles']=$this->hoteles_model->getHoteles($_COOKIE['id_hotel']);
+		$db['habitaciones']=$this->hoteles_model->getHotel($_COOKIE['id_hotel']);
 		$db['configs']=$this->configs_model->getConfigs();
-		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
+		$db['emails_hotel']=$this->hoteles_email_model->getEmails($_COOKIE['id_hotel']);
 								
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
@@ -42,16 +45,22 @@ class Hoteles extends CI_Controller {
 		
 	}
 	
-	public function habitaciones(){
+	public function habitaciones($id_hotel=NULL){
+		if($id_hotel==NULL){
+			header('Location: home', 'refresh');
+		}else{
+			$_COOKIE['id_hotel']=$id_hotel;
+		}
+		
 		$db['texto']=$this->idiomas_model->getIdioma();
 		
-		$consulta=array('hotel'	=> 2);
+		$consulta=array('id_hotel'	=> $id_hotel);
 		
-		$db['hoteles']=$this->hoteles_model->getHoteles();
-		$db['hotel']=$this->hoteles_model->getHotel(2);
+		$db['hoteles']=$this->hoteles_model->getHoteles($_COOKIE['id_hotel']);
+		$db['hotel']=$this->hoteles_model->getHotel($_COOKIE['id_hotel']);
 		$db['habitaciones']=$this->habitaciones_model->getHabitaciones($consulta);
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
-		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
+		$db['emails_hotel']=$this->hoteles_email_model->getEmails($id_hotel);
 		
 		if(!(isset($_COOKIE['moneda']))){
 			$_COOKIE['moneda']=1;
