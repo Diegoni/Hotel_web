@@ -100,8 +100,8 @@ class Reserva extends CI_Controller {
 		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
 		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
 		$ayuda=array(
-			'sector' 		=> 'datos',
-			'id_idioma' 	=> $_COOKIE['idioma']
+			'sector'		=> 'datos',
+			'id_idioma'		=> $_COOKIE['idioma']
 		);
 		
 		$db['ayudas']=$this->ayudas_model->getAyuda($ayuda);
@@ -136,8 +136,8 @@ class Reserva extends CI_Controller {
 		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
 		
 		$ayuda=array(
-			'sector' 		=> 'pagos',
-			'id_idioma' 	=> $_COOKIE['idioma']
+			'sector'		=> 'pagos',
+			'id_idioma'		=> $_COOKIE['idioma']
 		);
 		
 		$db['ayudas']=$this->ayudas_model->getAyuda($ayuda);
@@ -177,14 +177,14 @@ class Reserva extends CI_Controller {
 		$fecha= date('Y-m-d H:i:s');		
 		
 		$reserva=array(	
-			'entrada' 			=> $entrada,
-			'salida' 			=> $salida,
+			'entrada'			=> $entrada,
+			'salida'			=> $salida,
 			'adultos'			=> $this->input->post('adultos'),
-			'menores' 			=> $this->input->post('menores'),
-			'id_huesped' 		=> $id_huesped,
-			'id_nota' 			=> $id_nota,
+			'menores'			=> $this->input->post('menores'),
+			'id_huesped'		=> $id_huesped,
+			'id_nota'			=> $id_nota,
 			'id_estado_reserva'	=> 1, 
-			'fecha_alta' 		=> $fecha
+			'fecha_alta'		=> $fecha
 		);
 						
 		
