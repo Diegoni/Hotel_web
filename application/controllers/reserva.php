@@ -161,11 +161,11 @@ class Reserva extends CI_Controller {
 		}
 		
 		$tarjeta=array(	
-			'id_huesped' 	=> $id_huesped,
-			'id_tipo_tarjeta'=> $this->input->post('tipo_tarjeta'),
-			'tarjeta' 		=> $this->input->post('tarjeta'),
-			'pin' 			=> $this->input->post('pin'),
-			'vencimiento' 	=> $this->input->post('vencimiento')
+			'id_huesped' 		=> $id_huesped,
+			'id_tipo_tarjeta'	=> $this->input->post('tipo_tarjeta'),
+			'tarjeta' 			=> $this->input->post('tarjeta'),
+			'pin' 				=> $this->input->post('pin'),
+			'vencimiento' 		=> $this->input->post('vencimiento')
 		);
 		
 		$id_tarjeta=$this->tarjetas_model->insertTarjeta($tarjeta);
@@ -177,14 +177,14 @@ class Reserva extends CI_Controller {
 		$fecha= date('Y-m-d H:i:s');		
 		
 		$reserva=array(	
-			'entrada' 		=> $entrada,
-			'salida' 		=> $salida,
-			'adultos'		=> $this->input->post('adultos'),
-			'menores' 		=> $this->input->post('menores'),
-			'id_huesped' 	=> $id_huesped,
-			'id_nota' 		=> $id_nota,
-			'id_estado_reserva'=> 1, 
-			'fecha_alta' 	=> $fecha
+			'entrada' 			=> $entrada,
+			'salida' 			=> $salida,
+			'adultos'			=> $this->input->post('adultos'),
+			'menores' 			=> $this->input->post('menores'),
+			'id_huesped' 		=> $id_huesped,
+			'id_nota' 			=> $id_nota,
+			'id_estado_reserva'	=> 1, 
+			'fecha_alta' 		=> $fecha
 		);
 						
 		
@@ -200,11 +200,11 @@ class Reserva extends CI_Controller {
 		
 		if(null !== $this->input->post('nro_de_vuelo') || null !== $this->input->post('horario_llegada')){
 			$vuelo=array(
-				'id_huesped'	=> $id_huesped,
-				'nro_vuelo' 	=> $this->input->post('nro_de_vuelo'),
-				'id_reserva'	=> $id_reserva,
-				'horario_llegada'=> $this->input->post('horario_llegada'),
-				'id_aerolinea' 	=> $this->input->post('aerolinea')
+				'id_huesped'		=> $id_huesped,
+				'nro_vuelo' 		=> $this->input->post('nro_de_vuelo'),
+				'id_reserva'		=> $id_reserva,
+				'horario_llegada'	=> $this->input->post('horario_llegada'),
+				'id_aerolinea' 		=> $this->input->post('aerolinea')
 			);
 		
 			$id_vuelo=$this->vuelos_model->insertVuelo($vuelo);
