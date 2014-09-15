@@ -28,16 +28,18 @@ class Consulta extends CI_Controller {
 		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
 		$db['configs']=$this->configs_model->getConfigs();
 		
-		$mensaje=array(	'titulo'			=> 'Consulta web',
-						'fecha_envio' 		=> date("Y-m-d h:i:s"),
-						'mensaje'			=> $this->input->post('consulta'),
-						'emisor'			=> $this->input->post('email'),
-						'nombre'			=> $this->input->post('nombre'),
-						'apellido'			=> $this->input->post('apellido'),
-						'telefono'			=> $this->input->post('telefono'),
-						'id_tipo_mensaje'	=> 1,
-						'id_estado_mensaje'	=> 1,
-						'id_hotel'			=> $id_hotel);
+		$mensaje=array(	
+			'titulo'			=> 'Consulta web',
+			'fecha_envio' 		=> date("Y-m-d h:i:s"),
+			'mensaje'			=> $this->input->post('consulta'),
+			'emisor'			=> $this->input->post('email'),
+			'nombre'			=> $this->input->post('nombre'),
+			'apellido'			=> $this->input->post('apellido'),
+			'telefono'			=> $this->input->post('telefono'),
+			'id_tipo_mensaje'	=> 1,
+			'id_estado_mensaje'	=> 1,
+			'id_hotel'			=> $id_hotel
+		);
 		
 		$db['mensajes']=$this->mensajes_model->insertMensaje($mensaje);
 		$this->hoteles_email_model->correoMensaje($mensaje,1);
@@ -67,18 +69,22 @@ class Consulta extends CI_Controller {
 		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
 		$db['configs']=$this->configs_model->getConfigs();
 		
-		$mensaje=array(	'titulo'			=> 'Envió de habitacion ID: '.$this->input->post('id_habitacion'),
-						'fecha_envio' 		=> date("Y-m-d h:i:s"),
-						'mensaje'			=> $this->input->post('consulta'),
-						'emisor'			=> $this->input->post('email'),
-						'nombre'			=> $this->input->post('nombre'),
-						'apellido'			=> $this->input->post('apellido'),
-						'id_tipo_mensaje'	=> 2,
-						'id_estado_mensaje'	=> 1,
-						'id_hotel'			=> $id_hotel);
+		$mensaje=array(	
+			'titulo'			=> 'Envió de habitacion ID: '.$this->input->post('id_habitacion'),
+			'fecha_envio' 		=> date("Y-m-d h:i:s"),
+			'mensaje'			=> $this->input->post('consulta'),
+			'emisor'			=> $this->input->post('email'),
+			'nombre'			=> $this->input->post('nombre'),
+			'apellido'			=> $this->input->post('apellido'),
+			'id_tipo_mensaje'	=> 2,
+			'id_estado_mensaje'	=> 1,
+			'id_hotel'			=> $id_hotel
+		);
 						
-		$habitacion=array(	'habitacion'=>$this->input->post('habitacion'),
-							'id_habitacion'=>$this->input->post('id_habitacion'));
+		$habitacion=array(	
+			'habitacion'=>$this->input->post('habitacion'),
+			'id_habitacion'=>$this->input->post('id_habitacion')
+		);
 		
 		$db['mensajes']=$this->mensajes_model->insertMensaje($mensaje);
 		$this->hoteles_email_model->correoHabitacion($mensaje, $habitacion, 1);
