@@ -79,6 +79,28 @@ class Hoteles extends CI_Controller {
 		$this->load->view('frontend/footer');
 		
 	}
+
+
+	public function como_llegar($id_hotel=NULL){
+		if($id_hotel==NULL){
+			header('Location: home', 'refresh');
+		}else{
+			$_COOKIE['id_hotel']=$id_hotel;
+		}
+		
+		$db['texto']=$this->idiomas_model->getIdioma();
+		$db['idiomas']=$this->idiomas_model->getIdiomas();
+		$db['hoteles']=$this->hoteles_model->getHoteles($_COOKIE['id_hotel']);
+		$db['configs']=$this->configs_model->getConfigs();
+		$db['emails_hotel']=$this->hoteles_email_model->getEmails($_COOKIE['id_hotel']);
+								
+		$this->load->view('frontend/head', $db);
+		$this->load->view('frontend/menu');
+		$this->load->view('frontend/formulario_reserva');
+		$this->load->view('frontend/hoteles/como_llegar');
+		$this->load->view('frontend/footer');
+		
+	}
 	
 	
 	

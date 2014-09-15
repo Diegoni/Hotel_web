@@ -1,6 +1,7 @@
 <?php foreach ($configs as $config) {
 	$max_adultos=$config->max_adultos;
 	$max_menores=$config->max_menores;
+	$id_hotel=$_COOKIE['id_hotel'];
 }?>
 
 <div class="row">
@@ -31,6 +32,7 @@
   					</div>
   					<div class="form-group">
   						<center>
+  							<input type="hidden" name="id_hotel" value="<?php echo $id_hotel?>" >
   							<button type="submit" class="btn btn-hotel boton-redondo">
 								<span class="icon-ok"></span>
 							</button>	

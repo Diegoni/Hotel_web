@@ -30,6 +30,13 @@ class Reserva extends CI_Controller {
 	public function habitacion(){
 		$id_hotel=$this->input->post('hotel');
 		
+		if($id_hotel==NULL){
+			header('Location: home', 'refresh');
+		}else{
+			$_COOKIE['id_hotel']=$id_hotel;
+		}
+		
+		
 		$db['texto']=$this->idiomas_model->getIdioma();
 		
 		$consulta=array('entrada'	=>$this->input->post('entrada'),
@@ -71,6 +78,13 @@ class Reserva extends CI_Controller {
 	
 	public function datos(){
 		$id_hotel=$this->input->post('hotel');
+		
+		if($id_hotel==NULL){
+			header('Location: home', 'refresh');
+		}else{
+			$_COOKIE['id_hotel']=$id_hotel;
+		}
+		
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$consulta=array('entrada'	=>$this->input->post('entrada'),
@@ -103,14 +117,22 @@ class Reserva extends CI_Controller {
 	
 	public function pago(){
 		$id_hotel=$this->input->post('hotel');
+		
+		if($id_hotel==NULL){
+			header('Location: home', 'refresh');
+		}else{
+			$_COOKIE['id_hotel']=$id_hotel;
+		}
+		
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
+		
 		$ayuda=array('sector' => 'pagos',
 					 'id_idioma' => $_COOKIE['idioma']);
 		
 		$db['ayudas']=$this->ayudas_model->getAyuda($ayuda);
-		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
+		$db['emails_hotel']=$this->hoteles_email_model->getEmails($id_hotel);
 		$db['step']=4;
 		
 		$huesped=array(	'nombre'		=> $this->input->post('nombre'),

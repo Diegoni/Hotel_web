@@ -42,7 +42,7 @@
         			<div class="col-md-3 text-center">
         				<h2><small> <?php echo $habitacion->habitacion; ?> </small></h2>
         				<p class="list-group-item-text"> 
-							<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion;?>" class="btn btn-default btn-lg" title="<?php echo $texto['leer_mas']?>" rel="tooltip">
+							<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion.'/'.$id_hotel;?>" class="btn btn-default btn-lg" title="<?php echo $texto['leer_mas']?>" rel="tooltip">
 								<span class="icon-chevron-down"></span>
 							</a>
 							<a href="#" class="btn btn-default btn-lg" title="<?php echo $texto['email']?>" rel="tooltip" data-toggle="modal" data-target="#habitacion<?php echo $habitacion->id_habitacion?>">
@@ -281,6 +281,7 @@
       			</div>
       			
       			<div class="modal-footer">
+      				<input type="hidden" name="id_hotel" value="<?php echo $id_hotel?>" >
         			<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $texto['cerrar']?></button>
         			<button type="submit" class="btn btn-hotel"><?php echo $texto['email']?></button>
       			</div>

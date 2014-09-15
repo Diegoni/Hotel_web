@@ -54,7 +54,7 @@
                     <div class="col-md-3 vertical-middel">
 						<div class="stars" >
 									 
-										<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion;?>" class="btn btn-default btn-lg" title="<?php echo $texto['leer_mas']?>" rel="tooltip">
+										<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion.'/'.$id_hotel;?>" class="btn btn-default btn-lg" title="<?php echo $texto['leer_mas']?>" rel="tooltip">
 											<span class="icon-chevron-down"></span>
 										</a>
 										<a href="#" class="btn btn-default btn-lg" title="<?php echo $texto['email']?>" rel="tooltip" data-toggle="modal" data-target="#habitacion<?php echo $habitacion->id_habitacion?>">

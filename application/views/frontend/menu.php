@@ -1,3 +1,4 @@
+<?php $id_hotel=$_COOKIE['id_hotel']?>
 <div class="container">	
 	<div class="row menu">
 	<div class="col-md-3">
@@ -89,6 +90,7 @@
   				</div>
       		</div>
       		<div class="modal-footer">
+      			<input type="hidden" name="id_hotel" value="<?php echo $id_hotel?>" >
         		<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $texto['cerrar']?></button>
         		<button type="submit" class="btn btn-hotel"><?php echo $texto['enviar_consulta']?></button>
       		</div>

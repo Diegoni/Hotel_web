@@ -62,7 +62,7 @@ class Hotel extends CI_Controller {
 			
 			$crud->set_subject('hotel');
 			
-			$crud->fields('hotel', 'descripcion', 'logo_url', 'url', 'fondo_intro');
+			$crud->fields('hotel', 'descripcion', 'logo_url', 'url', 'fondo_intro', 'latitud', 'longitud');
 			
 			$crud->required_fields('hotel','descripcion', 'url', 'fondo_intro');
 			

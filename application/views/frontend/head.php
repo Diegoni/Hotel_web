@@ -81,7 +81,13 @@
 
 
 </head>
-<body onload="initialize()">
+<?php 
+foreach ($hoteles as $hotel) {
+	$latitud=$hotel->latitud;
+	$longitud=$hotel->longitud;
+}
+?>
+<body onload="initialize(<?php echo $latitud ?>,<?php echo $longitud?>)">
 
 		
 

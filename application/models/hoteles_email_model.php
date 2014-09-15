@@ -377,12 +377,14 @@ class Hoteles_email_model extends CI_Model {
 		
 		if($row->id_nota==1){
 			$query = $this->db->query("SELECT * FROM notas WHERE notas.id_nota='$id_nota'");
+			if($query->num_rows() > 0){
 			$notas = $query->row(); 
   			$mensaje .="
   			<tr>
 	      		<td>Nota: </td>
 	      		<th>".$notas->nota."</th>
 	    	</tr>";
+			}
   		}
   		
   		if($row->id_reserva==1){

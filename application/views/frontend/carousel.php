@@ -19,6 +19,9 @@
 				<a class="panel-menu" href="<?php echo base_url().'index.php/hoteles/galeria/'.$id_hotel; ?>">
 					<?php echo $texto['galeria'] ?>
 				</a>
+				<a class="panel-menu" href="<?php echo base_url().'index.php/hoteles/como_llegar/'.$id_hotel; ?>">
+					<?php echo $texto['como_llegar'] ?>
+				</a>
 			</div>
 	  	<div class="panel-body">
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">

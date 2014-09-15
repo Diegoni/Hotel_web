@@ -2,12 +2,12 @@
     var directionsService = new google.maps.DirectionsService();
     var map;
 
-    function initialize() {
+    function initialize(latitud, longitud) {
 		//punto de partida, crea el mapa
-        directionsDisplay = new google.maps.DirectionsRenderer();
-        var argentina = new google.maps.LatLng(-41.607228,-66.621094);
+		directionsDisplay = new google.maps.DirectionsRenderer();
+        var argentina = new google.maps.LatLng(latitud, longitud);
         var mapOptions = {
-          zoom: 4,
+          zoom: 18,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           center: argentina
         }

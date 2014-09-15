@@ -22,7 +22,12 @@ class Habitacion extends CI_Controller {
 	}
 	
 	
-	public function view($id=NULL){
+	public function view($id=NULL, $id_hotel=NULL){
+		if($id_hotel==NULL){
+			header('Location: home', 'refresh');
+		}else{
+			$_COOKIE['id_hotel']=$id_hotel;
+		}
 		if($id==NULL){
 			$id=$this->input->post('id');
 		}

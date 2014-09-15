@@ -13,22 +13,30 @@ class Consulta extends CI_Controller {
 	
 	
 	public function envio(){
+		$id_hotel=$this->input->post('id_hotel');
+		
+		if($id_hotel==NULL){
+			header('Location: home', 'refresh');
+		}else{
+			$_COOKIE['id_hotel']=$id_hotel;
+		}
+		
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
-		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
-		$db['hoteles']=$this->hoteles_model->getHoteles(2);
+		$db['emails_hotel']=$this->hoteles_email_model->getEmails($id_hotel);
+		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
 		$db['configs']=$this->configs_model->getConfigs();
 		
-		$mensaje=array(	'titulo'=>'Consulta web',
-						'fecha_envio' => date("Y-m-d h:i:s"),
-						'mensaje'=>$this->input->post('consulta'),
-						'emisor'=>$this->input->post('email'),
-						'nombre'=>$this->input->post('nombre'),
-						'apellido'=>$this->input->post('apellido'),
-						'telefono'=>$this->input->post('telefono'),
-						'id_tipo_mensaje'=>1,
-						'id_estado_mensaje'=>1,
-						'id_hotel'=>2);
+		$mensaje=array(	'titulo'			=> 'Consulta web',
+						'fecha_envio' 		=> date("Y-m-d h:i:s"),
+						'mensaje'			=> $this->input->post('consulta'),
+						'emisor'			=> $this->input->post('email'),
+						'nombre'			=> $this->input->post('nombre'),
+						'apellido'			=> $this->input->post('apellido'),
+						'telefono'			=> $this->input->post('telefono'),
+						'id_tipo_mensaje'	=> 1,
+						'id_estado_mensaje'	=> 1,
+						'id_hotel'			=> $id_hotel);
 		
 		$db['mensajes']=$this->mensajes_model->insertMensaje($mensaje);
 		$this->hoteles_email_model->correoMensaje($mensaje,1);
@@ -43,21 +51,30 @@ class Consulta extends CI_Controller {
 	}
 
 	public function email_habitacion(){
+		$id_hotel=$this->input->post('id_hotel');
+		
+		if($id_hotel==NULL){
+			header('Location: home', 'refresh');
+		}else{
+			$_COOKIE['id_hotel']=$id_hotel;
+		}
+
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
-		$db['emails_hotel']=$this->hoteles_email_model->getEmails(2);
-		$db['hoteles']=$this->hoteles_model->getHoteles();
+		$db['emails_hotel']=$this->hoteles_email_model->getEmails($id_hotel);
+		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
 		$db['configs']=$this->configs_model->getConfigs();
 		
-		$mensaje=array(	'titulo'=>'Envió de habitacion ID: '.$this->input->post('id_habitacion'),
-						'fecha_envio' => date("Y-m-d h:i:s"),
-						'mensaje'=>$this->input->post('consulta'),
-						'emisor'=>$this->input->post('email'),
-						'nombre'=>$this->input->post('nombre'),
-						'apellido'=>$this->input->post('apellido'),
-						'id_tipo_mensaje'=>2,
-						'id_estado_mensaje'=>1,
-						'id_hotel'=>2);
+		$mensaje=array(	'titulo'			=> 'Envió de habitacion ID: '.$this->input->post('id_habitacion'),
+						'fecha_envio' 		=> date("Y-m-d h:i:s"),
+						'mensaje'			=> $this->input->post('consulta'),
+						'emisor'			=> $this->input->post('email'),
+						'nombre'			=> $this->input->post('nombre'),
+						'apellido'			=> $this->input->post('apellido'),
+						'id_tipo_mensaje'	=> 2,
+						'id_estado_mensaje'	=> 1,
+						'id_hotel'			=> $id_hotel);
+						
 		$habitacion=array(	'habitacion'=>$this->input->post('habitacion'),
 							'id_habitacion'=>$this->input->post('id_habitacion'));
 		

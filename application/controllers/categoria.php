@@ -16,6 +16,11 @@ class Categoria extends CI_Controller {
 	
 	
 	public function articulos($id, $id_hotel){
+		if($id_hotel==NULL){
+			header('Location: home', 'refresh');
+		}else{
+			$_COOKIE['id_hotel']=$id_hotel;
+		}
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['configs']=$this->configs_model->getConfigs();

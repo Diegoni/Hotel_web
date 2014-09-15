@@ -1,5 +1,5 @@
 
-	<div class="col-md-9">
+	<div class="col-md-8">
 		<div class="panel panel-hotel">
 			<div class="panel-heading"><?php echo $texto['mensaje']?></div>
 		  	<div class="panel-body">
