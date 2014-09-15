@@ -16,8 +16,9 @@ class Categoria extends CI_Controller {
 	
 	
 	public function articulos($id, $id_hotel){
+			
 		if($id_hotel==NULL){
-			header('Location: home', 'refresh');
+			redirect('','refresh');
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
@@ -30,6 +31,7 @@ class Categoria extends CI_Controller {
 		$db['categorias']=$this->categorias_model->getCategoria($id);
 		$db['emails_hotel']=$this->hoteles_email_model->getEmails($id_hotel);
 		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
+		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
 					
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');

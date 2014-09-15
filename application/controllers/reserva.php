@@ -31,7 +31,7 @@ class Reserva extends CI_Controller {
 		$id_hotel=$this->input->post('hotel');
 		
 		if($id_hotel==NULL){
-			header('Location: home', 'refresh');
+			 redirect('','refresh');
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
@@ -47,6 +47,7 @@ class Reserva extends CI_Controller {
 						);
 		
 		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
+		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
 		$db['hotel']=$this->hoteles_model->getHotel($this->input->post('hotel'));
 		$db['habitaciones']=$this->habitaciones_model->getHabitaciones($consulta);
 		$db['reservas_habitacion']=$this->reserva_habitacion_model->getReservas_habitacion($db['habitaciones'], $consulta);
@@ -80,7 +81,7 @@ class Reserva extends CI_Controller {
 		$id_hotel=$this->input->post('hotel');
 		
 		if($id_hotel==NULL){
-			header('Location: home', 'refresh');
+			redirect('','refresh');
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
@@ -95,6 +96,7 @@ class Reserva extends CI_Controller {
 						);
 							
 		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
+		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
 		$ayuda=array('sector' 		=> 'datos',
 					 'id_idioma' 	=> $_COOKIE['idioma']);
 		
@@ -119,7 +121,7 @@ class Reserva extends CI_Controller {
 		$id_hotel=$this->input->post('hotel');
 		
 		if($id_hotel==NULL){
-			header('Location: home', 'refresh');
+			redirect('','refresh');
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
@@ -127,6 +129,7 @@ class Reserva extends CI_Controller {
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
+		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
 		
 		$ayuda=array('sector' => 'pagos',
 					 'id_idioma' => $_COOKIE['idioma']);

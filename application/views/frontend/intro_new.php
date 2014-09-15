@@ -9,30 +9,24 @@
 		
 		<!--<link href='http://fonts.googleapis.com/css?family=Raleway:400,800,300' rel='stylesheet' type='text/css'>-->
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url().'librerias/intro/css/main.css'?>" />
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url().'librerias/bootstrap/css/bootstrap_front.css'?>" />
-		
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url().'librerias/bootstrap/css/bootstrap_front_carollo.css'?>" />
+		<style>
+			.Center-Container {
+  position: relative;
+}
+
+.Absolute-Center {
+  width: 50%;
+  height: 50%;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+		</style>
 
 	</head>
 	<body>
-		<div class="container">
-		<div class="row">
-
-        <div class="col-sm-4 image-col">
-			<?php foreach ($hoteles as $hotel) { ?> 
-				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url?>" class="imagen-logo"/>
-			<?php } ?>
-        </div>
-        <div class="col-sm-4 image-col">
-			<?php foreach ($hoteles as $hotel) { ?> 
-				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url?>" class="imagen-logo"/>
-			<?php } ?>
-        </div>
-        <div class="col-sm-4 image-col">
-			 
-				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url?>" class="imagen-logo"/>
-			
-        </div>
-    	</div>
-		</div><!-- /container -->
+		
 	</body>
 </html>

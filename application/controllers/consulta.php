@@ -16,7 +16,7 @@ class Consulta extends CI_Controller {
 		$id_hotel=$this->input->post('id_hotel');
 		
 		if($id_hotel==NULL){
-			header('Location: home', 'refresh');
+			redirect('','refresh');
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
@@ -25,6 +25,7 @@ class Consulta extends CI_Controller {
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['emails_hotel']=$this->hoteles_email_model->getEmails($id_hotel);
 		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
+		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
 		$db['configs']=$this->configs_model->getConfigs();
 		
 		$mensaje=array(	'titulo'			=> 'Consulta web',
@@ -54,7 +55,7 @@ class Consulta extends CI_Controller {
 		$id_hotel=$this->input->post('id_hotel');
 		
 		if($id_hotel==NULL){
-			header('Location: home', 'refresh');
+			redirect('','refresh');
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
@@ -63,6 +64,7 @@ class Consulta extends CI_Controller {
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['emails_hotel']=$this->hoteles_email_model->getEmails($id_hotel);
 		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
+		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
 		$db['configs']=$this->configs_model->getConfigs();
 		
 		$mensaje=array(	'titulo'			=> 'Envió de habitacion ID: '.$this->input->post('id_habitacion'),

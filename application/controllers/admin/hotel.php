@@ -64,7 +64,7 @@ class Hotel extends CI_Controller {
 			
 			$crud->fields('hotel', 'descripcion', 'logo_url', 'url', 'fondo_intro', 'latitud', 'longitud');
 			
-			$crud->required_fields('hotel','descripcion', 'url', 'fondo_intro');
+			$crud->required_fields('hotel','descripcion', 'url', 'fondo_intro', 'latitud', 'longitud');
 			
 			$crud->add_action('Teléfono', '', '','icon-phonealt', array($this,'buscar_telefonos'));
 			$crud->add_action('Dirección', '', '','icon-homealt', array($this,'buscar_direcciones'));
@@ -508,14 +508,14 @@ class Hotel extends CI_Controller {
  **********************************************************************************/
 	function insert_config($datos, $id){
 		$registro = array(
-	        "id_tipo_correo" => 1,
-	        "id_hotel" => $id,
-	        "hotel" => 1,
-	        "nombre" => 1,
-	        "apellido" => 1,
-	        "email" => 1,
-	        "telefono" => 1,
-	        "fecha" => 1
+	        "id_tipo_correo" 	=> 1,
+	        "id_hotel" 			=> $id,
+	        "hotel" 			=> 1,
+	        "nombre" 			=> 1,
+	        "apellido" 			=> 1,
+	        "email" 			=> 1,
+	        "telefono" 			=> 1,
+	        "fecha" 			=> 1
 	    );
 	 
 	    $this->db->insert('config_email_reserva',$registro);

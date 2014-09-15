@@ -25,7 +25,7 @@ class Hoteles extends CI_Controller {
 	
 	public function galeria($id_hotel=NULL){
 		if($id_hotel==NULL){
-			header('Location: home', 'refresh');
+			redirect('','refresh');
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
@@ -33,6 +33,7 @@ class Hoteles extends CI_Controller {
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['hoteles']=$this->hoteles_model->getHoteles($_COOKIE['id_hotel']);
+		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
 		$db['habitaciones']=$this->hoteles_model->getHotel($_COOKIE['id_hotel']);
 		$db['configs']=$this->configs_model->getConfigs();
 		$db['emails_hotel']=$this->hoteles_email_model->getEmails($_COOKIE['id_hotel']);
@@ -47,7 +48,7 @@ class Hoteles extends CI_Controller {
 	
 	public function habitaciones($id_hotel=NULL){
 		if($id_hotel==NULL){
-			header('Location: home', 'refresh');
+			redirect('','refresh');
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
@@ -58,6 +59,7 @@ class Hoteles extends CI_Controller {
 		
 		$db['hoteles']=$this->hoteles_model->getHoteles($_COOKIE['id_hotel']);
 		$db['hotel']=$this->hoteles_model->getHotel($_COOKIE['id_hotel']);
+		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
 		$db['habitaciones']=$this->habitaciones_model->getHabitaciones($consulta);
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['emails_hotel']=$this->hoteles_email_model->getEmails($id_hotel);
@@ -83,7 +85,7 @@ class Hoteles extends CI_Controller {
 
 	public function como_llegar($id_hotel=NULL){
 		if($id_hotel==NULL){
-			header('Location: home', 'refresh');
+			redirect('','refresh');
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
@@ -91,6 +93,7 @@ class Hoteles extends CI_Controller {
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['hoteles']=$this->hoteles_model->getHoteles($_COOKIE['id_hotel']);
+		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
 		$db['configs']=$this->configs_model->getConfigs();
 		$db['emails_hotel']=$this->hoteles_email_model->getEmails($_COOKIE['id_hotel']);
 								

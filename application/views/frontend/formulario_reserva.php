@@ -1,6 +1,7 @@
 <?php foreach ($configs as $config) {
 	$max_adultos=$config->max_adultos;
 	$max_menores=$config->max_menores;
+	$id_hotel=$_COOKIE['id_hotel'];
 }?>
 
 <div class="row">
@@ -58,11 +59,7 @@
 							}while($i<=$max_menores);?>
 						</select>
 					</div>
-			  		<?php 
-					foreach ($hoteles as $hotel) { 
-						 $id_hotel=$hotel->id_hotel;
-					} ?>
-					<input type="hidden" value="<?php echo $id_hotel;?>" name="hotel">
+			  		<input type="hidden" value="<?php echo $id_hotel;?>" name="hotel">
 					
 						<center>
 							<button type="submit" class="btn btn-hotel boton-redondo">
@@ -92,6 +89,7 @@
 		<?php } ?>
 		
 		<?php if(isset($monedas)){ ?>
+		<!--
 		<div class="panel panel-hotel">
 			<div class="panel-heading"><?php echo $texto['idiomas']?></div>
 	  		<div class="panel-body">
@@ -111,6 +109,7 @@
 				</form>  
 	  		</div>
 		</div>
+		-->
 		<?php } ?>
 	</div>
 	

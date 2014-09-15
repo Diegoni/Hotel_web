@@ -101,12 +101,23 @@
                 			</small>
                     			<?php echo $cambio->simbolo; ?>  
                     			<?php echo number_format($habitacion->precio/$cambio->valor*$noches, 2, ',', ' '); ?></h4></del>							
-						<?php } ?>                			
-                		<h2><small> 
+						<?php } ?>
+						<?php if($precio/$cambio->valor*$noches>1000){
+							echo "<h3>";
+						}else{
+							echo "<h2>";
+						}; ?>                			
+                		
+                			<small> 
                 				<?php echo $cambio->abreviatura ; ?>
                 			</small>
                     			<?php echo $cambio->simbolo; ?>  
-                    			<?php echo number_format($precio/$cambio->valor*$noches, 2, ',', ' '); ?></h2>
+                    			<?php echo number_format($precio/$cambio->valor*$noches, 2, ',', ' '); ?>
+						<?php if($precio/$cambio->valor*$noches>1000){
+							echo "</h3>";
+						}else{
+							echo "</h2>";
+						}; ?>   
 						<div class="stars" >
                         	<?php echo $texto['adultos']?>: <?php 
                         	for ($i=0; $i < $habitacion->adultos; $i++) { 
@@ -199,23 +210,29 @@
          	<?php echo form_close(); ?>
          	
         	<?php }else{ ?>
-			<h1 class="text-center">No hay habitaciones disponibles</h1>
-			<h3 class="text-center">Otras opciones disponibles</h3>
+			<h1 class="text-center"><?php echo $texto['no_habitaciones'];?></h1>
+			<h3 class="text-center"><?php echo $texto['otras_opciones'];?></h3>
 			<div class="col-xs-12">
 			<div class="offer offer-hotel">
 				<div class="shape">
 					<div class="shape-text">
-						top								
+						<span class="icon-star"></span>						
 					</div>
 				</div>
 				<div class="offer-content">
-					<h3 class="lead">
-						Habitación
-					</h3>
-					<p>Descripción</p>
+					<?php foreach ($hoteles_menu as $hotel) { ?>
+    			<?php if($id_hotel!=$hotel->id_hotel){ ?>
+    			<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>">
+    				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url;?>" class="logo_img_menu">
+    			</a>
+    			<?php } ?>
+			<?php } ?>
 				</div>
 			</div>
 			</div>
+			</div>
+			</div>
+			
 		
 			<?php } ?>
 			

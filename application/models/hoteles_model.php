@@ -3,9 +3,9 @@ class Hoteles_model extends CI_Model {
 	
 	function getHoteles($id=NULL){
 		$query = $this->db->query("SELECT * FROM hoteles 
-									INNER JOIN telefonos_hotel ON(hoteles.id_hotel=telefonos_hotel.id_hotel)
-									INNER JOIN direcciones_hotel ON(direcciones_hotel.id_hotel=hoteles.id_hotel)
-									INNER JOIN provincias ON(provincias.id_provincia=direcciones_hotel.id_provincia)
+									LEFT JOIN telefonos_hotel ON(hoteles.id_hotel=telefonos_hotel.id_hotel)
+									LEFT JOIN direcciones_hotel ON(direcciones_hotel.id_hotel=hoteles.id_hotel)
+									LEFT JOIN provincias ON(provincias.id_provincia=direcciones_hotel.id_provincia)
 									WHERE hoteles.delete=0
 									AND hoteles.id_hotel='$id'
 									ORDER BY hotel");
@@ -33,7 +33,7 @@ class Hoteles_model extends CI_Model {
 		}
 	}
 	
-	function getHotelesIntro(){
+	function getHotelesAll(){
 		$query = $this->db->query("SELECT * FROM hoteles 
 									WHERE hoteles.delete=0
 									ORDER BY hotel");

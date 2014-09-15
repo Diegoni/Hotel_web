@@ -26,6 +26,8 @@
 	$texto['cantidad']				= 'Quantidade';
 	$texto['sin_disponibilidad']	= 'há disponibilidade';
 	$texto['idiomas']				= 'Línguas';
+	$texto['no_habitaciones']		= 'Não há quartos';
+	$texto['otras_opciones']		= 'Outras opções disponíveis';	
 	
 	/* reserva datos personales */
 	$texto['datos_personales']		= 'Dados pessoais';

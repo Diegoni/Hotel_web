@@ -7,6 +7,7 @@
 				</a>
 				<?php 
 				$i=0;
+				if(!empty($categorias)){
 				foreach ($categorias as $categoria) { 
 					if($i<3){?>
 					<a class="panel-menu" href="<?php echo base_url().'index.php/categoria/articulos/'.$categoria->id_categoria.'/'.$id_hotel; ?>">
@@ -15,7 +16,7 @@
 				<?php 
 					}
 				$i=$i+1;
-				} ?>
+				}} ?>
 				<a class="panel-menu" href="<?php echo base_url().'index.php/hoteles/galeria/'.$id_hotel; ?>">
 					<?php echo $texto['galeria'] ?>
 				</a>

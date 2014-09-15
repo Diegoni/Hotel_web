@@ -17,7 +17,7 @@ class Inicio extends CI_Controller {
 	
 	
 	public function index(){
-		$db['hoteles']=$this->hoteles_model->getHotelesIntro();
+		$db['hoteles']=$this->hoteles_model->getHotelesAll();
 		$db['texto']=$this->idiomas_model->getIdioma();
 		
 		$this->load->view('frontend/intro', $db);
@@ -26,13 +26,14 @@ class Inicio extends CI_Controller {
 
 	public function hotel($id=NULL){
 		if($id==NULL){
-			header('Location: home', 'refresh');
+			redirect('','refresh');
 		}else{
 			$_COOKIE['id_hotel']=$id;
 		}
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['hoteles']=$this->hoteles_model->getHoteles($_COOKIE['id_hotel']);
+		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
 		$db['emails_hotel']=$this->hoteles_email_model->getEmails($_COOKIE['id_hotel']);
 		$db['imagenes_carrusel']=$this->imagenes_carrusel_model->getImagenes($_COOKIE['id_hotel']);
 		$db['articulos']=$this->articulos_model->getArticulos_paginaprincipal($_COOKIE['id_hotel']);

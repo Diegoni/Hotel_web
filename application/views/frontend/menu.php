@@ -1,7 +1,7 @@
 <?php $id_hotel=$_COOKIE['id_hotel']?>
 <div class="container">	
 	<div class="row menu">
-	<div class="col-md-3">
+	<div class="col-md-4">
 		<?php  
 			foreach ($hoteles as $hotel) {
 				$id_hotel=$hotel->id_hotel;
@@ -16,25 +16,28 @@
 		</a>
 		</center>
 	</div>	                
-    <div class="col-md-9">
+    <div class="col-md-8">
     	<ul class="nav nav-pills pull-right">
-  			<li><a href="#" data-toggle="modal" data-target="#email"><?php echo $texto['consulta']?></a></li>
-  			<li>
-			  	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-			    	<?php echo $texto['idiomas']?>
-			  	</a>
-			  	<ul class="dropdown-menu" role="menu">
-			    <?php foreach ($idiomas as $idioma) { ?>
-						<input class="moneda" 
-						name="boton1" type="image" 
-						title="<?php echo $idioma->idioma;?>" rel="tooltip" 
-						src="<?php echo base_url().'assets/uploads/idiomas/'.$idioma->imagen;?>" 
-						onclick="document.cookie = 'idioma=<?php echo $idioma->id_idioma ?>', location.reload()">
-				<?php } ?>
-
-			  	</ul>
-			</li>
+    		<?php foreach ($hoteles_menu as $hotel) { ?>
+    			<?php if($id_hotel!=$hotel->id_hotel){ ?>
+    			<li>
+    				<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>">
+    				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url;?>" class="logo_img_menu">
+    				</a>
+    			</li>
+    			<?php } ?>
+			<?php } ?>
   			<li><a href="<?php echo base_url().'index.php/admin/home/logout/'?>">Admin</a></li>
+  			<ul class="list-unstyled pull-right">
+   			<?php foreach ($idiomas as $idioma) { ?>
+			<li><input class="moneda-menu" 
+				name="boton1" type="image" 
+				title="<?php echo $idioma->idioma;?>" rel="tooltip" 
+				src="<?php echo base_url().'assets/uploads/idiomas/'.$idioma->imagen;?>" 
+				onclick="document.cookie = 'idioma=<?php echo $idioma->id_idioma ?>', location.reload()">
+			</li>
+			<?php } ?>
+			</ul>
 		</ul>
 	</div>
 	</div>
@@ -91,8 +94,8 @@
       		</div>
       		<div class="modal-footer">
       			<input type="hidden" name="id_hotel" value="<?php echo $id_hotel?>" >
-        		<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $texto['cerrar']?></button>
-        		<button type="submit" class="btn btn-hotel"><?php echo $texto['enviar_consulta']?></button>
+        		<button type="button" class="btn btn-hotel boton-redondo-medium" data-dismiss="modal" title="<?php echo $texto['cerrar']?>"><span class="icon-remove"></span></button>
+        		<button type="submit" class="btn btn-hotel boton-redondo-medium" title="<?php echo $texto['enviar_consulta']?>"><span class="icon-ok"></span></button>
       		</div>
       		</form>
     	</div>
@@ -152,7 +155,7 @@
   				</div>
       		</div>
       		<div class="modal-footer">
-        		<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $texto['cerrar']?></button>
+        		<button type="button" class="btn btn-hotel boton-redondo-medium" data-dismiss="modal" title="<?php echo $texto['cerrar']?>"><span class="icon-remove"></span></button>
       		</div>
       		</form>
     	</div>

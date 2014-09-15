@@ -3617,7 +3617,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a:focus {
   text-decoration: none;
   color: #57101c;
-  background-color: #f4eaa4;
+  /*background-color: #f4eaa4;*/
 }
 .nav > li.disabled > a {
   color: #777;
@@ -5471,9 +5471,23 @@ button.close {
   opacity: .5;
 }
 .modal-header {
+  font-family: Cinzel;
+  font-size: 25px;
+  	color: #f8eda7;
+  	background-color: #57101c;
+  	border-color: #5c1b21;
+ 	background-image: url("../../main/css/uno.png");
+	background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 8px 15px;
+    /*font-weight: bold;*/
+    text-decoration: none;
+    
   min-height: 16.42857143px;
   padding: 15px;
-  border-bottom: 1px solid #e5e5e5;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  /*border-bottom: 1px solid #e5e5e5;*/
 }
 .modal-header .close {
   margin-top: -2px;
@@ -5485,15 +5499,16 @@ button.close {
 .modal-body {
   position: relative;
   padding: 15px;
+  background-color: #f8eda7;
 }
 .modal-footer {
   padding: 15px;
   text-align: right;
-  border-top: 1px solid #e5e5e5;
+  /*border-top: 1px solid #e5e5e5;*/
 }
 .modal-footer .btn + .btn {
   margin-bottom: 0;
-  margin-left: 5px;
+  margin-left: 25px;
 }
 .modal-footer .btn-group .btn + .btn {
   margin-left: -1px;
@@ -5516,6 +5531,8 @@ button.close {
   .modal-content {
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
             box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+     background-color: #f8eda7; 
+     border-radius: 10px;
   }
   .modal-sm {
     width: 300px;
