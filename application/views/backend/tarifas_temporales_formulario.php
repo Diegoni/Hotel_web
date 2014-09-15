@@ -44,100 +44,72 @@
 				</div>	
 				<?php }	
   				?>
-  				<form action="" method="post" class="form-horizontal">
+  				<form action="" method="post" role="form">
+  				<div class="col-sm-6">
   					<link href="<?php echo base_url().'librerias/ui/jquery-ui.css'?>" rel="stylesheet" media="screen">
-    				<div class="form-group even" id="adultos_field_box">
-						<div class="col-sm-2 control-label" id="descripcion_display_as_box">
-						Descripción<span class="required">*</span>  :
-						</div>
-						<div class="col-sm-10" id="descripcion">
-							<input id="descripcion" name="descripcion" type="text" value="<?php echo $descripcion?>" class="numeric form-control" maxlength="11" required>		
-						</div>
-					</div>
-    				
-					<div class="form-group even" id="Salida_field_box">
-						<div class="col-sm-2 control-label" id="entrada_display_as_box">
-						Entrada<span class="required">*</span>  :
-						</div>
-						<div class="col-sm-10" id="Entrada_input_box">
-							<input id="comienzo" name="entrada" type="text" value="" maxlength="10" class="form-control" autocomplete="off" required>		
-						</div>
+    				<div class="form-group">
+						<label>Entrada <span class="required">*</span> :</label>
+						<input id="comienzo" name="entrada" type="text" value="" maxlength="10" class="form-control" autocomplete="off" required>		
 					</div>
 					
-					<div class="form-group even" id="Salida_field_box">
-						<div class="col-sm-2 control-label" id="salida_display_as_box">
-						Salida<span class="required">*</span>  :
-						</div>
-						<div class="col-sm-10" id="Salida_input_box">
-							<input id="final" name="salida" type="text" value="" maxlength="10" class="form-control" autocomplete="off" required>		
-						</div>
+					<div class="form-group">
+						<label>Salida</label> :
+						<input id="final" name="salida" type="text" value="" maxlength="10" class="form-control" autocomplete="off" required>		
 					</div>
 					
-					<div class="form-group even">
-						<div class="col-sm-2 control-label">
-						Tipo<span class="required">*</span>  :
-						</div>
-						<div class="col-sm-10">
-							<select name="id_tipo_tarifa" class="chosen-select chzn-done form-control" data-placeholder="Seleccionar tipo de tarifa">
-								<?php foreach ($tipos as $tipo) { ?>
-									<?php if($id_tipo_tarifa==$tipo->id_tipo_tarifa){ ?>
-										<option value=<?php echo $tipo->id_tipo_tarifa ?> selected><?php echo $tipo->tipo_tarifa ?></option>
-									<?php }else{ ?>
-										<option value=<?php echo $tipo->id_tipo_tarifa ?> ><?php echo $tipo->tipo_tarifa ?></option>
-									<?php } ?>	
-								<?php } ?>
-							</select>				
-						</div>
+					<div class="form-group">
+						<button type="submit" name="aceptar" value="1" class="btn btn-default">Aceptar</button>		
+						<a href="http://localhost/Hotel_web/index.php/admin/habitacion/tarifas_temporales_abm" class="btn btn-default">Tarifas Temporales</a>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label>Descripción <span class="required">*</span> :</label>
+						<input id="descripcion" name="descripcion" type="text" value="<?php echo $descripcion?>" class="numeric form-control" maxlength="11" required style="width: 100%">		
 					</div>
 					
-					<div class="form-group even">
-						<div class="col-sm-2 control-label">
-						Valor<span class="required">*</span>  :
-						</div>
-						<div class="col-sm-10">
-							<input id="valor" name="valor" value="<?php echo $valor ?>" maxlength="10" class="form-control" autocomplete="off" required>		
-						</div>
+					<div class="form-group ">
+						<label>Tipo <span class="required">*</span> :</label><br>
+						<select name="id_tipo_tarifa" class="chosen-select chzn-done form-control" data-placeholder="Seleccionar tipo de tarifa" style="width: 100%">
+							<?php foreach ($tipos as $tipo) { ?>
+								<?php if($id_tipo_tarifa==$tipo->id_tipo_tarifa){ ?>
+									<option value=<?php echo $tipo->id_tipo_tarifa ?> selected><?php echo $tipo->tipo_tarifa ?></option>
+								<?php }else{ ?>
+									<option value=<?php echo $tipo->id_tipo_tarifa ?> ><?php echo $tipo->tipo_tarifa ?></option>
+								<?php } ?>	
+							<?php } ?>
+						</select>				
+					</div>
+					
+					<div class="form-group">
+						<label>Valor</label> :
+						<input id="valor" name="valor" value="<?php echo $valor ?>" maxlength="10" class="form-control" autocomplete="off" required style="width: 100%">		
 					</div>
 					
 					<div class="form-group even" id="huesped_field_box">
-						<div class="col-sm-2 control-label" id="huesped_display_as_box">
-						Habitaciones <span class="required">*</span>  :
-						</div>
-						<div class="col-sm-10" id="adultos_input_box">
-							<select id="id_habitaciones" name="id_habitaciones[]" class="chosen-select chzn-done form-control" data-placeholder="Seleccionar habitaciones"  multiple="">
-								<?php 
-								if(!empty($tarifa_habitacion)){
-									foreach ($habitaciones as $habitacion) {
-										if(in_array($habitacion->id_habitacion, $tarifa_habitacion)){ ?>
-											<option value="<?php echo $habitacion->id_habitacion ?>" selected><?php echo $habitacion->habitacion." - ".$habitacion->hotel ?></option>
-									<?php }else{?>
-											<option value="<?php echo $habitacion->id_habitacion ?>"><?php echo $habitacion->habitacion." - ".$habitacion->hotel ?></option>
-									<?php }
-										
-									} 
-									
-								}else{
-									foreach ($habitaciones as $habitacion) { ?>
+						<label>Habitaciones <span class="required">*</span> :</label><br>
+						<select id="id_habitaciones" name="id_habitaciones[]" class="chosen-select chzn-done form-control" data-placeholder="Seleccionar habitaciones"  multiple="" style="width: 100%">
+							<?php 
+							if(!empty($tarifa_habitacion)){
+								foreach ($habitaciones as $habitacion) {
+									if(in_array($habitacion->id_habitacion, $tarifa_habitacion)){ ?>
+										<option value="<?php echo $habitacion->id_habitacion ?>" selected><?php echo $habitacion->habitacion." - ".$habitacion->hotel ?></option>
+								<?php }else{?>
 										<option value="<?php echo $habitacion->id_habitacion ?>"><?php echo $habitacion->habitacion." - ".$habitacion->hotel ?></option>
-								<?php } ?>
-										
-								<?php } ?>
-							</select>
-						</div>
+								<?php }
+								} 
+							}else{
+								foreach ($habitaciones as $habitacion) { ?>
+									<option value="<?php echo $habitacion->id_habitacion ?>"><?php echo $habitacion->habitacion." - ".$habitacion->hotel ?></option>
+							<?php } ?>
+						<?php } ?>
+						</select>
 					</div>
-					
-					<div class="form-group even" id="alta_field_box">
-						<div class="col-sm-2 control-label" id="alta_display_as_box">
-						</div>
-						<div class="col-sm-10" id="total_input_box">
-							<button type="submit" name="aceptar" value="1" class="btn btn-default">Aceptar</button>		
-							<a href="http://localhost/Hotel_web/index.php/admin/habitacion/tarifas_temporales_abm" class="btn btn-default">Tarifas Temporales</a>
-						</div>
-					</div>
-
+				</div>
     			</form>
+    			<br>
     			<?php if(!empty($tarifa_habitacion)){ ?>
-    				<div class="form-group even" id="Salida_field_box">
+    				<div>
 						<div class="col-sm-2">
 							<b>Tarifa temporal</b>
 						</div>
@@ -158,7 +130,7 @@
 						</div>
 					</div>	
     			<?php foreach ($cargas as $row) { ?> 
-					<div class="form-group even" id="Salida_field_box">
+					<div>
 						<div class="col-sm-2">
 							<?php echo $row->tarifa_temporal ?>
 						</div>
