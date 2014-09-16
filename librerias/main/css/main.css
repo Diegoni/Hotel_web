@@ -73,7 +73,7 @@
 
 .logo_img_menu{
 	width: 125px;
-	padding-top: 45px;
+	padding-top: 25px;
 	-webkit-transform:scale(1); /*Webkit: Scale down image to 0.8x original size*/
 	-moz-transform:scale(1); /*Mozilla scale version*/
 	-o-transform:scale(1); /*Opera scale version*/

@@ -7,6 +7,7 @@ class Inicio extends CI_Controller {
 		$this->load->model('hoteles_model');
 		$this->load->model('articulos_model');
 		$this->load->model('categorias_model');
+		$this->load->model('direcciones_hotel_model');
 		$this->load->model('imagenes_carrusel_model');
 		$this->load->model('habitaciones_model');
 		$this->load->model('configs_model');
@@ -17,10 +18,11 @@ class Inicio extends CI_Controller {
 	
 	
 	public function index(){
-		$db['hoteles']=$this->hoteles_model->getHotelesAll();
+		$db['hoteles']=$this->hoteles_model->getHotelesIntro();
+		$db['direcciones']=$this->direcciones_hotel_model->getDirecciones();
 		$db['texto']=$this->idiomas_model->getIdioma();
 		
-		$this->load->view('frontend/intro', $db);
+		$this->load->view('frontend/intro_carollo', $db);
 	}
 	
 

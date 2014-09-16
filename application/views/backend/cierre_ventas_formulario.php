@@ -41,41 +41,30 @@
 				</div>	
 				<?php }	
   				?>
+  				<div class="row well">
+  					
   				<form action="" method="post" class="form-horizontal">
   					<link href="<?php echo base_url().'librerias/ui/jquery-ui.css'?>" rel="stylesheet" media="screen">
-    				<div class="form-group even" id="adultos_field_box">
-						<div class="col-sm-2 control-label" id="descripcion_display_as_box">
-						Descripción<span class="required">*</span>  :
-						</div>
-						<div class="col-sm-10" id="descripcion">
-							<input id="descripcion" name="descripcion" type="text" value="<?php echo $descripcion?>" class="numeric form-control" maxlength="11" required>		
-						</div>
+    				<div class="col-sm-6">
+    					<div class="form-group">
+    						<label>Comienzo <span class="required">*</span> :</label>
+    						<input id="comienzo" name="comienzo" type="text" value="" maxlength="10" class="form-control" autocomplete="off" required>
+    					</div>
+    					<div class="form-group">
+    						<label>Final <span class="required">*</span> :</label>
+    						<input id="final" name="final" type="text" value="" maxlength="10" class="form-control" autocomplete="off" required>
+    					</div>
+    					<a href="http://localhost/Hotel_web/index.php/admin/reserva/disponibilidades_abm" class="btn btn-default">Cierre de ventas</a>
+    					<button type="submit" name="aceptar" value="1" class="btn btn-default">Aceptar</button>
 					</div>
-    				
-					<div class="form-group even" id="final_field_box">
-						<div class="col-sm-2 control-label" id="comienzo_display_as_box">
-						Comienzo<span class="required">*</span>  :
-						</div>
-						<div class="col-sm-10" id="comienzo_input_box">
-							<input id="comienzo" name="comienzo" type="text" value="" maxlength="10" class="form-control" autocomplete="off" required>		
-						</div>
-					</div>
-					
-					<div class="form-group even" id="final_field_box">
-						<div class="col-sm-2 control-label" id="final_display_as_box">
-						Final<span class="required">*</span>  :
-						</div>
-						<div class="col-sm-10" id="final_input_box">
-							<input id="final" name="final" type="text" value="" maxlength="10" class="form-control" autocomplete="off" required>		
-						</div>
-					</div>
-					
-					<div class="form-group even" id="huesped_field_box">
-						<div class="col-sm-2 control-label" id="huesped_display_as_box">
-						Habitaciones <span class="required">*</span>  :
-						</div>
-						<div class="col-sm-10" id="adultos_input_box">
-							<select id="id_habitaciones" name="id_habitaciones[]" class="chosen-select chzn-done form-control" data-placeholder="Seleccionar habitaciones"  multiple="">
+					<div class="col-sm-6">
+    					<div class="form-group">
+    						<label>Descripción <span class="required">*</span> :</label>
+    						<input id="descripcion" name="descripcion" type="text" value="<?php echo $descripcion?>" class="numeric form-control" maxlength="11" required style="width: 100%">
+    					</div>
+    					<div class="form-group">
+    						<label>Habitaciones <span class="required">*</span> :</label>
+    						<select id="id_habitaciones" name="id_habitaciones[]" class="chosen-select chzn-done form-control" data-placeholder="Seleccionar habitaciones"  multiple="" style="width: 100%">
 								<?php 
 								if(!empty($disponibilidad_habitacion)){
 									foreach ($habitaciones as $habitacion) {
@@ -96,17 +85,9 @@
 							</select>
 						</div>
 					</div>
-					
-					<div class="form-group even" id="alta_field_box">
-						<div class="col-sm-2 control-label" id="alta_display_as_box">
-						</div>
-						<div class="col-sm-10" id="total_input_box">
-							<button type="submit" name="aceptar" value="1" class="btn btn-default">Aceptar</button>		
-							<a href="http://localhost/Hotel_web/index.php/admin/reserva/disponibilidades_abm" class="btn btn-default">Cierre de ventas</a>
-						</div>
-					</div>
 
     			</form>
+    			</div>
     			<?php if(!empty($disponibilidad_habitacion)){ ?>
     				<div class="form-group even" id="final_field_box">
 						<div class="col-sm-4">

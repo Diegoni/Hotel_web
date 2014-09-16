@@ -44,6 +44,9 @@
 				</div>	
 				<?php }	
   				?>
+  				<div class="row well">
+  					
+  				
   				<form action="" method="post" role="form">
   				<div class="col-sm-6">
   					<link href="<?php echo base_url().'librerias/ui/jquery-ui.css'?>" rel="stylesheet" media="screen">
@@ -58,8 +61,8 @@
 					</div>
 					
 					<div class="form-group">
-						<button type="submit" name="aceptar" value="1" class="btn btn-default">Aceptar</button>		
 						<a href="http://localhost/Hotel_web/index.php/admin/habitacion/tarifas_temporales_abm" class="btn btn-default">Tarifas Temporales</a>
+						<button type="submit" name="aceptar" value="1" class="btn btn-default">Aceptar</button>
 					</div>
 				</div>
 				<div class="col-sm-6">
@@ -107,6 +110,7 @@
 					</div>
 				</div>
     			</form>
+    			</div>
     			<br>
     			<?php if(!empty($tarifa_habitacion)){ ?>
     				<div>

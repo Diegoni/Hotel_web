@@ -50,10 +50,9 @@
 					</div>
         		</div>
         		<?php $i=$i+1?>
-				<?php } 
-				}?>
+				<?php } ?>
 			</div>
-			
+			<?php } ?>
 			<!-- direcciones del carrusel -->
       		<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
         		<span class="glyphicon glyphicon-chevron-left"></span>

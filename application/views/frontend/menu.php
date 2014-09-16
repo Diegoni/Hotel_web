@@ -27,7 +27,7 @@
     			</li>
     			<?php } ?>
 			<?php } ?>
-  			<li><a href="<?php echo base_url().'index.php/admin/home/logout/'?>">Admin</a></li>
+  			<!--<li><a href="<?php echo base_url().'index.php/admin/home/logout/'?>">Admin</a></li>-->
   			<ul class="list-unstyled pull-right">
    			<?php foreach ($idiomas as $idioma) { ?>
 			<li><input class="moneda-menu" 
