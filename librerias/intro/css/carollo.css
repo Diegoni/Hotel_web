@@ -62,19 +62,3 @@ height: 500px;
 	padding-bottom: 50px;
 
 }
-
-.provincia{
-	font-family: Cinzel;
-	font-size: 25px;
-	color: #f8eda7;
-	border-color: #5c1b21;
-	background-image: url("uno.png");
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	padding: 8px 15px;
-	/* font-weight: bold; */
-	text-decoration: none;
-	text-align: center;
-	border-top-left-radius: 9px;
-	border-top-right-radius: 9px;
-}

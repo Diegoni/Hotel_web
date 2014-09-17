@@ -2,6 +2,7 @@
 <div class="container">	
 	<div class="row menu">
 	<div class="col-md-4">
+	<a href="<?php echo base_url().'index.php/admin/home/logout/'?>">Admin</a>	
 		<?php  
 			foreach ($hoteles as $hotel) {
 				$id_hotel=$hotel->id_hotel;
@@ -27,10 +28,10 @@
     			</li>
     			<?php } ?>
 			<?php } ?>
-  			<!--<li><a href="<?php echo base_url().'index.php/admin/home/logout/'?>">Admin</a></li>-->
   			<ul class="list-unstyled pull-right">
    			<?php foreach ($idiomas as $idioma) { ?>
-			<li><input class="moneda-menu" 
+			<li>
+				<input class="moneda-menu " 
 				name="boton1" type="image" 
 				title="<?php echo $idioma->idioma;?>" rel="tooltip" 
 				src="<?php echo base_url().'assets/uploads/idiomas/'.$idioma->imagen;?>" 

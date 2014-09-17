@@ -222,7 +222,7 @@
 				<div class="offer-content">
 					<?php foreach ($hoteles_menu as $hotel) { ?>
     			<?php if($id_hotel!=$hotel->id_hotel){ ?>
-    			<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>">
+    			<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>" style="margin: 15px;">
     				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url;?>" class="logo_img_menu">
     			</a>
     			<?php } ?>
