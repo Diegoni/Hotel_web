@@ -11,7 +11,8 @@ class Disponibilidades_model extends CI_Model {
 							INNER JOIN disponibilidades ON(disponibilidad_habitacion.id_disponibilidad=disponibilidades.id_disponibilidad)
 							WHERE (DATE_FORMAT(disponibilidades.salida, '%d-%m-%Y')  >= '$consulta[entrada]' 
 							AND DATE_FORMAT(disponibilidades.entrada, '%d-%m-%Y') <= '$consulta[salida]')
-							AND disponibilidad_habitacion.id_habitacion = '$habitacion->id_habitacion' 
+							AND disponibilidad_habitacion.id_habitacion = '$habitacion->id_habitacion'
+							AND disponibilidades.delete=0 
 							");
 			if($query->num_rows() > 0){
 				foreach ($query->result() as $fila){

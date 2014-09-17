@@ -199,6 +199,7 @@ class Hoteles_email_model extends CI_Model {
 			$id_nota=$reserva->id_nota;
 			$id_reserva=$reserva->id_reserva;
 			$fecha_alta=$reserva->fecha_alta;
+			$total=$reserva->total;
 		}
 		
 		$query = $this->db->query("	SELECT *  FROM config_email_reserva
@@ -419,6 +420,14 @@ class Hoteles_email_model extends CI_Model {
 	  			<tr>
 		      		<td>Fecha: </td>
 		      		<th>".date('H:i:s d-m-Y', strtotime($fecha_alta))."</th>
+		    	</tr>";
+	  		}
+		
+		if($row->precio==1){
+	  			$mensaje .="
+	  			<tr>
+		      		<td>Precio total: </td>
+		      		<th>".$total."</th>
 		    	</tr>";
 	  		}
 	    

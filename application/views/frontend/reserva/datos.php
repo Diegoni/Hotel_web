@@ -185,6 +185,7 @@
 						<?php 
 						foreach ($habitaciones as $clave => $valor) { ?>
 	    					<input type="hidden" name="habitacion<?php echo $clave;?>" value="<?php echo $valor?>">
+	    					<input type="hidden" name="precio<?php echo $clave;?>" value="<?php echo $this->input->post('precio'.$clave) ?>">
 						<?php } ?>
 						<center>
     					<div class="col-sm-offset-2 col-sm-5">

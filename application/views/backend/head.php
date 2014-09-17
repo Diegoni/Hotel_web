@@ -26,3 +26,10 @@
 
 
 <script src="<?php echo base_url().'librerias/ui/jquery-ui.js'?>"></script>
+
+
+
+<link href="<?php echo base_url().'librerias/bootstrap/css/bootstrap-switch.css'?>" rel="stylesheet"/>
+<script src="<?php echo base_url().'librerias/bootstrap/js/bootstrap-switch.js'?>"></script>
+<script src="<?php echo base_url().'librerias/bootstrap/js/index.js'?>"></script>
+

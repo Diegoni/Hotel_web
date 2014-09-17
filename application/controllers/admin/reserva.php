@@ -628,6 +628,6 @@ class Reserva extends CI_Controller {
 ?>
 <script>
 	$(document).ready(function(){
- 	$('a[href*="no_fly"]').addClass('disabled', true);
-});
+ 		$('a[href*="no_fly"]').addClass('disabled', true);
+	});
 </script>

@@ -113,6 +113,7 @@
                 			</small>
                     			<?php echo $cambio->simbolo; ?>  
                     			<?php echo number_format($precio/$cambio->valor*$noches, 2, ',', ' '); ?>
+                    			<input type="hidden" name="precio<?php echo $habitacion->id_habitacion ?>" value="<?php echo $precio ?>">
 						<?php if($precio/$cambio->valor*$noches>1000){
 							echo "</h3>";
 						}else{
@@ -190,6 +191,7 @@
 				<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
 				<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">
 				<input type="hidden" name="hotel" value="<?php echo $this->input->post('hotel') ?>">
+				
 				
 				<div class="col-xs-4">
 				</div>

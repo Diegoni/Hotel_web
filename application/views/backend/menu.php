@@ -183,10 +183,11 @@
         
        
       </ul>
-    
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href='<?php echo site_url('inicio/inicio')?>' target="_blank">Sitio</a> </li>
-      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+
+<span id="forkongithub">
+    <a href='<?php echo site_url('inicio/inicio')?>' target="_blank">Sitio</a> 
+  </span>
