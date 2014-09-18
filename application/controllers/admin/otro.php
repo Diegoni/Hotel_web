@@ -350,6 +350,40 @@ class Otro extends CI_Controller {
 			$this->_example_output($output);
 	}
 	
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de ubicación
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+ 
+ 
+	public function config_correo(){
+			$crud = new grocery_CRUD();
+
+			
+			$crud->set_table('config_correo');
+			
+			$crud->set_subject('config correo');
+			
+			$crud->field_type('autenticacion_smtp', 'true_false');
+			
+			$crud->unset_back_to_list();
+			
+			$_COOKIE['tabla']='config_correo';
+			$_COOKIE['id']='id_config_correo';	
+						
+			$crud->callback_after_insert(array($this, 'insert_log'));	
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));
+			
+			
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}
+
 	
 	
 

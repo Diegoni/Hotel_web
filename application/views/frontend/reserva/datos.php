@@ -85,7 +85,7 @@
 					<div class="form-group">
     					<label for="tarjeta" class="col-sm-2 control-label"><?php echo $texto['tarjeta']?></label>
     					<div class="col-sm-10">
-    						<div class="input-group" data-validate="phone">
+    						<div class="input-group">
 								<input type="text" class="form-control" name="tarjeta" id="tarjeta" placeholder="<?php echo $texto['ejemplo']?> 261-4223355" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
