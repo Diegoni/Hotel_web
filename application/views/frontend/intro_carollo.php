@@ -16,13 +16,13 @@
 		<script type="text/javascript">
 		$(document).ready(function() {
     		setTimeout(function() {
-        		$(".content").fadeOut(1500);
+        		$(".content").fadeOut(2500);
     		},500);
 		});
 		
 		$(document).ready(function() {   
     		setTimeout(function() {
-        		$(".content2").fadeIn(1500);
+        		$(".content2").fadeIn(2500);
     		},500);
 		});
 		

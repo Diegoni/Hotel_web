@@ -17,18 +17,22 @@
 		</a>
 		</center>
 	</div>	                
-    <div class="col-md-8">
-    	<ul class="nav nav-pills pull-right">
+    <div class="col-md-7">
+    	<div class="row">
     		<?php foreach ($hoteles_menu as $hotel) { ?>
     			<?php if($id_hotel!=$hotel->id_hotel){ ?>
-    			<li>
+    			<div class="col-md-3  col-sm-3 col-xs-3">
     				<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>">
-    				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url;?>" class="logo_img_menu">
+    				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url;?>" class="logo_img_menu img-responsive" alt="Responsive image">
     				</a>
-    			</li>
+    			</div>
     			<?php } ?>
 			<?php } ?>
-  			<ul class="list-unstyled pull-right">
+  			
+		</div>
+	</div>
+	<div class="col-md-1">
+		<ul class="list-unstyled pull-right">
    			<?php foreach ($idiomas as $idioma) { ?>
 			<li>
 				<input class="moneda-menu " 
@@ -38,7 +42,6 @@
 				onclick="document.cookie = 'idioma=<?php echo $idioma->id_idioma ?>', location.reload()">
 			</li>
 			<?php } ?>
-			</ul>
 		</ul>
 	</div>
 	</div>

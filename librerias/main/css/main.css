@@ -7,7 +7,6 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
-
 .btn-footer {
 	color: #5d1b21;
 	background-color: #f8eda7;
@@ -79,7 +78,7 @@
 }
 
 .logo_img_menu{
-	width: 125px;
+	width: 100px;
 	padding-top: 25px;
 	-webkit-transform:scale(1); /*Webkit: Scale down image to 0.8x original size*/
 	-moz-transform:scale(1); /*Mozilla scale version*/
@@ -120,16 +119,16 @@
 
 .gris {
   filter: gray; /* IE6-9 */
-  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
-    -webkit-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
-    box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+  -webkit-filter: sepia(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+  -webkit-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+  box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
     margin-bottom:20px;
 }
 
 .gris:hover {
   filter: none; /* IE6-9 */
-  -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
+  -webkit-filter: sepia(0); /* Google Chrome, Safari 6+ & Opera 15+ */
  
 }
 
@@ -593,10 +592,31 @@ a.list-group-item.active small {
 .bs-wizard > .bs-wizard-step + .bs-wizard-step {}
 .bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 16px; margin-bottom: 5px;}
 .bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 14px;}
-.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; display: block; background: #fbe8aa; top: 45px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%;} 
-.bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {content: ' '; width: 14px; height: 14px; background: #fbbd19; border-radius: 50px; position: absolute; top: 8px; left: 8px; } 
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot {
+	position: absolute; 
+	width: 30px; 
+	height: 30px; 
+	display: block; 
+	background: #721325; 
+	top: 45px; 
+	left: 50%; 
+	margin-top: -15px; 
+	margin-left: -15px; 
+	border-radius: 50%;} 
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {
+	content: ' '; 
+	width: 14px; 
+	height: 14px; 
+	background: #92213a; 
+	border-radius: 50px; 
+	position: absolute; 
+	top: 8px; 
+	left: 8px; } 
 .bs-wizard > .bs-wizard-step > .progress {position: relative; border-radius: 0px; height: 8px; box-shadow: none; margin: 20px 0;}
-.bs-wizard > .bs-wizard-step > .progress > .progress-bar {width:0px; box-shadow: none; background: #fbe8aa;}
+.bs-wizard > .bs-wizard-step > .progress > .progress-bar {
+	width:0px; 
+	box-shadow: none; 
+	background: #92213a;}
 .bs-wizard > .bs-wizard-step.complete > .progress > .progress-bar {width:100%;}
 .bs-wizard > .bs-wizard-step.active > .progress > .progress-bar {width:50%;}
 .bs-wizard > .bs-wizard-step:first-child.active > .progress > .progress-bar {width:0%;}
@@ -849,4 +869,5 @@ color: #333;
 /*******************************************************************************
 							Brillo
 /*******************************************************************************/
+
 
