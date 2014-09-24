@@ -98,5 +98,6 @@
 	$texto['en_breve'] 				= 'En breve nos comunicaremos con usted.';
 	$texto['envio_habitacion']		= 'La habitación ha sido enviada.';
 	$texto['su']					= 'su';
+	$texto['ayuda_pin']				= 'El pin solo se usara para consultar ...'
 	
 ?>	

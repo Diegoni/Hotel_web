@@ -28,9 +28,10 @@
 							</div>
     					</div>
 					</div>
+					
 					<div class="form-group margin-bottom">
 						<label for="exampleInputPassword1"><i class="fa fa-user icono-rojo"></i> <?php echo $texto['ocupacion']?></label>
-						<select class="form-control" name="adultos">
+						<select class="form-control" name="adultos" id="adultos">
 							<?php $i=1;
 							do{
 								if($i==1){ ?>

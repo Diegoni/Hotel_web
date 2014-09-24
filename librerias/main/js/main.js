@@ -430,15 +430,18 @@ $(document).ready(function(){
 
 
 
+/**************************************************************************
+ **************************************************************************
+ 			Tamaño de los div
+ ************************************************************************** 
+ *************************************************************************/
+
+
 $(document).ready(function(){
 	var element = document.getElementById('panel-carrusel');
 	var e1 = document.getElementById("panel-form-reserva");
 	if(e1 && element){
-		if(element.offsetHeight-2>e1.offsetHeight){
-			e1.style.height = element.offsetHeight-2;	
-		}else{
-			element.offsetHeight = e1.style.height;
-		}
+		e1.style.height = element.offsetHeight-2;	
 	}; 
 });
 
@@ -446,10 +449,6 @@ $(window).resize(function() {
 	var element = document.getElementById('panel-carrusel');
 	var e1 = document.getElementById("panel-form-reserva");
 	if(e1 && element){
-		if(element.offsetHeight-2>e1.offsetHeight){
-			e1.style.height = element.offsetHeight-2;   
-		}else{
-			element.offsetHeight = e1.style.height;
-		}
+		e1.style.height = element.offsetHeight-2;   
 	};
 });

@@ -96,4 +96,5 @@
 	$texto['gracias_mensaje'] 		= 'Merci pour votre message';
 	$texto['en_breve'] 				= 'Peu de temps nous prendrons contact avec vous.';
 	$texto['envio_habitacion']		= 'La salle a été envoyé.';
+	$texto['ayuda_pin']				= 'El pin solo se usara para consultar ...';
 ?>	

@@ -86,7 +86,7 @@
     					<label for="tarjeta" class="col-sm-2 control-label"><?php echo $texto['tarjeta']?></label>
     					<div class="col-sm-10">
     						<div class="input-group" data-validate="tarjeta">
-								<input type="text" class="form-control" name="tarjeta" id="tarjeta" placeholder="<?php echo $texto['ejemplo']?> 1234-5678-9012-3456" required>
+								<input type="text" class="form-control" name="tarjeta" id="tarjeta" placeholder="<?php echo $texto['ejemplo']?> 1234-5678-9012-3456" autocomplete="off" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
@@ -96,11 +96,19 @@
     					<label for="pin" class="col-sm-2 control-label"><?php echo $texto['pin'] ?></label>
     					<div class="col-sm-10">
     						<div class="input-group" data-validate="pin">
-								<input type="text" class="form-control" name="pin" id="pin" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['pin'] ?>" required>
+								<input type="password" class="form-control" name="pin" id="pin" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['pin'] ?>" autocomplete="off" data-toggle="popover" 
+        						data-content="<?php echo $texto['ayuda_pin']?>" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
   					</div>
+  					<script>
+					$('[data-toggle="popover"]').popover({
+					    trigger: 'select',
+					        'placement': 'top',
+					        delay: { "show": 500, "hide": 100 }
+					});
+					</script>
   					
   					<div class="form-group">
     					<label for="tarjeta" class="col-sm-2 control-label"><?php echo $texto['vencimiento'] ?></label>
