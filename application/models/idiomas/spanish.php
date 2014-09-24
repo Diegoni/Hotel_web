@@ -97,5 +97,6 @@
 	$texto['gracias_mensaje'] 		= 'Gracias por tu mensaje';
 	$texto['en_breve'] 				= 'En breve nos comunicaremos con usted.';
 	$texto['envio_habitacion']		= 'La habitación ha sido enviada.';
+	$texto['su']					= 'su';
 	
 ?>	

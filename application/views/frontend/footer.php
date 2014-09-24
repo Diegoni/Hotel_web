@@ -17,7 +17,7 @@
   		<div class="col-md-12">
   			<div class="panel panel-default">
   				<div class="panel-body">
-  					
+  				  	<div class="row">
   					<?php 
   					$telefono=array();
 					$direccion=array();
@@ -28,22 +28,32 @@
 						if (!(in_array($hotel->calle." - ".$hotel->provincia, $direccion))) {
 							$direccion[]=$hotel->calle." - ".$hotel->provincia;
 						}	
-					} ?>		
-					<h4 class="footer-text"><i class="fa fa-phone"></i>
+					} ?>
+					<div class="col-md-4">			
+					<center>
+					<h4><i class="fa fa-phone"></i>
 						<?php 
 						foreach ($telefono as $key => $value) {
 							echo $value."<br>";
 						}
 						?>
 					</h4>
-   					<h4 class="footer-text"><i class="fa fa-map-marker"></i> 
+					</center>
+					</div>
+					<div class="col-md-4">
+					<center>
+   					<h4><i class="fa fa-map-marker"></i> 
 						<?php 
 						foreach ($direccion as $key => $value) {
 							echo $value."<br>";
 						}
 						?>
 					</h4>
-   					<h4 class="footer-text"><i class="fa fa-envelope-o"></i>
+					</center>
+					</div>
+					<div class="col-md-4">
+					<center>
+   					<h4><i class="fa fa-envelope-o"></i>
 						<?php 
 						if($emails_hotel){
 							foreach ($emails_hotel as $email) {
@@ -52,6 +62,9 @@
 						}
 						?>
 					</h4>
+					</center>
+					</div>
+				</div>
    						
     			</div>
 			</div>

@@ -11,7 +11,7 @@ height: 500px;
 .center{
 	margin: auto;
 	position: absolute;
-	width: 50%;
+	width: 40%;
 	top: 0px;
 	bottom: 0px;
 	left: 0px; /*Sin esta línea (pero con todas las demás),

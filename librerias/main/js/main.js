@@ -342,7 +342,11 @@ $(function() {
       minDate: 1, 
       maxDate: "+2M +15D", 
       onClose: function( selectedDate ) {
-        $( "#salida" ).datepicker( "option", "minDate", selectedDate );
+      		
+       // $( "#salida" ).datepicker( "option", "minDate", selectedDate );
+		var minDate = $(this).datepicker('getDate');
+    	var newMin = new Date(minDate.setDate(minDate.getDate() + 1));
+    	$( "#salida" ).datepicker( "option", "minDate", newMin );
       }
     });
     
@@ -352,7 +356,10 @@ $(function() {
       /*numberOfMonths: 3,*/
       maxDate: "+4M +15D",
       onClose: function( selectedDate ) {
-        $( "#entrada" ).datepicker( "option", "maxDate", selectedDate );
+        //$( "#entrada" ).datepicker( "option", "maxDate", selectedDate );
+			var maxDate = $(this).datepicker('getDate');
+			var newMax  = new Date(maxDate.setDate(maxDate.getDate() - 1));
+			$( "#entrada" ).datepicker( "option", "maxDate",  newMax);
       }
     });
     
@@ -426,16 +433,23 @@ $(document).ready(function(){
 $(document).ready(function(){
 	var element = document.getElementById('panel-carrusel');
 	var e1 = document.getElementById("panel-form-reserva");
-	if(element.offsetHeight-2>e1.offsetHeight){
-		e1.style.height = element.offsetHeight-2;	
-	}
-	   
+	if(e1 && element){
+		if(element.offsetHeight-2>e1.offsetHeight){
+			e1.style.height = element.offsetHeight-2;	
+		}else{
+			element.offsetHeight = e1.style.height;
+		}
+	}; 
 });
 
 $(window).resize(function() {
 	var element = document.getElementById('panel-carrusel');
 	var e1 = document.getElementById("panel-form-reserva");
-	if(element.offsetHeight-2>e1.offsetHeight){
-		e1.style.height = element.offsetHeight-2;   
-	}
+	if(e1 && element){
+		if(element.offsetHeight-2>e1.offsetHeight){
+			e1.style.height = element.offsetHeight-2;   
+		}else{
+			element.offsetHeight = e1.style.height;
+		}
+	};
 });

@@ -35,7 +35,7 @@
 										    	<div class="input-group-addon" onclick="document.getElementById('entrada_articulo').focus();">
 										    		<span class="icon-calendarthree"></span>
 												</div>
-												<input type="text" name="entrada" class="form-control" id="entrada_articulo" placeholder="<?php echo $texto['entrada']?>" autocomplete="off" required>
+												<input type="text" name="entrada" class="form-control" id="entrada_articulo<?php echo $articulo->id_articulo?>" placeholder="<?php echo $texto['entrada']?>" autocomplete="off" required>
 											</div>
   										</div>
   										</div>
@@ -45,7 +45,7 @@
 										    	<div class="input-group-addon" onclick="document.getElementById('salida_articulo').focus();" >
 													<span class="icon-calendarthree"></span>
 												</div>
-												<input type="text" name="salida" class="form-control" id="salida_articulo" placeholder="<?php echo $texto['salida']?>" autocomplete="off" required>
+												<input type="text" name="salida" class="form-control" id="salida_articulo<?php echo $articulo->id_articulo?>" placeholder="<?php echo $texto['salida']?>" autocomplete="off" required>
 											</div>
 										</div>
 										</div>
@@ -103,18 +103,18 @@
 									
 									<script>
 									  $(function() {
-									    $( "#entrada_articulo" ).datepicker({
+									    $( "#entrada_articulo<?php echo $articulo->id_articulo?>" ).datepicker({
 									      minDate: "<?php echo date("d/m/Y", strtotime($fecha->entrada));?>",
 										  maxDate: "<?php echo date("d/m/Y", strtotime($fecha->salida));?>",
 									      onClose: function( selectedDate ) {
-									        $( "#salida_articulo" ).datepicker( "option", "minDate", selectedDate );
+									        $( "#salida_articulo<?php echo $articulo->id_articulo?>" ).datepicker( "option", "minDate", selectedDate );
 									      }
 									    });
-									    $( "#salida_articulo" ).datepicker({
+									    $( "#salida_articulo<?php echo $articulo->id_articulo?>" ).datepicker({
 									      minDate: "<?php echo date("d/m/Y", strtotime($fecha->entrada));?>",
 										  maxDate: "<?php echo date("d/m/Y", strtotime($fecha->salida));?>",
 									      onClose: function( selectedDate ) {
-									        $( "#entrada_articulo" ).datepicker( "option", "maxDate", selectedDate );
+									        $( "#entrada_articulo<?php echo $articulo->id_articulo?>" ).datepicker( "option", "maxDate", selectedDate );
 									      }
 									    });
 									  });

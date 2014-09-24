@@ -67,32 +67,32 @@
       			<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['mensaje']?></label>
     				<div class="col-sm-10">
-      				<textarea class="form-control" name="consulta" rows="3" required></textarea>
+      				<textarea class="form-control" name="consulta" rows="3" placeholder="<?php echo $texto['ingrese']." ".$texto['mensaje']?>" required></textarea>
     				</div>
   				</div>
       			<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['email']?></label>
     				<div class="col-sm-10">
-      				<input class="form-control" name="email" type="email" required>
+      				<input class="form-control" name="email" type="email" placeholder="<?php echo $texto['ingrese']." ".$texto['su']." ".$texto['email']?>" required>
     				</div>
   				</div>
   				
   				<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['nombre']?></label>
     				<div class="col-sm-10">
-    				<input type="text" class="form-control" name="nombre" required>
+    				<input type="text" class="form-control" name="nombre" placeholder="<?php echo $texto['ingrese']." ".$texto['su']." ".$texto['nombre']?>" required>
     				</div>
   				</div>
   				<div class="form-group">
     				<label for="apellido" class="col-sm-2 control-label"><?php echo $texto['apellido']?></label>
     				<div class="col-sm-10">
-    				<input type="text" class="form-control" name="apellido" required>
+    				<input type="text" class="form-control" name="apellido" placeholder="<?php echo $texto['ingrese']." ".$texto['su']." ".$texto['apellido']?>" required>
     				</div>
   				</div>
   				<div class="form-group">
-    				<label for="telefono"class="col-sm-2 control-label" ><?php echo $texto['telefono']?></label>
+    				<label for="telefono"class="col-sm-2 control-label"><?php echo $texto['telefono']?></label>
     				<div class="col-sm-10">
-    				<input type="text" class="form-control" name="telefono">
+    				<input type="text" class="form-control" name="telefono" placeholder="<?php echo $texto['ingrese']." ".$texto['su']." ".$texto['telefono']?>"> 
     				</div>
   				</div>
       		</div>
