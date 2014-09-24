@@ -38,16 +38,35 @@
 			}
 			if(ancho<1000){
 				$(".provincias").hide();
+				$(".provincia_small").show();
+			}else{
+				$(".provincias").show();
+				$(".provincia_small").hide();
+			}
+		});
+		
+		$(window).resize(function() {
+			if (document.body){
+				var ancho = (document.body.clientWidth);
+			}else{
+				var ancho = (window.innerWidth);
+			}
+			if(ancho<1000){
+				$(".provincias").hide();
+				$(".provincia_small").show();
+			}else{
+				$(".provincias").show();
+				$(".provincia_small").hide();
 			}
 		});
 		</script>
-		<script src="<?php echo base_url().'librerias/sparkles/dist/jquery-canvas-sparkles.js' ?>"></script>
+	<script src="<?php echo base_url().'librerias/sparkles/dist/jquery-canvas-sparkles.js' ?>"></script>
 		
 	<script>
 	$(document).ready(function() {
 		$(".container").sparkle({
 			color: ["#2eafea","#e56604"],
-			count: 30,
+			count: 60,
 			overlap: 0,
 			speed: 1,
 			minSize: 4,
@@ -56,20 +75,10 @@
 		});
 	});
 	
-	$('#demo3').shiningImage({
-		direction : 'y',
-		color : '#75FFA5',
-		opacity : 0.25,
-		playOnLoad: false,
-		scale : 0.7,
-		speed : 100,
-		delay : 3000
-	});
 	</script>
 	</head>
 	
-	<body onload="$('#demo3').data('shiningImage').shine();" 
-		  onload="$('#demo3').data('shiningImage').stopshine();"">
+	<body onload="$('#demo3').data('shiningImage').shine();">
 	 	<div class="content">
 			<img src="<?php echo base_url().'assets/uploads/logos/gold.png'?>" class="center" id="logo" />
 		</div>
@@ -87,6 +96,7 @@
 			<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>">
 				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url?>"	class="logo-hotel"/>
 			</a>
+			<p class="provincia provincia_small" style="float:right;">Mendoza</p>
 			<?php 
 				}
 			} 
@@ -102,6 +112,7 @@
 			<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>">
 				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url?>"	class="logo-hotel"/>
 			</a>
+			<p class="provincia provincia_small" style="float:right;">San Luis</p>
 			<?php 
 				}
 			} 
@@ -116,6 +127,7 @@
 			<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>">
 				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url?>"	class="logo-hotel"/>
 			</a>
+			<p class="provincia provincia_small" style="float:right;">Mendoza</p>
 			<?php 
 				}
 			} 
@@ -124,11 +136,12 @@
 		<div class="col-md-4 tabla">
 			<?php 
 			foreach ($hoteles as $hotel) {
-				if($hotel->id_provincia==17){ 
+				if($hotel->id_provincia==5){ 
 			?>
 			<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>">
 				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url?>"	class="logo-hotel"/>
 			</a>
+			<p class="provincia provincia_small" style="float:right;">Córdoba</p>
 			<?php 
 				}
 			} 
@@ -145,6 +158,7 @@
 			<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>"  class="medalla">
 				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url?>"	class="logo-hotel"/>
 			</a>
+			<p class="provincia provincia_small" style="float:right;">Mendoza</p>
 			<?php 
 				}
 			} 
@@ -159,7 +173,7 @@
 			<p class="provincia">Mendoza</p>
 		</div>
 		<div class="col-md-4 tabla">
-			<p class="provincia">San Juan</p>
+			<p class="provincia">Córdoba</p>
 		</div>
 	</div>
 	</div>

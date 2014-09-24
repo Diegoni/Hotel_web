@@ -80,9 +80,18 @@
 						<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
 						<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">
 						<input type="hidden" name="hotel" value="<?php echo $this->input->post('hotel') ?>">
+	  			<ul class="list-inline">
 	  			<?php foreach ($monedas as $moneda) { ?>
-						<input class="moneda" name="boton1" type="image" title="<?php echo $moneda->moneda;?> - <?php echo $moneda->abreviatura;?>" rel="tooltip" src="<?php echo base_url().'assets/uploads/monedas/'.$moneda->imagen;?>" onclick="document.cookie = 'moneda=<?php echo $moneda->id_moneda ?>'">
+					<li>
+						<center>
+							<input class="moneda" name="boton1" type="image" title="<?php echo $moneda->moneda;?> - <?php echo $moneda->abreviatura;?>" rel="tooltip" src="<?php echo base_url().'assets/uploads/monedas/'.$moneda->imagen;?>" onclick="document.cookie = 'moneda=<?php echo $moneda->id_moneda ?>'">
+						</center>
+						<p>
+							<?php echo $moneda->moneda;?> - <?php echo $moneda->abreviatura;?><br>
+						</p>
+					</li>
 				<?php } ?>
+				</ul>
 				</form>  
 	  		</div>
 		</div>

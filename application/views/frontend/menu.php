@@ -34,7 +34,7 @@
 	<div class="col-md-1">
 		<ul class="list-unstyled pull-right">
    			<?php foreach ($idiomas as $idioma) { ?>
-			<li>
+			<li class="li-moneda">
 				<input class="moneda-menu " 
 				name="boton1" type="image" 
 				title="<?php echo $idioma->idioma;?>" rel="tooltip" 
@@ -67,26 +67,26 @@
       			<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['mensaje']?></label>
     				<div class="col-sm-10">
-      				<textarea class="form-control" name="consulta" rows="3"></textarea>
+      				<textarea class="form-control" name="consulta" rows="3" required></textarea>
     				</div>
   				</div>
       			<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['email']?></label>
     				<div class="col-sm-10">
-      				<input class="form-control" name="email" type="email">
+      				<input class="form-control" name="email" type="email" required>
     				</div>
   				</div>
   				
   				<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['nombre']?></label>
     				<div class="col-sm-10">
-    				<input type="text" class="form-control" name="nombre">
+    				<input type="text" class="form-control" name="nombre" required>
     				</div>
   				</div>
   				<div class="form-group">
     				<label for="apellido" class="col-sm-2 control-label"><?php echo $texto['apellido']?></label>
     				<div class="col-sm-10">
-    				<input type="text" class="form-control" name="apellido">
+    				<input type="text" class="form-control" name="apellido" required>
     				</div>
   				</div>
   				<div class="form-group">
@@ -132,9 +132,8 @@
 -----------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------->	
 
-
 <div class="modal fade" id="telefono" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  	<div class="modal-dialog">
+  	<div class="modal-dialog modal-sm">
     	<div class="modal-content">
       		<div class="modal-header">
         		<h4 class="modal-title" id="myModalLabel"><?php echo $texto['telefono']?></h4>
@@ -142,18 +141,18 @@
       		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/consulta/envio'?>" />
       		<div class="modal-body">
       			<div class="form-group">
-    				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['telefono']?></label>
-    				<div class="col-sm-10">
+    				<label for="nombre" class="col-sm-3 control-label"><?php echo $texto['telefono']?></label>
+    				<div class="col-sm-9">
     					<?php 
 						foreach ($telefono as $key => $value) {
-							echo $value."<br>";
+							echo "<kbd>".$value."</kbd><br>";
 						}
 						?>
     				</div>
   				</div>
       			<div class="form-group">
-    				<label for="nombre" class="col-sm-2 control-label">Skype</label>
-    				<div class="col-sm-10">
+    				<label for="nombre" class="col-sm-3 control-label">Skype</label>
+    				<div class="col-sm-9">
       				<a href="skype:contact-mt?call" class="btn btn-default"><span>carollo_hotel</span></a>
     				</div>
   				</div>
@@ -174,7 +173,12 @@
 
 -----------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------->	
+<?php
+foreach ($hoteles as $hotel) {
+	$fondo_url=$hotel->fondo_intro;
 
+} 
+?>
 
 <div class="modal fade" id="direccion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   	<div class="modal-dialog modal-lg">
@@ -183,12 +187,12 @@
         		<h4 class="modal-title" id="myModalLabel"><?php echo $texto['direccion']?></h4>
       		</div>
       		<div class="modal-body">
-      			<div style="padding: 15px;">
-      			<iframe width="100%" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.3745900600725!2d-68.847059!3d-32.88826299999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9e5e8abae6963f75!2sGran+Carollo!5e0!3m2!1ses!2sar!4v1407167639519"></iframe>
-      			</div>
+      			<center>
+      				<img src="<?php echo base_url().'assets/uploads/logos/'.$fondo_url?>" class="mapa-direccion">	
+      			</center>
       		</div>
       		<div class="modal-footer">
-        		<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $texto['cerrar']?></button>
+        		<button type="button" class="btn btn-hotel boton-redondo-medium" data-dismiss="modal" title="<?php echo $texto['cerrar']?>"><span class="icon-remove"></span></button>
       		</div>
       		</form>
     	</div>

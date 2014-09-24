@@ -1,4 +1,3 @@
-
 /*****************************************************************************
  *****************************************************************************
  * Para trabajar con las Cookies
@@ -271,6 +270,8 @@ $(document).ready(function() {
 			state = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/.test($(this).val())
 		}else if($group.data('validate') == 'pin') {
 			state = /^\d{4}$/.test($(this).val())
+		}else if($group.data('validate') == 'tarjeta') {
+			state = /^\d{4}-?\d{4}-?\d{4}-?\d{3}[0-9]?$/.test($(this).val())
 		}else if ($group.data('validate') == "length") {
 			state = $(this).val().length >= $group.data('length') ? true : false;
 		}else if ($group.data('validate') == "number") {
@@ -378,6 +379,9 @@ $(function() {
     $('#horario').timepicker({
 	});
   });
+  
+  
+  
 
 
 
@@ -391,6 +395,17 @@ $(document).ready(function() {
     $('.carousel').carousel({
         interval: 2000
     })
+});
+
+
+/**************************************************************************
+ **************************************************************************
+ 			Mostrar ayuda 
+ ************************************************************************** 
+ *************************************************************************/
+
+$(document).ready(function(){
+    $("#texto_ayuda").delay( 2000 ).show("slow");
 });
 
 /**************************************************************************
@@ -407,3 +422,20 @@ $(document).ready(function(){
 });
 
 
+
+$(document).ready(function(){
+	var element = document.getElementById('panel-carrusel');
+	var e1 = document.getElementById("panel-form-reserva");
+	if(element.offsetHeight-2>e1.offsetHeight){
+		e1.style.height = element.offsetHeight-2;	
+	}
+	   
+});
+
+$(window).resize(function() {
+	var element = document.getElementById('panel-carrusel');
+	var e1 = document.getElementById("panel-form-reserva");
+	if(element.offsetHeight-2>e1.offsetHeight){
+		e1.style.height = element.offsetHeight-2;   
+	}
+});

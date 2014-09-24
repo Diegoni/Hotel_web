@@ -4,8 +4,10 @@
 		<?php foreach ($ayudas as $ayuda) { ?>
 		<div class="panel panel-hotel">
 	  		<div class="panel-heading"><?php echo $ayuda->titulo; ?></div>
-	  		<div class="panel-body"> 			
-				<?php echo $ayuda->ayuda; ?>
+	  		<div class="panel-body">
+	  			<p id="texto_ayuda" style="display: none">
+	  				<?php echo $ayuda->ayuda; ?>	
+	  			</p> 			
 			</div>
 		</div>
 		<?php } ?>

@@ -56,7 +56,8 @@
 						<dd><?php echo date("H:i",strtotime($habitacion->salida));?> Hs</dd>
 					</dl>	
 				</div>
-								
+				
+				<!--				
 				<div class="badger-left badger-hotel" data-badger="<?php echo $texto['como_llegar']?>">
 				<?php 
   					$telefono=array();
@@ -72,6 +73,7 @@
 						$direccion_final=$value;
 					}
 				?>
+				
 				<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&languaje=sp"></script>
 				<script type="text/javascript" src="<?php echo base_url().'librerias/main/js/google_maps.js'?>"></script>
 
@@ -161,6 +163,7 @@
 				</div>
 				</form>
 				</div>
+				-->
 				<div class="col-md-12">
 					<center>
 						<a href="javascript:window.history.back();" type="submit" class="btn btn-default boton-redondo" title="<?php echo $texto['volver']?>" rel="tooltip">

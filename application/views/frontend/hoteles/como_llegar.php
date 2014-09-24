@@ -18,10 +18,10 @@
 		<div class="panel-heading"><?php echo $texto['como_llegar']?> </div>
 		<div class="panel-body">
 			<div class="panel panel-hotel">
-				<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&languaje=sp"></script>
+				<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&languaje=sp&libraries=places"></script>
 				<script type="text/javascript" src="<?php echo base_url().'librerias/main/js/google_maps.js'?>"></script>
 
-  				<div id="map_canvas" style="float:left;width:100%;height:60%; margin-bottom: 15px;"></div>
+    			<div id="map_canvas" style="float:left;width:100%;height:60%; margin-bottom: 15px;"></div>
 				<form class="form-horizontal" role="form">
 					
 					<div class="form-group">
@@ -38,10 +38,11 @@
     						<?php echo $texto['desde'];?>:
     					</label>
     					<div class="col-sm-10">
-							<input type="text" class="form-control" id="start" value="">
+							<input type="text" class="form-control" id="start" value="" onFocus="geolocate()">
 						</div>
   					</div>
   					
+  					<!--
   					<div class="form-group">
     					<label for="inputEmail3" class="col-sm-2 control-label">
     						<?php echo $texto['puntos_intermedios'];?>:
@@ -54,7 +55,7 @@
 							<input type="text" id="waypoints3" class="form-control">
 						</div>
   					</div>
-  			
+  					
   					<div class="form-group">
     					<label for="inputEmail3" class="col-sm-2 control-label">
     						<?php echo $texto['vehiculo_consumo'];?>
@@ -75,7 +76,7 @@
 							<input type="text" class="form-control" id="combustible" value="9">
 						</div>
   					</div>
-  			
+  					  -->					
   					<div class="form-group">
     					<label for="inputEmail3" class="col-sm-2 control-label">
     					</label>

@@ -3,12 +3,12 @@
 	<div class="panel panel-default">
 		<!--<div class="panel-heading">Habitación</div>-->
 		<div class="panel-body">
-			<div class="panel panel-default">
+			<div class="panel panel-hotel">
 			</div>
 			<?php if($habitaciones){?>
 			<h1 class="text-center"><?php echo $texto['habitaciones']?></h1>
 			<?php foreach ($habitaciones as $habitacion) { ?> 
-			<div class="panel panel-default">
+			<div class="panel panel-hotel">
         		<div class="panel-body">
         			<div class="col-md-3 text-center vertical-middel">
         				<h2><small> <?php echo $habitacion->habitacion; ?> </small></h2>
@@ -58,7 +58,7 @@
 											<span class="icon-chevron-down"></span>
 										</a>
 										<a href="#" class="btn btn-default btn-lg" title="<?php echo $texto['email']?>" rel="tooltip" data-toggle="modal" data-target="#habitacion<?php echo $habitacion->id_habitacion?>">
-											<span class="icon-emailalt"></span>
+											<span class="icon-share"></span>
 										</a>
 			                    	
 						</div>

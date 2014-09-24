@@ -2,10 +2,11 @@
 	<div class='col-md-8'>
 				<div class="panel panel-hotel">
 					<?php
-			  		foreach ($categorias as $categoria) { ?>
+					foreach ($categorias as $categoria) { ?>
 			  		<div class="panel-heading"><?php echo $categoria->categoria;?></div>
 			  		<?php } ?>
 			  		<?php
+			  		if ($articulos){
 			  		foreach ($articulos as $articulo) { ?>
 			  		<div class="panel-body">
 			  			<div class="badger-left badger-hotel" data-badger="<?php echo $articulo->titulo ?>">
@@ -27,23 +28,28 @@
 										$fecha->entrada=date("Y/m/d");
 									?>
 									<h3 class="panel-heading"><?php echo $texto['reservar'] ?></h3>
-									<form class="form-inline" role="form" action="<?php echo base_url().'index.php/reserva/habitacion' ?>" method="post">
+									<form class="form-horizontal" role="form" action="<?php echo base_url().'index.php/reserva/habitacion' ?>" method="post">
+										<div class="col-md-6 col-md-offset-3">
 										<div class="form-group">
 											<div class="input-group">
 										    	<div class="input-group-addon" onclick="document.getElementById('entrada_articulo').focus();">
 										    		<span class="icon-calendarthree"></span>
 												</div>
-												<input type="text" name="entrada" class="form-control" id="entrada_articulo" placeholder="<?php echo $texto['entrada']?>" autocomplete="off">
+												<input type="text" name="entrada" class="form-control" id="entrada_articulo" placeholder="<?php echo $texto['entrada']?>" autocomplete="off" required>
 											</div>
   										</div>
+  										</div>
+  										<div class="col-md-6 col-md-offset-3">
   										<div class="form-group">
 											<div class="input-group">
-										    	<div class="input-group-addon" onclick="document.getElementById('salida_articulo').focus();">
+										    	<div class="input-group-addon" onclick="document.getElementById('salida_articulo').focus();" >
 													<span class="icon-calendarthree"></span>
 												</div>
-												<input type="text" name="salida" class="form-control" id="salida_articulo" placeholder="<?php echo $texto['salida']?>" autocomplete="off">
+												<input type="text" name="salida" class="form-control" id="salida_articulo" placeholder="<?php echo $texto['salida']?>" autocomplete="off" required>
 											</div>
 										</div>
+										</div>
+										<div class="col-md-6 col-md-offset-3">	
 										<div class="form-group">
 											<select class="form-control" name="adultos">
 												<?php 
@@ -62,6 +68,7 @@
 												$i=$i+1;
 												}while($i<=$max_adultos);?>
 											</select>
+											<div class="separador"></div>
 								     		<select class="form-control" name="menores">
 									  			<?php $i=0;
 												do{
@@ -78,12 +85,22 @@
 												}while($i<=$max_menores);?>
 											</select>
 										</div>
-										<input name="hotel" type="hidden" value="2" />
-										<div class="form-group">
-											<button class="btn btn-hotel" type="submit"><?php echo $texto['reservar']?></button>
 										</div>
 										
+										<input name="hotel" type="hidden" value="2" />
+										<div class="form-group">
+    									<div class="col-md-6 col-md-offset-3">
+											<center>
+											<button class="btn btn-hotel boton-redondo" type="submit" title="<?php echo $texto['reservar']?>">
+												<span class="icon-ok"></span>
+											</button>
+											</center>
+										</div>
+										</div>
+										
+										
 									</form>
+									
 									<script>
 									  $(function() {
 									    $( "#entrada_articulo" ).datepicker({
@@ -106,10 +123,14 @@
 								}
 							} ?>
 						</div>
-						<small><?php echo $texto['fecha_publicacion']; ?> : <?php echo date("d-m-Y" ,strtotime($articulo->fecha_publicacion));?></small>						
+						<!--<small><?php echo $texto['fecha_publicacion']; ?> : <?php echo date("d-m-Y" ,strtotime($articulo->fecha_publicacion));?></small>-->						
 					</div>
 					
-					<?php } ?>
+					<?php }
+					}else{
+						
+					}
+					 ?>
 					<div class="panel-body">
 					<center>
 						<a href="javascript:window.history.back();" type="submit" class="btn btn-default boton-redondo" title="<?php echo $texto['volver']?>" rel="tooltip">

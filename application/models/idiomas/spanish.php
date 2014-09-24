@@ -13,6 +13,7 @@
 	$texto['hotel'] 				= 'Hotel';
 	$texto['monedas'] 				= 'Monedas';
 	$texto['galeria'] 				= 'Galería';
+	$texto['promociones'] 			= 'Promociones';
 	
 	/* reserva habitacions */
 	$texto['leer_mas'] 				= 'Leer más';
@@ -38,7 +39,7 @@
 	$texto['tipo_tarjeta']			= 'Tipo tarjeta';
 	$texto['tarjeta']				= 'Tarjeta';
 	$texto['agregar_nota']			= 'Agregar nota';
-	$texto['ingrese']				= 'ingrese';
+	$texto['ingrese']				= 'Ingrese';
 	$texto['ejemplo'] 				= 'Ejemplo';
 	$texto['nota'] 					= 'Nota';
 	$texto['acepto_condiciones'] 	= 'Acepto las condiciones de la reserva.';
@@ -75,7 +76,7 @@
 	$texto['descripcion']			= 'Descripción';
 	$texto['servicios']				= 'Servicios';
 	$texto['condiciones'] 			= 'Condiciones';
-	$texto['como_llegar']			= 'Como llegar';
+	$texto['como_llegar']			= 'Cómo llegar';
 	$texto['calle']					= 'Calle';
 	$texto['numero']				= 'Número';
 	$texto['provincia']				= 'Provincia';

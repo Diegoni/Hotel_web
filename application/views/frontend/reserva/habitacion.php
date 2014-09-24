@@ -46,7 +46,7 @@
 								<span class="icon-chevron-down"></span>
 							</a>
 							<a href="#" class="btn btn-default btn-lg" title="<?php echo $texto['email']?>" rel="tooltip" data-toggle="modal" data-target="#habitacion<?php echo $habitacion->id_habitacion?>">
-								<span class="icon-emailalt"></span>
+								<span class="icon-share"></span>
 							</a>
                     	</p>
         			</div>
@@ -301,8 +301,8 @@
       			
       			<div class="modal-footer">
       				<input type="hidden" name="id_hotel" value="<?php echo $id_hotel?>" >
-        			<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $texto['cerrar']?></button>
-        			<button type="submit" class="btn btn-hotel"><?php echo $texto['email']?></button>
+        			<button type="button" class="btn btn-hotel boton-redondo-medium" data-dismiss="modal" title="<?php echo $texto['cerrar']?>"><span class="icon-remove"></span></button>
+        			<button type="submit" class="btn btn-hotel boton-redondo-medium" title="<?php echo $texto['email']?>"><span class="icon-ok"></span></button>
       			</div>
       		</div>
       		</form>

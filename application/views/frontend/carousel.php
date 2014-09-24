@@ -1,30 +1,26 @@
 <?php $id_hotel=$_COOKIE['id_hotel']; ?>
 	<div class="col-md-8">
 		<div class="panel panel-hotel">
+			<!-- al final del archivo esta el codigo para un menu dinamico en vez de este estatico-->
 			<div class="panel-heading" style="padding: 14px 10px;">
 				<a class="panel-menu" href="<?php echo base_url().'index.php/hoteles/habitaciones/'.$id_hotel; ?>">
 					<?php echo $texto['habitaciones'] ?>
 				</a>
-				<?php 
-				$i=0;
-				if(!empty($categorias)){
-				foreach ($categorias as $categoria) { 
-					if($i<3){?>
-					<a class="panel-menu" href="<?php echo base_url().'index.php/categoria/articulos/'.$categoria->id_categoria.'/'.$id_hotel; ?>">
-						<?php echo $categoria->categoria ?>
-					</a>	
-				<?php 
-					}
-				$i=$i+1;
-				}} ?>
+				<a class="panel-menu" href="<?php echo base_url().'index.php/categoria/articulos/6/'.$id_hotel; ?>">
+					<?php echo $texto['servicios'] ?>
+				</a>
 				<a class="panel-menu" href="<?php echo base_url().'index.php/hoteles/galeria/'.$id_hotel; ?>">
 					<?php echo $texto['galeria'] ?>
+				</a>
+				<a class="panel-menu" href="<?php echo base_url().'index.php/categoria/articulos/3/'.$id_hotel; ?>">
+					<?php echo $texto['promociones'] ?>
 				</a>
 				<a class="panel-menu" href="<?php echo base_url().'index.php/hoteles/como_llegar/'.$id_hotel; ?>">
 					<?php echo $texto['como_llegar'] ?>
 				</a>
 			</div>
-	  	<div class="panel-body">
+			
+	  	<div class="panel-body" id="panel-carrusel">
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 			
 			<!-- indicadores del carrusel -->
@@ -66,3 +62,20 @@
     	</div>
 	</div>
 </div>	
+
+
+
+<!-- Menú dinamico con las categorias
+				<?php 
+				$i=0;
+				if(!empty($categorias)){
+				foreach ($categorias as $categoria) { 
+					if($i<3){?>
+					<a class="panel-menu" href="<?php echo base_url().'index.php/categoria/articulos/'.$categoria->id_categoria.'/'.$id_hotel; ?>">
+						<?php echo $categoria->categoria ?>
+					</a>	
+				<?php 
+					}
+				$i=$i+1;
+				}} ?>
+				-->

@@ -73,8 +73,16 @@
 
 
 
-<link rel="stylesheet" href="//frontend.reklamor.com/fancybox/jquery.fancybox.css" media="screen">
-<script src="//frontend.reklamor.com/fancybox/jquery.fancybox.js"></script>
+<!----------------------------------------------------------------------------
+------------------------------------------------------------------------------
+								Fancybox
+------------------------------------------------------------------------------
+----------------------------------------------------------------------------->
+
+
+<link rel="stylesheet" href="<?php echo base_url() ?>librerias/fancybox/jquery.fancybox.css" media="screen">
+<script src="<?php echo base_url() ?>librerias/fancybox/jquery.fancybox.js"></script>
+<script src="<?php echo base_url() ?>librerias/fancybox/jquery.fancybox.pack.js"></script>
 
 
 

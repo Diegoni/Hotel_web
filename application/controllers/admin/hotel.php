@@ -58,6 +58,7 @@ class Hotel extends CI_Controller {
 			$crud->display_as('id_hotel','ID')
 				 ->display_as('hotel','Hotel')
 				 ->display_as('descripcion','Descripción')
+				 ->display_as('fondo_intro','Foto mapa')
 				 ->display_as('url','Sitio');
 			
 			$crud->set_subject('hotel');
