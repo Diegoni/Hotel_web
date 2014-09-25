@@ -9,7 +9,8 @@
   				<ul class="nav nav-pills nav-stacked">
 	            	<li><a  href='<?php echo site_url('admin/articulo/articulos_abm')?>'>Artículos</a></li>
 	            	<li><a  href='<?php echo site_url('admin/articulo/categorias_abm')?>'>Categorías</a></li>
-					<li><a  href='<?php echo site_url('admin/articulo/estados_articulo')?>'>Estados artículo</a></li>		
+					<li><a  href='<?php echo site_url('admin/articulo/estados_articulo')?>'>Estados artículo</a></li>
+					<li><a  href='<?php echo site_url('admin/articulo/config_articulos/edit/1')?>'>Config Artículos</a></li>		
           		</ul>
   			</div>
 		</div>

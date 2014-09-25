@@ -13,9 +13,27 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 			    			<img class="img-circle img-banner" src="<?php echo base_url().'assets/uploads/articulos/'.$articulo->archivo_url?>">
 			    		<?php } ?>
 			    		<div class="text-banner">
-			    			<?php echo $articulo->articulo; ?>
+			    			
+			    			<?php
+			    			foreach ($configs_articulos as $configs_articulo) {
+			    				$usar_limite	= $configs_articulo->usar_limite;
+								$max_con_foto	= $configs_articulo->max_con_foto;
+								$max_sin_foto	= $configs_articulo->max_sin_foto;
+							}
+							
+							if($usar_limite==1){
+								if($articulo->archivo_url!=""){
+			    					echo myTruncate($articulo->articulo, $max_con_foto, '.', '...');	
+			    				}else{
+			    					echo myTruncate($articulo->articulo, $max_sin_foto, '.', '...');
+			    				}	
+							}else{
+								echo $articulo->articulo;
+							}
+			    			
+			    			?>
 			    		</div>
-			    		<a class="btn btn-default btn-xs" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria.'/'.$id_hotel; ?>"><?php echo $texto['leer_mas'];?></a>
+			    		<a class="btn btn-hotel pull-right" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria.'/'.$id_hotel; ?>"><?php echo $texto['leer_mas'];?></a>
 					</div>
 				</div>
 			</div>			

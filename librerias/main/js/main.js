@@ -441,7 +441,9 @@ $(document).ready(function(){
 	var element = document.getElementById('panel-carrusel');
 	var e1 = document.getElementById("panel-form-reserva");
 	if(e1 && element){
-		e1.style.height = element.offsetHeight-2;	
+		if(e1.offsetHeight < element.offsetHeight){
+			e1.style.height = element.offsetHeight-2;	
+		}
 	}; 
 });
 
@@ -449,6 +451,8 @@ $(window).resize(function() {
 	var element = document.getElementById('panel-carrusel');
 	var e1 = document.getElementById("panel-form-reserva");
 	if(e1 && element){
-		e1.style.height = element.offsetHeight-2;   
+		if(e1.offsetHeight < element.offsetHeight){
+			e1.style.height = element.offsetHeight-2;	
+		}   
 	};
 });

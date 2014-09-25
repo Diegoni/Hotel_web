@@ -138,75 +138,69 @@
                     		<?php } ?>
                     </div>
                     <div class="col-md-3">
-						<div class="form-group">
-								<div class="col-sm-12">
-									<h2><small> <?php echo $texto['cantidad'] ?></small></h2>
-									<?php
-									$cantidad=$habitacion->cantidad;
-									
-									if(isset($reservas_habitacion)){
-										foreach ($reservas_habitacion as $disp) {
-											if($habitacion->id_habitacion==$disp->id_habitacion){
-												$cantidad=$cantidad-$disp->cantidad; 
-											}
-										}	
+						<h2>
+							<small> 
+								<?php echo $texto['cantidad'] ?>
+							</small>
+						</h2>
+						<?php
+							$cantidad=$habitacion->cantidad;
+								
+							if(isset($reservas_habitacion)){
+								foreach ($reservas_habitacion as $disp) {
+									if($habitacion->id_habitacion==$disp->id_habitacion){
+										$cantidad=$cantidad-$disp->cantidad; 
 									}
+								}	
+							}
 									
-									if(isset($disponibilidades)){
-										foreach ($disponibilidades as $disponibilidad) {
-											if($habitacion->id_habitacion==$disponibilidad->id_habitacion){	
-												$cantidad=0;
-											}
-										}
-									}																			
-									 
-									
+							if(isset($disponibilidades)){
+								foreach ($disponibilidades as $disponibilidad) {
+									if($habitacion->id_habitacion==$disponibilidad->id_habitacion){	
+										$cantidad=0;
+									}
+								}
+							}																			
+						?>
+						<select name="habitacion<?php echo $habitacion->id_habitacion?>" class="form-control habitacion" onChange="validarHabitacion()">
+							<?php for ($i=0; $i <= $cantidad; $i++) { ?>
+								<option value="<?php echo $i;?>">
+									<?php 
+										if($cantidad==0){
+											echo $texto['sin_disponibilidad'];
+										}else{
+											echo $i;
+											if($i>0){
+												echo "(".$cambio->simbolo." ".number_format($precio*$i/$cambio->valor*$noches, 2, ',', ' ').")";	
+											}	
+										}											 
 									?>
-									<select name="habitacion<?php echo $habitacion->id_habitacion?>" class="form-control habitacion" onChange="validarHabitacion()">
-										<?php for ($i=0; $i <= $cantidad; $i++) { ?>
-										<option value="<?php echo $i;?>">
-											<?php 
-											if($cantidad==0){
-												echo $texto['sin_disponibilidad'];
-											}else{
-												echo $i;
-												if($i>0){
-													echo "(".$cambio->simbolo." ".number_format($precio*$i/$cambio->valor*$noches, 2, ',', ' ').")";	
-												}	
-											}											 
-											?>
-										</option>
-										<?php }?>
-									</select>
-								</div>
-							</div>
-						
+								</option>
+							<?php }?>
+						</select>
                 	</div>	
                 </div>
          	</div>
          	<?php } ?>	
          	
-         		<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
-				<input type="hidden" name="salida" value="<?php echo $this->input->post('salida') ?>">
-				<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
-				<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">
-				<input type="hidden" name="hotel" value="<?php echo $this->input->post('hotel') ?>">
-				
-				
-				<div class="col-xs-4">
-				</div>
-				<div class="col-xs-4">
-					<center>
+         	<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
+			<input type="hidden" name="salida" value="<?php echo $this->input->post('salida') ?>">
+			<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
+			<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">
+			<input type="hidden" name="hotel" value="<?php echo $this->input->post('hotel') ?>">
+			
+			<div class="col-xs-4">
+			</div>
+			<div class="col-xs-4">
+				<center>
 					<button type="submit" name="reservar" value="Seleccione una opción" class="btn btn-hotel boton-redondo">
 						<span class="icon-ok"></span>
 					</button>
-					</center>
-				</div>
-				<div class="col-xs-4">
-					<label id="habitaciones" class="pull-right"></label>
-				</div>
-					
-				
+				</center>
+			</div>
+			<div class="col-xs-4">
+				<label id="habitaciones" class="pull-right"></label>
+			</div>
 				
          	
          	<?php echo form_close(); ?>
@@ -222,13 +216,17 @@
 					</div>
 				</div>
 				<div class="offer-content">
-					<?php foreach ($hoteles_menu as $hotel) { ?>
-    			<?php if($id_hotel!=$hotel->id_hotel){ ?>
-    			<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>" style="margin: 15px;">
-    				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url;?>" class="logo_img_menu">
-    			</a>
-    			<?php } ?>
-			<?php } ?>
+					<div class="row">
+						<?php foreach ($hoteles_menu as $hotel) { ?>
+	    				<?php if($id_hotel!=$hotel->id_hotel){ ?>
+	    					<div class="col-xs-3">
+	    					<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>">
+	    						<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url;?>" class="logo_img_menu">
+	    					</a>
+	    					</div>
+	    				<?php } ?>
+						<?php } ?>
+					</div>
 				</div>
 			</div>
 			</div>

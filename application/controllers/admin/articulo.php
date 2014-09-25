@@ -192,6 +192,43 @@ class Articulo extends CI_Controller {
 			$this->_example_output($output);
 	}
 	
+
+ 
+ /**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Configuración de los articulos
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+ 
+ 
+	public function config_articulos(){
+			$crud = new grocery_CRUD();
+
+			
+			$crud->set_table('config_articulos');
+			
+			$crud->set_subject('config artículos');
+			
+			$crud->field_type('usar_limite', 'true_false');
+			
+			$crud->unset_back_to_list();
+			
+			$_COOKIE['tabla']='config_correo';
+			$_COOKIE['id']='id_config_correo';	
+						
+			$crud->callback_after_insert(array($this, 'insert_log'));	
+			$crud->callback_after_update(array($this, 'update_log'));
+			$crud->callback_delete(array($this,'delete_log'));
+			
+			
+			$output = $crud->render();
+
+			$this->_example_output($output);
+	}
+	
+	
 	
 /**********************************************************************************
  **********************************************************************************
