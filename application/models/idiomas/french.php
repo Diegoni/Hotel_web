@@ -97,5 +97,6 @@
 	$texto['en_breve'] 				= 'Peu de temps nous prendrons contact avec vous.';
 	$texto['envio_habitacion']		= 'La salle a été envoyé.';
 	$texto['su']					= 'sa';
-	$texto['ayuda_pin']				= 'El pin solo se usara para consultar ...';
+	$texto['ayuda_pin']				= 'Transaction en toute sécurité! Votre carte de crédit est exigée pour garantir votre réservation. 
+    Les données de la carte de crédit laissés sur garantie n est valable que pour confirmer votre réservation, sinon il sera démonté sans préavis. Cette carte est uniquement à titre de réserves de garantie et ne sera utilisée que dans le cas de non-présentation ou d annulation après la date limite, le montant total doit être payé à l hôtel.';
 ?>	

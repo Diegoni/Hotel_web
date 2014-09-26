@@ -272,25 +272,25 @@
       			<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['mensaje']?></label>
     				<div class="col-sm-10">
-      				<textarea class="form-control" name="consulta" rows="3"></textarea>
+      				<textarea class="form-control" name="consulta" rows="3" required></textarea>
     				</div>
   				</div>
       			<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['email']?></label>
     				<div class="col-sm-10">
-      				<input class="form-control" name="email" type="email">
+      				<input class="form-control" name="email" type="email" required>
     				</div>
   				</div>
   				<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['nombre']?></label>
     				<div class="col-sm-10">
-    				<input type="text" class="form-control" name="nombre">
+    				<input type="text" class="form-control" name="nombre" required>
     				</div>
   				</div>
   				<div class="form-group">
     				<label for="apellido" class="col-sm-2 control-label"><?php echo $texto['apellido']?></label>
     				<div class="col-sm-10">
-    				<input type="text" class="form-control" name="apellido">
+    				<input type="text" class="form-control" name="apellido" required>
     				</div>
   				</div>  
   					<input type="hidden" name="id_habitacion" value="<?php echo $habitacion->id_habitacion?>">				

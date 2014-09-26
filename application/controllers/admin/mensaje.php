@@ -209,7 +209,7 @@ class Mensaje extends CI_Controller {
 				$this->db->update('mensajes', $mensaje, array('id_mensaje' => $id));
 				$_COOKIE['tabla']='mensajes';
 				$_COOKIE['id']='id_mensaje';
-				update_log($mensaje, $id);
+				$this->update_log($mensaje, $id);
 			}
 				
 		}

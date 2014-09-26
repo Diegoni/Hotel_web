@@ -63,7 +63,7 @@ class Hoteles_email_model extends CI_Model {
 		$mensaje = str_replace("#emisor_nombre#", $consulta['nombre'], $mensaje);
 		$mensaje = str_replace("#emisor_apellido#", $consulta['apellido'], $mensaje);
 		$mensaje = str_replace("#emisor_telefono#", $consulta['telefono'], $mensaje);
-		$mensaje = str_replace("#hotel#", $consulta['id_hotel'], $mensaje);
+		$mensaje = str_replace("#hotel#", $consulta['hotel'], $mensaje);
   			
 		
 		// Para enviar un correo HTML

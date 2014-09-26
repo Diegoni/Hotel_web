@@ -492,7 +492,7 @@ class Hotel extends CI_Controller {
 			$crud->unset_delete();
 			$crud->unset_read();
 			
-			$crud->add_action('Redactar', '', 'admin/hotel/hoteles_email_reserva','icon-edit');
+			$crud->add_action('Redactar', '', 'admin/hotel/hoteles_email_reserva','icon-pencil');
 			
 			$output = $crud->render();
 
@@ -548,7 +548,7 @@ class Hotel extends CI_Controller {
 			$crud->unset_delete();
 			$crud->unset_read();
 			
-			$crud->add_action('Redactar', '', 'admin/hotel/hoteles_email_mensaje','icon-edit');
+			$crud->add_action('Redactar', '', 'admin/hotel/hoteles_email_mensaje','icon-pencil');
 			
 			
 			$output = $crud->render();
@@ -602,7 +602,7 @@ class Hotel extends CI_Controller {
 			$crud->unset_delete();
 			$crud->unset_read();
 			
-			$crud->add_action('Redactar', '', 'admin/hotel/hoteles_email_habitacion','icon-edit');
+			$crud->add_action('Redactar', '', 'admin/hotel/hoteles_email_habitacion','icon-pencil');
 			
 			$output = $crud->render();
 
