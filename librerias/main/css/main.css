@@ -1,11 +1,4 @@
-@font-face {
-  font-family: 'Cinzel';
-  font-style: normal;
-  font-weight: 400;
-  /*src: local('Cinzel-Regular'), url(http://fonts.gstatic.com/s/cinzel/v4/GUdIaltLF-l6nIaNvN3eY_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');*/
-  src: local('Cinzel-Regular'), url(font.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
+@font-face {font-family:"Cinzel-Regular";src:url("Cinzel-Regular.eot?") format("eot"),url("Cinzel-Regular.woff") format("woff"),url("Cinzel-Regular.ttf") format("truetype"),url("Cinzel-Regular.svg#Cinzel-Regular") format("svg");font-weight:normal;font-style:normal;}
 
 
 .moneda-leyenda{
@@ -148,19 +141,24 @@ padding-right: 20px;
 }
 
 .gris {
-  filter: gray; /* IE6-9 */
-  -webkit-filter: sepia(1); /* Google Chrome, Safari 6+ & Opera 15+ */
-  -webkit-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
-  box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+ 	filter: sepia(0%);
+	-webkit-filter: sepia(0%);
+	-moz-filter: sepia(0%);
+	-o-filter: sepia(0%);
+	-ms-filter: sepia(0%);
+  	-webkit-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+  	-moz-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+  	box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
     margin-bottom:20px;
     width: 100%;
 }
 
 .gris:hover {
-  filter: none; /* IE6-9 */
-  -webkit-filter: sepia(0); /* Google Chrome, Safari 6+ & Opera 15+ */
- 
+ 	filter: sepia(100%);
+	-webkit-filter: sepia(100%);
+	-moz-filter: sepia(100%);
+	-o-filter: sepia(100%);
+	-ms-filter: sepia(100%);
 }
 
 /**********************************************************************
@@ -258,7 +256,7 @@ right: 0;
   background-color: #f8eda7;
 }
 .panel-hotel > .panel-heading {
-	font-family: Cinzel;
+	font-family: 'Cinzel-Regular';
 	font-size: 25px;
   	color: #f8eda7;
   	background-color: #57101c;
@@ -878,7 +876,7 @@ color: #333;
 
 
 .provincia{
-	font-family: Cinzel;
+	font-family: 'Cinzel-Regular';
 	font-size: 25px;
 	color: #f8eda7;
 	border-color: #5c1b21;

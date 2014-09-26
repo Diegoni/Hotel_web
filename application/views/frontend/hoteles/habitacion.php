@@ -142,6 +142,7 @@
   				</div>  
   					<input type="hidden" name="id_habitacion" value="<?php echo $habitacion->id_habitacion?>">				
   					<input type="hidden" name="habitacion" value="<?php echo $habitacion->habitacion?>">
+  					<input type="hidden" name="id_hotel" value="<?php echo $id_hotel?>">
       			</div>
       			
       			<div class="modal-footer">

@@ -66,6 +66,10 @@ class Consulta extends CI_Controller {
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['emails_hotel']=$this->hoteles_email_model->getEmails($id_hotel);
 		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
+		$hoteles=$this->hoteles_model->getHotel($id_hotel);
+		foreach ($hoteles as $hotel) {
+			$hotel=$hotel->hotel;
+		}
 		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
 		$db['configs']=$this->configs_model->getConfigs();
 		
@@ -87,6 +91,8 @@ class Consulta extends CI_Controller {
 		);
 		
 		$db['mensajes']=$this->mensajes_model->insertMensaje($mensaje);
+		
+		$mensaje['hotel']=$hotel;
 		$this->hoteles_email_model->correoHabitacion($mensaje, $habitacion, 1);
 		$this->hoteles_email_model->correoHabitacion($mensaje, $habitacion, 2);
 		

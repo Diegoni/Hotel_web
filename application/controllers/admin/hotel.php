@@ -8,6 +8,9 @@ class Hotel extends CI_Controller {
 
 		$this->load->helper('menu');
 		$this->load->model('reserva_habitacion_model');
+		$this->load->model('config_email_reservas_model');
+		$this->load->model('config_email_mensajes_model');
+		$this->load->model('config_email_habitacion_model');
 		$this->load->library('grocery_CRUD');
 		//$this->load->library('image_CRUD');
 	}
@@ -32,7 +35,133 @@ class Hotel extends CI_Controller {
 		$this->_example_output2((object)array('output' => '' , 'js_files' => array() , 'css_files' => array()));
 	
 	}
+	
+	
+	public function hoteles_email_reserva($id = null)
+	{
+		if($this->input->post('aceptar')){
+			$registro=array('correo'					=> $this->input->post('correo'),
+							'id_config_email_reserva' 	=> $id);
+			$id_modificado = $this->config_email_reservas_model->updateConfig($registro);
+		}
+		$option=array(	'' 							=> "", 
+						'#hotel#'					=> "Hotel",
+						'#entrada#'					=> "Entrada",
+						'#salida#'					=> "Salida",
+						'#adultos#'					=> "Adultos",
+						'#menores#'					=> "Menores",
+						'#huesped_nombre#'			=> "Huesped nombre",
+						'#huesped_apellido#'		=> "Huesped apellido",
+						'#huesped_email#'			=> "Huesped email",
+						'#huesped_telefono#'		=> "Huesped teléfono",
+						'#huesped_id_tipo_tarjeta#'	=> "Tarjeta tipo",
+						'#tarjeta_numero#'			=> "Tarjeta nro",
+						'#tarjeta_pin#'				=> "Tarjeta pin",
+						'#tarjeta_vencimiento#'		=> "Tarjeta vencimiento",
+						'#vuelo_numero#'			=> "Vuelo nro",
+						'#vuelo_horario_llegada#'	=> "Vuelo horario llegada",
+						'#reserva_numero#'			=> "Reserva nro",
+						'#reserva_alta#'			=> "Reserva alta",
+						'#reserva_precio#'			=> "Reserva precios",
+						'#terminos#'				=> "Terminos y condiciones",
+						'#nota#'					=> "Nota",
+						'#hotel#'					=> "Hotel",
+						'#entrada#'					=> "Entrada",
+						'#salida#'					=> "Salida",
+						'#adultos#'					=> "Adultos",
+						'#menores#'					=> "Menores",
+						'#huesped_nombre#'			=> "Huesped nombre",
+						'#huesped_apellido#'		=> "Huesped apellido",
+						'#huesped_email#'			=> "Huesped email",
+						'#huesped_telefono#'		=> "Huesped teléfono",
+						'#huesped_id_tipo_tarjeta#'	=> "Tarjeta tipo",
+						'#tarjeta_numero#'			=> "Tarjeta nro",
+						'#tarjeta_pin#'				=> "Tarjeta pin",
+						'#tarjeta_vencimiento#'		=> "Tarjeta vencimiento",
+						'#vuelo_numero#'			=> "Vuelo nro",
+						'#vuelo_horario_llegada#'	=> "Vuelo horario llegada",
+						'#vuelo_aerolinea#'			=> "Vuelo aerolinea",
+						'#reserva_numero#'			=> "Reserva nro",
+						'#reserva_alta#'			=> "Reserva alta",
+						'#reserva_precio#'			=> "Reserva precios",
+						'#terminos#'				=> "Terminos y condiciones",
+						'#nota#'					=> "Nota");
+		$reservas=buscarReservas();
+		$mensajes=buscarMensajes();
+		
+		$db=array_merge($reservas, $mensajes);
+		$db['option'] = $option;
+		$db['config_email'] = $this->config_email_reservas_model->getConfig($id);
+					
+		$this->load->view('backend/head.php');
+		$this->load->view('backend/menu.php', $db);	
+		$this->load->view('backend/modal.php');
+		$this->load->view('backend/hoteles_correo.php');
+		$this->load->view('backend/footer.php');
+	}
+	
+	
+	public function hoteles_email_mensaje($id = null)
+	{
+		if($this->input->post('aceptar')){
+			$registro=array('correo'					=> $this->input->post('correo'),
+							'id_config_email_mensaje' 	=> $id);
+			$id_modificado = $this->config_email_mensajes_model->updateConfig($registro);
+		}
+		$option=array(	'' 					=> "", 
+						'#mensaje#'			=> "mensaje",
+						'#fecha_envio#'		=> "fecha_envio",
+						'#emisor_email#'	=> "emisor",
+						'#emisor_nombre#'	=> "nombre",
+						'#emisor_apellido#'	=> "apellido",
+						'#emisor_telefono#'	=> "telefono",
+						'#hotel#'			=> "hotel");
+						
+		$reservas=buscarReservas();
+		$mensajes=buscarMensajes();
+		
+		$db=array_merge($reservas, $mensajes);
+		$db['option'] = $option;
+		$db['config_email'] = $this->config_email_mensajes_model->getConfig($id);
+					
+		$this->load->view('backend/head.php');
+		$this->load->view('backend/menu.php', $db);	
+		$this->load->view('backend/modal.php');
+		$this->load->view('backend/hoteles_correo.php');
+		$this->load->view('backend/footer.php');
+	}
 
+	
+	public function hoteles_email_habitacion($id = null)
+	{
+		if($this->input->post('aceptar')){
+			$registro=array('correo'					=> $this->input->post('correo'),
+							'id_config_email_habitacion'=> $id);
+			$id_modificado = $this->config_email_habitacion_model->updateConfig($registro);
+		}
+		$option=array(	'' 					=> "", 
+						'#mensaje#'			=> "mensaje",
+						'#fecha_envio#'		=> "fecha_envio",
+						'#emisor_email#'	=> "emisor",
+						'#emisor_nombre#'	=> "nombre",
+						'#emisor_apellido#'	=> "apellido",
+						'#hotel#'			=> "hotel",
+						'#habitacion#' 		=> "habitacion");
+						
+		$reservas=buscarReservas();
+		$mensajes=buscarMensajes();
+		
+		$db=array_merge($reservas, $mensajes);
+		$db['option'] = $option;
+		$db['config_email'] = $this->config_email_habitacion_model->getConfig($id);
+					
+		$this->load->view('backend/head.php');
+		$this->load->view('backend/menu.php', $db);	
+		$this->load->view('backend/modal.php');
+		$this->load->view('backend/hoteles_correo.php');
+		$this->load->view('backend/footer.php');
+	}
+	
 
 /**********************************************************************************
  **********************************************************************************
@@ -345,32 +474,12 @@ class Hotel extends CI_Controller {
 				 ->display_as('id_tipo_correo','Tipo')				 
 				 ->display_as('id_reserva','Reserva');
 			
+			$crud->fields('emails_reserva');			
+						
 			$crud->set_subject('Email Reserva');
 			
 			$crud->field_type('id_tipo_correo', 'readonly');
 			$crud->field_type('id_hotel', 'readonly');
-			$crud->field_type('hotel', 'true_false'); 
-		  	$crud->field_type('entrada', 'true_false'); 
-		  	$crud->field_type('salida', 'true_false');  
-		  	$crud->field_type('adultos', 'true_false');  
-		  	$crud->field_type('menores', 'true_false');  
-		  	$crud->field_type('cantidad', 'true_false');  
-		  	$crud->field_type('habitacion', 'true_false');  
-		  	$crud->field_type('nombre', 'true_false');  
-		  	$crud->field_type('apellido', 'true_false');  
-		  	$crud->field_type('email', 'true_false');  
-		  	$crud->field_type('telefono', 'true_false');  
-		  	$crud->field_type('tipo_tarjeta', 'true_false');  
-		  	$crud->field_type('tarjeta', 'true_false');  
-		  	$crud->field_type('pin', 'true_false');  
-		  	$crud->field_type('vencimiento', 'true_false');  
-		  	$crud->field_type('nro_de_vuelo', 'true_false');  
-		  	$crud->field_type('horario_llegada', 'true_false');  
-		  	$crud->field_type('aerolinea', 'true_false');  
-		  	$crud->field_type('id_nota', 'true_false');  
-		  	$crud->field_type('id_reserva', 'true_false');  
-			$crud->field_type('precio', 'true_false');
-			$crud->field_type('fecha', 'true_false');
 			$crud->field_type('delete', 'hidden');
 			
 			 //$crud->callback_field('emails_reserva',array($this,'field_callback_1'));
@@ -381,11 +490,15 @@ class Hotel extends CI_Controller {
 		  	 
 			$crud->unset_add();
 			$crud->unset_delete();
+			$crud->unset_read();
+			
+			$crud->add_action('Redactar', '', 'admin/hotel/hoteles_email_reserva','icon-edit');
 			
 			$output = $crud->render();
 
 			$this->_example_output($output);
 	}	
+
 
 	
 		
@@ -420,18 +533,12 @@ class Hotel extends CI_Controller {
 				 ->display_as('id_tipo_correo','Tipo')
 				 ->display_as('telefono ','Teléfono');
 			
+			$crud->fields('emails_mensaje');
+			
 			$crud->set_subject('Email Mensaje');
 			
 			$crud->field_type('id_tipo_correo', 'readonly');
 			$crud->field_type('id_hotel', 'readonly');
-			$crud->field_type('mensaje', 'true_false');
-			$crud->field_type('hotel', 'true_false'); 
-		  	$crud->field_type('nombre', 'true_false');  
-		  	$crud->field_type('apellido', 'true_false');  
-		  	$crud->field_type('email', 'true_false');  
-		  	$crud->field_type('telefono', 'true_false');
-			$crud->field_type('habitacion', 'true_false'); 
-			$crud->field_type('fecha', 'true_false');
 			$crud->field_type('delete', 'hidden');  
 			
 			$crud->set_relation('id_hotel','hoteles','hotel');
@@ -439,6 +546,10 @@ class Hotel extends CI_Controller {
 		  	 
 			$crud->unset_add();
 			$crud->unset_delete();
+			$crud->unset_read();
+			
+			$crud->add_action('Redactar', '', 'admin/hotel/hoteles_email_mensaje','icon-edit');
+			
 			
 			$output = $crud->render();
 
@@ -475,18 +586,13 @@ class Hotel extends CI_Controller {
 				 ->display_as('habitacion','Habitación')
 				 ->display_as('id_hotel','Hotel')
 				 ->display_as('id_tipo_correo','Tipo');
+				 
+			$crud->fields('emails_habitacion');
 			
 			$crud->set_subject('Email Mensaje');
 			
 			$crud->field_type('id_tipo_correo', 'readonly');
 			$crud->field_type('id_hotel', 'readonly');
-			$crud->field_type('mensaje', 'true_false');
-			$crud->field_type('hotel', 'true_false'); 
-		  	$crud->field_type('nombre', 'true_false');  
-		  	$crud->field_type('apellido', 'true_false');  
-		  	$crud->field_type('email', 'true_false');  
-		  	$crud->field_type('habitacion', 'true_false');
-			$crud->field_type('fecha', 'true_false');
 			$crud->field_type('delete', 'hidden');   
 			
 			$crud->set_relation('id_hotel','hoteles','hotel');
@@ -494,6 +600,9 @@ class Hotel extends CI_Controller {
 		  	 
 			$crud->unset_add();
 			$crud->unset_delete();
+			$crud->unset_read();
+			
+			$crud->add_action('Redactar', '', 'admin/hotel/hoteles_email_habitacion','icon-edit');
 			
 			$output = $crud->render();
 
@@ -510,13 +619,7 @@ class Hotel extends CI_Controller {
 	function insert_config($datos, $id){
 		$registro = array(
 	        "id_tipo_correo" 	=> 1,
-	        "id_hotel" 			=> $id,
-	        "hotel" 			=> 1,
-	        "nombre" 			=> 1,
-	        "apellido" 			=> 1,
-	        "email" 			=> 1,
-	        "telefono" 			=> 1,
-	        "fecha" 			=> 1
+	        "id_hotel" 			=> $id
 	    );
 	 
 	    $this->db->insert('config_email_reserva',$registro);
@@ -672,3 +775,5 @@ class Hotel extends CI_Controller {
 
 }
 ?>
+
+

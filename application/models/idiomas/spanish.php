@@ -98,7 +98,8 @@
 	$texto['en_breve'] 				= 'En breve nos comunicaremos con usted.';
 	$texto['envio_habitacion']		= 'La habitación ha sido enviada.';
 	$texto['su']					= 'su';
-	$texto['ayuda_pin']				= '¡Sin gastos de transaccion! Su tarjeta de Crédito solo es necesaria para garantiza su reserva. 
-   Los datos de tarjeta de credito dejados en garantía deberán ser válidos para confirmar su reserva, caso contrario la misma podrá ser dada de baja sin previo aviso. Dicha tarjeta es solo en concepto de garantía de reserva y será utilizada únicamente en caso de no-show o anulación fuera de termino, el monto total deberá ser abonado en el hotel.';
+	$texto['ayuda_pin']				= ' ¡Sin gastos de transacción! Su tarjeta de Crédito solo es necesaria para garantiza su reserva. 
+   Los datos de tarjeta de crédito dejados en garantía deberán ser válidos para confirmar su reserva, caso contrario la misma podrá ser dada de baja sin previo aviso. Dicha tarjeta es solo en concepto de garantía de reserva y será utilizada únicamente en caso de no-show o anulación fuera de término, el monto total deberá ser abonado en el hotel.
+';
 	
 ?>	

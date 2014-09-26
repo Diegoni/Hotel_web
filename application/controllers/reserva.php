@@ -208,7 +208,8 @@ class Reserva extends CI_Controller {
 		$id_reserva=$this->reservas_model->insertReserva($reserva);
 		
 		
-		if(null !== $this->input->post('nro_de_vuelo') || null !== $this->input->post('horario_llegada')){
+		if("" !== $this->input->post('nro_de_vuelo') || "" !== $this->input->post('horario_llegada')){
+			echo $this->input->post('nro_de_vuelo') ;	
 			$vuelo=array(
 				'id_huesped'		=> $id_huesped,
 				'nro_vuelo' 		=> $this->input->post('nro_de_vuelo'),
@@ -218,6 +219,11 @@ class Reserva extends CI_Controller {
 			);
 		
 			$id_vuelo=$this->vuelos_model->insertVuelo($vuelo);
+			$aerolineas=$this->aerolineas_model->getAerolinea($this->input->post('aerolinea'));
+			foreach ($aerolineas as $aerolinea) {
+				$vuelo['aerolinea']=$aerolinea;
+			}
+			
 		}else{
 			$vuelo =array();
 		}

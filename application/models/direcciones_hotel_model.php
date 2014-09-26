@@ -15,5 +15,6 @@ class Direcciones_hotel_model extends CI_Model {
 			return FALSE;
 		}
 	}
+	
 } 
 ?>
