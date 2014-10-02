@@ -29,6 +29,7 @@
 	$texto['idiomas']				= 'Idiomas';
 	$texto['no_habitaciones']		= 'No hay habitaciones disponibles';
 	$texto['otras_opciones']		= 'Otras opciones disponibles';	
+	$texto['nro_habitaciones']		= 'Número de habitaciones';
 	
 	/* reserva datos personales */
 	$texto['datos_personales']		= 'Datos personales';

@@ -11,7 +11,7 @@
 			  		<div class="panel-body">
 			  			<div class="badger-left badger-hotel" data-badger="<?php echo $articulo->titulo ?>">
 							<div class="descripcion">
-								<blockquote>
+								<!--<blockquote>-->
 								  <?php
 					  			if($articulo->archivo_url!=""){?>
 					    			<img class="img-circle img-banner" src="<?php echo base_url().'assets/uploads/articulos/'.$articulo->archivo_url?>">
@@ -19,7 +19,7 @@
 					    		<div class="text-banner">
 					    			<?php echo $articulo->articulo; ?>
 					    		</div>
-								</blockquote>
+								<!--</blockquote>-->
 							</div>
 							<?php if($articulo->id_tarifa_temporal!=0){
 								$fechas=$this->tarifas_temporales_model->getFechas($articulo->id_tarifa_temporal);

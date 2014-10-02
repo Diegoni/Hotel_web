@@ -5,7 +5,7 @@
 }?>
 
 <div class="row">
-	<div class="col-md-4">
+	<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-hotel">
 	  		<div class="panel-heading"><?php echo $texto['reserva_online']?></div>
 	  		<div class="panel-body" id="panel-form-reserva">
@@ -126,6 +126,7 @@
 		<?php } ?>
 		-->
 	</div>
+</div>
 	
 	
 	

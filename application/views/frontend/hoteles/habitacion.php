@@ -58,7 +58,7 @@
 											<span class="icon-chevron-down"></span>
 										</a>
 										<a href="#" class="btn btn-default btn-lg" title="<?php echo $texto['email']?>" rel="tooltip" data-toggle="modal" data-target="#habitacion<?php echo $habitacion->id_habitacion?>">
-											<span class="icon-share"></span>
+											<span class="icon-paperplane"></span>
 										</a>
 			                    	
 						</div>

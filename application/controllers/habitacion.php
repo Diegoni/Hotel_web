@@ -43,7 +43,7 @@ class Habitacion extends CI_Controller {
 								
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
-		$this->load->view('frontend/formulario_consulta');
+		//$this->load->view('frontend/formulario_consulta');
 		$this->load->view('frontend/habitacion/view');
 		$this->load->view('frontend/footer');
 		

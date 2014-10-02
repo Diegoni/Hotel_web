@@ -71,7 +71,7 @@ class Reserva extends CI_Controller {
 				
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
-		$this->load->view('frontend/formulario_reserva');
+		//$this->load->view('frontend/formulario_reserva_horizontal');
 		$this->load->view('frontend/reserva/steps');
 		$this->load->view('frontend/reserva/habitacion');
 		$this->load->view('frontend/footer');
@@ -114,7 +114,7 @@ class Reserva extends CI_Controller {
 		
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
-		$this->load->view('frontend/reserva/ayuda');
+		//$this->load->view('frontend/reserva/ayuda');
 		$this->load->view('frontend/reserva/steps');
 		$this->load->view('frontend/reserva/datos');
 		$this->load->view('frontend/footer');	
@@ -209,7 +209,6 @@ class Reserva extends CI_Controller {
 		
 		
 		if("" !== $this->input->post('nro_de_vuelo') || "" !== $this->input->post('horario_llegada')){
-			echo $this->input->post('nro_de_vuelo') ;	
 			$vuelo=array(
 				'id_huesped'		=> $id_huesped,
 				'nro_vuelo' 		=> $this->input->post('nro_de_vuelo'),
@@ -220,12 +219,13 @@ class Reserva extends CI_Controller {
 		
 			$id_vuelo=$this->vuelos_model->insertVuelo($vuelo);
 			$aerolineas=$this->aerolineas_model->getAerolinea($this->input->post('aerolinea'));
+			
 			foreach ($aerolineas as $aerolinea) {
-				$vuelo['aerolinea']=$aerolinea;
+				$vuelo['aerolinea']=$aerolinea->aerolinea;
 			}
 			
 		}else{
-			$vuelo =array();
+			$vuelo = array();
 		}
 				
 		$db['habitaciones']=$this->reserva_habitacion_model->insertReserva_habitacion($id_reserva, $habitaciones);
@@ -235,7 +235,7 @@ class Reserva extends CI_Controller {
 		
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
-		$this->load->view('frontend/reserva/ayuda');
+		//$this->load->view('frontend/reserva/ayuda');
 		$this->load->view('frontend/reserva/steps');
 		$this->load->view('frontend/reserva/pagos');
 		$this->load->view('frontend/footer');

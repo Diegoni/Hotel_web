@@ -10,7 +10,8 @@ function step($step, $id){
 	
 	return $cadena;
 } ?>
-<div class="col-md-8">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
 	<div class="panel panel-default">
 	<div class="row bs-wizard" style="border-bottom:0;">
 	<div class="col-xs-3 bs-wizard-step <?php echo step($step, 1);?>">

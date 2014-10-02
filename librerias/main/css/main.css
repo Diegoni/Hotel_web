@@ -76,7 +76,7 @@ padding-right: 20px;
   	width: 45px;  /* Ancho del botón */
   	/*display: table;*/
   	border-radius: 100%;
-  	font-size: 1em; 
+  	font-size: 1.25em; 
   	cursor: pointer;
     box-shadow:
 	/* Sombras externa */
@@ -101,8 +101,10 @@ padding-right: 20px;
 }
 
 .logo_img_menu{
+	position: relative;
+	top: 45px;
 	width: 75%;
-	padding-top: 35px;
+	/*padding-top: 35px;*/
 	-webkit-transform:scale(1); /*Webkit: Scale down image to 0.8x original size*/
 	-moz-transform:scale(1); /*Mozilla scale version*/
 	-o-transform:scale(1); /*Opera scale version*/
@@ -202,6 +204,8 @@ padding-right: 20px;
 .moneda-menu{
 	height: 25;
 	width: 25;
+	margin-top: 15px;
+	margin-left: 15px;
 }
 
 .footer-text{
@@ -257,7 +261,7 @@ right: 0;
 }
 .panel-hotel > .panel-heading {
 	font-family: 'Cinzel-Regular';
-	font-size: 25px;
+	font-size: 20px;
   	color: #f8eda7;
   	background-color: #57101c;
   	border-color: #5c1b21;
@@ -468,7 +472,7 @@ right: 0;
     right:0;
     background:rgba(192, 192, 192, 0.5);
     width:100%;
-    height:85%;
+    height:90%;
     padding:2%;
     display: none;
     text-align:center;
@@ -569,7 +573,8 @@ a.list-group-item.active small {
     color:#fff;
 }
 .stars {
-    margin:20px auto 1px;    
+	text-align: inherit;
+	/* margin: 20px auto 1px; */  
 }
 
 
@@ -896,7 +901,20 @@ color: #333;
 
 
 /*******************************************************************************
-							Brillo
+							error 404
 /*******************************************************************************/
-
+.panel-404{
+    text-align:center;
+    cursor:pointer;
+    font-family: 'Raleway',sans-serif;
+}
+.panel-404 > .panel-footer {
+    color: #fff;
+    background-color: #47c8ed;    
+    display:none;
+    text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
+}
+.panel-404 i{
+    font-size: 5em;
+    }
 

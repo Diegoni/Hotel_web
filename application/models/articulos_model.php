@@ -14,7 +14,7 @@ class Articulos_model extends CI_Model {
 									articulos.fecha_despublicacion=0 ) AND
 									articulos.$datos[columna] = '$datos[dato]' and
 									(articulos.id_idioma = 0 OR articulos.id_idioma = '$id_idioma' )
-									ORDER BY articulos.id_articulo");
+									ORDER BY articulos.fecha_publicacion");
 			
 		}else{
 			$query = $this->db->query("SELECT * FROM articulos 

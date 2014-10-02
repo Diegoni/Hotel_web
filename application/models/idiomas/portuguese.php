@@ -14,6 +14,7 @@
 	$texto['monedas'] 				= 'Moedas';
 	$texto['galeria'] 				= 'Galeria';
 	$texto['promociones'] 			= 'Promoções';
+	$texto['nro_habitaciones']		= 'Número de quartos';
 	
 	/* reserva habitacions */
 	$texto['leer_mas'] 				= 'Leia mais';

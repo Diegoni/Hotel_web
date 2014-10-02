@@ -2,7 +2,6 @@
 <div class="container">	
 	<div class="row menu">
 	<div class="col-md-4">
-	<a href="<?php echo base_url().'index.php/admin/home/logout/'?>">Admin</a>	
 		<?php  
 			foreach ($hoteles as $hotel) {
 				$id_hotel=$hotel->id_hotel;
@@ -16,8 +15,13 @@
 			<img src="<?php echo base_url().'assets/uploads/logos/'.$logo_url[0];?>" class="logo_img">
 		</a>
 		</center>
-	</div>	                
-    <div class="col-md-7">
+	</div>	
+	<div class="col-md-2">
+		<ul class="list-unstyled pull-right">
+   			
+		</ul>
+	</div>                
+    <div class="col-md-6">
     	<div class="row">
     		<?php foreach ($hoteles_menu as $hotel) { ?>
     			<?php if($id_hotel!=$hotel->id_hotel){ ?>
@@ -33,19 +37,78 @@
 	</div>
 	<div class="col-md-1">
 		<ul class="list-unstyled pull-right">
-   			<?php foreach ($idiomas as $idioma) { ?>
-			<li class="li-moneda">
-				<input class="moneda-menu " 
-				name="boton1" type="image" 
-				title="<?php echo $idioma->idioma;?>" rel="tooltip" 
-				src="<?php echo base_url().'assets/uploads/idiomas/'.$idioma->imagen;?>" 
-				onclick="document.cookie = 'idioma=<?php echo $idioma->id_idioma ?>', location.reload()">
-			</li>
-			<?php } ?>
+   			
 		</ul>
 	</div>
 	</div>
 	
+
+
+<!---------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+					
+							Sub-menú
+
+-----------------------------------------------------------------------------------
+---------------------------------------------------------------------------------->	
+
+
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+	</div>
+	
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<ul class="nav navbar-nav">
+			<li>
+				<a class="panel-menu" href="<?php echo base_url().'index.php/hoteles/habitaciones/'.$id_hotel; ?>">
+					<?php echo $texto['habitaciones'] ?>
+				</a>
+			</li>
+			<li>
+				<a class="panel-menu" href="<?php echo base_url().'index.php/categoria/articulos/6/'.$id_hotel; ?>">
+					<?php echo $texto['servicios'] ?>
+				</a>
+			</li>
+			<li>
+				<a class="panel-menu" href="<?php echo base_url().'index.php/hoteles/galeria/'.$id_hotel; ?>">
+					<?php echo $texto['galeria'] ?>
+				</a>
+			</li>
+			<li>
+				<a class="panel-menu" href="<?php echo base_url().'index.php/categoria/articulos/3/'.$id_hotel; ?>">
+					<?php echo $texto['promociones'] ?>
+				</a>
+			</li>
+			<li>
+				<a class="panel-menu" href="<?php echo base_url().'index.php/hoteles/como_llegar/'.$id_hotel; ?>">
+					<?php echo $texto['como_llegar'] ?>
+				</a>
+			</li>
+		</ul>
+    
+		<ul class="nav navbar-nav navbar-right">
+		<?php foreach ($idiomas as $idioma) { ?>
+			<li class="li-moneda">
+				<input class="moneda-menu" 
+					name="boton1" type="image" 
+					title="<?php echo $idioma->idioma;?>" rel="tooltip" 
+					src="<?php echo base_url().'assets/uploads/idiomas/'.$idioma->imagen;?>" 
+					onclick="document.cookie = 'idioma=<?php echo $idioma->id_idioma ?>', location.reload()">
+			</li>
+		<?php } ?>
+		</ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
 
 <!---------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------
@@ -121,6 +184,7 @@
 							$direccion[]=$hotel->calle." - ".$hotel->provincia;
 						}						
 } ?>	
+
 
 
 

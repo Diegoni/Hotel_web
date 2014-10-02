@@ -2,22 +2,8 @@
 	<div class="col-md-8">
 		<div class="panel panel-hotel">
 			<!-- al final del archivo esta el codigo para un menu dinamico en vez de este estatico-->
-			<div class="panel-heading" style="padding: 14px 10px;">
-				<a class="panel-menu" href="<?php echo base_url().'index.php/hoteles/habitaciones/'.$id_hotel; ?>">
-					<?php echo $texto['habitaciones'] ?>
-				</a>
-				<a class="panel-menu" href="<?php echo base_url().'index.php/categoria/articulos/6/'.$id_hotel; ?>">
-					<?php echo $texto['servicios'] ?>
-				</a>
-				<a class="panel-menu" href="<?php echo base_url().'index.php/hoteles/galeria/'.$id_hotel; ?>">
-					<?php echo $texto['galeria'] ?>
-				</a>
-				<a class="panel-menu" href="<?php echo base_url().'index.php/categoria/articulos/3/'.$id_hotel; ?>">
-					<?php echo $texto['promociones'] ?>
-				</a>
-				<a class="panel-menu" href="<?php echo base_url().'index.php/hoteles/como_llegar/'.$id_hotel; ?>">
-					<?php echo $texto['como_llegar'] ?>
-				</a>
+			<div class="panel-heading">
+				<?php echo "Mendoza te espera"; ?>
 			</div>
 			
 	  	<div class="panel-body" id="panel-carrusel">
@@ -41,9 +27,11 @@
 				foreach ($imagenes_carrusel as $imagenes) { ?>
 				<div class="item <?php if($i==0){echo 'active';}?>">
           			<img alt="slide" src="<?php echo base_url().'assets/uploads/carrusel/'.$imagenes->imagen;?>">
-					<div class="carousel-caption">
-						<p><?php echo $imagenes->descripcion;?></p>
-					</div>
+					<?php if($imagenes->descripcion!=""){ ?>
+						<div class="carousel-caption">
+							<p><?php echo $imagenes->descripcion;?></p>
+						</div>
+					<?php } ?>
         		</div>
         		<?php $i=$i+1?>
 				<?php } ?>

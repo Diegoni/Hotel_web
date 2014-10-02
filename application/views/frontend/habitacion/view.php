@@ -1,4 +1,5 @@
-	<div class="col-md-8">
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-hotel">
 			<div class="panel-heading"><?php echo $texto['habitacion']?></div>
 		  	<div class="panel-body">
@@ -11,9 +12,12 @@
 						$i=0;
 						foreach ($imagenes_habitacion as $imagenes) { ?>
 						<a href="#" class="item <?php if($i==0){echo 'active';}?>" class="thumbnail">
-							
-								<img alt="slide" src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>" ">
-															
+							<img alt="slide" src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>" ">
+							<?php if($imagenes->descripcion!=""){ ?>
+								<div class="carousel-caption">
+									<p><?php echo $imagenes->descripcion;?></p>
+								</div>
+							<?php } ?>							
 						</a>
 						<?php $i=$i+1?>
 						<?php } ?>
@@ -34,9 +38,11 @@
 				<div class="badger-left badger-hotel" data-badger="<?php echo $texto['servicios']?>">
 				<div class="servicios">
 					<ul class="list-unstyled">
+					<?php if($servicios){ ?>
 					<?php foreach ($servicios as $servicio) {
 						echo "<li><i class='fa fa-check'></i> ".$servicio->servicio."<br></li>";
 					} ?>	
+					<?php } ?>
 					</ul>
 					
 				</div>

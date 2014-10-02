@@ -1,4 +1,4 @@
-<div class="col-md-8">
+<div class="col-md-8 col-md-offset-2">
 	<div class="panel panel-default">
 		<!--<div class="panel-heading">Habitación</div>-->
 		<div class="panel-body">
@@ -42,15 +42,15 @@
         			<div class="col-md-3 text-center">
         				<h2><small> <?php echo $habitacion->habitacion; ?> </small></h2>
         				<p class="list-group-item-text"> 
-							<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion.'/'.$id_hotel;?>" class="btn btn-default btn-lg" title="<?php echo $texto['leer_mas']?>" rel="tooltip">
+							<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion.'/'.$id_hotel;?>" class="btn btn-hotel boton-redondo-medium" title="<?php echo $texto['leer_mas']?>" rel="tooltip">
 								<span class="icon-chevron-down"></span>
 							</a>
-							<a href="#" class="btn btn-default btn-lg" title="<?php echo $texto['email']?>" rel="tooltip" data-toggle="modal" data-target="#habitacion<?php echo $habitacion->id_habitacion?>">
-								<span class="icon-share"></span>
+							<a href="#" class="btn btn-hotel boton-redondo-medium" title="<?php echo $texto['email']?>" rel="tooltip" data-toggle="modal" data-target="#habitacion<?php echo $habitacion->id_habitacion?>">
+								<span class="icon-paperplane"></span>
 							</a>
                     	</p>
         			</div>
-          			<div class="media col-md-3 thumbnail">
+          			<div class="media col-md-5 thumbnail">
           				<div class="caption">
 							<h4><?php echo $texto['habitacion']?></h4>
 							<!--<p>comentario</p>-->
@@ -65,7 +65,7 @@
 								$i=0;
 								foreach ($imagenes_habitacion as $imagenes) { ?>
 									<a href="#" class="item <?php if($i==0){echo 'active';}?>" class="thumbnail">								
-										<img alt="slide" src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>" style="max-width: 160px; max-height: 120px;">
+										<img alt="slide" src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>"> <!--style="max-width: 160px; max-height: 120px;"-->
 									</a>
 									<?php $i=$i+1?>
 								<?php } ?>
@@ -74,7 +74,49 @@
 					</div>
                 	
 			                	
-                	<div class="col-md-3 text-center">
+                	<div class="col-md-4 text-center">
+                		
+                		<h3>
+							<small> 
+								<?php echo $texto['nro_habitaciones'] ?>
+							</small>
+						</h3>
+						<?php
+							$cantidad=$habitacion->cantidad;
+								
+							if(isset($reservas_habitacion)){
+								foreach ($reservas_habitacion as $disp) {
+									if($habitacion->id_habitacion==$disp->id_habitacion){
+										$cantidad=$cantidad-$disp->cantidad; 
+									}
+								}	
+							}
+									
+							if(isset($disponibilidades)){
+								foreach ($disponibilidades as $disponibilidad) {
+									if($habitacion->id_habitacion==$disponibilidad->id_habitacion){	
+										$cantidad=0;
+									}
+								}
+							}																			
+						?>
+						<select name="habitacion<?php echo $habitacion->id_habitacion?>" class="form-control habitacion" onChange="validarHabitacion()">
+							<?php for ($i=0; $i <= $cantidad; $i++) { ?>
+								<option value="<?php echo $i;?>">
+									<?php 
+										if($cantidad==0){
+											echo $texto['sin_disponibilidad'];
+										}else{
+											echo $i;
+											if($i>0){
+												echo "(".$cambio->simbolo." ".number_format($precio*$i/$cambio->valor*$noches, 2, ',', ' ').")";	
+											}	
+										}											 
+									?>
+								</option>
+							<?php }?>
+						</select>
+                		
                 		<?php
                 		$precio=$habitacion->precio;
 						$precio_con_descuento=0;
@@ -118,66 +160,38 @@
 							echo "</h3>";
 						}else{
 							echo "</h2>";
-						}; ?>   
-						<div class="stars" >
-                        	<?php echo $texto['adultos']?>: <?php 
-                        	for ($i=0; $i < $habitacion->adultos; $i++) { 
-								echo "<i rel='tooltip' title='".$texto['maximo_adultos']."' class='fa fa-user'></i> ";
-							}
-                        	?>  
-                    	</div>
-                    		<?php echo $texto['menores']?>: <?php 
-                    		if( $habitacion->menores>0 ){
-                    			for ($i=0; $i < $habitacion->menores; $i++) { 
-									echo "<i rel='tooltip' title='".$texto['maximo_menores']."' class='fa fa-child'></i> ";
-								}	
-                    		}else{
-                    			echo $texto['sin_menores'];
-                    		}
-                    		?>
-                    		<?php } ?>
-                    </div>
-                    <div class="col-md-3">
-						<h2>
-							<small> 
-								<?php echo $texto['cantidad'] ?>
-							</small>
-						</h2>
-						<?php
-							$cantidad=$habitacion->cantidad;
-								
-							if(isset($reservas_habitacion)){
-								foreach ($reservas_habitacion as $disp) {
-									if($habitacion->id_habitacion==$disp->id_habitacion){
-										$cantidad=$cantidad-$disp->cantidad; 
+						}; ?>  
+						
+						<div class="row">
+							<div class="col-md-1">
+							</div> 
+							<div class="col-md-10" style="text-align: initial;">
+								<div class="stars" >
+		                        	<?php echo $texto['adultos']?>: <?php 
+		                        	for ($i=0; $i < $habitacion->adultos; $i++) { 
+										echo "<i rel='tooltip' title='".$texto['maximo_adultos']."' class='fa fa-user'></i> ";
 									}
-								}	
-							}
-									
-							if(isset($disponibilidades)){
-								foreach ($disponibilidades as $disponibilidad) {
-									if($habitacion->id_habitacion==$disponibilidad->id_habitacion){	
-										$cantidad=0;
-									}
-								}
-							}																			
-						?>
-						<select name="habitacion<?php echo $habitacion->id_habitacion?>" class="form-control habitacion" onChange="validarHabitacion()">
-							<?php for ($i=0; $i <= $cantidad; $i++) { ?>
-								<option value="<?php echo $i;?>">
-									<?php 
-										if($cantidad==0){
-											echo $texto['sin_disponibilidad'];
-										}else{
-											echo $i;
-											if($i>0){
-												echo "(".$cambio->simbolo." ".number_format($precio*$i/$cambio->valor*$noches, 2, ',', ' ').")";	
-											}	
-										}											 
-									?>
-								</option>
-							<?php }?>
-						</select>
+		                        	?>  
+		                    	</div>
+		                    	<div class="stars" >
+		                    		<?php echo $texto['menores']?>: <?php 
+		                    		if( $habitacion->menores>0 ){
+		                    			for ($i=0; $i < $habitacion->menores; $i++) { 
+											echo "<i rel='tooltip' title='".$texto['maximo_menores']."' class='fa fa-child'></i> ";
+										}	
+		                    		}else{
+		                    			echo $texto['sin_menores'];
+		                    		}
+		                    		?>
+		                    		<?php } ?>
+		                    	</div>
+		                    </div>
+		                    <div class="col-md-1">
+							</div> 
+						</div>
+                    <!--</div>
+                    <div class="col-md-3">-->
+						
                 	</div>	
                 </div>
          	</div>
