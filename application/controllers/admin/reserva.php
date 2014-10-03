@@ -65,15 +65,21 @@ class Reserva extends CI_Controller {
 		
 		if($this->input->post('aceptar')){
 			if($this->input->post('id_nota')!=0){
-				$nota=array('nota'			=>$this->input->post('nota'),
-							'id_nota'		=>$this->input->post('id_nota'));
+					
+				$nota=array('nota'			=> $this->input->post('nota'),
+							'id_nota'		=> $this->input->post('id_nota'));
 				$this->notas_model->updateNota($nota);
 				$id_nota=$this->input->post('id_nota');
+				
 			}else if($this->input->post('nota')!=""){
-				$nota=array('nota'			=>$this->input->post('nota'));
+					
+				$nota=array('nota'			=> $this->input->post('nota'));
 				$id_nota=$this->notas_model->insertNota($nota);
+				
 			}else{
+				
 				$id_nota=0;
+				
 			}
 			
 			$array_entrada = explode("/", $this->input->post('entrada')); 
@@ -81,21 +87,22 @@ class Reserva extends CI_Controller {
 			$salida_array = explode("/", $this->input->post('salida'));	
 			$salida=$salida_array['2'].'/'.$salida_array['1'].'/'.$salida_array['0'];
 			
-			$reserva=array(	'id_reserva'	=>$id,
-							'id_huesped'	=>$this->input->post('id_huesped'),
-							'entrada'		=>$entrada,
-							'salida'		=>$salida,
-							'adultos'		=>$this->input->post('adultos'),
-							'menores'		=>$this->input->post('menores'),
-							'total'			=>$this->input->post('total'),
-							'id_estado_reserva'=>$this->input->post('id_estado_reserva'),
-							'id_nota'		=>$id_nota
+			$reserva=array(	'id_reserva'	=> $id,
+							'id_huesped'	=> $this->input->post('id_huesped'),
+							'entrada'		=> $entrada,
+							'salida'		=> $salida,
+							'adultos'		=> $this->input->post('adultos'),
+							'menores'		=> $this->input->post('menores'),
+							'total'			=> $this->input->post('total'),
+							'id_estado_reserva'=> $this->input->post('id_estado_reserva'),
+							'id_nota'		=> $id_nota
 							);
 			$this->reservas_model->updateReserva($reserva);
 			
 			foreach ($this->input->post('id_habitaciones') as $key => $value) {
 				$habitaciones[]=$value;
 			}
+			
 			$nuevas=$this->reserva_habitacion_model->cambioHabitaciones($habitaciones, $id);
 			$mensaje="La actualización se ha realizado correctamente";	
 			
@@ -106,6 +113,7 @@ class Reserva extends CI_Controller {
 		}else if($this->input->post('cantidad')){
 				
 			$reserva_habitacion=$this->reserva_habitacion_model->getReserva($id);
+			
 			foreach ($reserva_habitacion as $row) {
 				$registro=array(
 							'id_reserva' 		=> $id,
@@ -125,34 +133,34 @@ class Reserva extends CI_Controller {
 			$vuelos_huesped=$this->vuelos_model->getVuelo($id);
 			
 			foreach ($huespedes as $value) {
-				$huesped['nombre']=$value->nombre;
-				$huesped['apellido']=$value->apellido;
+				$huesped['nombre']			= $value->nombre;
+				$huesped['apellido']		= $value->apellido;
 			}
 			
 			foreach ($emails_huesped as $value) {
-				$huesped['email']=$value->email;
+				$huesped['email']			= $value->email;
 			}
 			
 			foreach ($telefonos_huesped as $value) {
-				$huesped['telefono']=$value->telefono;
+				$huesped['telefono']		= $value->telefono;
 			}
 			
 			foreach ($tarjetas_huesped as $value) {
-				$tarjeta['id_tipo_tarjeta']=$value->id_tipo_tarjeta;
-				$tarjeta['tarjeta']=$value->tarjeta;
-				$tarjeta['pin']=$value->pin;
-				$tarjeta['vencimiento']=$value->vencimiento;
+				$tarjeta['id_tipo_tarjeta']	= $value->id_tipo_tarjeta;
+				$tarjeta['tarjeta']			= $value->tarjeta;
+				$tarjeta['pin']				= $value->pin;
+				$tarjeta['vencimiento']		= $value->vencimiento;
 			}
 
 			foreach ($vuelos_huesped as $value) {
-				$vuelo['nro_vuelo']=$value->nro_vuelo;
-				$vuelo['horario_llegada']=$value->horario_llegada;
+				$vuelo['nro_vuelo']			= $value->nro_vuelo;
+				$vuelo['horario_llegada']	= $value->horario_llegada;
 			}
 			
 			$aerolineas=$this->aerolineas_model->getAerolinea($value->id_aerolinea);
 			
 			foreach ($aerolineas as $aerolinea) {
-				$vuelo['aerolinea']=$aerolinea->aerolinea;
+				$vuelo['aerolinea']			= $aerolinea->aerolinea;
 			}
 						
 			$this->hoteles_email_model->correoReserva($huesped, $tarjeta, $this->reserva_habitacion_model->getReserva($id), $vuelo, 2);
@@ -164,14 +172,13 @@ class Reserva extends CI_Controller {
 		$mensajes=buscarMensajes();
 		$db=array_merge($reservas, $mensajes);
 		
-		$db['huespedes']	=$this->huespedes_model->getHuespedes();
-		$db['estados']		=$this->estados_reserva_model->getEstados();
-		$db['habitaciones']	=$this->habitaciones_model->getHabitaciones();
-		$db['reservas']		=$this->reserva_habitacion_model->getReserva($id);
-		$db['reserva_habitacion']=$this->reservas_model->getReserva($id);
-		$db['mensaje']=$mensaje;
-		
-		$db['nuevas']=$nuevas;	
+		$db['huespedes']			= $this->huespedes_model->getHuespedes();
+		$db['estados']				= $this->estados_reserva_model->getEstados();
+		$db['habitaciones']			= $this->habitaciones_model->getHabitaciones();
+		$db['reservas']				= $this->reserva_habitacion_model->getReserva($id);
+		$db['reserva_habitacion']	= $this->reservas_model->getReserva($id);
+		$db['mensaje']				= $mensaje;
+		$db['nuevas']				= $nuevas;	
 		
 		$this->load->view('backend/head.php');
 		$this->load->view('backend/menu.php', $db);	
