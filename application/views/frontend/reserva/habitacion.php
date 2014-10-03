@@ -100,24 +100,8 @@
 								}
 							}																			
 						?>
-						<select name="habitacion<?php echo $habitacion->id_habitacion?>" class="form-control habitacion" onChange="validarHabitacion()">
-							<?php for ($i=0; $i <= $cantidad; $i++) { ?>
-								<option value="<?php echo $i;?>">
-									<?php 
-										if($cantidad==0){
-											echo $texto['sin_disponibilidad'];
-										}else{
-											echo $i;
-											if($i>0){
-												echo "(".$cambio->simbolo." ".number_format($precio*$i/$cambio->valor*$noches, 2, ',', ' ').")";	
-											}	
-										}											 
-									?>
-								</option>
-							<?php }?>
-						</select>
-                		
-                		<?php
+						
+						<?php
                 		$precio=$habitacion->precio;
 						$precio_con_descuento=0;
 						
@@ -135,6 +119,26 @@
 							}	
                 		} 
 						?>
+						
+						<select name="habitacion<?php echo $habitacion->id_habitacion?>" class="form-control habitacion" onChange="validarHabitacion()">
+							<?php for ($i=0; $i <= $cantidad; $i++) { ?>
+								<option value="<?php echo $i;?>">
+									<?php 
+										if($cantidad==0){
+											echo $texto['sin_disponibilidad'];
+										}else{
+											echo $i;
+											if($i>0){
+												foreach ($cambios as $cambio) {
+													echo "(".$cambio->simbolo." ".number_format($precio*$i/$cambio->valor*$noches, 2, ',', ' ').")";
+												}	
+											}	
+										}											 
+									?>
+								</option>
+							<?php }?>
+						</select>
+                		
                 		
                 		<?php foreach ($cambios as $cambio) { ?>
 						<?php if($precio_con_descuento==1){ ?>
@@ -156,6 +160,9 @@
                     			<?php echo $cambio->simbolo; ?>  
                     			<?php echo number_format($precio/$cambio->valor*$noches, 2, ',', ' '); ?>
                     			<input type="hidden" name="precio<?php echo $habitacion->id_habitacion ?>" value="<?php echo $precio ?>">
+                    			<a href="#" class="btn btn-hotel btn-xs" title="<?php echo $texto['monedas']?>" rel="tooltip" data-toggle="modal" data-target="#monedas">
+									<span class="icon-moneyalt"></span>
+								</a>
 						<?php if($precio/$cambio->valor*$noches>1000){
 							echo "</h3>";
 						}else{
@@ -258,6 +265,48 @@
 
 
 
+
+
+<!---------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+					
+						Modal monedas 
+
+-----------------------------------------------------------------------------------
+---------------------------------------------------------------------------------->	
+
+<div class="modal fade" id="monedas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<h4 class="modal-title" id="myModalLabel"><?php echo $texto['monedas']?></h4>
+      		</div>
+      		<?php if(isset($monedas)){ ?>
+			<form method="post" action="<?php echo base_url().'index.php/reserva/habitacion' ?>">
+	  				<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
+						<input type="hidden" name="salida" value="<?php echo $this->input->post('salida') ?>">
+						<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
+						<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">
+						<input type="hidden" name="hotel" value="<?php echo $this->input->post('hotel') ?>">
+				<center>
+	  			<ul class="list-inline">
+	  			<?php foreach ($monedas as $moneda) { ?>
+					<li>
+						<center>
+							<input class="moneda" name="boton1" type="image" title="<?php echo $moneda->moneda;?> - <?php echo $moneda->abreviatura;?>" rel="tooltip" src="<?php echo base_url().'assets/uploads/monedas/'.$moneda->imagen;?>" onclick="document.cookie = 'moneda=<?php echo $moneda->id_moneda ?>'">
+						</center>
+						<p class="moneda-leyenda">
+							<?php echo $moneda->moneda;?> - <?php echo $moneda->abreviatura;?><br>
+						</p>
+					</li>
+				<?php } ?>
+				</ul>
+				</center>
+				</form>  
+			<?php } ?>
+    	</div>
+  	</div>
+</div>
 
 
 

@@ -53,14 +53,12 @@
                     </div>
                     <div class="col-md-3 vertical-middel">
 						<div class="stars" >
-									 
-										<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion.'/'.$id_hotel;?>" class="btn btn-default btn-lg" title="<?php echo $texto['leer_mas']?>" rel="tooltip">
-											<span class="icon-chevron-down"></span>
-										</a>
-										<a href="#" class="btn btn-default btn-lg" title="<?php echo $texto['email']?>" rel="tooltip" data-toggle="modal" data-target="#habitacion<?php echo $habitacion->id_habitacion?>">
-											<span class="icon-paperplane"></span>
-										</a>
-			                    	
+							<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion.'/'.$id_hotel;?>" class="btn btn-hotel boton-redondo-medium" title="<?php echo $texto['leer_mas']?>" rel="tooltip">
+								<span class="icon-chevron-down"></span>
+							</a>
+							<a href="#" class="btn btn-hotel boton-redondo-medium" title="<?php echo $texto['email']?>" rel="tooltip" data-toggle="modal" data-target="#habitacion<?php echo $habitacion->id_habitacion?>">
+								<span class="icon-paperplane"></span>
+							</a> 	
 						</div>
                 	</div>	
                 	
@@ -69,7 +67,7 @@
          	<?php } ?>	
          	<div class="panel-body">
 					<center>
-						<a href="javascript:window.history.back();" type="submit" class="btn btn-default boton-redondo" title="<?php echo $texto['volver']?>" rel="tooltip">
+						<a href="javascript:window.history.back();" type="submit" class="btn btn-hotel boton-redondo" title="<?php echo $texto['volver']?>" rel="tooltip">
 							<span class="icon-chevron-left"></span>
 						</a>
 					</center>

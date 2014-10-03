@@ -33,7 +33,9 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 			    			
 			    			?>
 			    		</div>
-			    		<a class="btn btn-hotel pull-right" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria.'/'.$id_hotel; ?>"><?php echo $texto['leer_mas'];?></a>
+			    		<a class="btn btn-hotel pull-right" href="<?php echo base_url().'index.php/categoria/articulos/'.$articulo->id_categoria.'/'.$id_hotel; ?>" title="<?php echo $texto['leer_mas'];?>">
+			    			<span class="icon-chevron-down"></span>
+			    		</a>
 					</div>
 				</div>
 			</div>			

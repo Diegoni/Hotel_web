@@ -22,7 +22,7 @@
 		</ul>
 	</div>                
     <div class="col-md-6">
-    	<div class="row">
+    	<div class="row" id="row-banderas">
     		<?php foreach ($hoteles_menu as $hotel) { ?>
     			<?php if($id_hotel!=$hotel->id_hotel){ ?>
     			<div class="col-md-3  col-sm-3 col-xs-3">
@@ -32,7 +32,6 @@
     			</div>
     			<?php } ?>
 			<?php } ?>
-  			
 		</div>
 	</div>
 	<div class="col-md-1">
@@ -93,7 +92,19 @@
 				</a>
 			</li>
 		</ul>
-    
+		
+		
+		<div class="row" id="row-banderas-submenu">
+    		<?php foreach ($hoteles_menu as $hotel) { ?>
+    			<?php if($id_hotel!=$hotel->id_hotel){ ?>
+    			<div class="col-md-3  col-sm-3 col-xs-3">
+    				<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>">
+    				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url;?>" class="logo_img_menu_submenu img-responsive" alt="Responsive image">
+    				</a>
+    			</div>
+    			<?php } ?>
+			<?php } ?>
+		</div>
 		<ul class="nav navbar-nav navbar-right">
 		<?php foreach ($idiomas as $idioma) { ?>
 			<li class="li-moneda">
@@ -105,6 +116,8 @@
 			</li>
 		<?php } ?>
 		</ul>
+		
+		
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

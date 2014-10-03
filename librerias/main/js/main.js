@@ -458,3 +458,41 @@ $(window).resize(function() {
 });
 
 
+/**************************************************************************
+ **************************************************************************
+ 			Ocultar y mostrar logo hoteles
+ ************************************************************************** 
+ *************************************************************************/
+
+$(document).ready(function() {   
+	if (document.body){
+		var ancho = (document.body.clientWidth);
+	}else{
+		var ancho = (window.innerWidth);
+	}
+	
+	if(ancho<990){
+		$("#row-banderas").hide();
+		$("#row-banderas-submenu").show();
+	}else{
+		$("#row-banderas").show();
+		$("#row-banderas-submenu").hide();
+	}
+});
+		
+		
+$(window).resize(function() {
+	if (document.body){
+		var ancho = (document.body.clientWidth);
+	}else{
+		var ancho = (window.innerWidth);
+	}
+
+	if(ancho<990){
+		$("#row-banderas").hide();
+		$("#row-banderas-submenu").show();
+	}else{
+		$("#row-banderas").show();
+		$("#row-banderas-submenu").hide();
+	}
+});

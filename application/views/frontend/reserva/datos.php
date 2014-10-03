@@ -203,10 +203,9 @@
 							
     					</div>
     					<div class="col-sm-5">
-    						<a href="javascript:window.history.back();" type="submit" class="btn btn-default boton-redondo" title="<?php echo $texto['volver']?>" rel="tooltip">
-								<span class="icon-arrow-left"></span>
+    						<a href="javascript:window.history.back();" type="submit" class="btn btn-hotel boton-redondo" title="<?php echo $texto['volver']?>" rel="tooltip">
+								<span class="icon-chevron-left"></span>
 							</a>
-							
       					</div>
       					</center>
     					
