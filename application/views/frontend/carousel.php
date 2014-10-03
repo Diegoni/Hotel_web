@@ -3,7 +3,12 @@
 		<div class="panel panel-hotel">
 			<!-- al final del archivo esta el codigo para un menu dinamico en vez de este estatico-->
 			<div class="panel-heading">
-				<?php echo "Mendoza te espera"; ?>
+				<?php 
+				foreach ($hoteles as $hotel) {
+					$provincia=$hotel->provincia;
+				}
+				echo $provincia." ".$texto['te_espera'];
+				?>
 			</div>
 			
 	  	<div class="panel-body" id="panel-carrusel">

@@ -4,6 +4,7 @@ class Hoteles extends CI_Controller {
 	
 	function __construct(){
 		parent::__construct();
+		$this->load->model('articulos_model');
 		$this->load->model('hoteles_model');
 		$this->load->model('habitaciones_model');
 		$this->load->model('huespedes_model');
@@ -30,6 +31,11 @@ class Hoteles extends CI_Controller {
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
 		
+		$datos=array(	
+			'id_tipo'		=> 3
+		);
+		
+		$db['banner']=$this->articulos_model->getBanner($datos);
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['hoteles']=$this->hoteles_model->getHoteles($_COOKIE['id_hotel']);
@@ -53,10 +59,17 @@ class Hoteles extends CI_Controller {
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
 		
+		
+		
 		$db['texto']=$this->idiomas_model->getIdioma();
 		
 		$consulta=array('id_hotel'	=> $id_hotel);
 		
+		$datos=array(	
+			'id_tipo'		=> 2
+		);
+		
+		$db['banner']=$this->articulos_model->getBanner($datos);
 		$db['hoteles']=$this->hoteles_model->getHoteles($_COOKIE['id_hotel']);
 		$db['hotel']=$this->hoteles_model->getHotel($_COOKIE['id_hotel']);
 		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
@@ -90,6 +103,11 @@ class Hoteles extends CI_Controller {
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
 		
+		$datos=array(	
+			'id_tipo'		=> 4
+		);
+		
+		$db['banner']=$this->articulos_model->getBanner($datos);
 		$db['texto']=$this->idiomas_model->getIdioma();
 		$db['idiomas']=$this->idiomas_model->getIdiomas();
 		$db['hoteles']=$this->hoteles_model->getHoteles($_COOKIE['id_hotel']);

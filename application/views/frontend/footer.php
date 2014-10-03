@@ -76,9 +76,17 @@
 			</div>
   		</div>
   	</div>
-	 		
+	
+	<div class="copyright">
+		<small>
+		<a href="http://tmsgroup.com.ar" target="_blank">
+			<span class="icon-copyright"></span>	 Sitio desarrollado por TMS Group
+		</a>
+		</small>
+	</div>	 		
     
 </div><!-- cierra el <div class="container"> -->
+	
 
 
 </body>

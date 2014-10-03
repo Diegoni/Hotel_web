@@ -27,9 +27,11 @@ class Categoria extends CI_Controller {
 		$db['configs']=$this->configs_model->getConfigs();
 		$datos=array(	
 			'dato'			=> $id,
-			'columna' 		=> 'id_categoria'
+			'columna' 		=> 'id_categoria',
+			'id_tipo'		=> 5
 		);
 		$db['articulos']=$this->articulos_model->getArticulos($datos);
+		$db['banner']=$this->articulos_model->getBanner($datos);
 		$db['categorias']=$this->categorias_model->getCategoria($id);
 		$db['emails_hotel']=$this->hoteles_email_model->getEmails($id_hotel);
 		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);

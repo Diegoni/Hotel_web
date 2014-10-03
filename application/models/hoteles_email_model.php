@@ -41,6 +41,91 @@ class Hoteles_email_model extends CI_Model {
 		}
 	}
 	
+	
+	function getCorreo($huesped, $tarjeta, $reservas, $vuelo, $id_tipo_correo){
+		foreach ($reservas as $reserva) {
+			$entrada=$reserva->entrada;
+			$salida=$reserva->salida;
+			$adultos=$reserva->adultos;
+			$menores=$reserva->menores;
+			$hotel=$reserva->hotel;
+			$id_hotel=$reserva->id_hotel;
+			$id_nota=$reserva->id_nota;
+			$id_reserva=$reserva->id_reserva;
+			$fecha_alta=$reserva->fecha_alta;
+			$total=$reserva->total;
+		}
+		
+		$query = $this->db->query("	SELECT *  FROM config_email_reserva
+									WHERE config_email_reserva.id_hotel = '$id_hotel'
+									AND config_email_reserva.id_tipo_correo = '$id_tipo_correo'
+									AND config_email_reserva.delete = 0");
+
+		
+		if($query->num_rows() > 0){
+			 $row = $query->row(); 
+		}
+			
+		$mensaje = $row->correo;
+		//Datos reserva
+		$mensaje = str_replace("#hotel#", $hotel, $mensaje);
+		$mensaje = str_replace("#entrada#", $entrada, $mensaje);
+		$mensaje = str_replace("#salida#", $salida, $mensaje);
+		$mensaje = str_replace("#adultos#", $adultos, $mensaje);
+		$mensaje = str_replace("#menores#", $menores, $mensaje);
+		$mensaje = str_replace("#reserva_numero#", $id_reserva, $mensaje);
+		$mensaje = str_replace("#reserva_alta#", date('H:i:s d-m-Y', strtotime($fecha_alta)), $mensaje);
+		$mensaje = str_replace("#reserva_precio#", $total, $mensaje);
+		//Datos huesped		
+		$mensaje = str_replace("#huesped_nombre#", $huesped['nombre'], $mensaje);
+		$mensaje = str_replace("#huesped_apellido#", $huesped['apellido'], $mensaje);
+		$mensaje = str_replace("#huesped_email#", $huesped['email'], $mensaje);
+		$mensaje = str_replace("#huesped_telefono#", $huesped['telefono'], $mensaje);
+		$mensaje = str_replace("#huesped_id_tipo_tarjeta#", $tarjeta['id_tipo_tarjeta'], $mensaje);
+		//Datos tarjeta
+		$mensaje = str_replace("#tarjeta_numero#", $tarjeta['tarjeta'], $mensaje);
+		$mensaje = str_replace("#tarjeta_pin#", $tarjeta['pin'], $mensaje);
+		$mensaje = str_replace("#tarjeta_vencimiento#", $tarjeta['vencimiento'], $mensaje);
+		//Datos vuelo
+		if($vuelo){
+			$mensaje = str_replace("#vuelo_numero#", $vuelo['nro_vuelo'], $mensaje);
+			$mensaje = str_replace("#vuelo_horario_llegada#", $vuelo['horario_llegada'], $mensaje);
+			$mensaje = str_replace("#vuelo_aerolinea#", $vuelo['aerolinea'], $mensaje);
+		}else{
+			$mensaje = str_replace("#vuelo_numero#", "", $mensaje);
+			$mensaje = str_replace("#vuelo_horario_llegada#", "", $mensaje);
+			$mensaje = str_replace("#vuelo_aerolinea#", "", $mensaje);
+		}
+				
+
+		$query = $this->db->query("SELECT termino FROM terminos");
+		if($query->num_rows() > 0){
+			foreach ($query->result() as $fila){
+				$terminos = $fila->termino;
+				}
+			}	
+			
+		$mensaje = str_replace("#terminos#", $terminos, $mensaje);
+	    
+	  	$query = $this->db->query("SELECT * FROM notas WHERE notas.id_nota='$id_nota'");
+		if($query->num_rows() > 0){
+			$notas = $query->row(); 
+  			$mensaje = str_replace("#nota#", $notas->nota, $mensaje);
+		}else{
+			$mensaje = str_replace("#nota#", "", $mensaje);			
+		}
+
+  		
+	    	
+	    foreach ($reservas as $reserva) {
+		    $mensaje .="Cantidad: <b>".$reserva->cantidad."</b><br>";
+	  		
+	    	$mensaje .="Habitación: <b>".$reserva->habitacion."</b><br>";
+		}
+		
+		return $mensaje;
+	}
+	
 	function correoMensaje($consulta, $id_tipo_correo){
 		
 		$título = $consulta['titulo'];
@@ -178,16 +263,10 @@ class Hoteles_email_model extends CI_Model {
 	    	
 	    foreach ($reservas as $reserva) {
 		    $mensaje .="
-	  			<tr>
-		      		<td>Cantidad: </td>
-		      		<th>".$reserva->cantidad."</th>
-		    	</tr>";
+	  			Cantidad: ".$reserva->cantidad."<br>";
 	  		
 	    	$mensaje .="
-	  			<tr>
-		      		<td>Habitación: </td>
-		      		<th>".$reserva->habitacion."</th>
-		    	</tr>";
+	  			Habitación: ".$reserva->habitacion."<br>";
 		}
 		
 		

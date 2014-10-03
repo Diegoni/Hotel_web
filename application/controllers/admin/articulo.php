@@ -70,6 +70,7 @@ class Articulo extends CI_Controller {
 				 ->display_as('pagina_principal','Página Principal')
 				 ->display_as('fecha_publicacion','Fecha publicación')
 				 ->display_as('fecha_despublicacion','Fecha despublicación')
+				 ->display_as('id_tipo','Tipo')
 				 ->display_as('id_tarifa_temporal','Tarifa temporal');
 			
 			$crud->set_subject('artículo');
@@ -86,7 +87,8 @@ class Articulo extends CI_Controller {
 							'archivo_url',
 							'id_categoria',
 							'id_estado_articulo',
-							'id_idioma', 
+							'id_idioma',
+							'id_tipo', 
 							'id_tarifa_temporal');
 			
 			$crud->set_relation('id_hotel','hoteles','hotel', 'delete = 0');
@@ -95,6 +97,7 @@ class Articulo extends CI_Controller {
 			$crud->set_relation('id_estado_articulo','estados_articulo','estado_articulo');
 			$crud->set_relation('id_tarifa_temporal','tarifas_temporales','tarifa_temporal');
 			$crud->set_relation('id_idioma','idiomas','idioma');
+			$crud->set_relation('id_tipo','tipos_articulo','tipo_articulo');
 					
 			$crud->required_fields('articulo','id_hotel','fecha_publicacion', 'id_categoria');
 			

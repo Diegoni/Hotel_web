@@ -10,6 +10,7 @@ class Reserva extends CI_Controller {
 		$this->load->model('disponibilidades_model');
 		$this->load->model('habitaciones_model');
 		$this->load->model('hoteles_model');
+		$this->load->model('hoteles_email_model');
 		$this->load->model('huespedes_model');
 		$this->load->model('imagenes_habitacion_model');
 		$this->load->model('monedas_model');
@@ -232,6 +233,8 @@ class Reserva extends CI_Controller {
 		$db['reservas']=$this->reserva_habitacion_model->getReserva($id_reserva);
 		$this->hoteles_email_model->correoReserva($huesped, $tarjeta, $this->reserva_habitacion_model->getReserva($id_reserva), $vuelo, 1);
 		$this->hoteles_email_model->correoReserva($huesped, $tarjeta, $this->reserva_habitacion_model->getReserva($id_reserva), $vuelo, 2);
+		
+		$db['mensaje']=$this->hoteles_email_model->getCorreo($huesped, $tarjeta, $this->reserva_habitacion_model->getReserva($id_reserva), $vuelo, 1);
 		
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');

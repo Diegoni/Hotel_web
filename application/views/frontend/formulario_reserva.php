@@ -71,6 +71,22 @@
 				<?php echo form_close(); ?>	
 			</div>
 		</div>
+		
+		<?php 
+		if(isset($banner) && $banner!=""){
+			
+		foreach ($banner as $articulo) {?>
+		<div class="panel panel-hotel">
+			<div class="panel-heading"><?php echo $articulo->categoria?></div>
+	  		<div class="panel-body">
+	  			<?php echo $articulo->articulo; ?>
+	  		</div>
+	  	</div>
+	  	<?php
+		}
+		} ?>	
+		
+		
 		<!--
 		<?php if(isset($monedas)){ ?>
 		<div class="panel panel-hotel">
