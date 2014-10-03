@@ -161,12 +161,15 @@ class Reserva extends CI_Controller {
 			$id_nota=0;
 		}
 		
+		$array_vencimiento = explode("/", $this->input->post('vencimiento')); 
+		$vencimiento=$array_vencimiento[2]."/".$array_vencimiento[1]."/".$array_vencimiento[0];
+		
 		$tarjeta=array(	
 			'id_huesped'		=> $id_huesped,
 			'id_tipo_tarjeta'	=> $this->input->post('tipo_tarjeta'),
 			'tarjeta'			=> $this->input->post('tarjeta'),
 			'pin'				=> $this->input->post('pin'),
-			'vencimiento'		=> $this->input->post('vencimiento')
+			'vencimiento'		=> $vencimiento
 		);
 		
 		$id_tarjeta=$this->tarjetas_model->insertTarjeta($tarjeta);

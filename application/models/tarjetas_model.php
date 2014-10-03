@@ -16,6 +16,19 @@ class Tarjetas_model extends CI_Model {
 		
 		
 	}		
+	
+	function getTarjeta($id=NULL){
+		$query = $this->db->query("SELECT * FROM tarjetas WHERE tarjetas.id_huesped='$id'");
+			
+		if($query->num_rows() > 0){	
+			foreach ($query->result() as $fila){
+				$data[] = $fila;
+			}
+			return $data;
+		}else{
+			return FALSE;
+		}
+	}
 			
 		
 } 

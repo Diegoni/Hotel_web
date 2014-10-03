@@ -11,12 +11,17 @@ class Reserva extends CI_Controller {
 		$this->load->model('mensajes_model');
 		$this->load->model('huespedes_model');
 		$this->load->model('habitaciones_model');
+		$this->load->model('emails_huesped_model');
+		$this->load->model('telefonos_huesped_model');
 		$this->load->model('notas_model');
 		$this->load->model('estados_reserva_model');
 		$this->load->model('disponibilidades_model');
 		$this->load->model('disponibilidad_habitacion_model');
 		$this->load->model('reservas_model');
+		$this->load->model('tarjetas_model');
 		$this->load->model('reserva_habitacion_model');
+		$this->load->model('vuelos_model');
+		$this->load->model('aerolineas_model');
 		$this->load->helper('form');
 		$this->load->library('grocery_CRUD');
 		//$this->load->library('image_CRUD');
@@ -108,7 +113,52 @@ class Reserva extends CI_Controller {
 							'cantidad'			=> $this->input->post('id_habitacion'.$row->id_habitacion));
 				$this->db->update('reserva_habitacion', $registro, array('id_reserva_habitacion' => $row->id_reserva_habitacion));
 			}
+			
 			$mensaje="Las cantidades se han cargado correctamente";
+			
+		}else if($this->input->post('reenviar_correo')){
+				
+			$huespedes=$this->huespedes_model->getHuesped($this->input->post('id_huesped'));
+			$emails_huesped=$this->emails_huesped_model->getEmail($this->input->post('id_huesped'));
+			$telefonos_huesped=$this->telefonos_huesped_model->getTelefono($this->input->post('id_huesped'));
+			$tarjetas_huesped=$this->tarjetas_model->getTarjeta($this->input->post('id_huesped'));
+			$vuelos_huesped=$this->vuelos_model->getVuelo($id);
+			
+			foreach ($huespedes as $value) {
+				$huesped['nombre']=$value->nombre;
+				$huesped['apellido']=$value->apellido;
+			}
+			
+			foreach ($emails_huesped as $value) {
+				$huesped['email']=$value->email;
+			}
+			
+			foreach ($telefonos_huesped as $value) {
+				$huesped['telefono']=$value->telefono;
+			}
+			
+			foreach ($tarjetas_huesped as $value) {
+				$tarjeta['id_tipo_tarjeta']=$value->id_tipo_tarjeta;
+				$tarjeta['tarjeta']=$value->tarjeta;
+				$tarjeta['pin']=$value->pin;
+				$tarjeta['vencimiento']=$value->vencimiento;
+			}
+
+			foreach ($vuelos_huesped as $value) {
+				$vuelo['nro_vuelo']=$value->nro_vuelo;
+				$vuelo['horario_llegada']=$value->horario_llegada;
+			}
+			
+			$aerolineas=$this->aerolineas_model->getAerolinea($value->id_aerolinea);
+			
+			foreach ($aerolineas as $aerolinea) {
+				$vuelo['aerolinea']=$aerolinea->aerolinea;
+			}
+						
+			$this->hoteles_email_model->correoReserva($huesped, $tarjeta, $this->reserva_habitacion_model->getReserva($id), $vuelo, 2);
+			
+			$mensaje="El correo ha sido reenviado al huésped";
+			
 		}
 		$reservas=buscarReservas();
 		$mensajes=buscarMensajes();
