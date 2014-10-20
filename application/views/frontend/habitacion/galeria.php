@@ -5,7 +5,7 @@
 		  	<div class="panel-body">
 				<?php 
 					foreach ($habitaciones as $habitacion) {
-						$id=$habitacion->id_hotel;
+						$id=$habitacion->id_habitacion;
 					}
 				?>
 				<?php	$imagenes_habitacion=$this->imagenes_habitacion_model->getImagenes($id); ?>
@@ -24,7 +24,9 @@
                                         
                                         <div class="item <?php if($i==0){echo "active";}?>" data-slide-number="<?php echo $i ?>">
                                         	<a class="fancybox" rel="ligthbox" href="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>">
-                                        		<img src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>">
+                                        		<center>
+                                        			<img src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>">
+                                        		</center>
                                         	</a>
                                         </div>
                                         

@@ -227,12 +227,14 @@
 						?>
     				</div>
   				</div>
+      			<!--
       			<div class="form-group">
     				<label for="nombre" class="col-sm-3 control-label">Skype</label>
     				<div class="col-sm-9">
       				<a href="skype:contact-mt?call" class="btn btn-default"><span>carollo_hotel</span></a>
     				</div>
   				</div>
+  				-->
       		</div>
       		<div class="modal-footer">
         		<button type="button" class="btn btn-hotel boton-redondo-medium" data-dismiss="modal" title="<?php echo $texto['cerrar']?>"><span class="icon-remove"></span></button>

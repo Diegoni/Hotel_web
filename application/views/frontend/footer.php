@@ -5,7 +5,7 @@
 				<a href="javascript:agregar()" class="btn btn-footer btn-lg" title='<?php echo $texto['favoritos']?>'><i class="icon-favoritefile"></i></a>
 		      	<a href="#" class="btn btn-footer btn-lg" title='<?php echo $texto['enviar_consulta']?>' data-toggle="modal" data-target="#email"><i class="icon-emailalt"></i></a>
 		      	<a href="#" class="btn btn-footer btn-lg" title='<?php echo $texto['telefono']?>' data-toggle="modal" data-target="#telefono"><i class="icon-phonealt"></i></a>
-		      	<a href="#" class="btn btn-footer btn-lg" title='<?php echo $texto['direccion']?>' data-toggle="modal" data-target="#direccion"><i class="icon-map"></i></a>
+		      	<a href="#" class="btn btn-footer btn-lg" title='<?php echo $texto['direccion']?>' data-toggle="modal" data-target="#direccion"><!--<i class="icon-map"></i>--><img style="width: 24px" src="<?php echo base_url().'assets/uploads/brujula-01.png'?>"> </a>
 		      	<!--<a href="<?php echo base_url().'index.php/hoteles/como_llegar/'.$id_hotel; ?>" class="btn btn-footer btn-lg" title='<?php echo $texto['direccion']?>'><i class="icon-map-marker"></i></a>-->
 		      	<a href="#" class="scrollup btn btn-footer btn-lg" title='<?php echo $texto['arriba']?>'><span class="icon-arrow-up"></span></a>
 		  	</div>
@@ -37,29 +37,32 @@
 					} ?>
 					<div class="col-md-4">			
 					<center>
-					<h4><i class="fa fa-phone"></i>
+						<h4><i class="fa fa-phone"></i></h4>
+						<p class="texto-footer">
 						<?php 
 						foreach ($telefono as $key => $value) {
 							echo $value."<br>";
 						}
 						?>
-					</h4>
+						</p>
 					</center>
 					</div>
 					<div class="col-md-4">
 					<center>
-   					<h4><i class="fa fa-map-marker"></i> 
-						<?php 
-						foreach ($direccion as $key => $value) {
-							echo $value."<br>";
-						}
-						?>
-					</h4>
+	   					<h4><i class="fa fa-map-marker"></i></h4> 
+						<p class="texto-footer">
+							<?php 
+							foreach ($direccion as $key => $value) {
+								echo $value."<br>";
+							}
+							?>
+						</p>
 					</center>
 					</div>
 					<div class="col-md-4">
 					<center>
-   					<h4><i class="fa fa-envelope-o"></i>
+   						<h4><i class="fa fa-envelope-o"></i></h4>
+   						<p class="texto-footer">
 						<?php 
 						if($emails_hotel){
 							foreach ($emails_hotel as $email) {
@@ -67,7 +70,7 @@
 							}	
 						}
 						?>
-					</h4>
+						</p>
 					</center>
 					</div>
 				</div>

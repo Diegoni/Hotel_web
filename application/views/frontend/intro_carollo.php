@@ -100,6 +100,7 @@
 	<script src="<?php echo base_url().'librerias/sparkles/dist/jquery-canvas-sparkles.js' ?>"></script>
 		
 	<script>
+	/*
 	$(document).ready(function() {
 		$(".container").sparkle({
 			color: ["#2eafea","#e56604"],
@@ -111,7 +112,7 @@
 			direction: "both"
 		});
 	});
-	
+	*/
 	</script>
 	</head>
 	

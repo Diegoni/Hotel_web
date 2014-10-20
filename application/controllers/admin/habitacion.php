@@ -398,16 +398,20 @@ class Habitacion extends CI_Controller {
 			$crud->set_table('servicios');
 			
 			$crud->columns(	'id_servicio',
+							'icono',
 							'servicio');
 			
 			$crud->display_as('id_servicio','ID')
+				 ->display_as('icono','Icono')
 				 ->display_as('servicio','Servicio');
 			
 			$crud->set_subject('servicio');
 			
-			$crud->fields('servicio');
+			$crud->fields('servicio', 'icono');
 								
 			$crud->required_fields(	'servicio');
+			
+			$crud->set_field_upload('icono','assets/uploads/servicios');
 			
 			$_COOKIE['tabla']='servicios';
 			$_COOKIE['id']='id_servicio';

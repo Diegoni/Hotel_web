@@ -15,17 +15,16 @@
                     <div class="col-xs-12" id="slider">
                         <!-- Top part of the slider -->
                         <div class="row">
-                            <div class="col-sm-12 " id="carousel-bounding-box">
+                            <div class="col-sm-10 col-md-offset-1" id="carousel-bounding-box">
                                 <div class="carousel slide" id="myCarousel">
                                     <!-- Carousel items -->
                                     <div class="carousel-inner">
                                     	<?php $i=0; ?>
                                     	<?php foreach ($imagenes_habitacion as $imagenes) { ?>
+                                        
                                         <div class="item <?php if($i==0){echo "active";}?>" data-slide-number="<?php echo $i ?>">
                                         	<a class="fancybox" rel="ligthbox" href="<?php echo base_url().'assets/uploads/hoteles/'.$imagenes->imagen;?>">
-                                        		<center>
                                         		<img src="<?php echo base_url().'assets/uploads/hoteles/'.$imagenes->imagen;?>">
-                                        		</center>
                                         	</a>
                                         </div>
                                         

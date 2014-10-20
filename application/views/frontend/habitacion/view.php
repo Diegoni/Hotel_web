@@ -12,7 +12,9 @@
 						$i=0;
 						foreach ($imagenes_habitacion as $imagenes) { ?>
 						<a href="#" class="item <?php if($i==0){echo 'active';}?>" class="thumbnail">
-							<img alt="slide" src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>" ">
+							<center>
+								<img alt="slide" src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>" ">
+							</center>
 							<?php if($imagenes->descripcion!=""){ ?>
 								<div class="carousel-caption">
 									<p><?php echo $imagenes->descripcion;?></p>
@@ -39,9 +41,12 @@
 				<div class="servicios">
 					<ul class="list-unstyled">
 					<?php if($servicios){ ?>
-					<?php foreach ($servicios as $servicio) {
-						echo "<li><i class='fa fa-check'></i> ".$servicio->servicio."<br></li>";
-					} ?>	
+					<?php foreach ($servicios as $servicio) {?>
+						<li class="lista-servicios">
+							<img src='<?php echo base_url().'assets/uploads/servicios/'.$servicio->icono?>' class="icono-servicios">
+							<?php echo $servicio->servicio?>
+						</li>
+					<?php } ?>	
 					<?php } ?>
 					</ul>
 					

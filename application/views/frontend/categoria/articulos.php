@@ -1,5 +1,6 @@
 
-	<div class='col-md-8'>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
 				<div class="panel panel-hotel">
 					<?php
 					foreach ($categorias as $categoria) { ?>

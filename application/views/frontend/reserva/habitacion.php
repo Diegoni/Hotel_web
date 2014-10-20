@@ -161,7 +161,8 @@
                     			<?php echo number_format($precio/$cambio->valor*$noches, 2, ',', ' '); ?>
                     			<input type="hidden" name="precio<?php echo $habitacion->id_habitacion ?>" value="<?php echo $precio ?>">
                     			<a href="#" class="btn btn-hotel btn-xs" title="<?php echo $texto['monedas']?>" rel="tooltip" data-toggle="modal" data-target="#monedas">
-									<span class="icon-moneyalt"></span>
+									<!--<span class="icon-moneyalt"></span>-->
+									<img style="width: 16px" src="<?php echo base_url().'assets/uploads/moneda-01.png'?>">
 								</a>
 						<?php if($precio/$cambio->valor*$noches>1000){
 							echo "</h3>";
@@ -335,25 +336,25 @@
       			<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['mensaje']?></label>
     				<div class="col-sm-10">
-      				<textarea class="form-control" name="consulta" rows="3" required></textarea>
+      				<textarea class="form-control" name="consulta" rows="3" placeholder="<?php echo $texto['ingrese'].' '.$texto['mensaje']?>"  required></textarea>
     				</div>
   				</div>
       			<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['email']?></label>
     				<div class="col-sm-10">
-      				<input class="form-control" name="email" type="email" required>
+      				<input class="form-control" name="email" type="email" placeholder="<?php echo $texto['ingrese'].' '.$texto['email']?>"  required>
     				</div>
   				</div>
   				<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['nombre']?></label>
     				<div class="col-sm-10">
-    				<input type="text" class="form-control" name="nombre" required>
+    				<input type="text" class="form-control" name="nombre" placeholder="<?php echo $texto['ingrese'].' '.$texto['nombre']?>"  required>
     				</div>
   				</div>
   				<div class="form-group">
     				<label for="apellido" class="col-sm-2 control-label"><?php echo $texto['apellido']?></label>
     				<div class="col-sm-10">
-    				<input type="text" class="form-control" name="apellido" required>
+    				<input type="text" class="form-control" name="apellido" placeholder="<?php echo $texto['ingrese'].' '.$texto['apellido']?>"  required>
     				</div>
   				</div>  
   					<input type="hidden" name="id_habitacion" value="<?php echo $habitacion->id_habitacion?>">				
@@ -362,8 +363,12 @@
       			
       			<div class="modal-footer">
       				<input type="hidden" name="id_hotel" value="<?php echo $id_hotel?>" >
-        			<button type="button" class="btn btn-hotel boton-redondo-medium" data-dismiss="modal" title="<?php echo $texto['cerrar']?>"><span class="icon-remove"></span></button>
-        			<button type="submit" class="btn btn-hotel boton-redondo-medium" title="<?php echo $texto['email']?>"><span class="icon-ok"></span></button>
+        			<button type="button" class="btn btn-hotel boton-redondo-medium" data-dismiss="modal" title="<?php echo $texto['cerrar']?>">
+        				<span class="icon-remove"></span>
+        			</button>
+        			<button type="submit" class="btn btn-hotel boton-redondo-medium" title="<?php echo $texto['email']?>">
+        				<span class="icon-paperplane"></span>
+        			</button>
       			</div>
       		</div>
       		</form>

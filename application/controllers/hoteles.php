@@ -46,7 +46,7 @@ class Hoteles extends CI_Controller {
 								
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
-		$this->load->view('frontend/formulario_reserva');
+		//$this->load->view('frontend/formulario_reserva');
 		$this->load->view('frontend/hoteles/galeria');
 		$this->load->view('frontend/footer');
 		
@@ -89,7 +89,7 @@ class Hoteles extends CI_Controller {
 				
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
-		$this->load->view('frontend/formulario_reserva');
+		//$this->load->view('frontend/formulario_reserva');
 		$this->load->view('frontend/hoteles/habitacion');
 		$this->load->view('frontend/footer');
 		
@@ -117,7 +117,7 @@ class Hoteles extends CI_Controller {
 								
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
-		$this->load->view('frontend/formulario_reserva');
+		//$this->load->view('frontend/formulario_reserva');
 		$this->load->view('frontend/hoteles/como_llegar');
 		$this->load->view('frontend/footer');
 		

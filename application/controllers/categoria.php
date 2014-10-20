@@ -39,7 +39,7 @@ class Categoria extends CI_Controller {
 					
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
-		$this->load->view('frontend/formulario_reserva');
+		//$this->load->view('frontend/formulario_reserva');
 		$this->load->view('frontend/categoria/articulos');
 		$this->load->view('frontend/footer');
 		

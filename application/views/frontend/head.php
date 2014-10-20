@@ -86,9 +86,6 @@
 
 
 
-
-
-
 </head>
 <?php 
 foreach ($hoteles as $hotel) {
