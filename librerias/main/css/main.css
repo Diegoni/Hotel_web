@@ -1,5 +1,13 @@
 @font-face {font-family:"Cinzel-Regular";src:url("Cinzel-Regular.eot?") format("eot"),url("Cinzel-Regular.woff") format("woff"),url("Cinzel-Regular.ttf") format("truetype"),url("Cinzel-Regular.svg#Cinzel-Regular") format("svg");font-weight:normal;font-style:normal;}
 
+.copyright{
+	opacity: 0.5;
+}
+
+.copyright:hover{
+	opacity: 1;
+}
+
 .text-amarillo{
 	background-color: #57101C;
 	color: #F8EDA7;
@@ -149,7 +157,7 @@ padding-right: 20px;
 
 
 .logo_img{
-	width: 200px;
+	width: 180px;
 }
 
 .logo_img_menu{
