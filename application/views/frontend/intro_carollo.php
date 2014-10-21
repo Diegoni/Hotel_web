@@ -12,8 +12,36 @@
 		<link href="<?php echo base_url().'librerias/ui/jquery-ui.css'?>" rel="stylesheet" type="text/css"/>
 		<link href="<?php echo base_url().'librerias/main/css/main.css'?>" rel="stylesheet" type="text/css"/>
 		<link href="<?php echo base_url().'librerias/intro/css/carollo.css'?>" rel="stylesheet" type="text/css"/>
+		<link href="<?php echo base_url().'librerias/main/js/intro.js'?>" rel="stylesheet" type="text/css"/>
 		<link rel="stylesheet" href="<?php echo base_url().'librerias/intro/css/style.css'?>" />
 		<script type="text/javascript">
+		
+		$(document).ready(function() {
+		        var is_safari = navigator.userAgent.toLowerCase().indexOf('safari/') > -1;
+		        var is_chrome= navigator.userAgent.toLowerCase().indexOf('chrome/') > -1;
+		        var is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox/') > -1;
+		        var is_ie = navigator.userAgent.toLowerCase().indexOf('msie') > -1;
+		      
+		        if (is_safari) {
+		        	$("#container" ).addClass( "center3" );
+		        }
+		 
+		        if (is_chrome ) {
+		        }
+		 
+		        if (is_firefox ) {
+		        }
+		 
+		        if (is_ie ) {
+		            var posicion = navigator.userAgent.toLowerCase().lastIndexOf('msie');
+		            var ver_ie = navigator.userAgent.toLowerCase().substring(posicion+5, posicion+8);
+		            //Comprobar version
+		            ver_chrome = parseFloat(ver_ie);
+		            alert('Está usando Internet Explorer, la aplicación no funciona correctamente con este navegador: ' + ver_ie);
+		        }
+		   });
+ 
+		
 		$(document).ready(function() {
     		setTimeout(function() {
         		$(".content").fadeOut(2500);

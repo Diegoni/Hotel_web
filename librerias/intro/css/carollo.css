@@ -28,6 +28,18 @@ height: 500px;
                     el elemento se pegará al lado derecho*/
 }
 
+
+.center3{
+	margin: auto;
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px; /*Sin esta línea (pero con todas las demás),
+                   el elemento se pegará al lado izquierdo*/
+	right: 0px; /*Sin esta línea (pero con todas las demás),
+                    el elemento se pegará al lado derecho*/
+}
+
 .logo-hotel{
 	margin: auto;
 	/*position: absolute;*/

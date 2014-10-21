@@ -1,21 +1,16 @@
 <?php $id_hotel=$_COOKIE['id_hotel']?>
 <div class="row">
 <div class="col-md-8 col-md-offset-2">
-	<div class="panel panel-default">
-		<!--<div class="panel-heading">Habitación</div>-->
-		<div class="panel-body">
-			<div class="panel panel-hotel">
-			</div>
-			<?php if($habitaciones){?>
-			<h1 class="text-center"><?php echo $texto['habitaciones']?></h1>
+	<div class="panel panel-hotel">
+		<div class="panel-heading"><?php echo $texto['habitaciones']?></div>
+		<?php if($habitaciones){?>
 			<?php foreach ($habitaciones as $habitacion) { ?> 
-			<div class="panel panel-hotel">
-        		<div class="panel-body">
-        			<div class="col-md-3 text-center vertical-middel">
-        				<h2><small> <?php echo $habitacion->habitacion; ?> </small></h2>
+				<div class="panel-body">
+        			<div class="col-md-4 text-center vertical-middel nombre-habitacion">
+        				<h3><small> <?php echo $habitacion->habitacion; ?> </small></h3>
         			</div>
-          			<div class="media col-md-3 thumbnail">
-          				<div class="caption">
+          			<div class="media col-md-4 thumbnail">
+						<div class="caption">
 							<h4><?php echo $texto['habitacion']?></h4>
 							<!--<p>comentario</p>-->
 							<p>
@@ -29,20 +24,31 @@
 								$i=0;
 								foreach ($imagenes_habitacion as $imagenes) { ?>
 									<a href="#" class="item <?php if($i==0){echo 'active';}?>" class="thumbnail">								
-										<img alt="slide" src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>" style="max-width: 160px; max-height: 120px;">
+										<img alt="slide" src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>" <!--style="max-width: 160px; max-height: 120px;"-->>
 									</a>
 									<?php $i=$i+1?>
 								<?php } ?>
 							</div>
 						</div>
 					</div>    	
-                	<div class="col-md-3 text-center vertical-middel">
+                	<div class="col-md-4 text-center vertical-middel" style="margin-top: 6%">
+                		
+                		<div class="stars button-seleccion-habitacion">
+							<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion.'/'.$id_hotel;?>" class="btn btn-hotel boton-redondo-medium a-seleccion-habitacion" title="<?php echo $texto['leer_mas']?>" rel="tooltip">
+								<span class="icon-chevron-down"></span>
+							</a>
+							<a href="#" class="btn btn-hotel boton-redondo-medium" title="<?php echo $texto['email']?>" rel="tooltip" data-toggle="modal" data-target="#habitacion<?php echo $habitacion->id_habitacion?>">
+								<span class="icon-paperplane"></span>
+							</a> 	
+						</div>
+                		
                 		<div class="stars" >
                         	<?php echo $texto['adultos']?>: <?php 
                         	for ($i=0; $i < $habitacion->adultos; $i++) { 
 								echo "<i rel='tooltip' title='".$texto['maximo_adultos']."' class='fa fa-user'></i> ";
 							}?>  
                     	</div>
+                    	<div class="stars" >
                     		<?php echo $texto['menores']?>: <?php 
                     		if( $habitacion->menores>0 ){
                     			for ($i=0; $i < $habitacion->menores; $i++) { 
@@ -51,20 +57,10 @@
                     		}else{
                     			echo $texto['sin_menores'];
                     		}?>
-                    </div>
-                    <div class="col-md-3 vertical-middel">
-						<div class="stars" >
-							<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion.'/'.$id_hotel;?>" class="btn btn-hotel boton-redondo-medium" title="<?php echo $texto['leer_mas']?>" rel="tooltip">
-								<span class="icon-chevron-down"></span>
-							</a>
-							<a href="#" class="btn btn-hotel boton-redondo-medium" title="<?php echo $texto['email']?>" rel="tooltip" data-toggle="modal" data-target="#habitacion<?php echo $habitacion->id_habitacion?>">
-								<span class="icon-paperplane"></span>
-							</a> 	
-						</div>
-                	</div>	
-                	
+                    	</div>
+                    </div>	
                 </div>
-         	</div>
+            <hr>
          	<?php } ?>	
          	<div class="panel-body">
 					<center>

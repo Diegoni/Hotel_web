@@ -1,9 +1,9 @@
 <div class="col-md-8 col-md-offset-2">
-	<div class="panel panel-default">
+	<div class="panel panel-hotel">
 		<!--<div class="panel-heading">Habitación</div>-->
 		<div class="panel-body">
 			<?php $noches=restarFechasFormulario($this->input->post('salida'),$this->input->post('entrada'));?>
-			<div class="panel panel-default">
+			<div class="panel panel-hotel">
 			<table class="table table-hover">
 				<tr>
 					<th><i class="fa fa-sign-in"></i> <?php echo $texto['entrada']?>: </th>
@@ -32,17 +32,21 @@
 				</tr>
 			</table>
 			</div>
+		</div>
+	</div>
+		
 			
-			<?php if($habitaciones){?>
-			<h1 class="text-center"><?php echo $texto['seleccione_habitacion']?></h1>
+			
+		<?php if($habitaciones){?>
+	<div class="panel panel-hotel">
+		<div class="panel-heading"><?php echo $texto['seleccione_habitacion']?></div>
 			<?php echo form_open('reserva/datos');?>
 			<?php foreach ($habitaciones as $habitacion) { ?> 
-			<div class="panel panel-hotel">
-        		<div class="panel-body">
-        			<div class="col-md-3 text-center">
-        				<h2><small> <?php echo $habitacion->habitacion; ?> </small></h2>
+				<div class="panel-body">
+        			<div class="col-md-3 text-center  nombre-habitacion">
+        				<h3><small> <?php echo $habitacion->habitacion; ?> </small></h3>
         				<p class="list-group-item-text"> 
-							<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion.'/'.$id_hotel;?>" class="btn btn-hotel boton-redondo-medium" title="<?php echo $texto['leer_mas']?>" rel="tooltip">
+							<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion.'/'.$id_hotel;?>" class="btn btn-hotel boton-redondo-medium a-seleccion-habitacion" title="<?php echo $texto['leer_mas']?>" rel="tooltip">
 								<span class="icon-chevron-down"></span>
 							</a>
 							<a href="#" class="btn btn-hotel boton-redondo-medium" title="<?php echo $texto['email']?>" rel="tooltip" data-toggle="modal" data-target="#habitacion<?php echo $habitacion->id_habitacion?>">
@@ -161,8 +165,8 @@
                     			<?php echo number_format($precio/$cambio->valor*$noches, 2, ',', ' '); ?>
                     			<input type="hidden" name="precio<?php echo $habitacion->id_habitacion ?>" value="<?php echo $precio ?>">
                     			<a href="#" class="btn btn-hotel btn-xs" title="<?php echo $texto['monedas']?>" rel="tooltip" data-toggle="modal" data-target="#monedas">
-									<!--<span class="icon-moneyalt"></span>-->
-									<img style="width: 16px" src="<?php echo base_url().'assets/uploads/moneda-01.png'?>">
+									<i class="fa fa-usd icons-white"></i>
+									<!--<img style="width: 16px" src="<?php echo base_url().'assets/uploads/moneda-01.png'?>">-->
 								</a>
 						<?php if($precio/$cambio->valor*$noches>1000){
 							echo "</h3>";
@@ -201,8 +205,8 @@
                     <div class="col-md-3">-->
 						
                 	</div>	
-                </div>
-         	</div>
+            </div>
+            <hr>
          	<?php } ?>	
          	
          	<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
@@ -210,20 +214,20 @@
 			<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
 			<input type="hidden" name="menores" value="<?php echo $this->input->post('menores') ?>">
 			<input type="hidden" name="hotel" value="<?php echo $this->input->post('hotel') ?>">
-			
+			<div class="panel-body">
 			<div class="col-xs-4">
+				</div>
+				<div class="col-xs-4">
+					<center>
+						<button type="submit" name="reservar" value="Seleccione una opción" class="btn btn-hotel boton-redondo">
+							<span class="icon-ok"></span>
+						</button>
+					</center>
+				</div>
+				<div class="col-xs-4">
+					<label id="habitaciones" class="pull-right"></label>
+				</div>
 			</div>
-			<div class="col-xs-4">
-				<center>
-					<button type="submit" name="reservar" value="Seleccione una opción" class="btn btn-hotel boton-redondo">
-						<span class="icon-ok"></span>
-					</button>
-				</center>
-			</div>
-			<div class="col-xs-4">
-				<label id="habitaciones" class="pull-right"></label>
-			</div>
-				
          	
          	<?php echo form_close(); ?>
          	

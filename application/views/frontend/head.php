@@ -2,6 +2,10 @@
 <head>
 <title>Hotel</title>
 
+<script type="text/javascript">// <![CDATA[
+
+// ]]></script>
+
 <!--BEGIN META TAGS-->
 <META NAME="keywords" CONTENT="">
 <META NAME="description" CONTENT="Hotel">
