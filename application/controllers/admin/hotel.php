@@ -453,9 +453,24 @@ class Hotel extends CI_Controller {
 			$crud = new grocery_CRUD();
 			
 			if($id==1){
-				$crud->where('config_email_reserva.id_tipo_correo', 1);
 				$crud->where('config_email_reserva.delete', 0);
-				$crud->set_relation_n_n('emails_reserva' , 'hotel_email_reserva', 'emails_hotel', 'id_config', 'id_email', '{email}', 'prioridad');
+				$crud->where('config_email_reserva.id_tipo_correo', 1);
+				$crud->set_relation_n_n('emails_reserva', 
+										'hotel_email_reserva', 
+										'emails_hotel', 
+										'id_config', 
+										'id_email', 
+										'{email}', 
+										'prioridad');
+				/*						
+				$crud->set_relation_n_n('actors', 
+										'film_actor',//tabla de relacion 
+										'actor',//tabla datos en el nn 
+										'film_id',//identificador de la tabla primaria
+										'actor_id',//identificar tabla datos nn 
+										'fullname',//como se va a mostrar
+										'priority');//prioridad
+				 */
 			}else{
 				$crud->where('config_email_reserva.delete', 0);
 				$crud->where('config_email_reserva.id_tipo_correo', 2);
@@ -463,26 +478,23 @@ class Hotel extends CI_Controller {
 			
 			$crud->set_table('config_email_reserva');
 			
-			$crud->columns(	'id_tipo_correo', 'id_hotel');
+			$crud->columns('id_tipo_correo', 'id_hotel');
 			
 			$crud->display_as('id_config_email_reserva','ID')
-				 ->display_as('id_nota','Nota')
 				 ->display_as('habitacion ','Habitación')
-				 ->display_as('telefono','Teléfono')
-				 ->display_as('aerolinea','Aerolínea')
 				 ->display_as('id_hotel','Hotel')
-				 ->display_as('id_tipo_correo','Tipo')				 
 				 ->display_as('id_reserva','Reserva');
 			
-			$crud->fields('emails_reserva');			
+			//$crud->fields('emails_reserva');			
 						
 			$crud->set_subject('Email Reserva');
 			
 			$crud->field_type('id_tipo_correo', 'readonly');
 			$crud->field_type('id_hotel', 'readonly');
+			$crud->field_type('correo', 'hidden');
 			$crud->field_type('delete', 'hidden');
 			
-			 //$crud->callback_field('emails_reserva',array($this,'field_callback_1'));
+			//$crud->callback_field('emails_reserva',array($this,'field_callback_1'));
 			//$crud->unset_fields('emails_reserva');
 			
 			$crud->set_relation('id_hotel','hoteles','hotel');
@@ -491,6 +503,10 @@ class Hotel extends CI_Controller {
 			$crud->unset_add();
 			$crud->unset_delete();
 			$crud->unset_read();
+			
+			if($id==2){
+				$crud->unset_edit();
+			}
 			
 			$crud->add_action('Redactar', '', 'admin/hotel/hoteles_email_reserva','icon-pencil');
 			
@@ -533,13 +549,14 @@ class Hotel extends CI_Controller {
 				 ->display_as('id_tipo_correo','Tipo')
 				 ->display_as('telefono ','Teléfono');
 			
-			$crud->fields('emails_mensaje');
+			//$crud->fields('emails_mensaje');
 			
 			$crud->set_subject('Email Mensaje');
 			
 			$crud->field_type('id_tipo_correo', 'readonly');
 			$crud->field_type('id_hotel', 'readonly');
-			$crud->field_type('delete', 'hidden');  
+			$crud->field_type('correo', 'hidden');
+			$crud->field_type('delete', 'hidden'); 
 			
 			$crud->set_relation('id_hotel','hoteles','hotel');
 			$crud->set_relation('id_tipo_correo','tipos_correo','tipo_correo');
@@ -547,6 +564,10 @@ class Hotel extends CI_Controller {
 			$crud->unset_add();
 			$crud->unset_delete();
 			$crud->unset_read();
+			
+			if($id==2){
+				$crud->unset_edit();
+			}
 			
 			$crud->add_action('Redactar', '', 'admin/hotel/hoteles_email_mensaje','icon-pencil');
 			
@@ -587,13 +608,14 @@ class Hotel extends CI_Controller {
 				 ->display_as('id_hotel','Hotel')
 				 ->display_as('id_tipo_correo','Tipo');
 				 
-			$crud->fields('emails_habitacion');
+			//$crud->fields('emails_habitacion');
 			
 			$crud->set_subject('Email Mensaje');
 			
 			$crud->field_type('id_tipo_correo', 'readonly');
 			$crud->field_type('id_hotel', 'readonly');
-			$crud->field_type('delete', 'hidden');   
+			$crud->field_type('correo', 'hidden');
+			$crud->field_type('delete', 'hidden');  
 			
 			$crud->set_relation('id_hotel','hoteles','hotel');
 			$crud->set_relation('id_tipo_correo','tipos_correo','tipo_correo');
@@ -601,6 +623,10 @@ class Hotel extends CI_Controller {
 			$crud->unset_add();
 			$crud->unset_delete();
 			$crud->unset_read();
+			
+			if($id==2){
+				$crud->unset_edit();
+			}
 			
 			$crud->add_action('Redactar', '', 'admin/hotel/hoteles_email_habitacion','icon-pencil');
 			

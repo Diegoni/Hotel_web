@@ -89,7 +89,7 @@
       			<tr>
 	      			<th>Mensaje</th>
 	      			<th>De</th>
-	      			<th>Tipo</th>
+	      			<!--<th>Tipo</th>-->
 	      			<th>Fecha</th>
 	      			<th>Estado</th>
       			</tr>
@@ -104,7 +104,7 @@
 			  				<span class="icon-emailforward"></span>
 			  			</a>-->
 			  		</td>
-			  		<td><?php echo $mensaje->id_tipo_mensaje ?></td>
+			  		<!---<td><?php echo $mensaje->id_tipo_mensaje ?></td>-->
 			  		<td><?php echo date("d-m-Y", strtotime($mensaje->fecha_envio));  ?></td>
 			  		<td><select name="estado<?php echo $mensaje->id_mensaje; ?>">
 			  				<?php foreach ($estados_mensaje as $estado) { ?>

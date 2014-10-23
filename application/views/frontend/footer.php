@@ -15,15 +15,10 @@
   	
   	<div class="row">
   		<div class="col-md-12">
-  			<div class="panel panel-default">
-  				<div class="panel-body">
+  			<!--<div class="panel panel-default">
+  				<div class="panel-body">-->
   					
-
-
-    
-
-
-  				  	<div class="row">
+  					<div class="row">
   					<?php 
   					$telefono=array();
 					$direccion=array();
@@ -37,7 +32,7 @@
 					} ?>
 					<div class="col-md-4">			
 					<center>
-						<h4><i class="fa fa-phone"></i></h4>
+						<h4><i class="fa fa-phone icono-footer"></i></h4>
 						<p class="texto-footer">
 						<?php 
 						foreach ($telefono as $key => $value) {
@@ -49,7 +44,7 @@
 					</div>
 					<div class="col-md-4">
 					<center>
-	   					<h4><i class="fa fa-map-marker"></i></h4> 
+	   					<h4><i class="fa fa-map-marker icono-footer"></i></h4> 
 						<p class="texto-footer">
 							<?php 
 							foreach ($direccion as $key => $value) {
@@ -61,7 +56,7 @@
 					</div>
 					<div class="col-md-4">
 					<center>
-   						<h4><i class="fa fa-envelope-o"></i></h4>
+   						<h4><i class="fa fa-envelope-o icono-footer"></i></h4>
    						<p class="texto-footer">
 						<?php 
 						if($emails_hotel){
@@ -74,9 +69,9 @@
 					</center>
 					</div>
 				</div>
-   						
+   				<!--		
     			</div>
-			</div>
+			</div>-->
   		</div>
   	</div>
 	

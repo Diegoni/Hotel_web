@@ -219,13 +219,13 @@
       		<div class="modal-body">
       			<div class="form-group">
     				<label for="nombre" class="col-sm-3 control-label"><?php echo $texto['telefono']?></label>
-    				<div class="col-sm-9">
+    				<label for="nombre" class="col-sm-9 control-label">
     					<?php 
 						foreach ($telefono as $key => $value) {
-							echo "<kbd>".$value."</kbd><br>";
+							echo "<p class='telefonos'>".$value."</p><br>";
 						}
 						?>
-    				</div>
+    				</label>
   				</div>
       			<!--
       			<div class="form-group">

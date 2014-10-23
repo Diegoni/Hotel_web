@@ -135,6 +135,7 @@ class Reserva extends CI_Controller {
 			foreach ($huespedes as $value) {
 				$huesped['nombre']			= $value->nombre;
 				$huesped['apellido']		= $value->apellido;
+				$huesped['titulo']			= 'Reeenvio de datos de reserva';//Cambiar esto, mejorarlo
 			}
 			
 			foreach ($emails_huesped as $value) {

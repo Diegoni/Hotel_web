@@ -208,8 +208,12 @@ class Hoteles_email_model extends CI_Model {
 			 $row = $query->row(); 
 		}
 			
-											
-		$título = 'Reserva online';
+		if(isset($huesped['titulo'])){
+			$título = $huesped['titulo'];	
+		}else{
+			$título = 'Reserva online';	
+		}									
+		
 		$mensaje = $row->correo;
 		//Datos reserva
 		$mensaje = str_replace("#hotel#", $hotel, $mensaje);
