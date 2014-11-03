@@ -188,11 +188,12 @@ class Hotel extends CI_Controller {
 				 ->display_as('hotel','Hotel')
 				 ->display_as('descripcion','Descripción')
 				 ->display_as('fondo_intro','Foto mapa')
+				 ->display_as('monedas','Mostrar monedas')
 				 ->display_as('url','Sitio');
 			
 			$crud->set_subject('hotel');
 			
-			$crud->fields('hotel', 'descripcion', 'logo_url', 'url', 'fondo_intro', 'latitud', 'longitud');
+			$crud->fields('hotel', 'descripcion', 'logo_url', 'url', 'fondo_intro', 'latitud', 'longitud', 'monedas');
 			
 			$crud->required_fields('hotel','descripcion', 'url', 'latitud', 'longitud');
 			
@@ -206,6 +207,7 @@ class Hotel extends CI_Controller {
 			$crud->set_field_upload('fondo_intro','assets/uploads/logos');
 			
 			$crud->field_type('delete', 'hidden');
+			$crud->field_type('monedas', 'true_false');
 			
 			$_COOKIE['tabla']='hoteles';
 			$_COOKIE['id']='id_hotel';	

@@ -43,7 +43,8 @@
 					<?php if($servicios){ ?>
 					<?php foreach ($servicios as $servicio) {?>
 						<li class="lista-servicios">
-							<img src='<?php echo base_url().'assets/uploads/servicios/'.$servicio->icono?>' class="icono-servicios">
+							<!--<img src='<?php echo base_url().'assets/uploads/servicios/'.$servicio->icono?>' class="icono-servicios">-->
+							<i class="fa fa-check"></i>
 							<?php echo $servicio->servicio?>
 						</li>
 					<?php } ?>	

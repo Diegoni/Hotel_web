@@ -165,10 +165,15 @@
                     			<?php echo $cambio->simbolo; ?>  
                     			<?php echo number_format($precio/$cambio->valor*$noches, 2, ',', ' '); ?>
                     			<input type="hidden" name="precio<?php echo $habitacion->id_habitacion ?>" value="<?php echo $precio ?>">
+                    			<?php 
+                    			foreach ($hoteles as $hotel) {
+                    			if($hotel->monedas==1){ ?>
                     			<a href="#" class="btn btn-hotel btn-xs" title="<?php echo $texto['monedas']?>" rel="tooltip" data-toggle="modal" data-target="#monedas">
 									<i class="fa fa-usd icons-white"></i>
 									<!--<img style="width: 16px" src="<?php echo base_url().'assets/uploads/moneda-01.png'?>">-->
+								
 								</a>
+								<?php }} ?>
 						<?php if($precio/$cambio->valor*$noches>1000){
 							echo "</h3>";
 						}else{
