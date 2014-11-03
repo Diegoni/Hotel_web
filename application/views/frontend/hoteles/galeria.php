@@ -19,7 +19,9 @@
                                 <div class="carousel slide" id="myCarousel">
                                     <!-- Carousel items -->
                                     <div class="carousel-inner">
-                                    	<?php $i=0; ?>
+                                    	<?php $i=0; 
+                                    	if($imagenes_habitacion){
+                                    	?>
                                     	<?php foreach ($imagenes_habitacion as $imagenes) { ?>
                                         <div class="item <?php if($i==0){echo "active";}?>" data-slide-number="<?php echo $i ?>">
                                         	<a class="fancybox" rel="ligthbox" href="<?php echo base_url().'assets/uploads/hoteles/'.$imagenes->imagen;?>">
@@ -30,7 +32,7 @@
                                         </div>
                                         
                                         <?php $i=$i+1; ?>
-                                        <?php } ?>
+                                        <?php }} ?>
                                         
                                     </div><!-- Carousel nav -->
                                     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -50,7 +52,9 @@
                 <div class="row hidden-xs" id="slider-thumbs">
                         <!-- Bottom switcher of slider -->
                         <ul class="hide-bullets">
-                        	<?php $i=0; ?>
+                        	<?php $i=0;
+							if($imagenes_habitacion){
+							 ?>
                             <?php foreach ($imagenes_habitacion as $imagenes) { ?>
                             <li class="col-sm-2">
                                 <a class="thumbnail" id="carousel-selector-<?php echo $i ?>">
@@ -58,7 +62,7 @@
                                 </a>
                             </li>
                             <?php $i=$i+1; ?>
-                            <?php } ?>
+                            <?php }} ?>
                         </ul>                 
                 </div>
         </div>

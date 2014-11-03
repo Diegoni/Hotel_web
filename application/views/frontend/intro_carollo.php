@@ -23,7 +23,7 @@
 		        var is_ie = navigator.userAgent.toLowerCase().indexOf('msie') > -1;
 		      
 		        if (is_safari) {
-		        	$("#container" ).addClass( "center3" );
+		        	//$("#container" ).addClass( "center3" );
 		        }
 		 
 		        if (is_chrome ) {

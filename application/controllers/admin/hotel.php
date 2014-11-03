@@ -801,5 +801,3 @@ class Hotel extends CI_Controller {
 
 }
 ?>
-
-

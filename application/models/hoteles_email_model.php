@@ -362,5 +362,3 @@ class Hoteles_email_model extends CI_Model {
 
 } 
 ?>
-
-

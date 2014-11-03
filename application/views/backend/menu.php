@@ -191,5 +191,5 @@
 
 
 <span id="forkongithub">
-    <a href='<?php echo site_url('inicio/inicio')?>' target="_blank">Sitio</a> 
+    <a href='<?php echo site_url()?>' target="_blank">Sitio</a> 
   </span>
