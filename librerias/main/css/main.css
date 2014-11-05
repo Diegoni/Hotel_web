@@ -1,5 +1,11 @@
 @font-face {font-family:"Cinzel-Regular";src:url("Cinzel-Regular.eot?") format("eot"),url("Cinzel-Regular.woff") format("woff"),url("Cinzel-Regular.ttf") format("truetype"),url("Cinzel-Regular.svg#Cinzel-Regular") format("svg");font-weight:normal;font-style:normal;}
 
+.reservar{
+	font-family: 'Cinzel-Regular';
+	font-size: 18px;
+	padding: 8px 15px;
+}
+
 .telefonos{
 	text-align: left;
 }
@@ -374,6 +380,24 @@ right: 0;
     /*font-weight: bold;*/
     text-decoration: none;
     text-align: center;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+}
+
+
+.panel-hotel > .panel-subheading {
+	font-family: 'Cinzel-Regular';
+	font-size: 14px;
+  	color: #f8eda7;
+  	background-color: #57101c;
+  	border-color: #5c1b21;
+ 	/*background-image: url("uno.png");*/
+	background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 8px 15px;
+    /*font-weight: bold;*/
+    text-decoration: none;
+    /*text-align: center;*/
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
 }

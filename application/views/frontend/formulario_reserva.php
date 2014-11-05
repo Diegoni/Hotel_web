@@ -13,7 +13,7 @@
 	    			<div class="form-group margin-bottom">
 						<label for="exampleInputEmail1"><i class="icon-arrow-right icono-rojo"></i> <?php echo $texto['entrada']?></label>
 						<div class="input-group">
-							<input class="form-control" name="entrada" id="entrada" type="entrada" placeholder="Fecha entrada" value="<?php echo date("d/m/Y",  strtotime("+1 day")); ?>" autocomplete="off">
+							<input class="form-control" name="entrada" id="entrada" type="entrada" placeholder="Fecha entrada" value="<?php echo date("d/m/Y"  /*, strtotime("+1 day")*/); ?>" autocomplete="off">
 							<div class="input-group-addon" onclick="document.getElementById('entrada').focus();">
 								<span class="icon-calendarthree"></span>
 							</div>
@@ -22,7 +22,7 @@
 				  	<div class="form-group margin-bottom">
 					    <label for="exampleInputEmail1"><i class="icon-arrow-left icono-rojo"></i> <?php echo $texto['salida']?></label>
 						<div class="input-group">
-							<input class="form-control" name="salida" id="salida" type="salida" placeholder="Fecha salida" value="<?php echo date("d/m/Y",  strtotime("+2 day")); ?>" autocomplete="off">
+							<input class="form-control" name="salida" id="salida" type="salida" placeholder="Fecha salida" value="<?php echo date("d/m/Y",  strtotime("+1 day")); ?>" autocomplete="off">
 							<div class="input-group-addon" onclick="document.getElementById('salida').focus();">
 								<span class="icon-calendarthree"></span>
 							</div>

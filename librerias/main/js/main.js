@@ -367,7 +367,7 @@ $(function() {
       defaultDate: "+1w",
       changeMonth: true,
       /*numberOfMonths: 2,*/
-      minDate: 1, 
+      minDate: 0, 
       maxDate: "+2M +15D", 
       onClose: function( selectedDate ) {
       		

@@ -18,16 +18,20 @@ class Hotel extends CI_Controller {
 
 	public function _example_output($output = null)
 	{
-		$reservas=buscarReservas();
-		$mensajes=buscarMensajes();
-		
-		$db=array_merge($reservas, $mensajes);
-					
-		$this->load->view('backend/head.php',$output);
-		$this->load->view('backend/menu.php', $db);	
-		$this->load->view('backend/modal.php');
-		$this->load->view('backend/hoteles.php');
-		$this->load->view('backend/footer.php');
+		if($this->session->userdata('logged_in')){
+			$reservas=buscarReservas();
+			$mensajes=buscarMensajes();
+			
+			$db=array_merge($reservas, $mensajes);
+						
+			$this->load->view('backend/head.php',$output);
+			$this->load->view('backend/menu.php', $db);	
+			$this->load->view('backend/modal.php');
+			$this->load->view('backend/hoteles.php');
+			$this->load->view('backend/footer.php');
+		}else{
+			redirect('/admin/home/logout/','refresh');
+		}
 	}
 	
 	public function index()
@@ -39,127 +43,139 @@ class Hotel extends CI_Controller {
 	
 	public function hoteles_email_reserva($id = null)
 	{
-		if($this->input->post('aceptar')){
-			$registro=array('correo'					=> $this->input->post('correo'),
-							'id_config_email_reserva' 	=> $id);
-			$id_modificado = $this->config_email_reservas_model->updateConfig($registro);
+		if($this->session->userdata('logged_in')){
+			if($this->input->post('aceptar')){
+				$registro=array('correo'					=> $this->input->post('correo'),
+								'id_config_email_reserva' 	=> $id);
+				$id_modificado = $this->config_email_reservas_model->updateConfig($registro);
+			}
+			$option=array(	'' 							=> "", 
+							'#hotel#'					=> "Hotel",
+							'#entrada#'					=> "Entrada",
+							'#salida#'					=> "Salida",
+							'#adultos#'					=> "Adultos",
+							'#menores#'					=> "Menores",
+							'#huesped_nombre#'			=> "Huesped nombre",
+							'#huesped_apellido#'		=> "Huesped apellido",
+							'#huesped_email#'			=> "Huesped email",
+							'#huesped_telefono#'		=> "Huesped teléfono",
+							'#huesped_id_tipo_tarjeta#'	=> "Tarjeta tipo",
+							'#tarjeta_numero#'			=> "Tarjeta nro",
+							'#tarjeta_pin#'				=> "Tarjeta pin",
+							'#tarjeta_vencimiento#'		=> "Tarjeta vencimiento",
+							'#vuelo_numero#'			=> "Vuelo nro",
+							'#vuelo_horario_llegada#'	=> "Vuelo horario llegada",
+							'#reserva_numero#'			=> "Reserva nro",
+							'#reserva_alta#'			=> "Reserva alta",
+							'#reserva_precio#'			=> "Reserva precios",
+							'#terminos#'				=> "Terminos y condiciones",
+							'#nota#'					=> "Nota",
+							'#hotel#'					=> "Hotel",
+							'#entrada#'					=> "Entrada",
+							'#salida#'					=> "Salida",
+							'#adultos#'					=> "Adultos",
+							'#menores#'					=> "Menores",
+							'#huesped_nombre#'			=> "Huesped nombre",
+							'#huesped_apellido#'		=> "Huesped apellido",
+							'#huesped_email#'			=> "Huesped email",
+							'#huesped_telefono#'		=> "Huesped teléfono",
+							'#huesped_id_tipo_tarjeta#'	=> "Tarjeta tipo",
+							'#tarjeta_numero#'			=> "Tarjeta nro",
+							'#tarjeta_pin#'				=> "Tarjeta pin",
+							'#tarjeta_vencimiento#'		=> "Tarjeta vencimiento",
+							'#vuelo_numero#'			=> "Vuelo nro",
+							'#vuelo_horario_llegada#'	=> "Vuelo horario llegada",
+							'#vuelo_aerolinea#'			=> "Vuelo aerolinea",
+							'#reserva_numero#'			=> "Reserva nro",
+							'#reserva_alta#'			=> "Reserva alta",
+							'#reserva_precio#'			=> "Reserva precios",
+							'#terminos#'				=> "Terminos y condiciones",
+							'#nota#'					=> "Nota");
+			$reservas=buscarReservas();
+			$mensajes=buscarMensajes();
+			
+			$db=array_merge($reservas, $mensajes);
+			$db['option'] = $option;
+			$db['config_email'] = $this->config_email_reservas_model->getConfig($id);
+						
+			$this->load->view('backend/head.php');
+			$this->load->view('backend/menu.php', $db);	
+			$this->load->view('backend/modal.php');
+			$this->load->view('backend/hoteles_correo.php');
+			$this->load->view('backend/footer.php');
+		}else{
+			redirect('/admin/home/logout/','refresh');
 		}
-		$option=array(	'' 							=> "", 
-						'#hotel#'					=> "Hotel",
-						'#entrada#'					=> "Entrada",
-						'#salida#'					=> "Salida",
-						'#adultos#'					=> "Adultos",
-						'#menores#'					=> "Menores",
-						'#huesped_nombre#'			=> "Huesped nombre",
-						'#huesped_apellido#'		=> "Huesped apellido",
-						'#huesped_email#'			=> "Huesped email",
-						'#huesped_telefono#'		=> "Huesped teléfono",
-						'#huesped_id_tipo_tarjeta#'	=> "Tarjeta tipo",
-						'#tarjeta_numero#'			=> "Tarjeta nro",
-						'#tarjeta_pin#'				=> "Tarjeta pin",
-						'#tarjeta_vencimiento#'		=> "Tarjeta vencimiento",
-						'#vuelo_numero#'			=> "Vuelo nro",
-						'#vuelo_horario_llegada#'	=> "Vuelo horario llegada",
-						'#reserva_numero#'			=> "Reserva nro",
-						'#reserva_alta#'			=> "Reserva alta",
-						'#reserva_precio#'			=> "Reserva precios",
-						'#terminos#'				=> "Terminos y condiciones",
-						'#nota#'					=> "Nota",
-						'#hotel#'					=> "Hotel",
-						'#entrada#'					=> "Entrada",
-						'#salida#'					=> "Salida",
-						'#adultos#'					=> "Adultos",
-						'#menores#'					=> "Menores",
-						'#huesped_nombre#'			=> "Huesped nombre",
-						'#huesped_apellido#'		=> "Huesped apellido",
-						'#huesped_email#'			=> "Huesped email",
-						'#huesped_telefono#'		=> "Huesped teléfono",
-						'#huesped_id_tipo_tarjeta#'	=> "Tarjeta tipo",
-						'#tarjeta_numero#'			=> "Tarjeta nro",
-						'#tarjeta_pin#'				=> "Tarjeta pin",
-						'#tarjeta_vencimiento#'		=> "Tarjeta vencimiento",
-						'#vuelo_numero#'			=> "Vuelo nro",
-						'#vuelo_horario_llegada#'	=> "Vuelo horario llegada",
-						'#vuelo_aerolinea#'			=> "Vuelo aerolinea",
-						'#reserva_numero#'			=> "Reserva nro",
-						'#reserva_alta#'			=> "Reserva alta",
-						'#reserva_precio#'			=> "Reserva precios",
-						'#terminos#'				=> "Terminos y condiciones",
-						'#nota#'					=> "Nota");
-		$reservas=buscarReservas();
-		$mensajes=buscarMensajes();
-		
-		$db=array_merge($reservas, $mensajes);
-		$db['option'] = $option;
-		$db['config_email'] = $this->config_email_reservas_model->getConfig($id);
-					
-		$this->load->view('backend/head.php');
-		$this->load->view('backend/menu.php', $db);	
-		$this->load->view('backend/modal.php');
-		$this->load->view('backend/hoteles_correo.php');
-		$this->load->view('backend/footer.php');
 	}
 	
 	
 	public function hoteles_email_mensaje($id = null)
 	{
-		if($this->input->post('aceptar')){
-			$registro=array('correo'					=> $this->input->post('correo'),
-							'id_config_email_mensaje' 	=> $id);
-			$id_modificado = $this->config_email_mensajes_model->updateConfig($registro);
-		}
-		$option=array(	'' 					=> "", 
-						'#mensaje#'			=> "mensaje",
-						'#fecha_envio#'		=> "fecha_envio",
-						'#emisor_email#'	=> "emisor",
-						'#emisor_nombre#'	=> "nombre",
-						'#emisor_apellido#'	=> "apellido",
-						'#emisor_telefono#'	=> "telefono",
-						'#hotel#'			=> "hotel");
+		if($this->session->userdata('logged_in')){
+			if($this->input->post('aceptar')){
+				$registro=array('correo'					=> $this->input->post('correo'),
+								'id_config_email_mensaje' 	=> $id);
+				$id_modificado = $this->config_email_mensajes_model->updateConfig($registro);
+			}
+			$option=array(	'' 					=> "", 
+							'#mensaje#'			=> "mensaje",
+							'#fecha_envio#'		=> "fecha_envio",
+							'#emisor_email#'	=> "emisor",
+							'#emisor_nombre#'	=> "nombre",
+							'#emisor_apellido#'	=> "apellido",
+							'#emisor_telefono#'	=> "telefono",
+							'#hotel#'			=> "hotel");
+							
+			$reservas=buscarReservas();
+			$mensajes=buscarMensajes();
+			
+			$db=array_merge($reservas, $mensajes);
+			$db['option'] = $option;
+			$db['config_email'] = $this->config_email_mensajes_model->getConfig($id);
 						
-		$reservas=buscarReservas();
-		$mensajes=buscarMensajes();
-		
-		$db=array_merge($reservas, $mensajes);
-		$db['option'] = $option;
-		$db['config_email'] = $this->config_email_mensajes_model->getConfig($id);
-					
-		$this->load->view('backend/head.php');
-		$this->load->view('backend/menu.php', $db);	
-		$this->load->view('backend/modal.php');
-		$this->load->view('backend/hoteles_correo.php');
-		$this->load->view('backend/footer.php');
+			$this->load->view('backend/head.php');
+			$this->load->view('backend/menu.php', $db);	
+			$this->load->view('backend/modal.php');
+			$this->load->view('backend/hoteles_correo.php');
+			$this->load->view('backend/footer.php');
+		}else{
+			redirect('/admin/home/logout/','refresh');
+		}
 	}
 
 	
 	public function hoteles_email_habitacion($id = null)
 	{
-		if($this->input->post('aceptar')){
-			$registro=array('correo'					=> $this->input->post('correo'),
-							'id_config_email_habitacion'=> $id);
-			$id_modificado = $this->config_email_habitacion_model->updateConfig($registro);
-		}
-		$option=array(	'' 					=> "", 
-						'#mensaje#'			=> "mensaje",
-						'#fecha_envio#'		=> "fecha_envio",
-						'#emisor_email#'	=> "emisor",
-						'#emisor_nombre#'	=> "nombre",
-						'#emisor_apellido#'	=> "apellido",
-						'#hotel#'			=> "hotel",
-						'#habitacion#' 		=> "habitacion");
+		if($this->session->userdata('logged_in')){
+			if($this->input->post('aceptar')){
+				$registro=array('correo'					=> $this->input->post('correo'),
+								'id_config_email_habitacion'=> $id);
+				$id_modificado = $this->config_email_habitacion_model->updateConfig($registro);
+			}
+			$option=array(	'' 					=> "", 
+							'#mensaje#'			=> "mensaje",
+							'#fecha_envio#'		=> "fecha_envio",
+							'#emisor_email#'	=> "emisor",
+							'#emisor_nombre#'	=> "nombre",
+							'#emisor_apellido#'	=> "apellido",
+							'#hotel#'			=> "hotel",
+							'#habitacion#' 		=> "habitacion");
+							
+			$reservas=buscarReservas();
+			$mensajes=buscarMensajes();
+			
+			$db=array_merge($reservas, $mensajes);
+			$db['option'] = $option;
+			$db['config_email'] = $this->config_email_habitacion_model->getConfig($id);
 						
-		$reservas=buscarReservas();
-		$mensajes=buscarMensajes();
-		
-		$db=array_merge($reservas, $mensajes);
-		$db['option'] = $option;
-		$db['config_email'] = $this->config_email_habitacion_model->getConfig($id);
-					
-		$this->load->view('backend/head.php');
-		$this->load->view('backend/menu.php', $db);	
-		$this->load->view('backend/modal.php');
-		$this->load->view('backend/hoteles_correo.php');
-		$this->load->view('backend/footer.php');
+			$this->load->view('backend/head.php');
+			$this->load->view('backend/menu.php', $db);	
+			$this->load->view('backend/modal.php');
+			$this->load->view('backend/hoteles_correo.php');
+			$this->load->view('backend/footer.php');
+		}else{
+			redirect('/admin/home/logout/','refresh');
+		}
 	}
 	
 

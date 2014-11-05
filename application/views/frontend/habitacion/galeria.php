@@ -25,7 +25,7 @@
                                         <div class="item <?php if($i==0){echo "active";}?>" data-slide-number="<?php echo $i ?>">
                                         	<a class="fancybox" rel="ligthbox" href="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>">
                                         		<center>
-                                        			<img src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>">
+                                        			<img src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>" width="600" height="350">
                                         		</center>
                                         	</a>
                                         </div>

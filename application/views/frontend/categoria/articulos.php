@@ -10,9 +10,13 @@
 			  		if ($articulos){
 			  		foreach ($articulos as $articulo) { ?>
 			  		<div class="panel-body">
+			  			<!--
 			  			<div class="badger-left badger-hotel" data-badger="<?php echo $articulo->titulo ?>">
 							<div class="descripcion">
 								<!--<blockquote>-->
+						<div class="panel panel-hotel">
+							<div class="panel-subheading"><?php echo $articulo->titulo ?></div>
+							<div class="panel-body">
 								  <?php
 					  			if($articulo->archivo_url!=""){?>
 					    			<img class="img-circle img-banner" src="<?php echo base_url().'assets/uploads/articulos/'.$articulo->archivo_url?>">
@@ -28,7 +32,8 @@
 									if($fecha->entrada>date("Y/m/d")){}
 										$fecha->entrada=date("Y/m/d");
 									?>
-									<h3 class="panel-heading"><?php echo $texto['reservar'] ?></h3>
+									
+									<p class="reservar"><?php echo $texto['reservar'] ?></p>
 									<form class="form-horizontal" role="form" action="<?php echo base_url().'index.php/reserva/habitacion' ?>" method="post">
 										<div class="col-md-6 col-md-offset-3">
 										<div class="form-group">

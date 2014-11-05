@@ -267,7 +267,7 @@ foreach ($hoteles as $hotel) {
       		</div>
       		<div class="modal-body">
       			<center>
-      				<img src="<?php echo base_url().'assets/uploads/logos/'.$fondo_url?>" class="mapa-direccion">	
+      				<img src="<?php echo base_url().'assets/uploads/logos/'.$fondo_url?>" class="mapa-direccion img-responsive" alt="Responsive image">	
       			</center>
       		</div>
       		<div class="modal-footer">

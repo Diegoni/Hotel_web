@@ -16,16 +16,20 @@ class Usuario extends CI_Controller {
 
 	public function _example_output($output = null)
 	{
-		$reservas=buscarReservas();
-		$mensajes=buscarMensajes();
-		
-		$db=array_merge($reservas, $mensajes);
-					
-		$this->load->view('backend/head.php',$output);
-		$this->load->view('backend/menu.php', $db);	
-		$this->load->view('backend/modal.php');
-		$this->load->view('backend/usuarios.php');
-		$this->load->view('backend/footer.php');
+		if($this->session->userdata('logged_in')){
+			$reservas=buscarReservas();
+			$mensajes=buscarMensajes();
+			
+			$db=array_merge($reservas, $mensajes);
+						
+			$this->load->view('backend/head.php',$output);
+			$this->load->view('backend/menu.php', $db);	
+			$this->load->view('backend/modal.php');
+			$this->load->view('backend/usuarios.php');
+			$this->load->view('backend/footer.php');
+		}else{
+			redirect('/admin/home/logout/','refresh');
+		}
 	}
 	
 	public function index()
