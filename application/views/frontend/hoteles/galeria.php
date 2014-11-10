@@ -23,7 +23,7 @@
                                     	if($imagenes_habitacion){
                                     	?>
                                     	<?php foreach ($imagenes_habitacion as $imagenes) { ?>
-                                        <div class="item <?php if($i==0){echo "active";}?>" data-slide-number="<?php echo $i ?>">
+                                        <div class="item <?php if($i==0){echo "active";}?>" data-slide-number="<?php if($i<10){echo '0'.$i;}else{ echo $i;} ?>">
                                         	<a class="fancybox" rel="ligthbox" href="<?php echo base_url().'assets/uploads/hoteles/'.$imagenes->imagen;?>">
                                         		<center>
                                         			<img src="<?php echo base_url().'assets/uploads/hoteles/'.$imagenes->imagen;?>" width="600" height="350">
@@ -53,15 +53,16 @@
                         <!-- Bottom switcher of slider -->
                         <ul class="hide-bullets">
                         	<?php $i=0;
-							if($imagenes_habitacion){
-							 ?>
+							if($imagenes_habitacion){?>
                             <?php foreach ($imagenes_habitacion as $imagenes) { ?>
                             <li class="col-sm-2">
-                                <a class="thumbnail" id="carousel-selector-<?php echo $i ?>">
-                                	<img src="<?php echo base_url().'assets/uploads/hoteles/'.$imagenes->imagen;?>" class="img-rounded">
+                                <a class="thumbnail" id="carousel-selector-<?php if($i<10){echo '0'.$i;}else{ echo $i;}; ?>">
+                                	<center>
+                                		<img src="<?php echo base_url().'assets/uploads/hoteles/'.$imagenes->imagen;?>" class="img-rounded" width="87" height="87">
+                                	</center>
                                 </a>
                             </li>
-                            <?php $i=$i+1; ?>
+                            <?php $i=$i+1;?>
                             <?php }} ?>
                         </ul>                 
                 </div>

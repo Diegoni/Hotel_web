@@ -181,7 +181,31 @@ window.onload = createUploader;
 					<?php if(!$unset_delete){?><div class='delete-box'>
 						<a href='<?php echo $photo->delete_url?>' class='delete-anchor' tabindex="-1"><?php echo $this->l('list_delete');?></a>
 					</div><?php }?>
+					
 					<div class="clear"></div>
+					<?php if($set_title_description){ ?>
+						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal<?php echo $photo->$primary_key?>">
+						  URL
+						</button>
+						
+						<!-- Modal -->
+						<div class="modal fade" id="myModal<?php echo $photo->$primary_key?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						        <h4 class="modal-title" id="myModalLabel">Copiar el siguiente texto</h4>
+						      </div>
+						      <div class="modal-body">
+						       <?php echo $photo->image_url?>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+					<?php } ?>
 				</div>
 			</li>
 	<?php }?>

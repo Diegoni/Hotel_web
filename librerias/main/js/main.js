@@ -13,7 +13,7 @@ jQuery(document).ready(function($) {
 	//Handles the carousel thumbnails
 	$('[id^=carousel-selector-]').click( function(){
 		var id_selector = $(this).attr("id");
-		var id = id_selector.substr(id_selector.length -1);
+		var id = id_selector.substr(id_selector.length -2);
 		var id = parseInt(id);
 		$('#myCarousel').carousel(id);
 	});

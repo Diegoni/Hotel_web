@@ -373,6 +373,8 @@ class Habitacion extends CI_Controller {
 			
 			$crud->set_field_upload('imagen','assets/uploads/monedas');
 			
+			chmod("assets/uploads/monedas", 755);
+			
 			$_COOKIE['tabla']='monedas';
 			$_COOKIE['id']='id_moneda';
 						

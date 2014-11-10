@@ -266,12 +266,10 @@ class Hoteles_email_model extends CI_Model {
   		
 	    	
 	    foreach ($reservas as $reserva) {
-		    $mensaje .="
-	  			Cantidad: ".$reserva->cantidad."<br>";
-	  		
-	    	$mensaje .="
-	  			Habitación: ".$reserva->habitacion."<br>";
+		    $cant_habitacion = $reserva->cantidad." - ".$reserva->habitacion."<br>";
 		}
+		
+		$mensaje = str_replace("#cant_habitacion#", "", $mensaje);
 		
 		
 		

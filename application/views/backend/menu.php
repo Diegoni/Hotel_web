@@ -123,6 +123,7 @@
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-document"></i> Artículos<b class="caret"></b></a>
 			<ul class="dropdown-menu">
             	<li><a  href='<?php echo site_url('admin/articulo/articulos_abm')?>'>Artículos</a></li>
+            	<li><a  href='<?php echo site_url('galeria/imagenes_articulos')?>'>Imágenes</a></li>
 				<li><a  href='<?php echo site_url('admin/articulo/estados_articulo')?>'>Estados artículo</a></li>
 				<li class="divider"></li>
 				<li><a  href='<?php echo site_url('admin/articulo/categorias_abm')?>'>Categorías</a></li>

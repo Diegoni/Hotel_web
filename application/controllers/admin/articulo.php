@@ -107,6 +107,8 @@ class Articulo extends CI_Controller {
 			
 			$crud->set_field_upload('archivo_url','assets/uploads/articulos');
 			
+			chmod("assets/uploads/articulos", 755);
+			
 			$_COOKIE['tabla']='articulos';
 			$_COOKIE['id']='id_articulo';	
 			

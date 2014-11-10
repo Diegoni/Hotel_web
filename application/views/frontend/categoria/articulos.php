@@ -10,12 +10,12 @@
 			  		if ($articulos){
 			  		foreach ($articulos as $articulo) { ?>
 			  		<div class="panel-body">
-			  			<!--
+			  			
 			  			<div class="badger-left badger-hotel" data-badger="<?php echo $articulo->titulo ?>">
 							<div class="descripcion">
 								<!--<blockquote>-->
-						<div class="panel panel-hotel">
-							<div class="panel-subheading"><?php echo $articulo->titulo ?></div>
+						<!--<div class="panel panel-hotel">
+							<div class="panel-subheading"><?php echo $articulo->titulo ?></div>-->
 							<div class="panel-body">
 								  <?php
 					  			if($articulo->archivo_url!=""){?>
@@ -128,6 +128,7 @@
 								<?php
 								}
 							} ?>
+						</div>
 						</div>
 						<!--<small><?php echo $texto['fecha_publicacion']; ?> : <?php echo date("d-m-Y" ,strtotime($articulo->fecha_publicacion));?></small>-->						
 					</div>

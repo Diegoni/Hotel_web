@@ -38,6 +38,8 @@ class image_CRUD {
 	/* Unsetters */
 	protected $unset_delete = false;
 	protected $unset_upload = false;
+	
+	protected $set_title_description = false;
 
 	protected $language = null;
 	protected $lang_strings = array();
@@ -137,6 +139,20 @@ class image_CRUD {
 	
 		return $this;
 	}	
+	
+	
+	/*************************************************************
+	 *************************************************************
+	 * 					Mostrar url
+	 ************************************************************* 
+	*************************************************************/
+	public function set_title_description()
+	{
+		$this->set_title_description = true;
+	
+		return $this;
+	}	
+	
 	
 	public function set_css($css_file)
 	{
@@ -501,6 +517,7 @@ class image_CRUD {
 						'title_field' => $this->title_field,
 						'unset_delete' => $this->unset_delete,
 						'unset_upload' => $this->unset_upload,
+						'set_title_description' => $this->set_title_description,
 						'has_priority_field' => $this->priority_field !== null ? true : false
 					));
 

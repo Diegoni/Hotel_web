@@ -69,8 +69,10 @@
 								$i=0;
 								if($imagenes_habitacion){
 								foreach ($imagenes_habitacion as $imagenes) { ?>
-									<a href="#" class="item <?php if($i==0){echo 'active';}?>" class="thumbnail">								
-										<img alt="slide" src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>" width="300" height="175"> <!--style="max-width: 160px; max-height: 120px;"-->
+									<a href="#" class="item <?php if($i==0){echo 'active';}?>" class="thumbnail">
+										<center>								
+											<img alt="slide" src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>" width="300" height="175"> <!--style="max-width: 160px; max-height: 120px;"-->
+										</center>
 									</a>
 									<?php $i=$i+1?>
 								<?php }} ?>
@@ -167,13 +169,16 @@
                     			<input type="hidden" name="precio<?php echo $habitacion->id_habitacion ?>" value="<?php echo $precio ?>">
                     			<?php 
                     			foreach ($hoteles as $hotel) {
-                    			if($hotel->monedas==1){ ?>
-                    			<a href="#" class="btn btn-hotel btn-xs" title="<?php echo $texto['monedas']?>" rel="tooltip" data-toggle="modal" data-target="#monedas">
-									<i class="fa fa-usd icons-white"></i>
-									<!--<img style="width: 16px" src="<?php echo base_url().'assets/uploads/moneda-01.png'?>">-->
-								
-								</a>
-								<?php }} ?>
+                    				$mostrar_moneda=$hotel->monedas;
+								}
+                    				
+	                    			if($mostrar_moneda==1){ ?>
+	                    			<a href="#" class="btn btn-hotel btn-xs" title="<?php echo $texto['monedas']?>" rel="tooltip" data-toggle="modal" data-target="#monedas">
+										<i class="fa fa-usd icons-white"></i>
+										<!--<img style="width: 16px" src="<?php echo base_url().'assets/uploads/moneda-01.png'?>">-->
+									</a>
+									<?php }
+								 ?>
 						<?php if($precio/$cambio->valor*$noches>1000){
 							echo "</h3>";
 						}else{

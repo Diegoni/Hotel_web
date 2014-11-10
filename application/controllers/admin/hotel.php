@@ -50,47 +50,29 @@ class Hotel extends CI_Controller {
 				$id_modificado = $this->config_email_reservas_model->updateConfig($registro);
 			}
 			$option=array(	'' 							=> "", 
-							'#hotel#'					=> "Hotel",
-							'#entrada#'					=> "Entrada",
-							'#salida#'					=> "Salida",
 							'#adultos#'					=> "Adultos",
+							'#cant_habitacion#'			=> "Cantidad y habitación",		
+							'#entrada#'					=> "Entrada",
+							'#hotel#'					=> "Hotel",
+							'#huesped_apellido#'		=> "Huesped apellido",			
+							'#huesped_email#'			=> "Huesped email",		
+							'#huesped_id_tipo_tarjeta#'	=> "Tarjeta tipo",				
+							'#huesped_nombre#'			=> "Huesped nombre",		
+							'#huesped_telefono#'		=> "Huesped teléfono",			
 							'#menores#'					=> "Menores",
-							'#huesped_nombre#'			=> "Huesped nombre",
-							'#huesped_apellido#'		=> "Huesped apellido",
-							'#huesped_email#'			=> "Huesped email",
-							'#huesped_telefono#'		=> "Huesped teléfono",
-							'#huesped_id_tipo_tarjeta#'	=> "Tarjeta tipo",
-							'#tarjeta_numero#'			=> "Tarjeta nro",
-							'#tarjeta_pin#'				=> "Tarjeta pin",
-							'#tarjeta_vencimiento#'		=> "Tarjeta vencimiento",
-							'#vuelo_numero#'			=> "Vuelo nro",
-							'#vuelo_horario_llegada#'	=> "Vuelo horario llegada",
-							'#reserva_numero#'			=> "Reserva nro",
-							'#reserva_alta#'			=> "Reserva alta",
-							'#reserva_precio#'			=> "Reserva precios",
-							'#terminos#'				=> "Terminos y condiciones",
 							'#nota#'					=> "Nota",
-							'#hotel#'					=> "Hotel",
-							'#entrada#'					=> "Entrada",
+							'#reserva_alta#'			=> "Reserva alta",		
+							'#reserva_numero#'			=> "Reserva nro",		
+							'#reserva_precio#'			=> "Reserva precios",		
 							'#salida#'					=> "Salida",
-							'#adultos#'					=> "Adultos",
-							'#menores#'					=> "Menores",
-							'#huesped_nombre#'			=> "Huesped nombre",
-							'#huesped_apellido#'		=> "Huesped apellido",
-							'#huesped_email#'			=> "Huesped email",
-							'#huesped_telefono#'		=> "Huesped teléfono",
-							'#huesped_id_tipo_tarjeta#'	=> "Tarjeta tipo",
-							'#tarjeta_numero#'			=> "Tarjeta nro",
-							'#tarjeta_pin#'				=> "Tarjeta pin",
-							'#tarjeta_vencimiento#'		=> "Tarjeta vencimiento",
-							'#vuelo_numero#'			=> "Vuelo nro",
-							'#vuelo_horario_llegada#'	=> "Vuelo horario llegada",
-							'#vuelo_aerolinea#'			=> "Vuelo aerolinea",
-							'#reserva_numero#'			=> "Reserva nro",
-							'#reserva_alta#'			=> "Reserva alta",
-							'#reserva_precio#'			=> "Reserva precios",
-							'#terminos#'				=> "Terminos y condiciones",
-							'#nota#'					=> "Nota");
+							'#tarjeta_numero#'			=> "Tarjeta nro",		
+							'#tarjeta_pin#'				=> "Tarjeta pin",	
+							'#tarjeta_vencimiento#'		=> "Tarjeta vencimiento",			
+							'#terminos#'				=> "Terminos y condiciones",	
+							'#vuelo_aerolinea#'			=> "Vuelo aerolinea",		
+							'#vuelo_horario_llegada#'	=> "Vuelo horario llegada",				
+							'#vuelo_numero#'			=> "Vuelo nro");
+							
 			$reservas=buscarReservas();
 			$mensajes=buscarMensajes();
 			
@@ -221,6 +203,8 @@ class Hotel extends CI_Controller {
 			
 			$crud->set_field_upload('logo_url','assets/uploads/logos');
 			$crud->set_field_upload('fondo_intro','assets/uploads/logos');
+			
+			chmod("assets/uploads/logos", 755);
 			
 			$crud->field_type('delete', 'hidden');
 			$crud->field_type('monedas', 'true_false');
