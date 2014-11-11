@@ -60,6 +60,7 @@ class Articulo extends CI_Controller {
 							'titulo',
 							'id_hotel',
 							'id_categoria',
+							'orden',
 							'id_estado_articulo');
 			
 			$crud->display_as('id_articulo','ID')
@@ -89,6 +90,7 @@ class Articulo extends CI_Controller {
 							'id_hotel',
 							'id_autor',
 							'archivo_url',
+							'orden',
 							'id_categoria',
 							'id_estado_articulo',
 							'id_idioma',
@@ -103,7 +105,7 @@ class Articulo extends CI_Controller {
 			$crud->set_relation('id_idioma','idiomas','idioma');
 			$crud->set_relation('id_tipo','tipos_articulo','tipo_articulo');
 					
-			$crud->required_fields('articulo','id_hotel','fecha_publicacion', 'id_categoria');
+			$crud->required_fields('titulo', 'articulo','id_hotel','fecha_publicacion', 'id_categoria', 'id_estado_articulo', 'id_tipo');
 			
 			$crud->set_field_upload('archivo_url','assets/uploads/articulos');
 			

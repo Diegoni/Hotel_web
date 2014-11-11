@@ -35,14 +35,14 @@ class Hoteles extends CI_Controller {
 			'id_tipo'		=> 3
 		);
 		
-		$db['banner']=$this->articulos_model->getBanner($datos);
-		$db['texto']=$this->idiomas_model->getIdioma();
-		$db['idiomas']=$this->idiomas_model->getIdiomas();
-		$db['hoteles']=$this->hoteles_model->getHoteles($_COOKIE['id_hotel']);
-		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
-		$db['habitaciones']=$this->hoteles_model->getHotel($_COOKIE['id_hotel']);
-		$db['configs']=$this->configs_model->getConfigs();
-		$db['emails_hotel']=$this->hoteles_email_model->getEmails($_COOKIE['id_hotel']);
+		$db['banner']		= $this->articulos_model->getBanner($datos);
+		$db['texto']		= $this->idiomas_model->getIdioma();
+		$db['idiomas']		= $this->idiomas_model->getIdiomas();
+		$db['hoteles']		= $this->hoteles_model->getHoteles($_COOKIE['id_hotel']);
+		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
+		$db['habitaciones']	= $this->hoteles_model->getHotel($_COOKIE['id_hotel']);
+		$db['configs']		= $this->configs_model->getConfigs();
+		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($_COOKIE['id_hotel']);
 								
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
@@ -69,22 +69,22 @@ class Hoteles extends CI_Controller {
 			'id_tipo'		=> 2
 		);
 		
-		$db['banner']=$this->articulos_model->getBanner($datos);
-		$db['hoteles']=$this->hoteles_model->getHoteles($_COOKIE['id_hotel']);
-		$db['hotel']=$this->hoteles_model->getHotel($_COOKIE['id_hotel']);
-		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
-		$db['habitaciones']=$this->habitaciones_model->getHabitaciones($consulta);
-		$db['idiomas']=$this->idiomas_model->getIdiomas();
-		$db['emails_hotel']=$this->hoteles_email_model->getEmails($id_hotel);
+		$db['banner']		= $this->articulos_model->getBanner($datos);
+		$db['hoteles']		= $this->hoteles_model->getHoteles($_COOKIE['id_hotel']);
+		$db['hotel']		= $this->hoteles_model->getHotel($_COOKIE['id_hotel']);
+		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
+		$db['habitaciones']	= $this->habitaciones_model->getHabitaciones($consulta);
+		$db['idiomas']		= $this->idiomas_model->getIdiomas();
+		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($id_hotel);
 		
 		if(!(isset($_COOKIE['moneda']))){
 			$_COOKIE['moneda']=1;
 		}
 		
-		$db['cambios']=$this->monedas_model->getMoneda($_COOKIE['moneda']);
-		$db['configs']=$this->configs_model->getConfigs();
-		$db['tipos_habitacion']=$this->tipos_habitacion_model->getTipos();
-		$db['tipo_habitacion']=$this->tipos_habitacion_model->getTipo($this->input->post('tipo'));
+		$db['cambios']			= $this->monedas_model->getMoneda($_COOKIE['moneda']);
+		$db['configs']			= $this->configs_model->getConfigs();
+		$db['tipos_habitacion']	= $this->tipos_habitacion_model->getTipos();
+		$db['tipo_habitacion']	= $this->tipos_habitacion_model->getTipo($this->input->post('tipo'));
 		
 				
 		$this->load->view('frontend/head', $db);

@@ -186,16 +186,16 @@ class Hoteles_email_model extends CI_Model {
 	
 	function correoReserva($huesped, $tarjeta, $reservas, $vuelo, $id_tipo_correo){
 		foreach ($reservas as $reserva) {
-			$entrada=$reserva->entrada;
-			$salida=$reserva->salida;
-			$adultos=$reserva->adultos;
-			$menores=$reserva->menores;
-			$hotel=$reserva->hotel;
-			$id_hotel=$reserva->id_hotel;
-			$id_nota=$reserva->id_nota;
-			$id_reserva=$reserva->id_reserva;
-			$fecha_alta=$reserva->fecha_alta;
-			$total=$reserva->total;
+			$entrada	= $reserva->entrada;
+			$salida		= $reserva->salida;
+			$adultos	= $reserva->adultos;
+			$menores	= $reserva->menores;
+			$hotel		= $reserva->hotel;
+			$id_hotel	= $reserva->id_hotel;
+			$id_nota	= $reserva->id_nota;
+			$id_reserva	= $reserva->id_reserva;
+			$fecha_alta	= $reserva->fecha_alta;
+			$total		= $reserva->total;
 		}
 		
 		$query = $this->db->query("	SELECT *  FROM config_email_reserva

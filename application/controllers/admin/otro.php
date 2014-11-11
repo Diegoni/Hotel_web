@@ -413,11 +413,11 @@ class Otro extends CI_Controller {
 		$session_data = $this->session->userdata('logged_in');
 		
 	    $registro = array(
-	        "tabla" => $_COOKIE['tabla'],
-	        "id_tabla" => $id,
-	        "id_accion" => 1,
-	        "fecha" => date('Y-m-d H:i:s'),
-	        "id_usuario" => $session_data['id_usuario']
+	        "tabla"		=> $_COOKIE['tabla'],
+	        "id_tabla"	=> $id,
+	        "id_accion"	=> 1,
+	        "fecha"		=> date('Y-m-d H:i:s'),
+	        "id_usuario"=> $session_data['id_usuario']
 	    );
 	 
 	    $this->db->insert('logs_otros',$registro);
@@ -430,11 +430,11 @@ class Otro extends CI_Controller {
 		$session_data = $this->session->userdata('logged_in');
 		
     	$registro = array(
-	        "tabla" => $_COOKIE['tabla'],
-	        "id_tabla" => $id,
-	        "id_accion" => 2,
-	        "fecha" => date('Y-m-d H:i:s'),
-	        "id_usuario" => $session_data['id_usuario']
+	        "tabla"		=> $_COOKIE['tabla'],
+	        "id_tabla"	=> $id,
+	        "id_accion"	=> 2,
+	        "fecha"		=> date('Y-m-d H:i:s'),
+	        "id_usuario"=> $session_data['id_usuario']
 	    );
  
     	$this->db->insert('logs_otros',$registro);
@@ -447,11 +447,11 @@ class Otro extends CI_Controller {
     	$session_data = $this->session->userdata('logged_in');
 		
 		$registro = array(
-	        "tabla" => $_COOKIE['tabla'],
-	        "id_tabla" => $id,
-	        "id_accion" => 3,
-	        "fecha" => date('Y-m-d H:i:s'),
-	        "id_usuario" => $session_data['id_usuario']
+	        "tabla"		=> $_COOKIE['tabla'],
+	        "id_tabla"	=> $id,
+	        "id_accion"	=> 3,
+	        "fecha"		=> date('Y-m-d H:i:s'),
+	        "id_usuario"=> $session_data['id_usuario']
 	    );
  
     	$this->db->insert('logs_otros',$registro);

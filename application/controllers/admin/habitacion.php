@@ -143,6 +143,7 @@ class Habitacion extends CI_Controller {
 							'entrada',
 							'salida',
 							'cantidad',
+							'orden',
 							'id_estado_habitacion',
 							'id_hotel',
 							'id_tipo_habitacion',

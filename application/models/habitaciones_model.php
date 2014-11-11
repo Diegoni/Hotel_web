@@ -8,7 +8,7 @@ class Habitaciones_model extends CI_Model {
 									WHERE id_hotel='$consulta[hotel]'
 									AND adultos<='$consulta[adultos]'
 									AND habitaciones.delete=0
-									ORDER BY id_hotel");	
+									ORDER BY habitaciones.orden");	
 		
 		}else if(isset($consulta['id_hotel'])){
 			$query = $this->db->query("SELECT * FROM habitaciones
@@ -16,7 +16,7 @@ class Habitaciones_model extends CI_Model {
 									INNER JOIN monedas ON(tarifas.id_moneda=monedas.id_moneda)
 									WHERE id_hotel='$consulta[id_hotel]' 
 									AND habitaciones.delete=0
-									ORDER BY id_hotel");
+									ORDER BY habitaciones.orden");
 		}else{
 			$query = $this->db->query("SELECT 
 									habitaciones.id_habitacion,

@@ -22,20 +22,22 @@ class Categoria extends CI_Controller {
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
-		$db['texto']=$this->idiomas_model->getIdioma();
-		$db['idiomas']=$this->idiomas_model->getIdiomas();
-		$db['configs']=$this->configs_model->getConfigs();
+		$db['texto']		= $this->idiomas_model->getIdioma();
+		$db['idiomas']		= $this->idiomas_model->getIdiomas();
+		$db['configs']		= $this->configs_model->getConfigs();
+		
 		$datos=array(	
 			'dato'			=> $id,
 			'columna' 		=> 'id_categoria',
 			'id_tipo'		=> 5
 		);
-		$db['articulos']=$this->articulos_model->getArticulos($datos);
-		$db['banner']=$this->articulos_model->getBanner($datos);
-		$db['categorias']=$this->categorias_model->getCategoria($id);
-		$db['emails_hotel']=$this->hoteles_email_model->getEmails($id_hotel);
-		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
-		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
+		
+		$db['articulos']	= $this->articulos_model->getArticulos($datos);
+		$db['banner']		= $this->articulos_model->getBanner($datos);
+		$db['categorias']	= $this->categorias_model->getCategoria($id);
+		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($id_hotel);
+		$db['hoteles']		= $this->hoteles_model->getHoteles($id_hotel);
+		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
 					
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');

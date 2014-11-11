@@ -31,15 +31,15 @@ class Habitacion extends CI_Controller {
 		if($id==NULL){
 			$id=$this->input->post('id');
 		}
-		$db['texto']=$this->idiomas_model->getIdioma();
-		$db['idiomas']=$this->idiomas_model->getIdiomas();
-		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
-		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
-		$db['habitaciones']=$this->habitaciones_model->getHabitacion($id);
-		$db['servicios']=$this->habitacion_servicio_model->getServicios($id);
-		$db['provincias']=$this->provincias_model->getProvincias('032');
-		$db['configs']=$this->configs_model->getConfigs();
-		$db['emails_hotel']=$this->hoteles_email_model->getEmails($id_hotel);
+		$db['texto']		= $this->idiomas_model->getIdioma();
+		$db['idiomas']		= $this->idiomas_model->getIdiomas();
+		$db['hoteles']		= $this->hoteles_model->getHoteles($id_hotel);
+		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
+		$db['habitaciones']	= $this->habitaciones_model->getHabitacion($id);
+		$db['servicios']	= $this->habitacion_servicio_model->getServicios($id);
+		$db['provincias']	= $this->provincias_model->getProvincias('032');
+		$db['configs']		= $this->configs_model->getConfigs();
+		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($id_hotel);
 								
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
@@ -60,14 +60,14 @@ class Habitacion extends CI_Controller {
 			$id=$this->input->post('id');
 		}
 		
-		$db['texto']=$this->idiomas_model->getIdioma();
-		$db['idiomas']=$this->idiomas_model->getIdiomas();
-		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
-		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
-		$db['habitaciones']=$this->habitaciones_model->getHabitacion($id);
-		$db['servicios']=$this->habitacion_servicio_model->getServicios($id);
-		$db['configs']=$this->configs_model->getConfigs();
-		$db['emails_hotel']=$this->hoteles_email_model->getEmails($id_hotel);
+		$db['texto']		= $this->idiomas_model->getIdioma();
+		$db['idiomas']		= $this->idiomas_model->getIdiomas();
+		$db['hoteles']		= $this->hoteles_model->getHoteles($id_hotel);
+		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
+		$db['habitaciones']	= $this->habitaciones_model->getHabitacion($id);
+		$db['servicios']	= $this->habitacion_servicio_model->getServicios($id);
+		$db['configs']		= $this->configs_model->getConfigs();
+		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($id_hotel);
 								
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
