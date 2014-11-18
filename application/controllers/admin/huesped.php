@@ -409,14 +409,14 @@ class Huesped extends CI_Controller {
 		$fecha= date('Y-m-d H:i:s');
 		
 	    $huesped = array(
-	        "nombre" => $datos['nombre'],
-	        "apellido" => $datos['apellido'],
-	        "dni" => $datos['dni'],
-	        "id_tipo_huesped" => $datos['id_tipo_huesped'],
-	        "fecha_alta" => $fecha,
-	        "fecha_modificacion" => $fecha,
-	        "id_usuario_alta" => $session_data['id_usuario'],
-	        "id_usuario_modificacion" => $session_data['id_usuario']
+	        "nombre"				=> $datos['nombre'],
+	        "apellido"				=> $datos['apellido'],
+	        "dni"					=> $datos['dni'],
+	        "id_tipo_huesped"		=> $datos['id_tipo_huesped'],
+	        "fecha_alta"			=> $fecha,
+	        "fecha_modificacion"	=> $fecha,
+	        "id_usuario_alta"		=> $session_data['id_usuario'],
+	        "id_usuario_modificacion"=> $session_data['id_usuario']
 	    );
 	 
 	    $this->db->insert('huespedes', $huesped);
@@ -425,8 +425,8 @@ class Huesped extends CI_Controller {
 		
 		if(isset($datos['telefono'])){		
 			$telefono = array(
-	        	"id_huesped" => $id_huesped,
-	        	"telefono" => $datos['telefono']
+	        	"id_huesped"	=> $id_huesped,
+	        	"telefono"		=> $datos['telefono']
 	    	);
 		
 			$this->db->insert('telefonos_huesped',$telefono);
@@ -434,8 +434,8 @@ class Huesped extends CI_Controller {
 		
 		if(isset($datos['email'])){
 			$email = array(
-	        	"id_huesped" => $id_huesped,
-	        	"email" => $datos['email']
+	        	"id_huesped"	=> $id_huesped,
+	        	"email"			=> $datos['email']
 	    	);
 		
 			$this->db->insert('emails_huesped',$email);			

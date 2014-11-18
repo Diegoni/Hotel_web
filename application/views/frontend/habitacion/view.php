@@ -6,7 +6,9 @@
 			<?php foreach ($habitaciones as $habitacion) { ?> 
 			<div class="panel">
 				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-					<?php	$imagenes_habitacion=$this->imagenes_habitacion_model->getImagenes($habitacion->id_habitacion); ?>
+					<?php	$imagenes_habitacion=$this->imagenes_habitacion_model->getImagenes($habitacion->id_habitacion); 
+					if($imagenes_habitacion){
+					?>
 					<div class="carousel-inner">
 						<?php 
 						$i=0;
@@ -30,6 +32,7 @@
 					<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
 						<span class="glyphicon glyphicon-chevron-right"></span>
 					</a>
+					<?php } ?>
 				</div>
 			</div>
 			<div class="panel">

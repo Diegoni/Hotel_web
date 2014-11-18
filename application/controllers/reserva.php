@@ -155,14 +155,14 @@ class Reserva extends CI_Controller {
 		$id_huesped=$this->huespedes_model->insertHuesped($huesped);
 		
 		if($this->input->post('nota')!=""){
-			$nota=array('nota'=> $this->input->post('nota'));
-			$id_nota=$this->notas_model->insertNota($nota);
+			$nota	= array('nota'=> $this->input->post('nota'));
+			$id_nota= $this->notas_model->insertNota($nota);
 		}else{
 			$id_nota=0;
 		}
 		
-		$array_vencimiento = explode("/", $this->input->post('vencimiento')); 
-		$vencimiento=$array_vencimiento[2]."/".$array_vencimiento[1]."/".$array_vencimiento[0];
+		$array_vencimiento	= explode("/", $this->input->post('vencimiento')); 
+		$vencimiento		= $array_vencimiento[2]."/".$array_vencimiento[1]."/".$array_vencimiento[0];
 		
 		$tarjeta=array(	
 			'id_huesped'		=> $id_huesped,
@@ -172,7 +172,7 @@ class Reserva extends CI_Controller {
 			'vencimiento'		=> $vencimiento
 		);
 		
-		$id_tarjeta=$this->tarjetas_model->insertTarjeta($tarjeta);
+		$id_tarjeta		= $this->tarjetas_model->insertTarjeta($tarjeta);
 				
 		$array_entrada	= explode("/", $this->input->post('entrada')); 
 		$entrada		= $array_entrada[2]."/".$array_entrada[1]."/".$array_entrada[0];
@@ -188,12 +188,13 @@ class Reserva extends CI_Controller {
 			'hotel'			=> $this->input->post('hotel'),						
 		);
 		
-		$habitaciones=$this->habitaciones_model->getHabitaciones_post($consulta);
+		$habitaciones	= $this->habitaciones_model->getHabitaciones_post($consulta);
 		
 		$total=0;	
 		
 		foreach ($habitaciones as $key => $value) {
 			$total = $total + $this->input->post('precio'.$key) * $value;
+			$precios_array[$key] = $this->input->post('precio'.$key); 
 		}
 		
 		
@@ -210,7 +211,7 @@ class Reserva extends CI_Controller {
 		);
 						
 		
-		$id_reserva=$this->reservas_model->insertReserva($reserva);
+		$id_reserva		= $this->reservas_model->insertReserva($reserva);
 		
 		
 		if("" !== $this->input->post('nro_de_vuelo') || "" !== $this->input->post('horario_llegada')){
@@ -222,8 +223,8 @@ class Reserva extends CI_Controller {
 				'id_aerolinea' 		=> $this->input->post('aerolinea')
 			);
 		
-			$id_vuelo=$this->vuelos_model->insertVuelo($vuelo);
-			$aerolineas=$this->aerolineas_model->getAerolinea($this->input->post('aerolinea'));
+			$id_vuelo	= $this->vuelos_model->insertVuelo($vuelo);
+			$aerolineas	= $this->aerolineas_model->getAerolinea($this->input->post('aerolinea'));
 			
 			foreach ($aerolineas as $aerolinea) {
 				$vuelo['aerolinea']=$aerolinea->aerolinea;
@@ -233,12 +234,13 @@ class Reserva extends CI_Controller {
 			$vuelo = array();
 		}
 				
-		$db['habitaciones']=$this->reserva_habitacion_model->insertReserva_habitacion($id_reserva, $habitaciones);
-		$db['reservas']=$this->reserva_habitacion_model->getReserva($id_reserva);
-		$this->hoteles_email_model->correoReserva($huesped, $tarjeta, $this->reserva_habitacion_model->getReserva($id_reserva), $vuelo, 1);
-		$this->hoteles_email_model->correoReserva($huesped, $tarjeta, $this->reserva_habitacion_model->getReserva($id_reserva), $vuelo, 2);
+		$db['habitaciones']	= $this->reserva_habitacion_model->insertReserva_habitacion($id_reserva, $habitaciones);
+		$db['reservas']		= $this->reserva_habitacion_model->getReserva($id_reserva);
+									
+		$this->hoteles_email_model->correoReserva($huesped, $tarjeta, $this->reserva_habitacion_model->getReserva($id_reserva), $precios_array, $vuelo, 1);
+		//$this->hoteles_email_model->correoReserva($huesped, $tarjeta, $this->reserva_habitacion_model->getReserva($id_reserva), $precios_array, $vuelo, 2);
 		
-		$db['mensaje']=$this->hoteles_email_model->getCorreo($huesped, $tarjeta, $this->reserva_habitacion_model->getReserva($id_reserva), $vuelo, 2);
+		$db['mensaje']		= $this->hoteles_email_model->correoReserva($huesped, $tarjeta, $this->reserva_habitacion_model->getReserva($id_reserva), $precios_array, $vuelo, 2);
 		
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');

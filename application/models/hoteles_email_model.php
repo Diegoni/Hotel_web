@@ -44,16 +44,16 @@ class Hoteles_email_model extends CI_Model {
 	
 	function getCorreo($huesped, $tarjeta, $reservas, $vuelo, $id_tipo_correo){
 		foreach ($reservas as $reserva) {
-			$entrada=$reserva->entrada;
-			$salida=$reserva->salida;
-			$adultos=$reserva->adultos;
-			$menores=$reserva->menores;
-			$hotel=$reserva->hotel;
-			$id_hotel=$reserva->id_hotel;
-			$id_nota=$reserva->id_nota;
-			$id_reserva=$reserva->id_reserva;
-			$fecha_alta=$reserva->fecha_alta;
-			$total=$reserva->total;
+			$entrada	= $reserva->entrada;
+			$salida		= $reserva->salida;
+			$adultos	= $reserva->adultos;
+			$menores	= $reserva->menores;
+			$hotel		= $reserva->hotel;
+			$id_hotel	= $reserva->id_hotel;
+			$id_nota	= $reserva->id_nota;
+			$id_reserva	= $reserva->id_reserva;
+			$fecha_alta	= $reserva->fecha_alta;
+			$total		= $reserva->total;
 		}
 		
 		$query = $this->db->query("	SELECT *  FROM config_email_reserva
@@ -153,7 +153,7 @@ class Hoteles_email_model extends CI_Model {
 		
 		// Para enviar un correo HTML
 		$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-		$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		$cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 		
 		$query = $this->db->query("	SELECT * FROM empresas");
 		$row = $query->row(); 
@@ -184,7 +184,7 @@ class Hoteles_email_model extends CI_Model {
 	}
 	
 	
-	function correoReserva($huesped, $tarjeta, $reservas, $vuelo, $id_tipo_correo){
+	function correoReserva($huesped, $tarjeta, $reservas, $precios_array, $vuelo, $id_tipo_correo){
 		foreach ($reservas as $reserva) {
 			$entrada	= $reserva->entrada;
 			$salida		= $reserva->salida;
@@ -264,18 +264,20 @@ class Hoteles_email_model extends CI_Model {
 		}
 
   		
-	    	
+		$cant_habitacion	= "";
+			    	
 	    foreach ($reservas as $reserva) {
-		    $cant_habitacion = $reserva->cantidad." - ".$reserva->habitacion."<br>";
+		    $cant_habitacion .= $reserva->cantidad." - ".$reserva->habitacion." ";
+			$cant_habitacion .= "$ ".$precios_array[$reserva->id_habitacion]."<br>";
 		}
 		
-		$mensaje = str_replace("#cant_habitacion#", "", $mensaje);
+		$mensaje = str_replace("#cant_habitacion#", $cant_habitacion, $mensaje);
 		
-		
+				
 		
 		// Para enviar un correo HTML
 		$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-		$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		$cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 		
 		$query = $this->db->query("	SELECT * FROM empresas");
 		$row = $query->row(); 
@@ -300,6 +302,8 @@ class Hoteles_email_model extends CI_Model {
 			$para = $huesped['email'];
 			mail($para, $título, $mensaje, $cabeceras);			
 		}
+		
+		return $mensaje;
 	}
 	
 	
@@ -328,7 +332,7 @@ class Hoteles_email_model extends CI_Model {
 			
 		// Para enviar un correo HTML
 		$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-		$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		$cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 		
 		$query = $this->db->query("	SELECT * FROM empresas");
 		$row = $query->row(); 

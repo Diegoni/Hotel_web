@@ -107,13 +107,13 @@ class Hoteles extends CI_Controller {
 			'id_tipo'		=> 4
 		);
 		
-		$db['banner']=$this->articulos_model->getBanner($datos);
-		$db['texto']=$this->idiomas_model->getIdioma();
-		$db['idiomas']=$this->idiomas_model->getIdiomas();
-		$db['hoteles']=$this->hoteles_model->getHoteles($_COOKIE['id_hotel']);
-		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
-		$db['configs']=$this->configs_model->getConfigs();
-		$db['emails_hotel']=$this->hoteles_email_model->getEmails($_COOKIE['id_hotel']);
+		$db['banner']		= $this->articulos_model->getBanner($datos);
+		$db['texto']		= $this->idiomas_model->getIdioma();
+		$db['idiomas']		= $this->idiomas_model->getIdiomas();
+		$db['hoteles']		= $this->hoteles_model->getHoteles($_COOKIE['id_hotel']);
+		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
+		$db['configs']		= $this->configs_model->getConfigs();
+		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($_COOKIE['id_hotel']);
 								
 		$this->load->view('frontend/head', $db);
 		$this->load->view('frontend/menu');
