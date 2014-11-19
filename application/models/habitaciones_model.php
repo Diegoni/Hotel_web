@@ -3,13 +3,26 @@ class Habitaciones_model extends CI_Model {
 	
 	function getHabitaciones($consulta=NULL){
 		if(isset($consulta['adultos'])){
-			$query = $this->db->query("SELECT * FROM habitaciones
+			if($consulta['adultos']>=$consulta['menores']){
+				if($consulta['adultos']==1 && $consulta['menores']==1){
+					$consulta['adultos']=$consulta['adultos']+1;
+				}
+				$query = $this->db->query("SELECT * FROM habitaciones
 									INNER JOIN tarifas ON(habitaciones.id_tarifa=tarifas.id_tarifa) 
 									WHERE id_hotel='$consulta[hotel]'
 									AND adultos<='$consulta[adultos]'
 									AND habitaciones.delete=0
-									ORDER BY habitaciones.orden");	
-		
+									ORDER BY habitaciones.orden");					
+			}else{
+				$query = $this->db->query("SELECT * FROM habitaciones
+									INNER JOIN tarifas ON(habitaciones.id_tarifa=tarifas.id_tarifa) 
+									WHERE id_hotel='$consulta[hotel]'
+									AND menores<='$consulta[menores]'
+									AND habitaciones.delete=0
+									ORDER BY habitaciones.orden");				
+			}
+			
+			
 		}else if(isset($consulta['id_hotel'])){
 			$query = $this->db->query("SELECT * FROM habitaciones
 									INNER JOIN tarifas ON(habitaciones.id_tarifa=tarifas.id_tarifa) 

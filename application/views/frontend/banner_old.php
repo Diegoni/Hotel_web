@@ -10,7 +10,7 @@ if($cantidad_categorias==3 || $cantidad_categorias==2 || $cantidad_categorias==1
 			  		<div class="panel-heading"><?php echo $articulo->categoria;?></div>
 			  		<div class="panel-body">
 			  			<?php if($articulo->archivo_url!=""){?>
-			    			<img class="img-circle img-banner-home" src="<?php echo base_url().'assets/uploads/articulos/'.$articulo->archivo_url?>">
+			    			<img class="img-circle img-banner" src="<?php echo base_url().'assets/uploads/articulos/'.$articulo->archivo_url?>">
 			    		<?php } ?>
 			    		<div class="text-banner">
 			    			

@@ -56,7 +56,6 @@ class Hotel extends CI_Controller {
 							'#hotel#'					=> "Hotel",
 							'#huesped_apellido#'		=> "Huesped apellido",			
 							'#huesped_email#'			=> "Huesped email",		
-							'#huesped_id_tipo_tarjeta#'	=> "Tarjeta tipo",				
 							'#huesped_nombre#'			=> "Huesped nombre",		
 							'#huesped_telefono#'		=> "Huesped teléfono",			
 							'#menores#'					=> "Menores",
@@ -65,7 +64,8 @@ class Hotel extends CI_Controller {
 							'#reserva_numero#'			=> "Reserva nro",		
 							'#reserva_precio#'			=> "Reserva precios",		
 							'#salida#'					=> "Salida",
-							'#tarjeta_numero#'			=> "Tarjeta nro",		
+							'#tarjeta_numero#'			=> "Tarjeta nro",	
+							'#tarjeta_tipo#'			=> "Tarjeta tipo",	
 							'#tarjeta_pin#'				=> "Tarjeta pin",	
 							'#tarjeta_vencimiento#'		=> "Tarjeta vencimiento",			
 							'#terminos#'				=> "Terminos y condiciones",	
@@ -187,11 +187,13 @@ class Hotel extends CI_Controller {
 				 ->display_as('descripcion','Descripción')
 				 ->display_as('fondo_intro','Foto mapa')
 				 ->display_as('monedas','Mostrar monedas')
+				 ->display_as('usar_codigo','Mostra código afip')
+				 ->display_as('codigo_afip','Link código afip')
 				 ->display_as('url','Sitio');
 			
 			$crud->set_subject('hotel');
 			
-			$crud->fields('hotel', 'descripcion', 'logo_url', 'url', 'fondo_intro', 'latitud', 'longitud', 'monedas');
+			$crud->fields('hotel', 'descripcion', 'logo_url', 'url', 'fondo_intro', 'latitud', 'longitud', 'monedas', 'usar_codigo', 'codigo_afip');
 			
 			$crud->required_fields('hotel','descripcion', 'url', 'latitud', 'longitud');
 			
@@ -208,6 +210,7 @@ class Hotel extends CI_Controller {
 			
 			$crud->field_type('delete', 'hidden');
 			$crud->field_type('monedas', 'true_false');
+			$crud->field_type('usar_codigo', 'true_false');
 			
 			$_COOKIE['tabla']='hoteles';
 			$_COOKIE['id']='id_hotel';	

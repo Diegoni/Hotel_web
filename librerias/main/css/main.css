@@ -1,5 +1,13 @@
 @font-face {font-family:"Cinzel-Regular";src:url("Cinzel-Regular.eot?") format("eot"),url("Cinzel-Regular.woff") format("woff"),url("Cinzel-Regular.ttf") format("truetype"),url("Cinzel-Regular.svg#Cinzel-Regular") format("svg");font-weight:normal;font-style:normal;}
 
+.img-afip{
+	width: 30%;
+	float: left;
+}
+.afip{
+	float: left;
+}
+
 .reservar{
 	font-family: 'Cinzel-Regular';
 	font-size: 18px;
@@ -11,6 +19,7 @@
 }
 
 .copyright{
+	margin-top: 30px;
 	opacity: 0.5;
 }
 
@@ -312,7 +321,7 @@ padding-right: 20px;
 	height: 25;
 	width: 25;
 	margin-top: 15px;
-	margin-left: 15px;
+	/*margin-left: 15px;*/
 }
 
 .footer-text{
@@ -321,10 +330,10 @@ padding-right: 20px;
 	float: left;
 }
 .flotante {
-position: fixed;
-z-index: 9000;
-bottom: 0;
-right: 0;
+	position: fixed;
+	z-index: 9000;
+	bottom: 0;
+	right: 0;
 }
 
 .scrollup{
@@ -619,10 +628,19 @@ label{
 	color:#5d1b21;
 	text-decoration:none;
 }
+.img-banner-home{
+	width: 100px;
+	height: 100px;
+	float: left!important;
+	border: 1px solid #EFEFEF;
+	padding: 4px;
+	margin-right: 20px;
+	/*margin-bottom: 20px;
+	margin-top: 20px;*/
+}
+
 .img-banner{
 	width: 140px;
-	height: 140px;
-	float: left!important;
 	height: 140px;
 	float: left!important;
 	border: 1px solid #EFEFEF;

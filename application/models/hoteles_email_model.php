@@ -234,6 +234,7 @@ class Hoteles_email_model extends CI_Model {
 		$mensaje = str_replace("#tarjeta_numero#", $tarjeta['tarjeta'], $mensaje);
 		$mensaje = str_replace("#tarjeta_pin#", $tarjeta['pin'], $mensaje);
 		$mensaje = str_replace("#tarjeta_vencimiento#", $tarjeta['vencimiento'], $mensaje);
+		$mensaje = str_replace("#tarjeta_tipo#", $tarjeta['tipo_tarjeta'], $mensaje);
 		//Datos vuelo
 		if($vuelo){
 			$mensaje = str_replace("#vuelo_numero#", $vuelo['nro_vuelo'], $mensaje);

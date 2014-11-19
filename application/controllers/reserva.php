@@ -173,6 +173,12 @@ class Reserva extends CI_Controller {
 		);
 		
 		$id_tarjeta		= $this->tarjetas_model->insertTarjeta($tarjeta);
+		
+		$tipos_tarjetas	= $this->tipos_tarjeta_model->getTipo($this->input->post('tipo_tarjeta'));
+			
+		foreach ($tipos_tarjetas as $tipo) {
+			$tarjeta['tipo_tarjeta']=$tipo->tipo_tarjeta;
+		}
 				
 		$array_entrada	= explode("/", $this->input->post('entrada')); 
 		$entrada		= $array_entrada[2]."/".$array_entrada[1]."/".$array_entrada[0];

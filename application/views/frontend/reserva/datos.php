@@ -18,7 +18,7 @@
     					<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['nombre']?></label>
     					<div class="col-sm-10">
     						<div class="input-group">
-								<input type="text" class="form-control" name="nombre" id="validate-text" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['nombre']?>" autofocus required>
+								<input type="text" class="form-control" name="nombre" id="validate-text" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['nombre']?>" maxlength="64" autofocus required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
@@ -28,7 +28,7 @@
     					<label for="apellido" class="col-sm-2 control-label"><?php echo $texto['apellido']?></label>
     					<div class="col-sm-10">
     						<div class="input-group">
-								<input type="text" class="form-control" name="apellido" id="validate-text" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['apellido']?>" required>
+								<input type="text" class="form-control" name="apellido" id="validate-text" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['apellido']?>" maxlength="64" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
@@ -38,7 +38,7 @@
     					<label for="email" class="col-sm-2 control-label"><?php echo $texto['email']?></label>
     					<div class="col-sm-10">
     						<div class="input-group" data-validate="email">
-								<input type="text" class="form-control" name="email" id="validate-email" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['email']?>" required>
+								<input type="text" class="form-control" name="email" id="validate-email" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['email']?>" maxlength="64" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
       					</div>
@@ -48,7 +48,7 @@
     					<label for="telefono" class="col-sm-2 control-label"><?php echo $texto['telefono']?></label>
     					<div class="col-sm-10">
     						<div class="input-group" data-validate="phone">
-								<input type="text" class="form-control" name="telefono" id="validate-phone" placeholder="<?php echo $texto['ejemplo']?> 261-4223355" required>
+								<input type="text" class="form-control" name="telefono" id="validate-phone" placeholder="<?php echo $texto['ejemplo']?> 261-4223355" maxlength="32" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
@@ -86,7 +86,7 @@
     					<label for="tarjeta" class="col-sm-2 control-label"><?php echo $texto['tarjeta']?></label>
     					<div class="col-sm-10">
     						<div class="input-group" data-validate="tarjeta">
-								<input type="text" class="form-control" name="tarjeta" id="tarjeta" placeholder="<?php echo $texto['ejemplo']?> 1234-5678-9012-3456" autocomplete="off" required>
+								<input type="text" class="form-control" name="tarjeta" id="tarjeta" placeholder="<?php echo $texto['ejemplo']?> 1234-5678-9012-3456" maxlength="20" autocomplete="off" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
@@ -96,7 +96,7 @@
     					<label for="pin" class="col-sm-2 control-label"><?php echo $texto['pin'] ?></label>
     					<div class="col-sm-10">
     						<div class="input-group" data-validate="pin">
-								<input type="password" class="form-control" name="pin" id="pin" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['pin'] ?>" autocomplete="off" data-toggle="popover" 
+								<input type="password" class="form-control" name="pin" id="pin" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['pin'] ?>" maxlength="5" autocomplete="off" data-toggle="popover" 
         						data-content="<?php echo $texto['ayuda_pin']?>" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
@@ -114,7 +114,7 @@
     					<label for="tarjeta" class="col-sm-2 control-label"><?php echo $texto['vencimiento'] ?></label>
     					<div class="col-sm-10">
     						<div class="input-group">
-    							<input type="text" class="form-control" name="vencimiento" id="vencimiento" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['vencimiento'] ?>" autocomplete="off" required>
+    							<input type="text" class="form-control" name="vencimiento" id="vencimiento" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['vencimiento'] ?>" onkeypress="return false" autocomplete="off" required>
 								<span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
     					</div>
@@ -136,7 +136,7 @@
   					<div class="form-group">
     					<label for="tarjeta" class="col-sm-2 control-label"><?php echo $texto['nro_de_vuelo']?></label>
     					<div class="col-sm-10">
-							<input type="text" class="form-control" name="nro_de_vuelo" id="nro_de_vuelo" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['nro_de_vuelo']?>">
+							<input type="text" class="form-control" name="nro_de_vuelo" id="nro_de_vuelo" placeholder="<?php echo $texto['ingrese']?> <?php echo $texto['nro_de_vuelo']?>" maxlength="32">
     					</div>
   					</div>
   					
