@@ -1,4 +1,5 @@
 <?php
+	$texto['url_idioma']			= 'po';
 	/* formulario de reserva */
 	$texto['consulta'] 				= 'Consulta';
 	$texto['reserva_online'] 		= 'Reserve já';

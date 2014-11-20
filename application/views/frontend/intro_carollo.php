@@ -159,7 +159,7 @@
 				if($hotel->id_provincia==12 && count($mendoza)==0){
 					$mendoza[]=$hotel->id_hotel; 
 			?>
-			<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>">
+			<a href="<?php echo base_url().'index.php/'.$texto['url_idioma'].'/inicio/hotel/'.$hotel->id_hotel ?>">
 				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url?>"	class="logo-hotel"/>
 			</a>
 			<!--<p class="provincia provincia_small" style="float:right;">Mendoza</p>-->
@@ -175,7 +175,7 @@
 			foreach ($hoteles as $hotel) {
 				if($hotel->id_provincia==18){ 
 			?>
-			<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>">
+			<a href="<?php echo base_url().'index.php/'.$texto['url_idioma'].'/inicio/hotel/'.$hotel->id_hotel ?>">
 				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url?>"	class="logo-hotel"/>
 			</a>
 			<!--<p class="provincia provincia_small" style="float:right;">San Luis</p>-->
@@ -190,7 +190,7 @@
 				if($hotel->id_provincia==12 && count($mendoza)==1 && !in_array($hotel->id_hotel, $mendoza)){
 					$mendoza[]=$hotel->id_hotel; 
 			?>
-			<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>">
+			<a href="<?php echo base_url().'index.php/'.$texto['url_idioma'].'/inicio/hotel/'.$hotel->id_hotel ?>">
 				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url?>"	class="logo-hotel"/>
 			</a>
 			<!--<p class="provincia provincia_small" style="float:right;">Mendoza</p>-->
@@ -204,7 +204,7 @@
 			foreach ($hoteles as $hotel) {
 				if($hotel->id_provincia==5){ 
 			?>
-			<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>">
+			<a href="<?php echo base_url().'index.php/'.$texto['url_idioma'].'/inicio/hotel/'.$hotel->id_hotel ?>">
 				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url?>"	class="logo-hotel"/>
 			</a>
 			<!--<p class="provincia provincia_small" style="float:right;">Córdoba</p>-->
@@ -221,7 +221,7 @@
 				if($hotel->id_provincia==12 && count($mendoza)==2 && !in_array($hotel->id_hotel, $mendoza)){
 					$mendoza[]=$hotel->id_hotel; 
 			?>
-			<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>"  class="medalla">
+			<a href="<?php echo base_url().'index.php/'.$texto['url_idioma'].'/inicio/hotel/'.$hotel->id_hotel ?>"  class="medalla">
 				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url?>"	class="logo-hotel"/>
 			</a>
 			<!--<p class="provincia provincia_small" style="float:right;">Mendoza</p>-->

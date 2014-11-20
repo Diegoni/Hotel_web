@@ -15,7 +15,7 @@
 						foreach ($imagenes_habitacion as $imagenes) { ?>
 						<a href="#" class="item <?php if($i==0){echo 'active';}?>" class="thumbnail">
 							<center>
-								<img alt="slide" src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>" ">
+								<img alt="slide" src="<?php echo base_url().'assets/uploads/habitaciones/'.$imagenes->imagen;?>" width="600" height="350">
 							</center>
 							<?php if($imagenes->descripcion!=""){ ?>
 								<div class="carousel-caption">

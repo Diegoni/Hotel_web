@@ -3,11 +3,12 @@ class Articulos_model extends CI_Model {
 	
 	function getArticulos($datos=NULL){
 		$date=date("Y-m-d");
-		$id_idioma	= $_COOKIE['idioma'];
+		$url_idioma = $this->uri->segment(1);
 		$id_hotel	= $_COOKIE['id_hotel'];
 		if(isset($datos)){
 			$query = $this->db->query("SELECT * FROM articulos 
 									INNER JOIN categorias ON(articulos.id_categoria=categorias.id_categoria)
+									INNER JOIN idiomas ON(articulos.id_idioma=idiomas.id_idioma)
 									WHERE 
 									articulos.id_hotel='$id_hotel' AND
 									articulos.delete = 0 AND
@@ -16,13 +17,14 @@ class Articulos_model extends CI_Model {
 									(DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') >= '$date' OR 
 									articulos.fecha_despublicacion=0 ) AND
 									articulos.$datos[columna] = '$datos[dato]' and
-									(articulos.id_idioma = 0 OR articulos.id_idioma = '$id_idioma' )
+									(articulos.id_idioma = 0 OR idiomas.url = '$url_idioma' )
 									AND articulos.id_tipo = 1
 									ORDER BY articulos.orden");
 			
 		}else{
 			$query = $this->db->query("SELECT * FROM articulos 
 									INNER JOIN categorias ON(articulos.id_categoria=categorias.id_categoria)
+									INNER JOIN idiomas ON(articulos.id_idioma=idiomas.id_idioma)
 									WHERE 
 									articulos.id_hotel='$id_hotel' AND
 									articulos.delete = 0 AND
@@ -30,7 +32,7 @@ class Articulos_model extends CI_Model {
 									DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') <= '$date' AND
 									(DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') >= '$date' OR 
 									articulos.fecha_despublicacion=0 ) AND
-									(articulos.id_idioma = 0 OR articulos.id_idioma = '$id_idioma' )
+									(articulos.id_idioma = 0 OR idiomas.url = '$url_idioma' )
 									AND articulos.id_tipo = 1
 									ORDER BY articulos.id_articulo");	
 		}
@@ -50,10 +52,11 @@ class Articulos_model extends CI_Model {
 	
 	
 	function getArticulos_paginaprincipal($id_hotel=NULL){
-		$date=date("Y-m-d");
-		$id_idioma=$_COOKIE['idioma'];
+		$date		= date("Y-m-d");
+		$url_idioma = $this->uri->segment(1);
 		$query = $this->db->query("SELECT * FROM articulos 
 									INNER JOIN categorias ON(articulos.id_categoria=categorias.id_categoria)
+									INNER JOIN idiomas ON(articulos.id_idioma=idiomas.id_idioma)
 									WHERE 
 									articulos.id_hotel='$id_hotel' AND
 									articulos.delete = 0 AND
@@ -62,7 +65,7 @@ class Articulos_model extends CI_Model {
 									(DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') >= '$date' OR 
 									articulos.fecha_despublicacion=0 ) AND
 									articulos.pagina_principal = 1 AND
-									(articulos.id_idioma = 0 OR articulos.id_idioma = '$id_idioma' )
+									(articulos.id_idioma = 0 OR idiomas.url = '$url_idioma' )
 									AND articulos.id_tipo = 1
 									ORDER BY articulos.id_articulo");
 		
@@ -78,12 +81,13 @@ class Articulos_model extends CI_Model {
 	
 	
 	function getBanner($datos=NULL){
-		$date=date("Y-m-d");
-		$id_idioma=$_COOKIE['idioma'];
-		$id_hotel=$_COOKIE['id_hotel'];
+		$date		= date("Y-m-d");
+		$url_idioma = $this->uri->segment(1);
+		$id_hotel	= $_COOKIE['id_hotel'];
 		if(isset($datos)){
 			$query = $this->db->query("SELECT * FROM articulos 
 									INNER JOIN categorias ON(articulos.id_categoria=categorias.id_categoria)
+									INNER JOIN idiomas ON(articulos.id_idioma=idiomas.id_idioma)
 									WHERE 
 									articulos.id_hotel='$id_hotel' AND
 									articulos.delete = 0 AND
@@ -91,7 +95,7 @@ class Articulos_model extends CI_Model {
 									DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') <= '$date' AND
 									(DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') >= '$date' OR 
 									articulos.fecha_despublicacion=0 ) AND
-									(articulos.id_idioma = 0 OR articulos.id_idioma = '$id_idioma' )
+									(articulos.id_idioma = 0 OR idiomas.url = '$url_idioma' )
 									AND articulos.id_tipo = '$datos[id_tipo]'
 									ORDER BY articulos.fecha_publicacion");
 		}		

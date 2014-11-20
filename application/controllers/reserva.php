@@ -32,13 +32,16 @@ class Reserva extends CI_Controller {
 		$id_hotel=$this->input->post('hotel');
 		
 		if($id_hotel==NULL){
-			 redirect('','refresh');
+			if($this->uri->segment(1)==""){
+				redirect(base_url().'','refresh');
+			}else{
+				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
+			}
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
 		
-		
-		$db['texto']=$this->idiomas_model->getIdioma();
+		$db['texto']=$this->idiomas_model->getIdioma($this->uri->segment(1));
 		
 		$consulta=array(
 			'entrada'	=> $this->input->post('entrada'),
@@ -83,13 +86,17 @@ class Reserva extends CI_Controller {
 		$id_hotel=$this->input->post('hotel');
 		
 		if($id_hotel==NULL){
-			redirect('','refresh');
+			if($this->uri->segment(1)==""){
+				redirect(base_url().'','refresh');
+			}else{
+				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
+			}
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
 		
-		$db['texto']=$this->idiomas_model->getIdioma();
-		$db['idiomas']=$this->idiomas_model->getIdiomas();
+		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
+		$db['idiomas']		= $this->idiomas_model->getIdiomas();
 		$consulta=array(
 			'entrada'		=> $this->input->post('entrada'),
 			'salida'		=> $this->input->post('salida'),
@@ -100,12 +107,13 @@ class Reserva extends CI_Controller {
 							
 		$db['hoteles']=$this->hoteles_model->getHoteles($id_hotel);
 		$db['hoteles_menu']=$this->hoteles_model->getHotelesAll();
+		/*
 		$ayuda=array(
 			'sector'		=> 'datos',
 			'id_idioma'		=> $_COOKIE['idioma']
 		);
 		
-		$db['ayudas']		= $this->ayudas_model->getAyuda($ayuda);
+		$db['ayudas']		= $this->ayudas_model->getAyuda($ayuda);*/
 		$db['habitaciones']	= $this->habitaciones_model->getHabitaciones_post($consulta);
 		$db['tipos_tarjeta']= $this->tipos_tarjeta_model->getTipos();
 		$db['terminos']		= $this->terminos_model->getTerminos();
@@ -123,25 +131,29 @@ class Reserva extends CI_Controller {
 	
 	
 	public function pago(){
-		$id_hotel=$this->input->post('hotel');
+		$id_hotel = $this->input->post('hotel');
 		
 		if($id_hotel==NULL){
-			redirect('','refresh');
+			if($this->uri->segment(1)==""){
+				redirect(base_url().'','refresh');
+			}else{
+				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
+			}
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
 		
-		$db['texto']		= $this->idiomas_model->getIdioma();
+		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
 		$db['idiomas']		= $this->idiomas_model->getIdiomas();
 		$db['hoteles']		= $this->hoteles_model->getHoteles($id_hotel);
 		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
-		
+		/*
 		$ayuda=array(
 			'sector'		=> 'pagos',
 			'id_idioma'		=> $_COOKIE['idioma']
 		);
 		
-		$db['ayudas']		= $this->ayudas_model->getAyuda($ayuda);
+		$db['ayudas']		= $this->ayudas_model->getAyuda($ayuda);*/
 		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($id_hotel);
 		$db['step']			= 4;
 		

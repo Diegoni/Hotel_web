@@ -46,7 +46,7 @@
         			<div class="col-md-3 text-center  nombre-habitacion">
         				<h3><small> <?php echo $habitacion->habitacion; ?> </small></h3>
         				<p class="list-group-item-text"> 
-							<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion.'/'.$id_hotel;?>" class="btn btn-hotel boton-redondo-medium a-seleccion-habitacion" title="<?php echo $texto['leer_mas']?>" rel="tooltip">
+							<a href="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/habitacion/view/'.$habitacion->id_habitacion.'/'.$id_hotel;?>" class="btn btn-hotel boton-redondo-medium a-seleccion-habitacion" title="<?php echo $texto['leer_mas']?>" rel="tooltip">
 								<span class="icon-chevron-down"></span>
 							</a>
 							<a href="#" class="btn btn-hotel boton-redondo-medium" title="<?php echo $texto['email']?>" rel="tooltip" data-toggle="modal" data-target="#habitacion<?php echo $habitacion->id_habitacion?>">
@@ -59,7 +59,7 @@
 							<h4><?php echo $texto['habitacion']?></h4>
 							<!--<p>comentario</p>-->
 							<p>
-								<a href="<?php echo base_url().'index.php/habitacion/galeria/'.$habitacion->id_habitacion.'/'.$id_hotel?>" class="btn btn-default" rel="tooltip" title="<?php echo $texto['ver_fotos']?>"><span class="icon-play"></span></a>
+								<a href="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/habitacion/galeria/'.$habitacion->id_habitacion.'/'.$id_hotel?>" class="btn btn-default" rel="tooltip" title="<?php echo $texto['ver_fotos']?>"><span class="icon-play"></span></a>
 							</p>
 						</div>
 						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -257,7 +257,7 @@
 						<?php foreach ($hoteles_menu as $hotel) { ?>
 	    				<?php if($id_hotel!=$hotel->id_hotel){ ?>
 	    					<div class="col-xs-3">
-	    					<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>">
+	    					<a href="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/inicio/hotel/'.$hotel->id_hotel ?>">
 	    						<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url;?>" class="logo_img_menu">
 	    					</a>
 	    					</div>
@@ -298,7 +298,7 @@
         		<h4 class="modal-title" id="myModalLabel"><?php echo $texto['monedas']?></h4>
       		</div>
       		<?php if(isset($monedas)){ ?>
-			<form method="post" action="<?php echo base_url().'index.php/reserva/habitacion' ?>">
+			<form method="post" action="<?php echo base_url().'index.php'.$this->uri->segment(1).'reserva/habitacion' ?>">
 	  				<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
 						<input type="hidden" name="salida" value="<?php echo $this->input->post('salida') ?>">
 						<input type="hidden" name="adultos" value="<?php echo $this->input->post('adultos') ?>">
@@ -322,13 +322,8 @@
 			<?php } ?>
     	</div>
   	</div>
-</div>
-
-
-
-
-
-
+ </div>
+	
 
 
 <!---------------------------------------------------------------------------------
@@ -346,7 +341,7 @@
       		<div class="modal-header">
         		<h4 class="modal-title" id="myModalLabel"><?php echo $texto['habitacion']?> : <?php echo $habitacion->habitacion?></h4>
       		</div>
-      		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/consulta/email_habitacion'?>"/>
+      		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/consulta/email_habitacion'?>"/>
       		<div class="modal-body">
       			<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['mensaje']?></label>
@@ -389,7 +384,7 @@
       		</form>
     	</div>
   	</div>
-</div>
+
 <?php } ?>
 
 

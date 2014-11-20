@@ -1,4 +1,5 @@
 <?php
+	$texto['url_idioma']			= 'en';
 	/* formulario de reserva */
 	$texto['consulta'] 				= 'Consultation';
 	$texto['reserva_online'] 		= 'Book now';
@@ -51,7 +52,7 @@
 	$texto['pin']					= 'Pin';
 	$texto['vencimiento']			= 'Expiration';
 	$texto['vuelo']					= 'Flight';
-	$texto['nro_de_vuelo']			= 'Número de vuelo';
+	$texto['nro_de_vuelo']			= 'Flight number';
 	$texto['horario_llegada']		= 'Arrival time';	
 	$texto['aerolinea']				= 'Airline';
 	$texto['datos']					= 'Data';

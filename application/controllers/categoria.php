@@ -18,11 +18,16 @@ class Categoria extends CI_Controller {
 	public function articulos($id, $id_hotel){
 			
 		if($id_hotel==NULL){
-			redirect('','refresh');
+			if($this->uri->segment(1)==""){
+				redirect(base_url().'','refresh');
+			}else{
+				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
+			}
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
-		$db['texto']		= $this->idiomas_model->getIdioma();
+		
+		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
 		$db['idiomas']		= $this->idiomas_model->getIdiomas();
 		$db['configs']		= $this->configs_model->getConfigs();
 		

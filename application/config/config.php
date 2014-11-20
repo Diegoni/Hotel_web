@@ -15,7 +15,7 @@
 |
 */
 //local
-$config['base_url']	= ''; 
+$config['base_url']	= '';/* 
 if(isset($_COOKIE['idioma'])){
 	
 }else{
@@ -81,7 +81,8 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'spanish';
+//$config['language']	= 'spanish';
+$config['language']	= '';
 
 /*
 |--------------------------------------------------------------------------
@@ -238,7 +239,7 @@ $config['cache_path'] = '';
 */
 //$config['encryption_key'] = '';
 
-$config['encryption_key'] = 'REALLY_LONG_NUMBER';
+$config['encryption_key'] = 'pohiguyugihojuihugyfctvguhijhougyfdtrsdtfygu';
 
 /*
 |--------------------------------------------------------------------------

@@ -16,12 +16,16 @@ class Consulta extends CI_Controller {
 		$id_hotel=$this->input->post('id_hotel');
 		
 		if($id_hotel==NULL){
-			redirect('','refresh');
+			if($this->uri->segment(1)==""){
+				redirect(base_url().'','refresh');
+			}else{
+				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
+			}
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
 		
-		$db['texto']		= $this->idiomas_model->getIdioma();
+		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
 		$db['idiomas']		= $this->idiomas_model->getIdiomas();
 		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($id_hotel);
 		$db['hoteles']		= $this->hoteles_model->getHoteles($id_hotel);
@@ -65,12 +69,16 @@ class Consulta extends CI_Controller {
 		
 					
 		if($id_hotel==NULL){
-			redirect('','refresh');
+			if($this->uri->segment(1)==""){
+				redirect(base_url().'','refresh');
+			}else{
+				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
+			}
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
 
-		$db['texto']		= $this->idiomas_model->getIdioma();
+		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
 		$db['idiomas']		= $this->idiomas_model->getIdiomas();
 		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($id_hotel);
 		$db['hoteles']		= $this->hoteles_model->getHoteles($id_hotel);

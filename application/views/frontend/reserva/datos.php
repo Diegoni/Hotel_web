@@ -2,7 +2,7 @@
 		<div class="panel panel-hotel">
 			<div class="panel-heading"><?php echo $texto['datos_personales']?></div>
 		  	<div class="panel-body">
-		  		<form method="post" class="form-horizontal register" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/reserva/pago'?>" />
+		  		<form method="post" class="form-horizontal register" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/'.$texto['url_idioma'].'/reserva/pago'?>" />
 		  			
 		  			<!--------------------------------------------------------------------------------
 		  			----------------------------------------------------------------------------------

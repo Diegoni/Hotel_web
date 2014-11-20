@@ -23,15 +23,22 @@ class Habitacion extends CI_Controller {
 	
 	
 	public function view($id=NULL, $id_hotel=NULL){
+			
 		if($id_hotel==NULL){
-			redirect('','refresh');
+			if($this->uri->segment(1)==""){
+				redirect(base_url().'','refresh');
+			}else{
+				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
+			}
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
+
+
 		if($id==NULL){
 			$id=$this->input->post('id');
 		}
-		$db['texto']		= $this->idiomas_model->getIdioma();
+		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
 		$db['idiomas']		= $this->idiomas_model->getIdiomas();
 		$db['hoteles']		= $this->hoteles_model->getHoteles($id_hotel);
 		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
@@ -50,8 +57,13 @@ class Habitacion extends CI_Controller {
 	}
 	
 	public function galeria($id=NULL, $id_hotel=NULL){
+			
 		if($id_hotel==NULL){
-			redirect('','refresh');
+			if($this->uri->segment(1)==""){
+				redirect(base_url().'','refresh');
+			}else{
+				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
+			}
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
@@ -60,7 +72,7 @@ class Habitacion extends CI_Controller {
 			$id=$this->input->post('id');
 		}
 		
-		$db['texto']		= $this->idiomas_model->getIdioma();
+		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
 		$db['idiomas']		= $this->idiomas_model->getIdiomas();
 		$db['hoteles']		= $this->hoteles_model->getHoteles($id_hotel);
 		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();

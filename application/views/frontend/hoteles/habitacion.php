@@ -14,7 +14,7 @@
 							<h4><?php echo $texto['habitacion']?></h4>
 							<!--<p>comentario</p>-->
 							<p>
-								<a href="<?php echo base_url().'index.php/habitacion/galeria/'.$habitacion->id_habitacion.'/'.$id_hotel?>" class="btn btn-default" rel="tooltip" title="<?php echo $texto['ver_fotos']?>"><span class="icon-play"></span></a>
+								<a href="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/habitacion/galeria/'.$habitacion->id_habitacion.'/'.$id_hotel?>" class="btn btn-default" rel="tooltip" title="<?php echo $texto['ver_fotos']?>"><span class="icon-play"></span></a>
 							</p>
 						</div>
 						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -38,7 +38,7 @@
                 	<div class="col-md-4 text-center vertical-middel" style="margin-top: 6%">
                 		
                 		<div class="stars button-seleccion-habitacion">
-							<a href="<?php echo base_url().'index.php/habitacion/view/'.$habitacion->id_habitacion.'/'.$id_hotel;?>" class="btn btn-hotel boton-redondo-medium a-seleccion-habitacion" title="<?php echo $texto['leer_mas']?>" rel="tooltip">
+							<a href="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/habitacion/view/'.$habitacion->id_habitacion.'/'.$id_hotel;?>" class="btn btn-hotel boton-redondo-medium a-seleccion-habitacion" title="<?php echo $texto['leer_mas']?>" rel="tooltip">
 								<span class="icon-chevron-down"></span>
 							</a>
 							<a href="#" class="btn btn-hotel boton-redondo-medium" title="<?php echo $texto['email']?>" rel="tooltip" data-toggle="modal" data-target="#habitacion<?php echo $habitacion->id_habitacion?>">
@@ -95,9 +95,7 @@
 			</div>
 		
 			<?php } ?>
-			
-		</div>
-	</div> 
+
 <!---------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------
 					
@@ -113,7 +111,7 @@
       		<div class="modal-header">
         		<h4 class="modal-title" id="myModalLabel"><?php echo $texto['habitacion']?> : <?php echo $habitacion->habitacion?></h4>
       		</div>
-      		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/consulta/email_habitacion'?>"/>
+      		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/consulta/email_habitacion'?>"/>
       		<div class="modal-body">
       			<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['mensaje']?></label>

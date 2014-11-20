@@ -1,4 +1,5 @@
 <?php
+	$texto['url_idioma']			= 'es';
 	/* formulario de reserva */
 	$texto['consulta'] 				= 'Consulta';
 	$texto['reserva_online'] 		= 'Reserva online';
@@ -14,6 +15,7 @@
 	$texto['monedas'] 				= 'Monedas';
 	$texto['galeria'] 				= 'Galería';
 	$texto['promociones'] 			= 'Promociones';
+	$texto['nro_habitaciones']		= 'Número de habitaciones';
 	
 	/* reserva habitacions */
 	$texto['leer_mas'] 				= 'Leer más';

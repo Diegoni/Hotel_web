@@ -42,10 +42,17 @@
 $route['default_controller'] = "inicio";
 $route['404_override'] = 'error404';
 
-    // para la URI normal cuando llamamos a un controlador
-    //$route['^(en|es)/(.+)$'] = "$2";
-    // para URI cuando llamamos a un controlador por defecto
-    //$route['^(en|es)/(.+)$'] = $route['default_controller'];
+$route['^en/(.+)$'] = "$1";
+$route['^es/(.+)$'] = "$1";
+$route['^fr/(.+)$'] = "$1";
+$route['^po/(.+)$'] = "$1";
+
+ 
+$route['^en$'] = $route['default_controller'];
+$route['^es$'] = $route['default_controller'];
+$route['^fr$'] = $route['default_controller'];
+$route['^po$'] = $route['default_controller'];
+
 
 
 /* End of file routes.php */

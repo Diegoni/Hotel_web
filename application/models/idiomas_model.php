@@ -1,10 +1,10 @@
 <?php 
 class Idiomas_model extends CI_Model {
 	
-	function getIdioma(){
-		$id=$this->config->item('idioma');
+	function getIdioma($url){
+		$id		= $this->config->item('idioma');
 		
-		$query = $this->db->query("SELECT * FROM idiomas WHERE id_idioma='$id'");
+		$query	= $this->db->query("SELECT * FROM idiomas WHERE idiomas.url='$url'");
 		
 		if($query->num_rows() > 0){
 			foreach ($query->result() as $fila){

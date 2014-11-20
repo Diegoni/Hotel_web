@@ -26,7 +26,7 @@ class VerifyLogin extends CI_Controller {
    else
    {
      //Go to private area
-     redirect('/admin/home/','refresh');
+     redirect('/es/admin/home/','refresh');
    }
 
  }

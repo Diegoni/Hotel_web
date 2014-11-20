@@ -11,7 +11,7 @@
 				} 
   		}?>
 		<center>
-		<a href="<?php echo base_url().'index.php/inicio/hotel/'.$id_hotel; ?>" class="logo">
+		<a href="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/inicio/hotel/'.$id_hotel; ?>" class="logo">
 			<img src="<?php echo base_url().'assets/uploads/logos/'.$logo_url[0];?>" class="logo_img">
 		</a>
 		</center>
@@ -26,7 +26,7 @@
     		<?php foreach ($hoteles_menu as $hotel) { ?>
     			<?php if($id_hotel!=$hotel->id_hotel){ ?>
     			<div class="col-md-3  col-sm-3 col-xs-3">
-    				<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>">
+    				<a href="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/inicio/hotel/'.$hotel->id_hotel ?>">
     				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url;?>" class="logo_img_menu img-responsive" alt="Responsive image">
     				</a>
     			</div>
@@ -67,27 +67,27 @@
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
 			<li>
-				<a class="panel-menu" href="<?php echo base_url().'index.php/hoteles/habitaciones/'.$id_hotel; ?>">
+				<a class="panel-menu" href="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/hoteles/habitaciones/'.$id_hotel; ?>">
 					<?php echo $texto['habitaciones'] ?>
 				</a>
 			</li>
 			<li>
-				<a class="panel-menu" href="<?php echo base_url().'index.php/categoria/articulos/6/'.$id_hotel; ?>">
+				<a class="panel-menu" href="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/categoria/articulos/6/'.$id_hotel; ?>">
 					<?php echo $texto['servicios'] ?>
 				</a>
 			</li>
 			<li>
-				<a class="panel-menu" href="<?php echo base_url().'index.php/hoteles/galeria/'.$id_hotel; ?>">
+				<a class="panel-menu" href="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/hoteles/galeria/'.$id_hotel; ?>">
 					<?php echo $texto['galeria'] ?>
 				</a>
 			</li>
 			<li>
-				<a class="panel-menu" href="<?php echo base_url().'index.php/categoria/articulos/3/'.$id_hotel; ?>">
+				<a class="panel-menu" href="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/categoria/articulos/3/'.$id_hotel; ?>">
 					<?php echo $texto['promociones'] ?>
 				</a>
 			</li>
 			<li>
-				<a class="panel-menu" href="<?php echo base_url().'index.php/hoteles/como_llegar/'.$id_hotel; ?>">
+				<a class="panel-menu" href="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/hoteles/como_llegar/'.$id_hotel; ?>">
 					<?php echo $texto['como_llegar'] ?>
 				</a>
 			</li>
@@ -111,8 +111,13 @@
 				<input class="moneda-menu" 
 					name="boton1" type="image" 
 					title="<?php echo $idioma->idioma;?>" rel="tooltip" 
-					src="<?php echo base_url().'assets/uploads/idiomas/'.$idioma->imagen;?>" 
-					onclick="document.cookie = 'idioma=<?php echo $idioma->id_idioma ?>', location.reload()">
+					src="<?php echo base_url().'assets/uploads/idiomas/'.$idioma->imagen;?>"
+					value="<?php echo str_replace(base_url().'index.php/'.$this->uri->segment(1).'/',
+												  base_url().'index.php/'.$idioma->url."/", 
+												  current_url());?>" 
+					onclick="
+					var url = $(this).val();
+		    		window.location = url;">
 			</li>
 		<?php } ?>
 		</ul>
@@ -138,7 +143,7 @@
       		<div class="modal-header">
         		<h4 class="modal-title" id="myModalLabel"><?php echo $texto['consulta']?></h4>
       		</div>
-      		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/consulta/envio'?>" />
+      		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/consulta/envio'?>" />
       		<div class="modal-body">
       			<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['mensaje']?></label>
@@ -215,7 +220,6 @@
       		<div class="modal-header">
         		<h4 class="modal-title" id="myModalLabel"><?php echo $texto['telefono']?></h4>
       		</div>
-      		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/consulta/envio'?>" />
       		<div class="modal-body">
       			<div class="form-group">
     				<label for="nombre" class="col-sm-3 control-label"><?php echo $texto['telefono']?></label>
@@ -239,7 +243,6 @@
       		<div class="modal-footer">
         		<button type="button" class="btn btn-hotel boton-redondo-medium" data-dismiss="modal" title="<?php echo $texto['cerrar']?>"><span class="icon-remove"></span></button>
       		</div>
-      		</form>
     	</div>
   	</div>
 </div>

@@ -2,19 +2,14 @@
 
 class Login extends CI_Controller {
 
- function __construct()
- {
-   parent::__construct();
-   
-   $this->load->helper('url');
- }
+function __construct(){
+	parent::__construct();
+	$this->load->helper('url');
+}
 
- function index()
- {
-   	$this->load->helper(array('form'));
-  	$this->load->view('backend/head.php');
-   	$this->load->view('backend/login_view');
- }
+function index(){
+   redirect(base_url().'index.php/es/admin/login/','refresh');
+}
 
 }
 

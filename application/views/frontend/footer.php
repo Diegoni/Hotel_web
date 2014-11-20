@@ -75,31 +75,35 @@
   		</div>
   	</div>
 	<div class="divider"><br><br></div>
-	<div class="afip">
-		<?php
-		foreach ($hoteles as $hotel) {
-			if($hotel->usar_codigo==1 && $hotel->codigo_afip!=""){
-				$class_copyright = "pull-right";
-			?>
-				<a href="<?php echo $hotel->codigo_afip ?>" target="_blank">
-					<img src="<?php echo base_url().'assets/uploads/afip.jpg' ?>" class="img-responsive img-afip">
-				</a>
+	<div class="row">
+		<div class="col-md-12">
+		<div class="afip">
 			<?php
-			}else{
-				$class_copyright = "pull-left";
+			foreach ($hoteles as $hotel) {
+				if($hotel->usar_codigo==1 && $hotel->codigo_afip!=""){
+					$class_copyright = "pull-right";
+				?>
+					<a href="<?php echo $hotel->codigo_afip ?>" target="_blank">
+						<img src="<?php echo base_url().'assets/uploads/afip.jpg' ?>" class="img-responsive img-afip">
+					</a>
+				<?php
+				}else{
+					$class_copyright = "pull-left";
+				}
 			}
-		}
-		?>
+			?>
+			
+		</div>
 		
-	</div>
-	
-	<div class="copyright <?php echo $class_copyright ?>">
-		<small>
-		<a href="http://tmsgroup.com.ar" target="_blank">
-			<span class="icon-copyright"></span> Sitio desarrollado por TMS Group
-		</a>
-		</small>
-	</div>	 		
+		<div class="copyright <?php echo $class_copyright ?>">
+			<small>
+			<a href="http://tmsgroup.com.ar" target="_blank">
+				<span class="icon-copyright"></span> Sitio desarrollado por TMS Group
+			</a>
+			</small>
+		</div>
+		</div>	
+	</div> 		
     
 </div><!-- cierra el <div class="container"> -->
 	
