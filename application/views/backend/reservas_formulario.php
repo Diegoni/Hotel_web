@@ -188,7 +188,7 @@
 						<div class="col-sm-10" id="total_input_box">
 							<button type="submit" name="aceptar" value="1" class="btn btn-default">Aceptar</button>
 							<button type="submit" name="reenviar_correo" value="1" onclick="return confirm('Esta seguro de reenviar el correo?');" class="btn btn-default">Reenviar correo</button>		
-							<a href="http://localhost/Hotel_web/index.php/admin/reserva/reservas_abm" class="btn btn-default">Reservas</a>
+							<a href="http://localhost/Hotel_web/index.php/es/admin/reserva/reservas_abm" class="btn btn-default">Reservas</a>
 						</div>
 					</div>
 

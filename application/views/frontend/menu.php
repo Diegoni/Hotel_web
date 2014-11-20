@@ -106,20 +106,55 @@
 			<?php } ?>
 		</div>
 		<ul class="nav navbar-nav navbar-right">
-		<?php foreach ($idiomas as $idioma) { ?>
-			<li class="li-moneda">
-				<input class="moneda-menu" 
-					name="boton1" type="image" 
-					title="<?php echo $idioma->idioma;?>" rel="tooltip" 
-					src="<?php echo base_url().'assets/uploads/idiomas/'.$idioma->imagen;?>"
-					value="<?php echo str_replace(base_url().'index.php/'.$this->uri->segment(1).'/',
-												  base_url().'index.php/'.$idioma->url."/", 
-												  current_url());?>" 
-					onclick="
-					var url = $(this).val();
-		    		window.location = url;">
-			</li>
-		<?php } ?>
+		<?php 
+		$form_url = str_replace($this->uri->segment(1).'/', '', uri_string());
+		
+		if($form_url=='reserva/habitacion'){
+			foreach ($idiomas as $idioma) { 
+				echo "<li class='li-moneda'>";
+					echo form_open($idioma->url.'/reserva/habitacion');
+						echo "<input type='hidden' name='hotel'		value=".$this->input->post('hotel').">";
+						echo "<input type='hidden' name='entrada'	value=".$this->input->post('entrada').">";
+						echo "<input type='hidden' name='salida'	value=".$this->input->post('salida').">";
+						echo "<input type='hidden' name='adultos'	value=".$this->input->post('adultos').">";
+						echo "<input type='hidden' name='menores'	value=".$this->input->post('menores').">";
+						echo "<input class='moneda-menu' type='image' title=".$idioma->idioma." rel='tooltip' src=".base_url().'assets/uploads/idiomas/'.$idioma->imagen.">";
+			 		echo form_close(); 
+				echo "</li>";
+			}
+		}else if($form_url=='reserva/datos'){
+			foreach ($idiomas as $idioma) { 
+				echo "<li class='li-moneda'>";
+					echo form_open($idioma->url.'/reserva/datos');
+						echo "<input type='hidden' name='hotel'		value=".$this->input->post('hotel').">";
+						echo "<input type='hidden' name='entrada'	value=".$this->input->post('entrada').">";
+						echo "<input type='hidden' name='salida'	value=".$this->input->post('salida').">";
+						echo "<input type='hidden' name='adultos'	value=".$this->input->post('adultos').">";
+						echo "<input type='hidden' name='menores'	value=".$this->input->post('menores').">";
+						foreach ($habitaciones as $clave => $valor) {
+	    					echo "<input type='hidden' name='habitacion".$clave."' value='".$valor."'>";
+	    					echo "<input type='hidden' name='precio".$clave."' value='".$this->input->post('precio'.$clave)."'>";
+						}
+						echo "<input class='moneda-menu' type='image' title=".$idioma->idioma." rel='tooltip' src=".base_url().'assets/uploads/idiomas/'.$idioma->imagen.">";
+			 		echo form_close(); 
+				echo "</li>";
+			}
+		}else{
+			foreach ($idiomas as $idioma) { ?>
+				<li class="li-moneda">
+					<input class="moneda-menu" 
+						name="boton1" type="image" 
+						title="<?php echo $idioma->idioma;?>" rel="tooltip" 
+						src="<?php echo base_url().'assets/uploads/idiomas/'.$idioma->imagen;?>"
+						value="<?php echo str_replace(base_url().'index.php/'.$this->uri->segment(1).'/',
+													  base_url().'index.php/'.$idioma->url."/", 
+													  current_url());?>" 
+						onclick="
+						var url = $(this).val();
+			    		window.location = url;">
+				</li>
+			<?php }?>
+		<?php }?>
 		</ul>
 		
 		

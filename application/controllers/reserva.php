@@ -40,7 +40,7 @@ class Reserva extends CI_Controller {
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
-		
+				
 		$db['texto']=$this->idiomas_model->getIdioma($this->uri->segment(1));
 		
 		$consulta=array(
@@ -97,6 +97,7 @@ class Reserva extends CI_Controller {
 		
 		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
 		$db['idiomas']		= $this->idiomas_model->getIdiomas();
+		
 		$consulta=array(
 			'entrada'		=> $this->input->post('entrada'),
 			'salida'		=> $this->input->post('salida'),
@@ -142,6 +143,7 @@ class Reserva extends CI_Controller {
 		}else{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
+
 		
 		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
 		$db['idiomas']		= $this->idiomas_model->getIdiomas();

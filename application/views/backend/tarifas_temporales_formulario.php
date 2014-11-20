@@ -61,7 +61,7 @@
 					</div>
 					
 					<div class="form-group">
-						<a href="http://localhost/Hotel_web/index.php/admin/habitacion/tarifas_temporales_abm" class="btn btn-default">Tarifas Temporales</a>
+						<a href="http://localhost/Hotel_web/index.php/es/admin/habitacion/tarifas_temporales_abm" class="btn btn-default">Tarifas Temporales</a>
 						<button type="submit" name="aceptar" value="1" class="btn btn-default">Aceptar</button>
 					</div>
 				</div>

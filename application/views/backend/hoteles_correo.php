@@ -1,8 +1,8 @@
 <?php
 foreach ($config_email as $config) {
-	$correo=$config->correo;
-	$hotel=$config->hotel;
-	$tipo_correo=$config->tipo_correo;
+	$correo		= $config->correo;
+	$hotel		= $config->hotel;
+	$tipo_correo= $config->tipo_correo;
 }
 ?>
 <div class="container">

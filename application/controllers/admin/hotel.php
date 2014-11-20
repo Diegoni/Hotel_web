@@ -48,6 +48,7 @@ class Hotel extends CI_Controller {
 				$registro=array('correo'					=> $this->input->post('correo'),
 								'id_config_email_reserva' 	=> $id);
 				$id_modificado = $this->config_email_reservas_model->updateConfig($registro);
+				echo "<script>alert('Se han guardado los cambios');</script>";
 			}
 			$option=array(	'' 							=> "", 
 							'#adultos#'					=> "Adultos",
@@ -98,6 +99,7 @@ class Hotel extends CI_Controller {
 				$registro=array('correo'					=> $this->input->post('correo'),
 								'id_config_email_mensaje' 	=> $id);
 				$id_modificado = $this->config_email_mensajes_model->updateConfig($registro);
+				echo "<script>alert('Se han guardado los cambios');</script>";
 			}
 			$option=array(	'' 					=> "", 
 							'#mensaje#'			=> "mensaje",
@@ -133,6 +135,7 @@ class Hotel extends CI_Controller {
 				$registro=array('correo'					=> $this->input->post('correo'),
 								'id_config_email_habitacion'=> $id);
 				$id_modificado = $this->config_email_habitacion_model->updateConfig($registro);
+				echo "<script>alert('Se han guardado los cambios');</script>";
 			}
 			$option=array(	'' 					=> "", 
 							'#mensaje#'			=> "mensaje",
@@ -227,11 +230,11 @@ class Hotel extends CI_Controller {
 	}
 
 	function buscar_hoteles($id){
-		return site_url('/galeria/imagenes_hoteles').'/'.$id;	
+		return site_url('/es/galeria/imagenes_hoteles').'/'.$id;	
 	}
 	
 	function buscar_carrusel($id){
-		return site_url('/galeria/imagenes_carrusel').'/'.$id;	
+		return site_url('/es/galeria/imagenes_carrusel').'/'.$id;	
 	}
 	
 		

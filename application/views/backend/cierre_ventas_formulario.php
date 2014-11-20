@@ -54,7 +54,7 @@
     						<label>Final <span class="required">*</span> :</label>
     						<input id="final" name="final" type="text" value="" maxlength="10" class="form-control" autocomplete="off" required>
     					</div>
-    					<a href="http://localhost/Hotel_web/index.php/admin/reserva/disponibilidades_abm" class="btn btn-default">Cierre de ventas</a>
+    					<a href="http://localhost/Hotel_web/index.php/es/admin/reserva/disponibilidades_abm" class="btn btn-default">Cierre de ventas</a>
     					<button type="submit" name="aceptar" value="1" class="btn btn-default">Aceptar</button>
 					</div>
 					<div class="col-sm-6">

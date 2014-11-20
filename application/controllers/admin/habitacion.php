@@ -182,7 +182,7 @@ class Habitacion extends CI_Controller {
 	}
 
 	function buscar_galeria($id){
-		return site_url('/galeria/imagenes_habitacion').'/'.$id;	
+		return site_url('/es/galeria/imagenes_habitacion').'/'.$id;	
 	}
 
 /**********************************************************************************
