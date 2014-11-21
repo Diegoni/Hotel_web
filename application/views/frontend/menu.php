@@ -95,16 +95,18 @@
 		
 		
 		<div class="row" id="row-banderas-submenu">
-    		<?php foreach ($hoteles_menu as $hotel) { ?>
-    			<?php if($id_hotel!=$hotel->id_hotel){ ?>
-    			<div class="col-md-3  col-sm-3 col-xs-3">
-    				<a href="<?php echo base_url().'index.php/inicio/hotel/'.$hotel->id_hotel ?>">
-    				<img src="<?php echo base_url().'assets/uploads/logos/'.$hotel->logo_url;?>" class="logo_img_menu_submenu img-responsive" alt="Responsive image">
-    				</a>
-    			</div>
-    			<?php } ?>
-			<?php } ?>
+    		<?php 
+    		foreach ($hoteles_menu as $hotel) { 
+    			if($id_hotel!=$hotel->id_hotel){
+    				echo "<div class='col-md-3  col-sm-3 col-xs-3'>";
+    					echo "<a href='".base_url().'index.php/inicio/hotel/'.$hotel->id_hotel."'>";
+    						echo "<img src='".base_url().'assets/uploads/logos/'.$hotel->logo_url."' class='logo_img_menu_submenu img-responsive' alt='Responsive image'>";
+    					echo "</a>";
+    				echo "</div>";
+				}
+			} ?>
 		</div>
+		
 		<ul class="nav navbar-nav navbar-right">
 		<?php 
 		$form_url = str_replace($this->uri->segment(1).'/', '', uri_string());

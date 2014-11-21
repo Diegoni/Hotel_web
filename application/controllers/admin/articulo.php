@@ -66,6 +66,7 @@ class Articulo extends CI_Controller {
 			$crud->display_as('id_articulo','ID')
 				 ->display_as('articulo','Artículo')
 				 ->display_as('titulo','Título')
+				 ->display_as('subtitulo','Sub-título')
 				 ->display_as('id_hotel','Hotel')
 				 ->display_as('id_categoria','Categoría')
 				 ->display_as('id_autor','Autor')
@@ -83,6 +84,7 @@ class Articulo extends CI_Controller {
 			$crud->field_type('pagina_principal', 'true_false');
 			
 			$crud->fields(	'titulo',
+							'subtitulo',
 							'articulo',
 							'fecha_publicacion', 
 							'fecha_despublicacion',
