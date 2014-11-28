@@ -84,7 +84,7 @@ class Articulo extends CI_Controller {
 			$crud->field_type('pagina_principal', 'true_false');
 			
 			$crud->fields(	'titulo',
-							'subtitulo',
+							//'subtitulo',
 							'articulo',
 							'fecha_publicacion', 
 							'fecha_despublicacion',

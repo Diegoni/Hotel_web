@@ -88,12 +88,12 @@ class Log extends CI_Controller {
 	function view_articulos($id){
 		$query = $this->db->query("SELECT * FROM logs_articulos WHERE id_log_articulo='$id' ");
 		foreach ($query->result_array() as $row){
-   			$id=$row['id_tabla'];
-			$tabla=$row['tabla'];
+   			$id		= $row['id_tabla'];
+			$tabla	= $row['tabla'];
 	  
 		}
 			
-		return site_url('/admin/articulo/'.$tabla.'_abm/read').'/'.$id;	
+		return site_url('/'.$this->uri->segment(1).'/admin/articulo/'.$tabla.'_abm/read').'/'.$id;	
 	}
 	
 /**********************************************************************************
@@ -142,12 +142,12 @@ class Log extends CI_Controller {
 	function view_habitaciones($id){
 		$query = $this->db->query("SELECT * FROM logs_habitaciones WHERE id_log_habitacion='$id' ");
 		foreach ($query->result_array() as $row){
-   			$id=$row['id_tabla'];
-			$tabla=$row['tabla'];
+   			$id		= $row['id_tabla'];
+			$tabla	= $row['tabla'];
 	  
 		}
 			
-		return site_url('/admin/habitacion/'.$tabla.'_abm/read').'/'.$id;	
+		return site_url('/'.$this->uri->segment(1).'/admin/habitacion/'.$tabla.'_abm/read').'/'.$id;	
 	}
 
 /**********************************************************************************
@@ -196,12 +196,12 @@ class Log extends CI_Controller {
 	function view_hoteles($id){
 		$query = $this->db->query("SELECT * FROM logs_hoteles WHERE id_log_hotel='$id' ");
 		foreach ($query->result_array() as $row){
-   			$id=$row['id_tabla'];
-			$tabla=$row['tabla'];
+   			$id		= $row['id_tabla'];
+			$tabla	= $row['tabla'];
 	  
 		}
 			
-		return site_url('/admin/hotel/'.$tabla.'_abm/read').'/'.$id;	
+		return site_url('/'.$this->uri->segment(1).'/admin/hotel/'.$tabla.'_abm/read').'/'.$id;	
 	}
 	
 /**********************************************************************************
@@ -250,12 +250,12 @@ class Log extends CI_Controller {
 	function view_huespedes($id){
 		$query = $this->db->query("SELECT * FROM logs_huespedes WHERE id_log_huesped='$id' ");
 		foreach ($query->result_array() as $row){
-   			$id=$row['id_tabla'];
-			$tabla=$row['tabla'];
+   			$id		= $row['id_tabla'];
+			$tabla	= $row['tabla'];
 	  
 		}
 			
-		return site_url('/admin/huesped/'.$tabla.'_abm/edit').'/'.$id;	
+		return site_url('/'.$this->uri->segment(1).'/admin/huesped/'.$tabla.'_abm/edit').'/'.$id;	
 	}
 	
 	
@@ -306,12 +306,12 @@ class Log extends CI_Controller {
 	function view_mensajes($id){
 		$query = $this->db->query("SELECT * FROM logs_mensajes WHERE id_log_mensaje='$id' ");
 		foreach ($query->result_array() as $row){
-   			$id=$row['id_tabla'];
-			$tabla=$row['tabla'];
+   			$id		= $row['id_tabla'];
+			$tabla	= $row['tabla'];
 	  
 		}
 			
-		return site_url('/admin/mensaje/'.$tabla.'_abm/read').'/'.$id;	
+		return site_url('/'.$this->uri->segment(1).'/admin/mensaje/'.$tabla.'_abm/read').'/'.$id;	
 	}
 	
 /**********************************************************************************
@@ -360,12 +360,12 @@ class Log extends CI_Controller {
 	function view_otros($id){
 		$query = $this->db->query("SELECT * FROM logs_otros WHERE id_log_otro='$id' ");
 		foreach ($query->result_array() as $row){
-   			$id=$row['id_tabla'];
-			$tabla=$row['tabla'];
+   			$id		= $row['id_tabla'];
+			$tabla	= $row['tabla'];
 	  
 		}
 			
-		return site_url('/admin/otro/'.$tabla.'_abm/edit').'/'.$id;	
+		return site_url('/'.$this->uri->segment(1).'/admin/otro/'.$tabla.'_abm/edit').'/'.$id;	
 	}
 	
 /**********************************************************************************
@@ -414,12 +414,12 @@ class Log extends CI_Controller {
 	function view_reservas($id){
 		$query = $this->db->query("SELECT * FROM logs_reservas WHERE id_log_reserva='$id' ");
 		foreach ($query->result_array() as $row){
-   			$id=$row['id_tabla'];
-			$tabla=$row['tabla'];
+   			$id		= $row['id_tabla'];
+			$tabla	= $row['tabla'];
 	  
 		}
 			
-		return site_url('/admin/reserva/'.$tabla.'_abm/read').'/'.$id;	
+		return site_url('/'.$this->uri->segment(1).'/admin/reserva/'.$tabla.'_abm/read').'/'.$id;	
 	}
 	
 /**********************************************************************************
@@ -468,12 +468,12 @@ class Log extends CI_Controller {
 	function view_usuarios($id){
 		$query = $this->db->query("SELECT * FROM logs_usuarios WHERE id_log_usuario='$id' ");
 		foreach ($query->result_array() as $row){
-   			$id=$row['id_tabla'];
-			$tabla=$row['tabla'];
+   			$id		= $row['id_tabla'];
+			$tabla	= $row['tabla'];
 	  
 		}
 			
-		return site_url('/admin/usuario/'.$tabla.'_abm/read').'/'.$id;	
+		return site_url('/'.$this->uri->segment(1).'/admin/usuario/'.$tabla.'_abm/read').'/'.$id;	
 	}
 
 }

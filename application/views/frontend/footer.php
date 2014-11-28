@@ -98,7 +98,7 @@
 		<div class="copyright <?php echo $class_copyright ?>">
 			<small>
 			<a href="http://tmsgroup.com.ar" target="_blank">
-				<span class="icon-copyright"></span> Sitio desarrollado por TMS Group
+				<span class="icon-copyright"></span> <?php echo $texto['copyright']?>
 			</a>
 			</small>
 		</div>

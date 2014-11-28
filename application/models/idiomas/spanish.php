@@ -1,5 +1,6 @@
 <?php
 	$texto['url_idioma']			= 'es';
+	$texto['copyright']				= 'Sitio desarrollado por TMS Group';
 	/* formulario de reserva */
 	$texto['consulta'] 				= 'Consulta';
 	$texto['reserva_online'] 		= 'Reserva online';

@@ -84,7 +84,9 @@ function checkCookie() {
 
 function validarHabitacion(){
 	importe_total = 0;
-	var idioma=getCookie("idioma");
+	var pathArray = window.location.pathname.split( '/' );
+	//var idioma=getCookie("idioma");
+	var idioma=pathArray[3];
 	
 	$(".habitacion").each(
 		function(index, value) {
@@ -93,11 +95,11 @@ function validarHabitacion(){
 	);
 	
 	if(importe_total==0){
-		if(idioma==2){
+		if(idioma=='en'){
 			cadena="Make your selection";	
-		}else if(idioma==3){
+		}else if(idioma=='fr'){
 			cadena="Faites votre choix";	
-		}else if(idioma==4){
+		}else if(idioma=='po'){
 			cadena="Faça sua seleção";	
 		}else{
 			cadena="Haga su selección";	
@@ -108,21 +110,21 @@ function validarHabitacion(){
 		
 		$('button[name="reservar"]').prop('disabled', true);
 	}else{
-		if(idioma==2){
+		if(idioma=='en'){
 			if(importe_total==1){
 				habitacion=" room";
 			}else{
 				habitacion=" rooms";
 			}	
 			reservar="Book";
-		}else if(idioma==3){
+		}else if(idioma=='fr'){
 			if(importe_total==1){
 				habitacion=" chambre";
 			}else{
 				habitacion=" chambres";
 			}	
 			reservar="Livre";	
-		}else if(idioma==4){
+		}else if(idioma=='po'){
 			if(importe_total==1){
 				habitacion=" quarto";
 			}else{
