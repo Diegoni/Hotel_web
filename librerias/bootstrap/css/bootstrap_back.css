@@ -5520,6 +5520,12 @@ button.close {
     width: 900px;
   }
 }
+
+@media (min-width: 1100px) {
+  .modal-extra-lg {
+    width: 1100px;
+  }
+}
 .tooltip {
   position: absolute;
   z-index: 1070;

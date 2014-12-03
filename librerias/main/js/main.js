@@ -260,7 +260,7 @@ $(document).ready(function(){
         $(".show_hide").show();
  
     $('.show_hide').click(function(){
-    $(".slidingDiv").slideToggle();
+    	$(".slidingDiv").slideToggle();
     });
  
 });

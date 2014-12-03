@@ -80,16 +80,16 @@ foreach ($config_email as $config) {
 					</div>
 				</div>
 				<form action="" method="post" class="form-horizontal">
-				<textarea id="txt" class="texteditor" name="correo" >
-					<?php echo $correo?>
-				</textarea>
-				<select id='valor'  class="chosen-select chzn-done form-control">
-					<?php foreach ($option as $key => $value) {
-						echo "<option value=".$key.">".$value."</option>";
-					}?>
-				</select>
-				<input type="button" id="btn" value="" class="btn btn-default"/><br>
-				<button type="submit" name="aceptar" value="1" class="btn btn-default">Aceptar</button>
+					<textarea id="txt" class="texteditor" name="correo" >
+						<?php echo $correo?>
+					</textarea>
+					<select id='valor'  class="chosen-select chzn-done form-control">
+						<?php foreach ($option as $key => $value) {
+							echo "<option value=".$key.">".$value."</option>";
+						}?>
+					</select>
+					<input type="button" id="btn" value="" class="btn btn-default"/><br>
+					<button type="submit" name="aceptar" value="1" class="btn btn-default">Aceptar</button>
 				</form>
 				<script>
 				$("#btn").on('click', function() {
