@@ -38,6 +38,6 @@
 								CK editor
 ------------------------------------------------------------------------------
 ----------------------------------------------------------------------------->
-<script src="http://localhost/Hotel_web/assets/grocery_crud/texteditor/ckeditor/ckeditor.js"></script>
+<script src="<?php echo base_url().'assets/grocery_crud/texteditor/ckeditor/ckeditor.js'?>"></script>
 
 

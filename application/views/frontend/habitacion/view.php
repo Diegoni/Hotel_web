@@ -3,7 +3,20 @@
 		<div class="panel panel-hotel">
 			<div class="panel-heading"><?php echo $texto['habitacion']?></div>
 		  	<div class="panel-body">
-			<?php foreach ($habitaciones as $habitacion) { ?> 
+			<?php foreach ($habitaciones as $habitacion) { 
+				
+					if($traducciones){
+						foreach ($traducciones as $key => $value) {
+							if($key=='traduccion_descripcion'.$habitacion->id_habitacion){
+								$habitacion->descripcion	= $value;
+							}
+								
+							if($key=='traduccion_titulo'.$habitacion->id_habitacion){
+								$habitacion->habitacion		= $value;
+							}
+						}	
+					}
+			?> 
 			<div class="panel">
 				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 					<?php	$imagenes_habitacion=$this->imagenes_habitacion_model->getImagenes($habitacion->id_habitacion); 
@@ -44,7 +57,15 @@
 				<div class="servicios">
 					<ul class="list-unstyled">
 					<?php if($servicios){ ?>
-					<?php foreach ($servicios as $servicio) {?>
+					<?php foreach ($servicios as $servicio) {
+						if($t_servicios){
+							foreach ($t_servicios as $key => $value) {
+								if($key=='traduccion_titulo'.$servicio->id_servicio){
+									$servicio->servicio	= $value;
+								}
+							}	
+						}
+						?>
 						<li class="lista-servicios">
 							<!--<img src='<?php echo base_url().'assets/uploads/servicios/'.$servicio->icono?>' class="icono-servicios">-->
 							<i class="fa fa-check"></i>

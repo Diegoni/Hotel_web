@@ -12,6 +12,15 @@ if($cantidad_categorias==2 || $cantidad_categorias==1){
 	 		//echo $articulo->id_categoria;?>
 			<div class="<?php echo $div_clase?>">
 				<div class="panel panel-hotel panel-banner">
+					<?php
+					if($t_categorias){
+						foreach ($t_categorias as $key => $value) {
+							if($key=='traduccion_titulo'.$articulo->id_categoria){
+								$articulo->categoria = $value;
+							}
+						}	
+					}
+					?>
 			  		<div class="panel-heading"><?php echo $articulo->categoria;?></div>
 			  		<div class="panel-body">
 			  			<?php if($articulo->archivo_url!=""){?>
@@ -26,6 +35,14 @@ if($cantidad_categorias==2 || $cantidad_categorias==1){
 								$max_sin_foto	= $configs_articulo->max_sin_foto;
 							}
 							
+							if($traducciones){
+								foreach ($traducciones as $key => $value) {
+									if($key=='traduccion_descripcion'.$articulo->id_articulo){
+										$articulo->articulo = $value;
+									}
+								}	
+							}
+														
 							if($usar_limite==1){
 								if($articulo->archivo_url!=""){
 			    					echo myTruncate($articulo->articulo, $max_con_foto, '>', '>...');	
@@ -82,6 +99,14 @@ if($cantidad_categorias==2 || $cantidad_categorias==1){
 								$max_sin_foto	= $configs_articulo->max_sin_foto;
 							}
 							
+							if($traducciones){
+								foreach ($traducciones as $key => $value) {
+									if($key=='traduccion_descripcion'.$articulo->id_articulo){
+										$articulo->articulo = $value;
+									}
+								}	
+							}
+							
 							if($usar_limite==1){
 								if($articulo->archivo_url!=""){
 			    					echo myTruncate($articulo->articulo, $max_con_foto, '>', '>...');	
@@ -127,6 +152,14 @@ if($cantidad_categorias==2 || $cantidad_categorias==1){
 								$max_sin_foto	= $configs_articulo->max_sin_foto;
 							}
 							
+							if($traducciones){
+								foreach ($traducciones as $key => $value) {
+									if($key=='traduccion_descripcion'.$articulo->id_articulo){
+										$articulo->articulo = $value;
+									}
+								}	
+							}
+							
 							if($usar_limite==1){
 								if($articulo->archivo_url!=""){
 			    					echo myTruncate($articulo->articulo, $max_con_foto, '>', '>...');	
@@ -170,6 +203,14 @@ if($cantidad_categorias==2 || $cantidad_categorias==1){
 								$max_sin_foto	= $configs_articulo->max_sin_foto;
 							}
 							
+							if($traducciones){
+								foreach ($traducciones as $key => $value) {
+									if($key=='traduccion_descripcion'.$articulo->id_articulo){
+										$articulo->articulo = $value;
+									}
+								}	
+							}
+							
 							if($usar_limite==1){
 								if($articulo->archivo_url!=""){
 			    					echo myTruncate($articulo->articulo, $max_con_foto, '>', '>...');	
@@ -202,6 +243,15 @@ if($cantidad_categorias==2 || $cantidad_categorias==1){
 		} ?>		
 			<div class="col-md-4">
 				<div class="panel panel-hotel panel-banner">
+					<?php 
+					if($t_categorias){
+						foreach ($t_categorias as $key => $value) {
+							if($key=='traduccion_titulo'.$articulo->id_categoria){
+								$articulo->categoria = $value;
+							}
+						}	
+					}
+					?>
 			  		<div class="panel-heading"><?php echo $articulo->categoria;?></div>
 			  		<div class="panel-body">
 			  			<?php if($articulo->archivo_url!=""){?>
@@ -213,6 +263,14 @@ if($cantidad_categorias==2 || $cantidad_categorias==1){
 			    				$usar_limite	= $configs_articulo->usar_limite;
 								$max_con_foto	= $configs_articulo->max_con_foto;
 								$max_sin_foto	= $configs_articulo->max_sin_foto;
+							}
+							
+							if($traducciones){
+								foreach ($traducciones as $key => $value) {
+									if($key=='traduccion_descripcion'.$articulo->id_articulo){
+										$articulo->articulo = $value;
+									}
+								}	
 							}
 							
 							if($usar_limite==1){

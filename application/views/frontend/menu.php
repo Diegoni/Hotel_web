@@ -146,7 +146,8 @@
 				<li class="li-moneda">
 					<input class="moneda-menu" 
 						name="boton1" type="image" 
-						title="<?php echo $idioma->idioma;?>" rel="tooltip" 
+						title="<?php echo $texto['cambiar_idioma'];?>" 
+						rel="tooltip" 
 						src="<?php echo base_url().'assets/uploads/idiomas/'.$idioma->imagen;?>"
 						value="<?php echo str_replace(base_url().'index.php/'.$this->uri->segment(1).'/',
 													  base_url().'index.php/'.$idioma->url."/", 

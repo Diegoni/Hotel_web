@@ -3,12 +3,32 @@
 		<div class="col-md-8 col-md-offset-2">
 				<div class="panel panel-hotel">
 					<?php
-					foreach ($categorias as $categoria) { ?>
+					foreach ($categorias as $categoria) {
+						if($t_categorias){
+							foreach ($t_categorias as $key => $value) {
+								if($key=='traduccion_titulo'.$categoria->id_categoria){
+									$categoria->categoria = $value;
+								}
+							}	
+						}
+					?>
 			  		<div class="panel-heading"><?php echo $categoria->categoria;?></div>
 			  		<?php } ?>
 			  		<?php
 			  		if ($articulos){
-			  		foreach ($articulos as $articulo) { ?>
+			  		foreach ($articulos as $articulo) { 
+			  			if($traducciones){
+							foreach ($traducciones as $key => $value) {
+								if($key=='traduccion_descripcion'.$articulo->id_articulo){
+									$articulo->articulo	= $value;
+								}
+								
+								if($key=='traduccion_titulo'.$articulo->id_articulo){
+									$articulo->titulo	= $value;
+								}
+							}	
+						}
+			  		?>
 			  		<div class="panel-body">
 			  			
 			  			<div class="badger-left badger-hotel" data-badger="<?php echo $articulo->titulo ?>">

@@ -159,6 +159,7 @@
             	<li class="divider"></li>
 				<li><a  href='<?php echo site_url('admin/otro/tipos_abm')?>'>Tipos</a></li>
 				<li><a  href='<?php echo site_url('admin/otro/aerolineas_abm')?>'>Aerolineas</a></li>
+				<li><a  href='<?php echo site_url('admin/traduccion')?>'>Traducción</a></li>
 				<li class="divider"></li>
 				<li><a  href='<?php echo site_url('admin/otro/terminos_abm')?>'>Términos y condiciones</a></li>
 				<li><a  href='<?php echo site_url('admin/otro/ayudas_abm')?>'>Ayudas de la página</a></li>

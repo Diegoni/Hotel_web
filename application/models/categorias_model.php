@@ -31,8 +31,7 @@ class Categorias_model extends CI_Model {
 									articulos.id_estado_articulo != 2 AND
 									DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') <= '$date' AND
 									(DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') >= '$date' OR 
-									articulos.fecha_despublicacion=0 ) AND
-									(articulos.id_idioma = 0 OR idiomas.url = '$url_idioma' )
+									articulos.fecha_despublicacion=0 )
 									AND articulos.id_hotel='$id'
 									GROUP BY categorias.categoria
 									ORDER BY articulos.id_articulo

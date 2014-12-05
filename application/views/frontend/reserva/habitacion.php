@@ -41,7 +41,18 @@
 	<div class="panel panel-hotel">
 		<div class="panel-heading"><?php echo $texto['seleccione_habitacion']?></div>
 			<?php echo form_open('reserva/datos');?>
-			<?php foreach ($habitaciones as $habitacion) { ?> 
+			<?php foreach ($habitaciones as $habitacion) { 
+					if($traducciones){
+						foreach ($traducciones as $key => $value) {
+							if($key=='traduccion_descripcion'.$habitacion->id_habitacion){
+								$habitacion->descripcion	= $value;
+							}
+								
+							if($key=='traduccion_titulo'.$habitacion->id_habitacion){
+								$habitacion->habitacion		= $value;
+							}
+						}	
+					}?> 
 				<div class="panel-body">
         			<div class="col-md-3 text-center  nombre-habitacion">
         				<h3><small> <?php echo $habitacion->habitacion; ?> </small></h3>

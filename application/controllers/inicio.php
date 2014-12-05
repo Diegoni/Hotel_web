@@ -12,6 +12,7 @@ class Inicio extends CI_Controller {
 		$this->load->model('habitaciones_model');
 		$this->load->model('configs_model');
 		$this->load->model('tipos_habitacion_model');
+		$this->load->model('modulos_idioma_model');
 		$this->load->model('configs_model');
 		$this->load->helper('form');
 		$this->load->helper('main');
@@ -53,11 +54,13 @@ class Inicio extends CI_Controller {
 		$db['emails_hotel']			= $this->hoteles_email_model->getEmails($_COOKIE['id_hotel']);
 		$db['imagenes_carrusel']	= $this->imagenes_carrusel_model->getImagenes($_COOKIE['id_hotel']);
 		$db['articulos']			= $this->articulos_model->getArticulos_paginaprincipal($_COOKIE['id_hotel']);
+		$db['traducciones']			= $this->modulos_idioma_model->getTraducciones($db['articulos'], 2);
 		$db['cantidad_categorias']	= count($db['articulos']);
 		$db['configs']				= $this->configs_model->getConfigs();
 		$db['configs_articulos']	= $this->configs_model->getConfigArticulos();
 		$db['tipos_habitacion']		= $this->tipos_habitacion_model->getTipos();
 		$db['categorias']			= $this->categorias_model->getCategorias($_COOKIE['id_hotel']);
+		$db['t_categorias']			= $this->modulos_idioma_model->getTraducciones($db['categorias'], 4);
 		
 		$this->load->view('frontend/head' , $db);
 		$this->load->view('frontend/menu');

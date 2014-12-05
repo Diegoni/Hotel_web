@@ -4,7 +4,20 @@
 	<div class="panel panel-hotel">
 		<div class="panel-heading"><?php echo $texto['habitaciones']?></div>
 		<?php if($habitaciones){?>
-			<?php foreach ($habitaciones as $habitacion) { ?> 
+			<?php foreach ($habitaciones as $habitacion) { 
+					if($traducciones){
+						foreach ($traducciones as $key => $value) {
+							if($key=='traduccion_descripcion'.$habitacion->id_habitacion){
+								$habitacion->descripcion	= $value;
+							}
+								
+							if($key=='traduccion_titulo'.$habitacion->id_habitacion){
+								$habitacion->habitacion		= $value;
+							}
+						}	
+					}
+				
+				?> 
 				<div class="panel-body">
         			<div class="col-md-4 text-center vertical-middel nombre-habitacion">
         				<h3><small> <?php echo $habitacion->habitacion; ?> </small></h3>

@@ -49,11 +49,12 @@ class Traduccion extends CI_Controller {
 							'idioma'	=> $this->input->post('idioma'),
 							'estado'	=> $this->input->post('traducir'));
 							
-				$registros		 = $this->modulos_idioma_model->getModulo($datos2);
+				$registros	= $this->modulos_idioma_model->getModulo($datos2);
 				
 				
 				foreach ($registros as $registro) {
-					if($this->input->post('descripcion_tabla'.$registro->id_tabla)){
+					if($this->input->post('titulo_idioma'.$registro->id_tabla)){
+						
 						$datos=array(
 									'id_modulo_idioma'	=> $this->input->post('id_modulo_idioma'),
 									'titulo'			=> $this->input->post('titulo_idioma'.$registro->id_tabla),
@@ -65,6 +66,8 @@ class Traduccion extends CI_Controller {
 									'delete'			=> 0
 									);
 						$mensaje = $this->modulos_idioma_model->updateModulo($datos);
+					}else{
+						//echo "no entro ".$registro->id_tabla."<br>";
 					}
 				}
 				

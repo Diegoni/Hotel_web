@@ -9,6 +9,7 @@ class Categoria extends CI_Controller {
 		$this->load->model('articulos_model');
 		$this->load->model('categorias_model');
 		$this->load->model('tarifas_temporales_model');
+		$this->load->model('modulos_idioma_model');
 		$this->load->model('configs_model');
 		$this->load->helper('form');
       	$this->load->helper('url');
@@ -38,8 +39,10 @@ class Categoria extends CI_Controller {
 		);
 		
 		$db['articulos']	= $this->articulos_model->getArticulos($datos);
+		$db['traducciones']	= $this->modulos_idioma_model->getTraducciones($db['articulos'], 2);
 		$db['banner']		= $this->articulos_model->getBanner($datos);
 		$db['categorias']	= $this->categorias_model->getCategoria($id);
+		$db['t_categorias']	= $this->modulos_idioma_model->getTraducciones($db['categorias'], 4);
 		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($id_hotel);
 		$db['hoteles']		= $this->hoteles_model->getHoteles($id_hotel);
 		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();

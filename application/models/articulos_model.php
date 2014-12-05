@@ -16,8 +16,7 @@ class Articulos_model extends CI_Model {
 									DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') <= '$date' AND
 									(DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') >= '$date' OR 
 									articulos.fecha_despublicacion=0 ) AND
-									articulos.$datos[columna] = '$datos[dato]' and
-									(articulos.id_idioma = 0 OR idiomas.url = '$url_idioma' )
+									articulos.$datos[columna] = '$datos[dato]'
 									AND articulos.id_tipo = 1
 									ORDER BY articulos.orden");
 			
@@ -31,8 +30,7 @@ class Articulos_model extends CI_Model {
 									articulos.id_estado_articulo != 2 AND
 									DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') <= '$date' AND
 									(DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') >= '$date' OR 
-									articulos.fecha_despublicacion=0 ) AND
-									(articulos.id_idioma = 0 OR idiomas.url = '$url_idioma' )
+									articulos.fecha_despublicacion=0 )
 									AND articulos.id_tipo = 1
 									ORDER BY articulos.id_articulo");	
 		}
@@ -64,11 +62,11 @@ class Articulos_model extends CI_Model {
 									DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') <= '$date' AND
 									(DATE_FORMAT(articulos.fecha_publicacion, '%Y-%m-%d') >= '$date' OR 
 									articulos.fecha_despublicacion=0 ) AND
-									articulos.pagina_principal = 1 AND
-									(articulos.id_idioma = 0 OR idiomas.url = '$url_idioma' )
+									articulos.pagina_principal = 1 
 									AND articulos.id_tipo = 1
 									ORDER BY articulos.id_articulo");
-		
+		// AND (articulos.id_idioma = 0 OR idiomas.url = '$url_idioma' )
+				
 		if($query->num_rows() > 0){
 			foreach ($query->result() as $fila){
 				$data[] = $fila;

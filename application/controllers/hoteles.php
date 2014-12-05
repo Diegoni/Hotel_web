@@ -18,6 +18,7 @@ class Hoteles extends CI_Controller {
 		$this->load->model('imagenes_habitacion_model');
 		$this->load->model('imagenes_hotel_model');
 		$this->load->model('monedas_model');
+		$this->load->model('modulos_idioma_model');
 		$this->load->helper('main');
 		$this->load->helper('form');
       	$this->load->helper('url');
@@ -82,6 +83,7 @@ class Hoteles extends CI_Controller {
 		$db['hotel']		= $this->hoteles_model->getHotel($_COOKIE['id_hotel']);
 		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
 		$db['habitaciones']	= $this->habitaciones_model->getHabitaciones($consulta);
+		$db['traducciones']	= $this->modulos_idioma_model->getTraducciones($db['habitaciones'], 1);
 		$db['idiomas']		= $this->idiomas_model->getIdiomas();
 		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($id_hotel);
 		
