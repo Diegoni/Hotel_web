@@ -44,10 +44,15 @@ if($cantidad_categorias==2 || $cantidad_categorias==1){
 							}
 														
 							if($usar_limite==1){
+										
+								//$sin_html = strip_tags($articulo->articulo);
+								$articulo_sinHTML=strip_tags($articulo->articulo);	
+								
 								if($articulo->archivo_url!=""){
-			    					echo myTruncate($articulo->articulo, $max_con_foto, '>', '>...');	
+									echo myTruncate($articulo_sinHTML, $max_con_foto, '.', '...');	
 			    				}else{
-			    					echo myTruncate($articulo->articulo, $max_sin_foto, '>', '>...');
+			    					
+			    					echo myTruncate($articulo_sinHTML, $max_sin_foto, '.', '...');
 			    				}	
 							}else{
 								echo $articulo->articulo;
@@ -108,10 +113,13 @@ if($cantidad_categorias==2 || $cantidad_categorias==1){
 							}
 							
 							if($usar_limite==1){
+								$articulo_sinHTML=strip_tags($articulo->articulo);	
+								
 								if($articulo->archivo_url!=""){
-			    					echo myTruncate($articulo->articulo, $max_con_foto, '>', '>...');	
+									echo myTruncate($articulo_sinHTML, $max_con_foto, '.', '...');	
 			    				}else{
-			    					echo myTruncate($articulo->articulo, $max_sin_foto, '>', '>...');
+			    					
+			    					echo myTruncate($articulo_sinHTML, $max_sin_foto, '.', '...');
 			    				}	
 							}else{
 								echo $articulo->articulo;
@@ -161,10 +169,13 @@ if($cantidad_categorias==2 || $cantidad_categorias==1){
 							}
 							
 							if($usar_limite==1){
+								$articulo_sinHTML=strip_tags($articulo->articulo);	
+								
 								if($articulo->archivo_url!=""){
-			    					echo myTruncate($articulo->articulo, $max_con_foto, '>', '>...');	
+									echo myTruncate($articulo_sinHTML, $max_con_foto, '.', '...');	
 			    				}else{
-			    					echo myTruncate($articulo->articulo, $max_sin_foto, '>', '>...');
+			    					
+			    					echo myTruncate($articulo_sinHTML, $max_sin_foto, '.', '...');
 			    				}	
 							}else{
 								echo $articulo->articulo;
@@ -212,10 +223,13 @@ if($cantidad_categorias==2 || $cantidad_categorias==1){
 							}
 							
 							if($usar_limite==1){
+								$articulo_sinHTML=strip_tags($articulo->articulo);	
+								
 								if($articulo->archivo_url!=""){
-			    					echo myTruncate($articulo->articulo, $max_con_foto, '>', '>...');	
+									echo myTruncate($articulo_sinHTML, $max_con_foto, '.', '...');	
 			    				}else{
-			    					echo myTruncate($articulo->articulo, $max_sin_foto, '>', '>...');
+			    					
+			    					echo myTruncate($articulo_sinHTML, $max_sin_foto, '.', '...');
 			    				}	
 							}else{
 								echo $articulo->articulo;
@@ -274,10 +288,13 @@ if($cantidad_categorias==2 || $cantidad_categorias==1){
 							}
 							
 							if($usar_limite==1){
+								$articulo_sinHTML=strip_tags($articulo->articulo);	
+								
 								if($articulo->archivo_url!=""){
-			    					echo myTruncate($articulo->articulo, $max_con_foto, '>', '>...');	
+									echo myTruncate($articulo_sinHTML, $max_con_foto, '.', '...');	
 			    				}else{
-			    					echo myTruncate($articulo->articulo, $max_sin_foto, '>', '>...');
+			    					
+			    					echo myTruncate($articulo_sinHTML, $max_sin_foto, '.', '...');
 			    				}	
 							}else{
 								echo $articulo->articulo;

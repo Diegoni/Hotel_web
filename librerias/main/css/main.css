@@ -755,6 +755,8 @@ label{
 .text-banner{
 	color:#000; 
 	text-align: justify;
+	font-family:tahoma,geneva,sans-serif;
+	font-size:14px;
 }
 
 .small-loading
