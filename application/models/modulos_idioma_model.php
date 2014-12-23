@@ -232,6 +232,7 @@ class Modulos_idioma_model extends CI_Model {
 					$id_idioma = $row->id_idioma;
 				}		
 			
+			if($registros){
 			foreach ($registros as $registro) {
 				$id	= $registro->$id_tabla;
 				$query_traduccion = $this->db->query("	SELECT * FROM 
@@ -248,8 +249,8 @@ class Modulos_idioma_model extends CI_Model {
 						$data['traduccion_descripcion'.$id]	= $row->descripcion;
 						}
 				}
-			
-		}
+			}
+			}
 		}	
 		
 		
