@@ -1,7 +1,7 @@
 # Sistema de reserva
 
 Sistema de reserva de para hoteles
-Funcionalidades
+> Funcionalidades
 
 ```sh
 - Carrusel de imágenes
