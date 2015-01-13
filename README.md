@@ -39,12 +39,10 @@ Sistema de reserva de para hoteles
 
 ### Desarrollo 
 
-```sh
-[TMS Group]
-```
+
+[TMS Group] - Sitio
 
 
-**Free Software, Hell Yeah!**
 
 [Twitter Bootstrap]:http://twitter.github.com/bootstrap/
 [Jquery UI]:http://jqueryui.com/
