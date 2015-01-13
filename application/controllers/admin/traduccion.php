@@ -1,11 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class Traduccion extends CI_Controller {
-
 	public function __construct()
 	{
 		parent::__construct();
-
 		$this->load->helper('menu');
 		$this->load->model('reserva_habitacion_model');
 		$this->load->model('modulos_model');
@@ -16,8 +13,6 @@ class Traduccion extends CI_Controller {
 		//$this->load->library('image_CRUD');
 		
 	}
-
-
 	public function index()
 	{
 		if($this->session->userdata('logged_in')){
@@ -72,6 +67,44 @@ class Traduccion extends CI_Controller {
 				}
 				
 				$db['registros'] = $this->modulos_idioma_model->getModulo($datos2);
+			}else if($this->input->post('traduccion')){
+				$datos2=array(
+							'modulo'	=> $this->input->post('modulo'),
+							'idioma'	=> $this->input->post('idioma'),
+							'estado'	=> $this->input->post('traducir'));
+							
+				$registros	= $this->modulos_idioma_model->getModulo($datos2);
+				
+				foreach ($registros as $registro) {
+					if($this->input->post('titulo_idioma'.$registro->id_tabla)){
+						
+						$descripcion	= $this->input->post('descripcion_tabla');
+						$titulo			= $this->input->post('titulo_tabla');
+						
+						$idiomas2		= $this->idiomas_model->getIdioma_id($this->input->post('idioma'));
+						foreach ($idiomas2 as $idioma) {
+							$idioma_tabla	= $idioma->idioma;
+						}
+			
+						
+						$descripcion_t	= traduce($descripcion, $idioma_tabla);
+						$titulo_t		= traduce($titulo, $idioma_tabla);
+												
+						$datos=array(
+									'id_modulo_idioma'		=> $this->input->post('id_modulo_idioma'),
+									'titulo'				=> $titulo_t,
+									'descripcion'			=> $descripcion_t,
+									'id_modulo'				=> $this->input->post('modulo'),
+									'id_tabla'				=> $registro->id_tabla,
+									'id_idioma'				=> $this->input->post('idioma'),
+									'id_estado_traduccion'	=> 2,
+									'delete'				=> 0
+									);
+						$mensaje = $this->modulos_idioma_model->updateModulo($datos);
+					}
+				}
+				
+				$db['registros'] = $this->modulos_idioma_model->getModulo($datos2);
 			}
 						
 			$this->load->view('backend/head.php', $db);
@@ -84,7 +117,6 @@ class Traduccion extends CI_Controller {
 		}
 	}
 	
-
 	
 /**********************************************************************************
  **********************************************************************************
@@ -93,7 +125,6 @@ class Traduccion extends CI_Controller {
  * 
  * ********************************************************************************
  **********************************************************************************/
-
 	
 	function insert_control_fechas($datos, $id){
 		if($datos['entrada']>$datos['salida']){
@@ -103,7 +134,6 @@ class Traduccion extends CI_Controller {
 		} 
 	}
 	
-
 	function insert_log($datos, $id){
 		$session_data = $this->session->userdata('logged_in');
 		
@@ -153,6 +183,4 @@ class Traduccion extends CI_Controller {
 			
     	return $this->db->update($_COOKIE['tabla'], array('delete' => 1), array($_COOKIE['id'] => $id));
 	}
-
-
 }

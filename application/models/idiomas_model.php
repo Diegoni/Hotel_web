@@ -21,6 +21,20 @@ class Idiomas_model extends CI_Model {
 		return $texto;
 	}
 	
+	function getIdioma_id($id){
+		$query	= $this->db->query("SELECT * FROM idiomas WHERE idiomas.id_idioma='$id'");
+		
+		if($query->num_rows() > 0){
+			foreach ($query->result() as $fila){
+				$data[] = $fila;
+			}
+		}else{
+			return FALSE;
+		}
+		
+		return $data;
+	}
+	
 	function getIdiomas(){
 		$query = $this->db->query("SELECT * FROM `idiomas` WHERE `delete`= 0 AND id_idioma != 0");
 		

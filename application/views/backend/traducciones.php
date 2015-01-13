@@ -168,13 +168,13 @@
         									<?php if(isset($registro->titulo_tabla)){ ?>
 	        									<div class="form-group">
 													<label for="exampleInputEmail1">Título</label>
-													<input type="text" class="form-control" id="titulo_tabla<?php echo $registro->id_tabla?>" value="<?php echo $registro->titulo_tabla?>" readonly style="width: 100%;">
+													<input type="text" class="form-control" id="titulo_tabla<?php echo $registro->id_tabla?>" name="titulo_tabla" value="<?php echo $registro->titulo_tabla?>" readonly style="width: 100%;">
 												</div>
 											<?php } ?>
 											<?php if(isset($registro->descripcion_tabla)){ ?>
 												<div class="form-group">
 													<label for="exampleInputEmail1">Descripción</label>
-													<textarea class="ckeditor" rows="20" id="descripcion_tabla<?php echo $registro->id_tabla?>" style="width: 100%;" name="descripcion_tabla<?php echo $registro->id_tabla?>">
+													<textarea class="ckeditor" rows="20" id="descripcion_tabla<?php echo $registro->id_tabla?>" name="descripcion_tabla" style="width: 100%;" name="descripcion_tabla<?php echo $registro->id_tabla?>">
 														<?php echo $registro->descripcion_tabla?>
 													</textarea>
 												</div>
@@ -238,6 +238,7 @@
 									<button type="button" class="btn btn-default show_hide<?php echo $registro->id_tabla?>"><span class="icon-chevron-left"></span>Ocultar</button>
 									<button type="button" class="btn btn-default hide_show<?php echo $registro->id_tabla?>"><span class="icon-chevron-right"></span>Ver</button>
 									<button type="button" class="btn btn-default"	data-dismiss="modal">Cerrar</button>
+									<button type="submit" name="traduccion" value="1" class="btn btn-default" >Traducción</button>
 									<button type="submit" name="traducir" value="1" class="btn btn-danger" >Sin traducción</button>
 									<button type="submit" name="traducir" value="3" class="btn btn-success">Finalizar</button>
 									<button type="submit" name="traducir" value="2" class="btn btn-primary">Guardar</button>
@@ -292,5 +293,3 @@
       $(selector).chosen(config[selector]);
     }
   </script>    
-
-

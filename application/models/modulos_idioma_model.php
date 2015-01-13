@@ -212,7 +212,6 @@ class Modulos_idioma_model extends CI_Model {
 	function updateModulo($datos){
 		$this->db->update('modulos_idioma', $datos, array('id_modulo_idioma' => $datos['id_modulo_idioma']));
 	}
-
 		
 	function getTraducciones($registros, $id_modulo){
 		$query_modulo = $this->db->query("SELECT * FROM modulos WHERE id_modulo='$id_modulo'");
@@ -264,6 +263,5 @@ class Modulos_idioma_model extends CI_Model {
 		
 	}
 			
-
 }
 ?>
