@@ -80,7 +80,7 @@
 		<div class="afip">
 			<?php
 			foreach ($hoteles as $hotel) {
-				if($hotel->usar_codigo==1 && $hotel->codigo_afip!=""){
+				if($hotel->usar_codigo==1 && $hotel->codigo_afip!=NULL && $hotel->codigo_afip!="-"){
 					$class_copyright = "pull-right";
 				?>
 					<a href="<?php echo $hotel->codigo_afip ?>" target="_blank">

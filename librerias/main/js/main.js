@@ -368,9 +368,10 @@ $(function() {
     $( "#entrada" ).datepicker({
       defaultDate: "+1w",
       changeMonth: true,
+      changeYear: true,
       /*numberOfMonths: 2,*/
       minDate: 0, 
-      maxDate: "+2M +15D", 
+	  /*maxDate: "+2M +15D",*/ 
       onClose: function( selectedDate ) {
       		
        // $( "#salida" ).datepicker( "option", "minDate", selectedDate );
@@ -383,8 +384,10 @@ $(function() {
     $( "#salida" ).datepicker({
       defaultDate: "+1w",
       changeMonth: true,
+      changeYear: true,
+      minDate: 0,
       /*numberOfMonths: 3,*/
-      maxDate: "+4M +15D",
+      /*maxDate: "+4M +15D",*/
       onClose: function( selectedDate ) {
         //$( "#entrada" ).datepicker( "option", "maxDate", selectedDate );
 			var maxDate = $(this).datepicker('getDate');
