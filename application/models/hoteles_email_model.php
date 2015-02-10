@@ -237,9 +237,23 @@ class Hoteles_email_model extends CI_Model {
 		$mensaje = str_replace("#tarjeta_tipo#", $tarjeta['tipo_tarjeta'], $mensaje);
 		//Datos vuelo
 		if($vuelo){
-			$mensaje = str_replace("#vuelo_numero#", $vuelo['nro_vuelo'], $mensaje);
-			$mensaje = str_replace("#vuelo_horario_llegada#", $vuelo['horario_llegada'], $mensaje);
-			$mensaje = str_replace("#vuelo_aerolinea#", $vuelo['aerolinea'], $mensaje);
+			if($vuelo['nro_vuelo']!=""){
+				$mensaje = str_replace("#vuelo_numero#", $vuelo['nro_vuelo'], $mensaje);	
+			}else{
+				$mensaje = str_replace("#vuelo_numero#", "", $mensaje);
+			}
+			
+			if($vuelo['horario_llegada']!=""){
+				$mensaje = str_replace("#vuelo_horario_llegada#", $vuelo['horario_llegada'], $mensaje);	
+			}else{
+				$mensaje = str_replace("#vuelo_horario_llegada#", "", $mensaje);
+			}
+			
+			if($vuelo['aerolinea']!=""){
+				$mensaje = str_replace("#vuelo_aerolinea#", $vuelo['aerolinea'], $mensaje);	
+			}else{
+				$mensaje = str_replace("#vuelo_aerolinea#", "", $mensaje);
+			}
 		}else{
 			$mensaje = str_replace("#vuelo_numero#", "", $mensaje);
 			$mensaje = str_replace("#vuelo_horario_llegada#", "", $mensaje);

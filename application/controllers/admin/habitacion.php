@@ -80,11 +80,14 @@ class Habitacion extends CI_Controller {
 		}else{
 			$registro=$this->tarifas_temporales_model->getTarifaID($id);
 			
-			foreach ($registro as $row) {
-				$registro=array('tarifa_temporal' 	=> $row->tarifa_temporal,
-								'valor'				=> $row->valor,
-								'id_tipo_tarifa'	=> $row->id_tipo_tarifa);
+			if($registro){
+				foreach ($registro as $row) {
+					$registro=array('tarifa_temporal' 	=> $row->tarifa_temporal,
+									'valor'				=> $row->valor,
+									'id_tipo_tarifa'	=> $row->id_tipo_tarifa);
+				}	
 			}
+			
 			
 			$db['tarifa_habitacion']=$this->tarifa_habitacion_model->getTarifaID($id);
 			
@@ -324,6 +327,8 @@ class Habitacion extends CI_Controller {
 			
 			$_COOKIE['tabla']='tarifas_temporales';
 			$_COOKIE['id']='id_tarifa_temporal';
+			
+			$crud->unset_add();
 						
 			$crud->callback_after_insert(array($this, 'insert_log'));
 			$crud->callback_after_update(array($this, 'update_log'));

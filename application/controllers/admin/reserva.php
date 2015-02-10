@@ -237,9 +237,13 @@ class Reserva extends CI_Controller {
 		}else{
 			$registro=$this->disponibilidades_model->getDisponibilidadId($id);
 			
-			foreach ($registro as $row) {
-				$registro=array('disponibilidad' 	=> $row->disponibilidad);
+			if($registro){
+				foreach ($registro as $row) {
+					$registro=array('disponibilidad' 	=> $row->disponibilidad);
+				}	
 			}
+			
+			
 			$db['cargas']=$this->disponibilidad_habitacion_model->getDisponibilidadNombre($registro['disponibilidad']);
 			$db['disponibilidad_habitacion']=$this->disponibilidad_habitacion_model->getDisponibilidadID($id);
 			$db['registro']=$registro;
@@ -431,6 +435,8 @@ class Reserva extends CI_Controller {
 			
 			$_COOKIE['tabla']='disponibilidades';
 			$_COOKIE['id']='id_disponibilidad';	
+			
+			$crud->unset_add();
 			
 			$crud->callback_after_insert(array($this, 'insert_log'));
 			$crud->callback_after_update(array($this, 'update_log'));

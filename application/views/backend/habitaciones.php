@@ -26,6 +26,20 @@
   				<span class="icon-bed"></span> Habitaciones
   			</div>
   			<div class="panel-body">
+  				<?php 
+  				if($this->uri->segment(4)=='tarifas_temporales_abm'){
+  				?>
+  					<a href="<?php echo base_url()?>index.php/es/admin/habitacion/tarifas_temporales_formulario/" title="Añadir tarifa temporal" class="add-anchor add_button btn btn-default">
+						<div class="fbutton">
+							<div>
+								<i class="fa fa-plus-square-o"></i> 
+								Añadir tarifa temporal				
+							</div>
+						</div>
+            		</a>
+  				<?php	
+  				}
+  				?>
     			<?php echo $output; ?>
   			</div>
 		</div>
