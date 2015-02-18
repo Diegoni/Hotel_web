@@ -143,7 +143,7 @@ class Hoteles_email_model extends CI_Model {
 		
 		$mensaje = $row->correo;
 		$mensaje = str_replace("#mensaje#", $consulta['mensaje'], $mensaje);
-		$mensaje = str_replace("#fecha_envio#", $consulta['fecha_envio'], $mensaje);
+		$mensaje = str_replace("#fecha_envio#", date('H:i:s d-m-Y', strtotime($consulta['fecha_envio'])), $mensaje);
 		$mensaje = str_replace("#emisor_email#", $consulta['emisor'], $mensaje);
 		$mensaje = str_replace("#emisor_nombre#", $consulta['nombre'], $mensaje);
 		$mensaje = str_replace("#emisor_apellido#", $consulta['apellido'], $mensaje);
@@ -338,7 +338,7 @@ class Hoteles_email_model extends CI_Model {
 		
 		$mensaje = $row->correo;
 		$mensaje = str_replace("#mensaje#", $consulta['mensaje'], $mensaje);
-		$mensaje = str_replace("#fecha_envio#", $consulta['fecha_envio'], $mensaje);
+		$mensaje = str_replace("#fecha_envio#", date('H:i:s d-m-Y', strtotime($consulta['fecha_envio'])), $mensaje);
 		$mensaje = str_replace("#emisor_email#", $consulta['emisor'], $mensaje);
 		$mensaje = str_replace("#emisor_nombre#", $consulta['nombre'], $mensaje);
 		$mensaje = str_replace("#emisor_apellido#", $consulta['apellido'], $mensaje);

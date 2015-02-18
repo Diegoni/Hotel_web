@@ -1,5 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+ini_set('allow_url_include', 'On');
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -267,7 +269,7 @@ $config['sess_use_database']	= TRUE;
 $config['sess_table_name']		= 'ci_sessions';
 $config['sess_match_ip']		= FALSE;
 $config['sess_match_useragent']	= TRUE;
-$config['sess_time_to_update']	= 300;
+$config['sess_time_to_update']	= 1200;
 
 /*
 |--------------------------------------------------------------------------
