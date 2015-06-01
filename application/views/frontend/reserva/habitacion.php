@@ -160,11 +160,17 @@
                 		
                 		<?php foreach ($cambios as $cambio) { ?>
 						<?php if($precio_con_descuento==1){ ?>
-						<del><h4><small> 
+						<del>
+							<h4><small> 
                 				<?php echo $cambio->abreviatura ; ?>
                 			</small>
                     			<?php echo $cambio->simbolo; ?>  
-                    			<?php echo number_format($habitacion->precio/$cambio->valor*$noches, 2, ',', ' '); ?></h4></del>							
+                    			<?php 
+                    				//echo number_format($habitacion->precio/$cambio->valor*$noches, 2, ',', ' '); 
+									echo number_format($habitacion->precio/$cambio->valor, 2, ',', ' ');
+                    			?>
+                    		</h4>
+                    	</del>							
 						<?php } ?>
 						<?php if($precio/$cambio->valor*$noches>1000){
 							echo "<h3>";
@@ -176,7 +182,10 @@
                 				<?php echo $cambio->abreviatura ; ?>
                 			</small>
                     			<?php echo $cambio->simbolo; ?>  
-                    			<?php echo number_format($precio/$cambio->valor*$noches, 2, ',', ' '); ?>
+                    			<?php 
+                    				//echo number_format($precio/$cambio->valor*$noches, 2, ',', ' '); 
+                    				echo number_format($precio/$cambio->valor, 2, ',', ' ');
+                    			?>
                     			<input type="hidden" name="precio<?php echo $habitacion->id_habitacion ?>" value="<?php echo $precio ?>">
                     			<?php 
                     			foreach ($hoteles as $hotel) {

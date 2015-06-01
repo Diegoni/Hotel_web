@@ -47,7 +47,8 @@ class Huesped extends CI_Controller {
  **********************************************************************************/
  
  
-	public function huespedes_abm(){
+	public function huespedes_abm()
+	{
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');

@@ -48,7 +48,8 @@ class Otro extends CI_Controller {
  **********************************************************************************/
  
  
-	public function departamentos_abm(){
+	public function departamentos_abm()
+	{
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');
@@ -86,7 +87,8 @@ class Otro extends CI_Controller {
  **********************************************************************************/
  
  
-	public function provincias_abm(){
+	public function provincias_abm()
+	{
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');
@@ -263,7 +265,8 @@ class Otro extends CI_Controller {
  **********************************************************************************/
  
  
-	public function idiomas_abm(){
+	public function idiomas_abm()
+	{
 			$crud = new grocery_CRUD();
 
 			//$crud->set_theme('datatables');

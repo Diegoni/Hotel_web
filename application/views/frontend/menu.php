@@ -111,8 +111,10 @@
 		<?php 
 		$form_url = str_replace($this->uri->segment(1).'/', '', uri_string());
 		
-		if($form_url=='reserva/habitacion'){
-			foreach ($idiomas as $idioma) { 
+		if($form_url=='reserva/habitacion')
+		{
+			foreach ($idiomas as $idioma) 
+			{ 
 				echo "<li class='li-moneda'>";
 					echo form_open($idioma->url.'/reserva/habitacion');
 						echo "<input type='hidden' name='hotel'		value=".$this->input->post('hotel').">";
@@ -124,8 +126,11 @@
 			 		echo form_close(); 
 				echo "</li>";
 			}
-		}else if($form_url=='reserva/datos'){
-			foreach ($idiomas as $idioma) { 
+		}
+		else if($form_url=='reserva/datos')
+		{
+			foreach ($idiomas as $idioma) 
+			{ 
 				echo "<li class='li-moneda'>";
 					echo form_open($idioma->url.'/reserva/datos');
 						echo "<input type='hidden' name='hotel'		value=".$this->input->post('hotel').">";
@@ -141,8 +146,12 @@
 			 		echo form_close(); 
 				echo "</li>";
 			}
-		}else{
-			foreach ($idiomas as $idioma) { ?>
+		}
+		else
+		{
+			foreach ($idiomas as $idioma) 
+			{ 
+			?>
 				<li class="li-moneda">
 					<input class="moneda-menu" 
 						name="boton1" type="image" 
@@ -156,8 +165,10 @@
 						var url = $(this).val();
 			    		window.location = url;">
 				</li>
-			<?php }?>
-		<?php }?>
+			<?php 
+			}
+		}
+		?>
 		</ul>
 		
 		

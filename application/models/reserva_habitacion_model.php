@@ -20,6 +20,7 @@ class Reserva_habitacion_model extends CI_Model {
 	
 	
 	function getReserva($id_reserva){
+		
 			$query=$this->db->query("SELECT 
 								reservas.entrada as entrada,
 								reservas.salida as salida,

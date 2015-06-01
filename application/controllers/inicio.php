@@ -21,7 +21,8 @@ class Inicio extends CI_Controller {
 	}
 	
 	
-	public function index(){
+	public function index()
+	{
 		$db['hoteles']=$this->hoteles_model->getHotelesIntro();
 		$db['direcciones']=$this->direcciones_hotel_model->getDirecciones();
 		
@@ -36,14 +37,21 @@ class Inicio extends CI_Controller {
 	}
 	
 
-	public function hotel($id_hotel=NULL){
-		if($id_hotel==NULL){
-			if($this->uri->segment(1)==""){
+	public function hotel($id_hotel=NULL)
+	{
+		if($id_hotel==NULL)
+		{
+			if($this->uri->segment(1)=="")
+			{
 				redirect(base_url().'','refresh');
-			}else{
+			}
+			else
+			{
 				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
 			}
-		}else{
+		}
+		else
+		{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
 		

@@ -1,7 +1,8 @@
 <?php 
 class Idiomas_model extends CI_Model {
 	
-	function getIdioma($url){
+	function getIdioma($url)
+	{
 		$id		= $this->config->item('idioma');
 		
 		$query	= $this->db->query("SELECT * FROM idiomas WHERE idiomas.url='$url'");
@@ -35,8 +36,13 @@ class Idiomas_model extends CI_Model {
 		return $data;
 	}
 	
-	function getIdiomas(){
-		$query = $this->db->query("SELECT * FROM `idiomas` WHERE `delete`= 0 AND id_idioma != 0");
+	function getIdiomas()
+	{
+		$sql = "SELECT * FROM `idiomas` WHERE `delete`= 0 AND id_idioma != 0";
+		 		
+		$query = $this->db->query($sql);
+		
+		echo $query->num_rows();
 		
 		if($query->num_rows() > 0){
 			foreach ($query->result() as $fila){

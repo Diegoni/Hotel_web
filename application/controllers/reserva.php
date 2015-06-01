@@ -2,7 +2,8 @@
 
 class Reserva extends CI_Controller {
 	
-	function __construct(){
+	function __construct()
+	{
 		parent::__construct();
 		$this->load->model('aerolineas_model');
 		$this->load->model('ayudas_model');
@@ -57,7 +58,7 @@ class Reserva extends CI_Controller {
 		$db['hotel']			= $this->hoteles_model->getHotel($this->input->post('hotel'));
 		$db['habitaciones']		= $this->habitaciones_model->getHabitaciones($consulta);
 		$db['traducciones']		= $this->modulos_idioma_model->getTraducciones($db['habitaciones'], 1);
-		$db['reservas_habitacion']= $this->reserva_habitacion_model->getReservas_habitacion($db['habitaciones'], $consulta);
+		$db['reservas_habitacion'] = $this->reserva_habitacion_model->getReservas_habitacion($db['habitaciones'], $consulta);
 		$db['disponibilidades']	=  $this->disponibilidades_model->getDisponibilidad($db['habitaciones'], $consulta);
 		$db['tarifas']			= $this->tarifas_temporales_model->getTarifas($db['habitaciones'], $consulta);
 		$db['step']				= 2;
@@ -65,7 +66,8 @@ class Reserva extends CI_Controller {
 		$db['idiomas']			= $this->idiomas_model->getIdiomas();
 		$db['emails_hotel']		= $this->hoteles_email_model->getEmails($id_hotel	);
 		
-		if(!(isset($_COOKIE['moneda']))){
+		if(!(isset($_COOKIE['moneda'])))
+		{
 			$_COOKIE['moneda']=1;
 		}
 		
@@ -236,7 +238,9 @@ class Reserva extends CI_Controller {
 		$id_reserva		= $this->reservas_model->insertReserva($reserva);
 		
 		
-		if("" !== $this->input->post('nro_de_vuelo') || "" !== $this->input->post('horario_llegada')){
+		if("" !== $this->input->post('nro_de_vuelo') || "" !== $this->input->post('horario_llegada'))
+		{/*
+			echo $this->input->post('horario_llegada');
 			$vuelo=array(
 				'id_huesped'		=> $id_huesped,
 				'nro_vuelo' 		=> $this->input->post('nro_de_vuelo'),
@@ -249,9 +253,10 @@ class Reserva extends CI_Controller {
 			$aerolineas	= $this->aerolineas_model->getAerolinea($this->input->post('aerolinea'));
 			
 			foreach ($aerolineas as $aerolinea) {
-				$vuelo['aerolinea']=$aerolinea->aerolinea;
+				$vuelo['aerolinea'] = $aerolinea->aerolinea;
 			}
-			
+		*/
+			$vuelo = array();
 		}else{
 			$vuelo = array();
 		}

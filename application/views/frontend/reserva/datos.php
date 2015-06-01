@@ -127,7 +127,7 @@
 		  							Vuelo
 		  			----------------------------------------------------------------------------------
 		  			--------------------------------------------------------------------------------->	
-		  			
+		  			<!--
   					<h3>
 						<span class="label label-danger">3</span> <?php echo $texto['vuelo'] ?>
 					</h3>
@@ -158,7 +158,7 @@
 							</select>
     					</div>
   					</div>
-  					
+  					-->
   					<div class="form-group slidingDiv">
   						<label for="nota" class="col-sm-2 control-label"><?php echo $texto['nota']?></label>
     					<div class="col-sm-10">
@@ -174,7 +174,7 @@
 							</a>
     					</div>
   					</div>
-  					
+  					<!--
   					<div class="form-group">
 					    <div class="col-sm-offset-2 col-sm-10">
 					      <div class="input-group">
@@ -183,7 +183,7 @@
 					      </div>
 					    </div>
 					</div>
-  					  					
+  					--> 					
   					<div class="form-group">
   						<input type="hidden" name="entrada" value="<?php echo $this->input->post('entrada') ?>">
 						<input type="hidden" name="salida"  value="<?php echo $this->input->post('salida') ?>">

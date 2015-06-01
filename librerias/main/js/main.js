@@ -181,18 +181,20 @@ function validarHabitacion(){
 
 
 
-function agregar(){ 
-//Para internet explorer
-if ((navigator.appName=="Microsoft Internet Explorer") && (parseInt(navigator.appVersion)>=4)) { 
-var url="http://www.tudireccion.com/"; //Cambia esta dirección por la de tu web
-var titulo="El nombre de mi web"; //Cambia esta nombre por el de tu web
-window.external.AddFavorite(url,titulo); 
-} 
-//Para Netscape y Firefox
-else { 
-if(navigator.appName == "Netscape") 
-alert ("Presione Crtl+D para agregar a este sitio en sus Marcadores");  //Puedes personalizar este mensaje
-} 
+function agregar()
+{ 
+	//Para internet explorer
+	if ((navigator.appName=="Microsoft Internet Explorer") && (parseInt(navigator.appVersion)>=4)) { 
+		var url		= "http://www.tudireccion.com/"; //Cambia esta dirección por la de tu web
+		var titulo	= "El nombre de mi web"; //Cambia esta nombre por el de tu web
+		window.external.AddFavorite(url,titulo); 
+	} 
+	//Para Netscape y Firefox
+	else
+	{ 
+		if(navigator.appName == "Netscape") 
+			alert ("Presione Crtl+D para agregar a este sitio en sus Marcadores");  //Puedes personalizar este mensaje
+	} 
 }
 
 
@@ -256,13 +258,12 @@ $(document).ready(function(){
  *************************************************************************/
 
 $(document).ready(function(){
-        $(".slidingDiv").hide();
-        $(".show_hide").show();
+	$(".slidingDiv").hide();
+	$(".show_hide").show();
  
     $('.show_hide').click(function(){
     	$(".slidingDiv").slideToggle();
     });
- 
 });
 
 $(document).ready(function(){
