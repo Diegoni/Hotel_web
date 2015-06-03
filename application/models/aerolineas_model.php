@@ -1,7 +1,8 @@
 <?php 
 class Aerolineas_model extends CI_Model {
 	
-	function getAerolineas(){
+	function getAerolineas()
+	{
 		$query = $this->db->query("SELECT * FROM aerolineas WHERE aerolineas.delete = 0");
 			
 		if($query->num_rows() > 0){	

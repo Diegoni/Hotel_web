@@ -19,20 +19,33 @@ class Tarifas_temporales_model extends CI_Model {
 					INNER JOIN 
 						tipos_tarifa ON(tarifa_habitacion.id_tarifa_temporal = tarifas_temporales.id_tarifa_temporal)
 					WHERE 
-							DATE_FORMAT(tarifas_temporales.salida, '%d-%m-%Y') >= '$consulta[entrada]' 
-						AND 
-							tarifa_habitacion.id_habitacion = '$habitacion->id_habitacion' 
+						tarifa_habitacion.id_habitacion = '$habitacion->id_habitacion' 
 					GROUP BY 
 						tarifa_habitacion.id_habitacion
 							";
 				
-			$query=$this->db->query($sql);
+			$query = $this->db->query($sql);
 			
 			if($query->num_rows() > 0)
 			{
 				foreach ($query->result() as $fila)
-				{		
-					if(date('Y-m-d',strtotime($consulta['salida']) <= $fila->entrada))
+				{
+					//DATE_FORMAT(tarifas_temporales.salida, '%d-%m-%Y') >= '$consulta[entrada]'
+					
+					$array_salida = explode('/', $consulta['salida']);
+					$salida = $array_salida[2]."-".$array_salida[1]."-".$array_salida[0];
+					$array_entrada = explode('/', $consulta['entrada']);
+					$entrada = $array_entrada[2]."-".$array_entrada[1]."-".$array_entrada[0];
+					
+					$array_entrada = explode('-', $fila->entrada);
+					$entrada_2 = $array_entrada[0]."-".$array_entrada[1]."-".$array_entrada[2];
+					$array_salida = explode('-', $fila->salida);
+					$salida_2 = $array_salida[0]."-".$array_salida[1]."-".$array_salida[2];
+						
+					if(
+						$salida >= $entrada_2 &&
+						$entrada <= $salida_2
+						)
 					{
 						$data[] = $fila;	
 					} 
@@ -93,7 +106,7 @@ class Tarifas_temporales_model extends CI_Model {
 	{
 		$this->db->insert('tarifas_temporales', $registro);
 		
-		$id=$this->db->insert_id();
+		$id = $this->db->insert_id();
 		
 		return $id;	
 	}	
@@ -107,7 +120,7 @@ class Tarifas_temporales_model extends CI_Model {
 				WHERE 
 					tarifas_temporales.id_tarifa_temporal = '$id'";
 		
-		$query=$this->db->query($sql);
+		$query = $this->db->query($sql);
 		
 		if($query->num_rows() > 0)
 		{
