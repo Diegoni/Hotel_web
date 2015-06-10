@@ -51,7 +51,7 @@
           	</ul>
         </li>
         
-        	
+       
         <li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>  Huéspedes<b class="caret"></b></a>
 			<ul class="dropdown-menu">
@@ -65,7 +65,7 @@
             	<li><a  href='<?php echo site_url('admin/huesped/estados_huesped')?>'>Estados huésped</a></li>
           	</ul>
         </li>
-        
+       
         
         <li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-bed"></span> Habitaciones<b class="caret"></b></a>
@@ -194,4 +194,4 @@
 
 <span id="forkongithub">
     <a href='<?php echo site_url()?>' target="_blank">Sitio</a> 
-  </span>
+</span>

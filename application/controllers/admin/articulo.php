@@ -17,6 +17,7 @@ class Articulo extends CI_Controller {
 	public function _example_output($output = null)
 	{
 		if($this->session->userdata('logged_in')){
+				
 			$reservas=buscarReservas();
 			$mensajes=buscarMensajes();
 			
