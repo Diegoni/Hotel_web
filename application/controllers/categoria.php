@@ -2,7 +2,8 @@
 
 class Categoria extends CI_Controller {
 	
-	function __construct(){
+	function __construct()
+	{
 		parent::__construct();
 		$this->load->model('hoteles_model');
 		$this->load->model('mensajes_model');
@@ -16,16 +17,22 @@ class Categoria extends CI_Controller {
 	}
 	
 	
-	public function articulos($id, $id_hotel){
-			
-		if($id_hotel==NULL){
-			if($this->uri->segment(1)==""){
+	public function articulos($id, $id_hotel)
+	{
+		if($id_hotel == NULL)
+		{
+			if($this->uri->segment(1) == "")
+			{
 				redirect(base_url().'','refresh');
-			}else{
+			}
+			else
+			{
 				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
 			}
-		}else{
-			$_COOKIE['id_hotel']=$id_hotel;
+		}
+		else
+		{
+			$_COOKIE['id_hotel'] = $id_hotel;
 		}
 		
 		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));

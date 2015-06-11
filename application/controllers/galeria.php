@@ -18,11 +18,11 @@ class Galeria extends CI_Controller {
 	
 	function _example_output($output = null)
 	{
-		$db['reservas']=$this->reservas_model->getCantNuevas();
-		$reservas=buscarReservas();
-		$mensajes=buscarMensajes();
+		$db['reservas']	= $this->reservas_model->getCantNuevas();
+		$reservas	= buscarReservas();
+		$mensajes	= buscarMensajes();
 		
-		$db=array_merge($reservas, $mensajes);
+		$db	= array_merge($reservas, $mensajes);
 			
 		$this->load->view('backend/head.php',$output);
 		$this->load->view('backend/menu.php',$db);	
@@ -32,11 +32,11 @@ class Galeria extends CI_Controller {
 	
 	function _habitacion_output($output = null)
 	{
-		$db['reservas']=$this->reservas_model->getCantNuevas();
-		$reservas=buscarReservas();
-		$mensajes=buscarMensajes();
+		$db['reservas']	= $this->reservas_model->getCantNuevas();
+		$reservas	= buscarReservas();
+		$mensajes	= buscarMensajes();
 		
-		$db=array_merge($reservas, $mensajes);
+		$db	= array_merge($reservas, $mensajes);
 			
 		$this->load->view('backend/head.php',$output);
 		$this->load->view('backend/menu.php',$db);	
@@ -46,11 +46,11 @@ class Galeria extends CI_Controller {
 	
 	function _example_articulos($output = null)
 	{
-		$db['reservas']=$this->reservas_model->getCantNuevas();
-		$reservas=buscarReservas();
-		$mensajes=buscarMensajes();
+		$db['reservas']	= $this->reservas_model->getCantNuevas();
+		$reservas	= buscarReservas();
+		$mensajes	= buscarMensajes();
 		
-		$db=array_merge($reservas, $mensajes);
+		$db	= array_merge($reservas, $mensajes);
 			
 		$this->load->view('backend/head.php',$output);
 		$this->load->view('backend/menu.php',$db);	

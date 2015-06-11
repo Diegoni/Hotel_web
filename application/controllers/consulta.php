@@ -2,7 +2,8 @@
 
 class Consulta extends CI_Controller {
 	
-	function __construct(){
+	function __construct()
+	{
 		parent::__construct();
 		$this->load->model('hoteles_model');
 		$this->load->model('mensajes_model');
@@ -12,17 +13,24 @@ class Consulta extends CI_Controller {
 	}
 	
 	
-	public function envio(){
-		$id_hotel=$this->input->post('id_hotel');
+	public function envio()
+	{
+		$id_hotel		= $this->input->post('id_hotel');
 		
-		if($id_hotel==NULL){
-			if($this->uri->segment(1)==""){
+		if($id_hotel==NULL)
+		{
+			if($this->uri->segment(1) == "")
+			{
 				redirect(base_url().'','refresh');
-			}else{
+			}
+			else
+			{
 				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
 			}
-		}else{
-			$_COOKIE['id_hotel']=$id_hotel;
+		}
+		else
+		{
+			$_COOKIE['id_hotel'] = $id_hotel;
 		}
 		
 		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
@@ -32,7 +40,7 @@ class Consulta extends CI_Controller {
 		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
 		$db['configs']		= $this->configs_model->getConfigs();
 		
-		$mensaje=array(	
+		$mensaje = array(	
 			'titulo'			=> 'Consulta web',
 			'fecha_envio' 		=> date("Y-m-d h:i:s"),
 			'mensaje'			=> $this->input->post('consulta'),
@@ -47,8 +55,10 @@ class Consulta extends CI_Controller {
 		
 		$db['mensajes']		= $this->mensajes_model->insertMensaje($mensaje);
 		
-		$hoteles=$this->hoteles_model->getHotel($id_hotel);
-		foreach ($hoteles as $hotel) {
+		$hoteles = $this->hoteles_model->getHotel($id_hotel);
+		
+		foreach ($hoteles as $hotel) 
+		{
 			$hotel = $hotel->hotel;
 		}
 		
@@ -64,18 +74,25 @@ class Consulta extends CI_Controller {
 		
 	}
 
-	public function email_habitacion(){
-		$id_hotel=$this->input->post('id_hotel');
+	public function email_habitacion()
+	{
+		$id_hotel = $this->input->post('id_hotel');
 		
 					
-		if($id_hotel==NULL){
-			if($this->uri->segment(1)==""){
+		if($id_hotel == NULL)
+		{
+			if($this->uri->segment(1)=="")
+			{
 				redirect(base_url().'','refresh');
-			}else{
+			}
+			else
+			{
 				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
 			}
-		}else{
-			$_COOKIE['id_hotel']=$id_hotel;
+		}
+		else
+		{
+			$_COOKIE['id_hotel'] = $id_hotel;
 		}
 
 		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
@@ -85,7 +102,7 @@ class Consulta extends CI_Controller {
 		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
 		$db['configs']		= $this->configs_model->getConfigs();
 		
-		$mensaje=array(	
+		$mensaje = array(	
 			'titulo'			=> 'Envió de habitacion ID: '.$this->input->post('id_habitacion'),
 			'fecha_envio' 		=> date("Y-m-d h:i:s"),
 			'mensaje'			=> $this->input->post('consulta'),
@@ -97,18 +114,21 @@ class Consulta extends CI_Controller {
 			'id_hotel'			=> $id_hotel
 		);
 						
-		$habitacion=array(	
-			'habitacion'=>$this->input->post('habitacion'),
-			'id_habitacion'=>$this->input->post('id_habitacion')
+		$habitacion = array(	
+			'habitacion'		=> $this->input->post('habitacion'),
+			'id_habitacion'		=> $this->input->post('id_habitacion')
 		);
 		
 		$db['mensajes']		= $this->mensajes_model->insertMensaje($mensaje);
 		
-		$hoteles=$this->hoteles_model->getHotel($id_hotel);
-		foreach ($hoteles as $hotel) {
-			$hotel=$hotel->hotel;
+		$hoteles	= $this->hoteles_model->getHotel($id_hotel);
+		
+		foreach ($hoteles as $hotel) 
+		{
+			$hotel	= $hotel->hotel;
 		}
-		$mensaje['hotel']=$hotel;
+		
+		$mensaje['hotel']	= $hotel;
 		$this->hoteles_email_model->correoHabitacion($mensaje, $habitacion, 1);
 		$this->hoteles_email_model->correoHabitacion($mensaje, $habitacion, 2);
 		

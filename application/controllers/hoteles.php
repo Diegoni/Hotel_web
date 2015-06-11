@@ -2,8 +2,10 @@
 
 class Hoteles extends CI_Controller {
 	
-	function __construct(){
+	function __construct()
+	{
 		parent::__construct();
+		
 		$this->load->model('articulos_model');
 		$this->load->model('hoteles_model');
 		$this->load->model('habitaciones_model');
@@ -19,24 +21,32 @@ class Hoteles extends CI_Controller {
 		$this->load->model('imagenes_hotel_model');
 		$this->load->model('monedas_model');
 		$this->load->model('modulos_idioma_model');
+		
 		$this->load->helper('main');
 		$this->load->helper('form');
       	$this->load->helper('url');
 	}
 	
 	
-	public function galeria($id_hotel=NULL){
-		if($id_hotel==NULL){
-			if($this->uri->segment(1)==""){
+	public function galeria($id_hotel=NULL)
+	{
+		if($id_hotel == NULL)
+		{
+			if($this->uri->segment(1) == "")
+			{
 				redirect(base_url().'','refresh');
-			}else{
+			}
+			else
+			{
 				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
 			}
-		}else{
-			$_COOKIE['id_hotel']=$id_hotel;
+		}
+		else
+		{
+			$_COOKIE['id_hotel'] = $id_hotel;
 		}
 		
-		$datos=array(	
+		$datos = array(	
 			'id_tipo'		=> 3
 		);
 		
@@ -54,17 +64,24 @@ class Hoteles extends CI_Controller {
 		//$this->load->view('frontend/formulario_reserva');
 		$this->load->view('frontend/hoteles/galeria');
 		$this->load->view('frontend/footer');
-		
 	}
 	
-	public function habitaciones($id_hotel=NULL){
-		if($id_hotel==NULL){
-			if($this->uri->segment(1)==""){
+	
+	public function habitaciones($id_hotel=NULL)
+	{
+		if($id_hotel == NULL)
+		{
+			if($this->uri->segment(1) == "")
+			{
 				redirect(base_url().'','refresh');
-			}else{
+			}
+			else
+			{
 				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
 			}
-		}else{
+		}
+		else
+		{
 			$_COOKIE['id_hotel']=$id_hotel;
 		}
 		
@@ -72,9 +89,9 @@ class Hoteles extends CI_Controller {
 		
 		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
 		
-		$consulta=array('id_hotel'	=> $id_hotel);
+		$consulta = array('id_hotel'	=> $id_hotel);
 		
-		$datos=array(	
+		$datos = array(	
 			'id_tipo'		=> 2
 		);
 		
@@ -87,8 +104,9 @@ class Hoteles extends CI_Controller {
 		$db['idiomas']		= $this->idiomas_model->getIdiomas();
 		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($id_hotel);
 		
-		if(!(isset($_COOKIE['moneda']))){
-			$_COOKIE['moneda']=1;
+		if(!(isset($_COOKIE['moneda'])))
+		{
+			$_COOKIE['moneda'] = 1;
 		}
 		
 		$db['cambios']			= $this->monedas_model->getMoneda($_COOKIE['moneda']);
@@ -102,22 +120,28 @@ class Hoteles extends CI_Controller {
 		//$this->load->view('frontend/formulario_reserva');
 		$this->load->view('frontend/hoteles/habitacion');
 		$this->load->view('frontend/footer');
-		
 	}
 
 
-	public function como_llegar($id_hotel=NULL){
-		if($id_hotel==NULL){
-			if($this->uri->segment(1)==""){
+	public function como_llegar($id_hotel=NULL)
+	{
+		if($id_hotel==NULL)
+		{
+			if($this->uri->segment(1) == "")
+			{
 				redirect(base_url().'','refresh');
-			}else{
+			}
+			else
+			{
 				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
 			}
-		}else{
-			$_COOKIE['id_hotel']=$id_hotel;
+		}
+		else
+		{
+			$_COOKIE['id_hotel'] = $id_hotel;
 		}
 		
-		$datos=array(	
+		$datos = array(	
 			'id_tipo'		=> 4
 		);
 		
@@ -135,8 +159,5 @@ class Hoteles extends CI_Controller {
 		$this->load->view('frontend/hoteles/como_llegar');
 		$this->load->view('frontend/footer');
 		
-	}
-	
-	
-	
+	}	
 }

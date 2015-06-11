@@ -18,8 +18,8 @@ class Articulo extends CI_Controller {
 	{
 		if($this->session->userdata('logged_in')){
 				
-			$reservas=buscarReservas();
-			$mensajes=buscarMensajes();
+			$reservas = buscarReservas();
+			$mensajes = buscarMensajes();
 			
 			$db=array_merge($reservas, $mensajes);
 						

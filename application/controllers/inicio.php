@@ -2,8 +2,10 @@
 
 class Inicio extends CI_Controller {
 	
-	function __construct(){
+	function __construct()
+	{
 		parent::__construct();
+		
 		$this->load->model('hoteles_model');
 		$this->load->model('articulos_model');
 		$this->load->model('categorias_model');
@@ -14,6 +16,7 @@ class Inicio extends CI_Controller {
 		$this->load->model('tipos_habitacion_model');
 		$this->load->model('modulos_idioma_model');
 		$this->load->model('configs_model');
+		
 		$this->load->helper('form');
 		$this->load->helper('main');
 		//$this->lang->load('english');
@@ -23,15 +26,17 @@ class Inicio extends CI_Controller {
 	
 	public function index()
 	{
-		$db['hoteles']=$this->hoteles_model->getHotelesIntro();
-		$db['direcciones']=$this->direcciones_hotel_model->getDirecciones();
+		$db['hoteles']		= $this->hoteles_model->getHotelesIntro();
+		$db['direcciones']	= $this->direcciones_hotel_model->getDirecciones();
 		
-		if($this->uri->segment(1)==""){
-			$db['texto']=$this->idiomas_model->getIdioma('es');	
-		}else{
-			$db['texto']=$this->idiomas_model->getIdioma($this->uri->segment(1));
+		if($this->uri->segment(1) == "")
+		{
+			$db['texto']	= $this->idiomas_model->getIdioma('es');	
 		}
-		
+		else
+		{
+			$db['texto']	= $this->idiomas_model->getIdioma($this->uri->segment(1));
+		}
 		
 		$this->load->view('frontend/intro_carollo', $db);
 	}
@@ -39,9 +44,9 @@ class Inicio extends CI_Controller {
 
 	public function hotel($id_hotel=NULL)
 	{
-		if($id_hotel==NULL)
+		if($id_hotel == NULL)
 		{
-			if($this->uri->segment(1)=="")
+			if($this->uri->segment(1) == "")
 			{
 				redirect(base_url().'','refresh');
 			}
@@ -52,7 +57,7 @@ class Inicio extends CI_Controller {
 		}
 		else
 		{
-			$_COOKIE['id_hotel']=$id_hotel;
+			$_COOKIE['id_hotel'] = $id_hotel;
 		}
 		
 		$db['texto']				= $this->idiomas_model->getIdioma($this->uri->segment(1));
@@ -78,5 +83,4 @@ class Inicio extends CI_Controller {
 		$this->load->view('frontend/banner');
 		$this->load->view('frontend/footer');
 	}
-
 }
