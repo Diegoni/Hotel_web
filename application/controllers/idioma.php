@@ -63,13 +63,13 @@ class Idioma extends CI_Controller {
 	 	<?php
 	 	if($this->uri->segment(1) == "es"){
 	 	?>
-	 		<option value="<?=base_url()?>es/idioma">ES</option> 
-	 		<option value="<?=base_url()?>en/idioma">EN</option>'?>
+	 		<option value="<?php echo base_url()?>es/idioma">ES</option> 
+	 		<option value="<?php echo base_url()?>en/idioma">EN</option>'?>
 	 	<?php
 	 	}else{
 	 		?>
-	 		<option value="<?=base_url()?>en/idioma">EN</option> 
-	 		<option value="<?=base_url()?>es/idioma">ES</option>'?>
+	 		<option value="<?php echo base_url()?>en/idioma">EN</option> 
+	 		<option value="<?php echo base_url()?>es/idioma">ES</option>'?>
 	 	<?php
 	 	}
 	 	?>

@@ -5,6 +5,7 @@ class Categoria extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+		
 		$this->load->model('hoteles_model');
 		$this->load->model('mensajes_model');
 		$this->load->model('articulos_model');
@@ -12,6 +13,7 @@ class Categoria extends CI_Controller {
 		$this->load->model('tarifas_temporales_model');
 		$this->load->model('modulos_idioma_model');
 		$this->load->model('configs_model');
+		
 		$this->load->helper('form');
       	$this->load->helper('url');
 	}
@@ -39,7 +41,7 @@ class Categoria extends CI_Controller {
 		$db['idiomas']		= $this->idiomas_model->getIdiomas();
 		$db['configs']		= $this->configs_model->getConfigs();
 		
-		$datos=array(	
+		$datos = array(	
 			'dato'			=> $id,
 			'columna' 		=> 'id_categoria',
 			'id_tipo'		=> 5

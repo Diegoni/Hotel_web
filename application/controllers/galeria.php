@@ -10,6 +10,7 @@ class Galeria extends CI_Controller {
 		$this->load->database();
 		/* ------------------ */
 		$this->load->model('reservas_model');
+		
 		$this->load->helper('url'); //Just for the examples, this is not required thought for the library
 		$this->load->helper('menu');
 		

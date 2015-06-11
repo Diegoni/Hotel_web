@@ -5,11 +5,13 @@ class Consulta extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+		
 		$this->load->model('hoteles_model');
 		$this->load->model('mensajes_model');
 		$this->load->model('configs_model');
+		
 		$this->load->helper('form');
-      	$this->load->helper('url');
+		$this->load->helper('url');
 	}
 	
 	

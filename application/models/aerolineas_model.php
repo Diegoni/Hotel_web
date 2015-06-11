@@ -16,7 +16,8 @@ class Aerolineas_model extends CI_Model {
 	}
 	
 	
-	function getAerolinea($id=NULL){
+	function getAerolinea($id=NULL)
+	{
 		$query = $this->db->query("SELECT aerolinea FROM aerolineas WHERE aerolineas.id_aerolinea = '$id'");
 			
 		if($query->num_rows() > 0){	
@@ -28,7 +29,6 @@ class Aerolineas_model extends CI_Model {
 			return FALSE;
 		}
 	}
-	
 
 }
 ?>
