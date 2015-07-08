@@ -21,7 +21,7 @@ class Huespedes_model extends CI_Model {
 			    	 
 		    $this->db->insert('huespedes', $huesped);
 			
-			$id_huesped=$this->db->insert_id();	
+			$id_huesped = $this->db->insert_id();	
 			
 			if(isset($datos['telefono'])){		
 				$telefono = array(

@@ -1,23 +1,44 @@
 <?php 
 class Ayudas_model extends CI_Model {
 	
-	function getAyuda($ayuda){
-		$query = $this->db->query("SELECT * FROM ayudas WHERE sector='$ayuda[sector]' and id_idioma='$ayuda[id_idioma]'");
+	function getAyuda($ayuda)
+	{
+		$sql = "SELECT 
+					* 
+				FROM 
+					ayudas 
+				WHERE 
+					sector = '$ayuda[sector]' AND 
+					id_idioma ='$ayuda[id_idioma]'";
+		
+		$query = $this->db->query($sql);
 				
-		if($query->num_rows()== 0){
-			$query = $this->db->query("SELECT * FROM ayudas WHERE sector='$ayuda[sector]' and id_idioma=0");
+		if($query->num_rows() == 0)
+		{
+			$sql = "SELECT 
+						* 
+					FROM 
+						ayudas 
+					WHERE 
+						sector = '$ayuda[sector]' AND 
+						id_idioma = 0";
+							
+			$query = $this->db->query($sql);
 		}	
 			
-		if($query->num_rows() > 0){	
-			foreach ($query->result() as $fila){
+		if($query->num_rows() > 0)
+		{	
+			foreach ($query->result() as $fila)
+			{
 				$data[] = $fila;
 			}
 			return $data;
-		}else{
+			
+		}
+		else
+		{
 			return FALSE;
 		}
 	}
-	
-
 }
 ?>
