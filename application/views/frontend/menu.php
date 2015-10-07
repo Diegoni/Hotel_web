@@ -3,13 +3,14 @@
 	<div class="row menu">
 	<div class="col-md-4">
 		<?php  
-			foreach ($hoteles as $hotel) {
-				$id_hotel=$hotel->id_hotel;
-				$logo_url=array();
-				if (!(in_array($hotel->logo_url, $logo_url))) {
-					$logo_url[]=$hotel->logo_url;	
-				} 
-  		}?>
+		foreach ($hoteles as $hotel) {
+			$id_hotel = $hotel->id_hotel;
+			$logo_url = array();
+			if (!(in_array($hotel->logo_url, $logo_url))) {
+				$logo_url[] = $hotel->logo_url;	
+			} 
+  		}
+  		?>
 		<center>
 		<a href="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/inicio/hotel/'.$id_hotel; ?>" class="logo">
 			<img src="<?php echo base_url().'assets/uploads/logos/'.$logo_url[0];?>" class="logo_img">

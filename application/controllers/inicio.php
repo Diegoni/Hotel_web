@@ -1,10 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
 class Inicio extends My_Controller {
 	
 	protected $_subject		= 'alarmas';
-	
-	
 	
 	function __construct()
 	{
@@ -23,8 +22,7 @@ class Inicio extends My_Controller {
 		
 		$this->load->helper('form');
 		$this->load->helper('main');
-		//$this->lang->load('english');
-      	$this->load->helper('url');
+		$this->load->helper('url');
 	}
 	
 	
@@ -42,7 +40,7 @@ class Inicio extends My_Controller {
 	}
 	
 
-	public function hotel($id_hotel=NULL){
+	public function hotel($id_hotel = NULL){
 		$db = $this->cargar_datos($id_hotel);
 		
 		$db['imagenes_carrusel']	= $this->imagenes_carrusel_model->getImagenes($_COOKIE['id_hotel']);

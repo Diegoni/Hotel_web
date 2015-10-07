@@ -87,10 +87,21 @@
 
 
 </head>
-<?php 
-foreach ($hoteles as $hotel) {
-	$latitud=$hotel->latitud;
-	$longitud=$hotel->longitud;
+<?php
+
+if($this->uri->segment(3) == "como_llegar"){
+	foreach ($hoteles as $hotel) {
+		$latitud  = $hotel->latitud;
+		$longitud = $hotel->longitud;
+	}
+	
+	echo '<body onload="initialize('.$latitud.', '.$longitud.')">';
+} else {
+	echo '<body>';
 }
+
+
+
 ?>
-<body onload="initialize(<?php echo $latitud ?>,<?php echo $longitud?>)">
+
+

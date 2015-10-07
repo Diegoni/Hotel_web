@@ -28,7 +28,7 @@
 		directionsDisplay.setPanel(document.getElementById('directions-panel'));//agregado
 		
 		var control = document.getElementById('control');//agregado
-		control.style.display = 'block';//agregado
+		//control.style.display = 'block';//agregado
 		map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);//agregado
     }
 		
