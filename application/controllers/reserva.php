@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Reserva extends CI_Controller {
+class Reserva extends My_Controller {
 	
 	function __construct()
 	{
@@ -32,27 +32,10 @@ class Reserva extends CI_Controller {
 	}
 	
 	
-	public function habitacion()
-	{
+	public function habitacion(){
 		$id_hotel = $this->input->post('hotel');
 		
-		if($id_hotel == NULL)
-		{
-			if($this->uri->segment(1) == "")
-			{
-				redirect(base_url().'','refresh');
-			}
-			else
-			{
-				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
-			}
-		}
-		else
-		{
-			$_COOKIE['id_hotel'] = $id_hotel;
-		}
-				
-		$db['texto'] = $this->idiomas_model->getIdioma($this->uri->segment(1));
+		$db = $this->cargar_datos($id_hotel);
 		
 		$consulta = array(
 			'entrada'	=> $this->input->post('entrada'),
@@ -62,8 +45,6 @@ class Reserva extends CI_Controller {
 			'hotel'		=> $this->input->post('hotel'),						
 		);
 		
-		$db['hoteles']			= $this->hoteles_model->getHoteles($id_hotel);
-		$db['hoteles_menu']		= $this->hoteles_model->getHotelesAll();
 		$db['hotel']			= $this->hoteles_model->getHotel($this->input->post('hotel'));
 		$db['habitaciones']		= $this->habitaciones_model->getHabitaciones($consulta);
 		$db['traducciones']		= $this->modulos_idioma_model->getTraducciones($db['habitaciones'], 1);
@@ -72,8 +53,6 @@ class Reserva extends CI_Controller {
 		$db['tarifas']			= $this->tarifas_temporales_model->getTarifas($db['habitaciones'], $consulta);
 		$db['step']				= 2;
 		$db['monedas']			= $this->monedas_model->getMonedas();
-		$db['idiomas']			= $this->idiomas_model->getIdiomas();
-		$db['emails_hotel']		= $this->hoteles_email_model->getEmails($id_hotel	);
 		
 		if(!(isset($_COOKIE['moneda'])))
 		{
@@ -81,42 +60,17 @@ class Reserva extends CI_Controller {
 		}
 		
 		$db['cambios']			= $this->monedas_model->getMoneda($_COOKIE['moneda']);
-		$db['configs']			= $this->configs_model->getConfigs();
 		$db['tipos_habitacion']	= $this->tipos_habitacion_model->getTipos();
 		$db['tipo_habitacion']	= $this->tipos_habitacion_model->getTipo($this->input->post('tipo'));
 		
-				
-		$this->load->view('frontend/head', $db);
-		$this->load->view('frontend/menu');
-		//$this->load->view('frontend/formulario_reserva_horizontal');
-		$this->load->view('frontend/reserva/steps');
-		$this->load->view('frontend/reserva/habitacion');
-		$this->load->view('frontend/footer');	
+		$this->load_view($db, 'reserva/habitacion');		
 	}
 
 	
-	public function datos()
-	{
+	public function datos(){
 		$id_hotel = $this->input->post('hotel');
 		
-		if($id_hotel==NULL)
-		{
-			if($this->uri->segment(1) == "")
-			{
-				redirect(base_url().'','refresh');
-			}
-			else
-			{
-				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
-			}
-		}
-		else
-		{
-			$_COOKIE['id_hotel']=$id_hotel;
-		}
-		
-		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
-		$db['idiomas']		= $this->idiomas_model->getIdiomas();
+		$db = $this->cargar_datos($id_hotel);
 		
 		$consulta = array(
 			'entrada'		=> $this->input->post('entrada'),
@@ -125,65 +79,23 @@ class Reserva extends CI_Controller {
 			'menores'		=> $this->input->post('menores'),
 			'hotel'			=> $this->input->post('hotel'),						
 		);
-							
-		$db['hoteles']		= $this->hoteles_model->getHoteles($id_hotel);
-		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
-		/*
-		$ayuda=array(
-			'sector'		=> 'datos',
-			'id_idioma'		=> $_COOKIE['idioma']
-		);
 		
-		$db['ayudas']		= $this->ayudas_model->getAyuda($ayuda);*/
 		$db['habitaciones']	= $this->habitaciones_model->getHabitaciones_post($consulta);
 		$db['tipos_tarjeta']= $this->tipos_tarjeta_model->getTipos();
 		$db['terminos']		= $this->terminos_model->getTerminos();
 		$db['aerolineas']	= $this->aerolineas_model->getAerolineas();
-		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($id_hotel);
 		$db['step']			= 3;
 		
-		$this->load->view('frontend/head', $db);
-		$this->load->view('frontend/menu');
-		//$this->load->view('frontend/reserva/ayuda');
-		$this->load->view('frontend/reserva/steps');
-		$this->load->view('frontend/reserva/datos');
-		$this->load->view('frontend/footer');	
+		
+		$this->load_view($db, 'reserva/datos');	
 	}
 	
 	
-	public function pago()
-	{
+	public function pago(){
 		$id_hotel = $this->input->post('hotel');
 		
-		if($id_hotel==NULL)
-		{
-			if($this->uri->segment(1) == "")
-			{
-				redirect(base_url().'','refresh');
-			}
-			else
-			{
-				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
-			}
-		}
-		else
-		{
-			$_COOKIE['id_hotel'] = $id_hotel;
-		}
-
+		$db = $this->cargar_datos($id_hotel);		
 		
-		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
-		$db['idiomas']		= $this->idiomas_model->getIdiomas();
-		$db['hoteles']		= $this->hoteles_model->getHoteles($id_hotel);
-		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
-		/*
-		$ayuda=array(
-			'sector'		=> 'pagos',
-			'id_idioma'		=> $_COOKIE['idioma']
-		);
-		
-		$db['ayudas']		= $this->ayudas_model->getAyuda($ayuda);*/
-		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($id_hotel);
 		$db['step']			= 4;
 		
 		$huesped = array(	
@@ -195,18 +107,16 @@ class Reserva extends CI_Controller {
 		
 		$id_huesped = $this->huespedes_model->insertHuesped($huesped);
 		
-		if($this->input->post('nota') != "")
-		{
+		if($this->input->post('nota') != ""){
 			$nota		= array('nota'=> $this->input->post('nota'));
 			$id_nota	= $this->notas_model->insertNota($nota);
-		}
-		else
-		{
+		} else {
 			$id_nota	= 0;
 		}
 		
 		$array_vencimiento	= explode("/", $this->input->post('vencimiento')); 
-		$vencimiento		= $array_vencimiento[2]."/".$array_vencimiento[1]."/".$array_vencimiento[0];
+		//$vencimiento		= $array_vencimiento[2]."/".$array_vencimiento[1]."/".$array_vencimiento[0];
+		$vencimiento		= $array_vencimiento[1]."/".$array_vencimiento[0]."/1";
 		
 		$tarjeta = array(	
 			'id_huesped'		=> $id_huesped,
@@ -220,8 +130,7 @@ class Reserva extends CI_Controller {
 		
 		$tipos_tarjetas	= $this->tipos_tarjeta_model->getTipo($this->input->post('tipo_tarjeta'));
 			
-		foreach ($tipos_tarjetas as $tipo) 
-		{
+		foreach ($tipos_tarjetas as $tipo) {
 			$tarjeta['tipo_tarjeta'] = $tipo->tipo_tarjeta;
 		}
 				
@@ -243,8 +152,7 @@ class Reserva extends CI_Controller {
 		
 		$total = 0;	
 		
-		foreach ($habitaciones as $key => $value) 
-		{
+		foreach ($habitaciones as $key => $value) {
 			$total = $total + $this->input->post('precio'.$key) * $value;
 			$precios_array[$key] = $this->input->post('precio'.$key); 
 		}
@@ -296,12 +204,7 @@ class Reserva extends CI_Controller {
 		
 		$db['mensaje']		= $this->hoteles_email_model->correoReserva($huesped, $tarjeta, $this->reserva_habitacion_model->getReserva($id_reserva), $precios_array, $vuelo, 2);
 		
-		$this->load->view('frontend/head', $db);
-		$this->load->view('frontend/menu');
-		//$this->load->view('frontend/reserva/ayuda');
-		$this->load->view('frontend/reserva/steps');
-		$this->load->view('frontend/reserva/pagos');
-		$this->load->view('frontend/footer');
+		$this->load_view($db, 'reserva/pagos');	
 	}
 
 	

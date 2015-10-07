@@ -106,4 +106,6 @@
 	$texto['te_espera']				= "dans votre attente";
 	$texto['ayuda_pin']				= 'Transaction en toute sécurité! Votre carte de crédit est exigée pour garantir votre réservation. 
     Les données de la carte de crédit laissés sur garantie n est valable que pour confirmer votre réservation, sinon il sera démonté sans préavis. Cette carte est uniquement à titre de réserves de garantie et ne sera utilisée que dans le cas de non-présentation ou d annulation après la date limite, le montant total doit être payé à l hôtel.';
+
+	$texto['captcha_incorrecto']	= "Incorrect captcha";	
 ?>	

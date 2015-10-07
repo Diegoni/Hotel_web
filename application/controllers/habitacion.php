@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Habitacion extends CI_Controller {
+class Habitacion extends My_Controller {
 	
 	function __construct()
 	{
@@ -26,84 +26,28 @@ class Habitacion extends CI_Controller {
 	}
 	
 	
-	public function view($id=NULL, $id_hotel=NULL)
-	{
-		if($id_hotel == NULL)
-		{
-			if($this->uri->segment(1) == "")
-			{
-				redirect(base_url().'','refresh');
-			}
-			else
-			{
-				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
-			}
-		}
-		else
-		{
-			$_COOKIE['id_hotel'] = $id_hotel;
-		}
-
-
-		if($id	== NULL)
-		{
+	public function view($id=NULL, $id_hotel=NULL){
+		$db = $this->cargar_datos($id_hotel);
+				
+		if($id	== NULL){
 			$id	= $this->input->post('id');
 		}
-		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
-		$db['idiomas']		= $this->idiomas_model->getIdiomas();
-		$db['hoteles']		= $this->hoteles_model->getHoteles($id_hotel);
-		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
+		
 		$db['habitaciones']	= $this->habitaciones_model->getHabitacion($id);
 		$db['traducciones']	= $this->modulos_idioma_model->getTraducciones($db['habitaciones'], 1);
 		$db['servicios']	= $this->habitacion_servicio_model->getServicios($id);
 		$db['t_servicios']	= $this->modulos_idioma_model->getTraducciones($db['servicios'], 5);
 		$db['provincias']	= $this->provincias_model->getProvincias('032');
-		$db['configs']		= $this->configs_model->getConfigs();
-		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($id_hotel);
-								
-		$this->load->view('frontend/head', $db);
-		$this->load->view('frontend/menu');
-		//$this->load->view('frontend/formulario_consulta');
-		$this->load->view('frontend/habitacion/view');
-		$this->load->view('frontend/footer');
+		
+		$this->load_view($db, 'habitacion/view');
 	}
 	
-	public function galeria($id=NULL, $id_hotel=NULL)
-	{		
-		if($id_hotel==NULL)
-		{
-			if($this->uri->segment(1) == "")
-			{
-				redirect(base_url().'','refresh');
-			}
-			else
-			{
-				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
-			}
-		}
-		else
-		{
-			$_COOKIE['id_hotel'] = $id_hotel;
-		}
+	public function galeria($id=NULL, $id_hotel=NULL){		
+		$db = $this->cargar_datos($id_hotel);
 		
-		if($id == NULL)
-		{
-			$id = $this->input->post('id');
-		}
-		
-		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
-		$db['idiomas']		= $this->idiomas_model->getIdiomas();
-		$db['hoteles']		= $this->hoteles_model->getHoteles($id_hotel);
-		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
 		$db['habitaciones']	= $this->habitaciones_model->getHabitacion($id);
 		$db['servicios']	= $this->habitacion_servicio_model->getServicios($id);
-		$db['configs']		= $this->configs_model->getConfigs();
-		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($id_hotel);
-								
-		$this->load->view('frontend/head', $db);
-		$this->load->view('frontend/menu');
-		//$this->load->view('frontend/formulario_consulta');
-		$this->load->view('frontend/habitacion/galeria');
-		$this->load->view('frontend/footer');
+	
+		$this->load_view($db, 'habitacion/galeria');
 	}
 }

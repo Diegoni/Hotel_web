@@ -1,6 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Inicio extends CI_Controller {
+class Inicio extends My_Controller {
+	
+	protected $_subject		= 'alarmas';
+	
+	
 	
 	function __construct()
 	{
@@ -24,17 +28,13 @@ class Inicio extends CI_Controller {
 	}
 	
 	
-	public function index()
-	{
+	public function index(){
 		$db['hoteles']		= $this->hoteles_model->getHotelesIntro();
 		$db['direcciones']	= $this->direcciones_hotel_model->getDirecciones();
 		
-		if($this->uri->segment(1) == "")
-		{
+		if($this->uri->segment(1) == ""){
 			$db['texto']	= $this->idiomas_model->getIdioma('es');	
-		}
-		else
-		{
+		} else {
 			$db['texto']	= $this->idiomas_model->getIdioma($this->uri->segment(1));
 		}
 		
@@ -42,34 +42,13 @@ class Inicio extends CI_Controller {
 	}
 	
 
-	public function hotel($id_hotel=NULL)
-	{
-		if($id_hotel == NULL)
-		{
-			if($this->uri->segment(1) == "")
-			{
-				redirect(base_url().'','refresh');
-			}
-			else
-			{
-				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
-			}
-		}
-		else
-		{
-			$_COOKIE['id_hotel'] = $id_hotel;
-		}
+	public function hotel($id_hotel=NULL){
+		$db = $this->cargar_datos($id_hotel);
 		
-		$db['texto']				= $this->idiomas_model->getIdioma($this->uri->segment(1));
-		$db['idiomas']				= $this->idiomas_model->getIdiomas();
-		$db['hoteles']				= $this->hoteles_model->getHoteles($_COOKIE['id_hotel']);
-		$db['hoteles_menu']			= $this->hoteles_model->getHotelesAll();
-		$db['emails_hotel']			= $this->hoteles_email_model->getEmails($_COOKIE['id_hotel']);
 		$db['imagenes_carrusel']	= $this->imagenes_carrusel_model->getImagenes($_COOKIE['id_hotel']);
 		$db['articulos']			= $this->articulos_model->getArticulos_paginaprincipal($_COOKIE['id_hotel']);
 		$db['traducciones']			= $this->modulos_idioma_model->getTraducciones($db['articulos'], 2);
 		$db['cantidad_categorias']	= count($db['articulos']);
-		$db['configs']				= $this->configs_model->getConfigs();
 		$db['configs_articulos']	= $this->configs_model->getConfigArticulos();
 		$db['tipos_habitacion']		= $this->tipos_habitacion_model->getTipos();
 		$db['categorias']			= $this->categorias_model->getCategorias($_COOKIE['id_hotel']);

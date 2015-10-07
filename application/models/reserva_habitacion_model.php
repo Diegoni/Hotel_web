@@ -5,11 +5,15 @@ class Reserva_habitacion_model extends CI_Model {
 		$habitaciones_post=array();
 		
 		foreach ($habitaciones as $id => $cantidad) {
-			$datos=array('id_reserva'=>$id_reserva,
-						 'id_habitacion'=>$id,
-						 'cantidad'=> $cantidad, 
-						 'prioridad'=>0					
-							);
+			$datos = array(
+				'id_reserva'	=> $id_reserva,
+				'id_habitacion'	=> $id,
+				'cantidad'		=> $cantidad, 
+				'prioridad'		=> 0					
+			);
+			
+			$datos = $this->db->escape($datos);
+			
 			$this->db->insert('reserva_habitacion', $datos);
 			array_push($habitaciones_post, $this->db->insert_id());				
 		}

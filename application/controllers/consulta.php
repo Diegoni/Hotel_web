@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-class Consulta extends CI_Controller {
+class Consulta extends My_Controller {
 	
 	function __construct()
 	{
@@ -15,32 +14,10 @@ class Consulta extends CI_Controller {
 	}
 	
 	
-	public function envio()
-	{
+	public function envio(){
 		$id_hotel		= $this->input->post('id_hotel');
 		
-		if($id_hotel==NULL)
-		{
-			if($this->uri->segment(1) == "")
-			{
-				redirect(base_url().'','refresh');
-			}
-			else
-			{
-				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
-			}
-		}
-		else
-		{
-			$_COOKIE['id_hotel'] = $id_hotel;
-		}
-		
-		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
-		$db['idiomas']		= $this->idiomas_model->getIdiomas();
-		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($id_hotel);
-		$db['hoteles']		= $this->hoteles_model->getHoteles($id_hotel);
-		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
-		$db['configs']		= $this->configs_model->getConfigs();
+		$db = $this->cargar_datos($id_hotel);
 		
 		$mensaje = array(	
 			'titulo'			=> 'Consulta web',
@@ -59,50 +36,23 @@ class Consulta extends CI_Controller {
 		
 		$hoteles = $this->hoteles_model->getHotel($id_hotel);
 		
-		foreach ($hoteles as $hotel) 
-		{
+		foreach ($hoteles as $hotel) {
 			$hotel = $hotel->hotel;
 		}
 		
 		$mensaje['hotel'] = $hotel;
 		$this->hoteles_email_model->correoMensaje($mensaje,1);
 		$this->hoteles_email_model->correoMensaje($mensaje,2);
-						
-		$this->load->view('frontend/head', $db);
-		$this->load->view('frontend/menu');
-		//$this->load->view('frontend/formulario_reserva');
-		$this->load->view('frontend/consulta/envio');
-		$this->load->view('frontend/footer');
-		
+				
+		$this->load_view($db, 'consulta/envio');		
 	}
 
-	public function email_habitacion()
-	{
-		$id_hotel = $this->input->post('id_hotel');
-		
-					
-		if($id_hotel == NULL)
-		{
-			if($this->uri->segment(1)=="")
-			{
-				redirect(base_url().'','refresh');
-			}
-			else
-			{
-				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
-			}
-		}
-		else
-		{
-			$_COOKIE['id_hotel'] = $id_hotel;
-		}
 
-		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
-		$db['idiomas']		= $this->idiomas_model->getIdiomas();
-		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($id_hotel);
-		$db['hoteles']		= $this->hoteles_model->getHoteles($id_hotel);
-		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
-		$db['configs']		= $this->configs_model->getConfigs();
+
+	public function email_habitacion(){
+		$id_hotel = $this->input->post('id_hotel');
+					
+		$db = $this->cargar_datos($id_hotel);
 		
 		$mensaje = array(	
 			'titulo'			=> 'Envió de habitacion ID: '.$this->input->post('id_habitacion'),
@@ -125,8 +75,7 @@ class Consulta extends CI_Controller {
 		
 		$hoteles	= $this->hoteles_model->getHotel($id_hotel);
 		
-		foreach ($hoteles as $hotel) 
-		{
+		foreach ($hoteles as $hotel) {
 			$hotel	= $hotel->hotel;
 		}
 		
@@ -134,13 +83,7 @@ class Consulta extends CI_Controller {
 		$this->hoteles_email_model->correoHabitacion($mensaje, $habitacion, 1);
 		$this->hoteles_email_model->correoHabitacion($mensaje, $habitacion, 2);
 		
-				
-		$this->load->view('frontend/head', $db);
-		$this->load->view('frontend/menu');
-		//$this->load->view('frontend/formulario_reserva');
-		$this->load->view('frontend/consulta/envio_habitacion');
-		$this->load->view('frontend/footer');
-		
+		$this->load_view($db, 'consulta/envio_habitacion');		
 	}
 	
 }

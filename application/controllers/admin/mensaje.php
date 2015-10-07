@@ -21,7 +21,7 @@ class Mensaje extends CI_Controller {
 			$reservas=buscarReservas();
 			$mensajes=buscarMensajes();
 			
-			$db=array_merge($reservas, $mensajes);
+			$db = array_merge($reservas, $mensajes);
 						
 			$this->load->view('backend/head.php',$output);
 			$this->load->view('backend/menu.php', $db);	
@@ -103,6 +103,49 @@ class Mensaje extends CI_Controller {
 			$output = $crud->render();
 
 			$this->_example_output($output);
+	}
+
+
+/**********************************************************************************
+ **********************************************************************************
+ * 
+ * 				Alta, baja y modificación de tipos de mensaje
+ * 
+ * ********************************************************************************
+ **********************************************************************************/
+
+
+	public function mensajes($id_mensaje = NULL){
+		if($this->session->userdata('logged_in')){
+			
+			
+			$reservas = buscarReservas();
+			$mensajes = buscarMensajes();
+			
+			
+			
+			
+			if($id_mensaje != NULL){
+				$this->mensajes_model->deleteMensajes($id_mensaje);
+			}
+			
+			if($this->input->post("delete")){
+				foreach ($this->input->post("delete") as $id) {
+					$this->mensajes_model->deleteMensajes($id);
+				}
+			}
+			
+			$db = array_merge($reservas, $mensajes);
+			
+			$db['mensajes_db'] = $this->mensajes_model->getMensajes(); 
+			
+			$this->load->view('backend/menu.php', $db);
+			$this->load->view('backend/modal.php');
+			$this->load->view('backend/mensajes.php');
+			$this->load->view('backend/footer.php');
+		}else{
+			redirect('/admin/home/logout/','refresh');
+		}
 	}
 
 

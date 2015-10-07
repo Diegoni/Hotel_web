@@ -110,7 +110,7 @@
 				<?php if($cant_mensajes>0){ ?>
 				<li><a  href='#' data-toggle="modal" data-target="#modal_mensajes">Nuevos					
 				<?php echo "<span class='badge'>".$cant_mensajes."</span></a></li>"; } ?>
-            	<li><a  href='<?php echo site_url('admin/mensaje/mensajes_abm')?>'>Mensajes</a></li>
+            	<li><a  href='<?php echo site_url('admin/mensaje/mensajes')?>'>Mensajes</a></li>
 				<!--
 				<li><a  href='<?php echo site_url('admin/mensaje/tipos_mensaje')?>'>Tipos de mensaje</a></li>
 				-->

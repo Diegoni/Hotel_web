@@ -1,8 +1,9 @@
 <?php 
 class Huespedes_model extends CI_Model {
 	
-	public function insertHuesped($datos)
-	{
+	public function insertHuesped($datos){
+		$datos = $this->db->escape($datos);
+		
 		$query = $this->db->query("SELECT * FROM `emails_huesped` WHERE `email`='$datos[email]' ");
 		
 		if($query->num_rows()==0){

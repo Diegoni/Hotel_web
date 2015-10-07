@@ -42,8 +42,6 @@ class Idiomas_model extends CI_Model {
 		 		
 		$query = $this->db->query($sql);
 		
-		echo $query->num_rows();
-		
 		if($query->num_rows() > 0){
 			foreach ($query->result() as $fila){
 				$data[] = $fila;

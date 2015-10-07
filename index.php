@@ -19,6 +19,7 @@ header('Content-type: text/html; charset=utf-8');
  *
  */
 	define('ENVIRONMENT', 'development');
+	//define('ENVIRONMENT', 'production');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

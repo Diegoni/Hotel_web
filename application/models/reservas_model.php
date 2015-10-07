@@ -2,6 +2,8 @@
 class Reservas_model extends CI_Model {
 	
 	function insertReserva($datos){
+		
+		$datos = $this->db->escape($datos);
 			
 		$this->db->insert('reservas', $datos);
 		

@@ -2,6 +2,8 @@
 class Notas_model extends CI_Model {
 			
 	function insertNota($nota){
+		$nota = $this->db->escape($nota);
+		
 		$this->db->insert('notas', $nota);
 		
 		$id_nota=$this->db->insert_id();

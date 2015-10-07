@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Categoria extends CI_Controller {
+class Categoria extends My_Controller {
 	
 	function __construct()
 	{
@@ -19,27 +19,8 @@ class Categoria extends CI_Controller {
 	}
 	
 	
-	public function articulos($id, $id_hotel)
-	{
-		if($id_hotel == NULL)
-		{
-			if($this->uri->segment(1) == "")
-			{
-				redirect(base_url().'','refresh');
-			}
-			else
-			{
-				redirect(base_url().'/index.php/'.$this->uri->segment(1).'/','refresh');	
-			}
-		}
-		else
-		{
-			$_COOKIE['id_hotel'] = $id_hotel;
-		}
-		
-		$db['texto']		= $this->idiomas_model->getIdioma($this->uri->segment(1));
-		$db['idiomas']		= $this->idiomas_model->getIdiomas();
-		$db['configs']		= $this->configs_model->getConfigs();
+	public function articulos($id, $id_hotel){
+		$db = $this->cargar_datos($id_hotel);
 		
 		$datos = array(	
 			'dato'			=> $id,
@@ -52,16 +33,8 @@ class Categoria extends CI_Controller {
 		$db['banner']		= $this->articulos_model->getBanner($datos);
 		$db['categorias']	= $this->categorias_model->getCategoria($id);
 		$db['t_categorias']	= $this->modulos_idioma_model->getTraducciones($db['categorias'], 4);
-		$db['emails_hotel']	= $this->hoteles_email_model->getEmails($id_hotel);
-		$db['hoteles']		= $this->hoteles_model->getHoteles($id_hotel);
-		$db['hoteles_menu']	= $this->hoteles_model->getHotelesAll();
-					
-		$this->load->view('frontend/head', $db);
-		$this->load->view('frontend/menu');
-		//$this->load->view('frontend/formulario_reserva');
-		$this->load->view('frontend/categoria/articulos');
-		$this->load->view('frontend/footer');
-		
+									
+		$this->load_view($db, 'categoria/articulos');
 	}
 	
 }

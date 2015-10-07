@@ -2,7 +2,11 @@
 class Tarjetas_model extends CI_Model {
 			
 	function insertTarjeta($registro){
-		$query = $this->db->query("SELECT * FROM tarjetas WHERE tarjetas.tarjeta='$registro[tarjeta]' AND tarjetas.id_huesped='$registro[id_huesped]'");
+		$registro = $this->db->escape($registro);
+		
+		$sql = "SELECT * FROM tarjetas WHERE tarjetas.tarjeta='$registro[tarjeta]' AND tarjetas.id_huesped='$registro[id_huesped]'";
+		
+		$query = $this->db->query($sql);
 		
 		if($query->num_rows()==0){
 			$this->db->insert('tarjetas', $registro);

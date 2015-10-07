@@ -192,7 +192,7 @@
       		<div class="modal-header">
         		<h4 class="modal-title" id="myModalLabel"><?php echo $texto['consulta']?></h4>
       		</div>
-      		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/consulta/envio'?>" />
+      		<form method="post" class="form-horizontal" role="form" accept-charset="utf-8" action="<?php echo base_url().'index.php/'.$this->uri->segment(1).'/consulta/envio'?>" onsubmit="return controlCaptcha()"/>
       		<div class="modal-body">
       			<div class="form-group">
     				<label for="nombre" class="col-sm-2 control-label"><?php echo $texto['mensaje']?></label>
@@ -225,6 +225,15 @@
     				<input type="text" class="form-control" name="telefono" placeholder="<?php echo $texto['ingrese']." ".$texto['su']." ".$texto['telefono']?>"> 
     				</div>
   				</div>
+  				
+  				<div class="form-group">
+  					<label for="captcha"class="col-sm-2 control-label">Captcha</label>
+  					<div class="col-sm-10">
+  						<center><?php echo $captcha['image']?></center>
+						<input class="form-control" type="text" name="captcha" id="captcha" placeholder="<?php echo $texto['ingrese']?> Captcha" required/>
+					</div>
+					<input type="hidden" value="<?php echo $captcha['word']?>" name="string_captcha" id="control_captcha"/>
+				</div>
       		</div>
       		<div class="modal-footer">
       			<input type="hidden" name="id_hotel" value="<?php echo $id_hotel?>" >
@@ -241,16 +250,18 @@
 
 
 <?php 
-  					$telefono=array();
-					$direccion=array();
-					foreach ($hoteles as $hotel) {
-  						if (!(in_array($hotel->telefono, $telefono))) {
-    						$telefono[]=$hotel->telefono;	
-						} 
-						if (!(in_array($hotel->calle." - ".$hotel->provincia, $direccion))) {
-							$direccion[]=$hotel->calle." - ".$hotel->provincia;
-						}						
-} ?>	
+	$telefono	= array();
+	$direccion	= array();
+
+	foreach ($hoteles as $hotel) {
+		if (!(in_array($hotel->telefono, $telefono))) {
+			$telefono[] = $hotel->telefono;	
+		} 
+		if (!(in_array($hotel->calle." - ".$hotel->provincia, $direccion))) {
+			$direccion[] = $hotel->calle." - ".$hotel->provincia;
+		}						
+	} 
+?>	
 
 
 
@@ -329,3 +340,15 @@ foreach ($hoteles as $hotel) {
     	</div>
   	</div>
 </div>
+
+<script>
+	function controlCaptcha(){
+		if($('#captcha').val() == $('#control_captcha').val()){
+			return true;
+		}else{
+			alert('<?php echo $texto['captcha_incorrecto']?>');
+			$('#captcha').focus();
+			return false;	
+		}
+	}
+</script>

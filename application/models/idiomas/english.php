@@ -106,5 +106,6 @@
 	$texto['te_espera']				= "waiting for you";
 	$texto['ayuda_pin']				= 'Secure transaction! Your credit card is only required to guarantee your reservation.
     The credit card data left on warranty shall be valid to confirm your reservation, otherwise it will be taken down without notice. This card is only as guarantee reserves and will be used only in case of no-show or cancellation after the deadline, the full amount must be paid at the hotel.';
-	
+
+	$texto['captcha_incorrecto']	= "Incorrect captcha";
 ?>	

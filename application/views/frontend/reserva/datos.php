@@ -120,6 +120,12 @@
     					</div>
   					</div>
   					
+  					<style>
+  					.ui-datepicker-calendar {
+					    display: none;
+					}
+  					</style>
+  					
   				
   					
   					<!--------------------------------------------------------------------------------
@@ -196,17 +202,18 @@
 	    					<input type="hidden" name="precio<?php echo $clave;?>" value="<?php echo $this->input->post('precio'.$clave) ?>">
 						<?php } ?>
 						<center>
-    					<div class="col-sm-offset-2 col-sm-5">
-							<button type="submit" class="btn btn-hotel boton-redondo">
-								<span class="icon-ok font-big"></span>
-							</button>
-							
-    					</div>
     					<div class="col-sm-5">
     						<a href="javascript:window.history.back();" type="submit" class="btn btn-hotel boton-redondo" title="<?php echo $texto['volver']?>" rel="tooltip">
 								<span class="icon-chevron-left"></span>
 							</a>
       					</div>
+      					
+      					<div class="col-sm-offset-2 col-sm-5">
+							<button type="submit" class="btn btn-hotel boton-redondo">
+								<span class="icon-ok font-big"></span>
+							</button>
+							
+    					</div>
       					</center>
     					
   					</div>  					
