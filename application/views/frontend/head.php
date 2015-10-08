@@ -14,8 +14,8 @@
 
 
 <!-- Iconos -->
-<link type="image/x-icon" href="imagenes/favicon.ico" rel="icon" />
-<link type="image/x-icon" href="imagenes/favicon.ico" rel="shortcut icon" />
+<link type="image/x-icon" href="<?php echo base_url().'assets/uploads/favicon.ico'?>" rel="icon" />
+<link type="image/x-icon" href="<?php echo base_url().'assets/uploads/favicon.ico'?>" rel="shortcut icon" />
 
 <!-- Libreria Jquery -->
 <script src="<?php echo base_url().'librerias/jquery.js'?>" type="text/javascript"></script>
