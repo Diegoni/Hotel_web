@@ -124,17 +124,22 @@
 						$precio_con_descuento=0;
 						
                 		if(isset($tarifas)){
+                			
                 			foreach ($tarifas as $tarifa) { 
 								if($tarifa->id_habitacion==$habitacion->id_habitacion){
-									$datos=array('id_tipo_tarifa'=>$tarifa->id_tipo_tarifa,
-												 'valor'=>$tarifa->valor,
-												 'precio'=>$habitacion->precio); 
+									$datos	=	array(
+										'id_tipo_tarifa'=> $tarifa->id_tipo_tarifa,
+										'valor'			=> $tarifa->valor,
+										'precio'		=> $habitacion->precio
+									); 
 									$precio=$this->tarifas_temporales_model->calcular_precio($datos);
 									if($precio<$habitacion->precio){
 										$precio_con_descuento=1;
 									}
                 				}							
 							}	
+                		}else{
+                			
                 		} 
 						?>
 						
