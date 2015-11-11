@@ -124,6 +124,9 @@
   					.ui-datepicker-calendar {
 					    display: none;
 					}
+					.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current{
+						display: none;
+					}
   					</style>
   					
   				
