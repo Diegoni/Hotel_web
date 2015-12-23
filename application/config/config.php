@@ -17,7 +17,9 @@ ini_set('allow_url_include', 'On');
 |
 */
 //local
-$config['base_url']	= '';/* 
+$config['base_url']	= '';
+/* 
+ * 
 if(isset($_COOKIE['idioma'])){
 	
 }else{
